@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link data-require="bootstrap@*" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <script data-require="bootstrap@*" data-semver="4.0.5" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+    <script data-require="angular.js@*" data-semver="2.0.0" src="https://code.angularjs.org/2.0.0-snapshot/angular2.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <h1>SlugRide</h1>
+    <div class="form-group">
+      <input type="text" class="form-control" id="username" placeholder="Username/UCSC Email" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="password" placeholder="Password" />
+    </div>
+    <button data-ng-click="login()" class="btn btn-primary"> Login </button>
+     <button data-ng-click="signUp()" class="btn btn-primary"> Sign Up </button>
+  
+
+
+  </body>
+
+</html>
