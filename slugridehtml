@@ -7,19 +7,44 @@
     <script data-require="angular.js@*" data-semver="2.0.0" src="https://code.angularjs.org/2.0.0-snapshot/angular2.js"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
+    <script>
+    
+    </script>
+    <title>SlugRide</title>
   </head>
-
+  
   <body>
     <h1>SlugRide</h1>
-    <div class="form-group">
-      <input type="text" class="form-control" id="username" placeholder="Username/UCSC Email" />
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" id="password" placeholder="Password" />
-    </div>
-    <button data-ng-click="login()" class="btn btn-primary"> Login </button>
-     <button data-ng-click="signUp()" class="btn btn-primary"> Sign Up </button>
-  
+    
+    
+    <form name="login">
+    <div class= "login">
+      <input type = "text" placeholder="Username/UCSC Email" name="userid"><br>
+      <input type = "password" placeholder="Password" name="psswrd"><br>
+      <input type = "button" onclick="check(this.form)" value="Login"><br>
+      
+      </div>
+      </form>
+    <script language="javascript">
+      function check(form){
+        
+        if(form.userid.value == "john" && form.psswrd.value=="123"){
+          window.open('https://www.youtube.com/watch?v=X1ag8kapwUk')
+          
+        }
+        else{
+          alert("the username and/or password you entered are incorrect")
+        }
+        
+      }
+      
+      
+      
+    </script>
+    
+    
+    
+
 
 
   </body>
