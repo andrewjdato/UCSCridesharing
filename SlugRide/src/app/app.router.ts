@@ -13,6 +13,7 @@ import { RiderOndemandSubmitComponent } from './rider-ondemand-submit/rider-onde
 import { DriverPlannedSubmitComponent } from './driver-planned-submit/driver-planned-submit.component';
 import { RiderPlannedSubmitComponent } from './rider-planned-submit/rider-planned-submit.component';
 import { AccountComponent } from './account/account.component';
+import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 
 
 
@@ -28,7 +29,9 @@ export const router: Routes = [
     { path: 'riderondemandsubmit', component: RiderOndemandSubmitComponent },
     { path: 'driverplannedsubmit', component: DriverPlannedSubmitComponent },
     { path: 'riderplannedsubmit', component: RiderPlannedSubmitComponent },
-    { path: 'account', component: AccountComponent }
+    { path: 'account', component: AccountComponent },
+
+    { path: '**', component: FourzerofourComponent }
 
 ];
 

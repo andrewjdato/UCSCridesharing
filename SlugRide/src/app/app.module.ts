@@ -15,6 +15,7 @@ import { RiderPlannedSubmitComponent } from './rider-planned-submit/rider-planne
 import { RiderOndemandSubmitComponent } from './rider-ondemand-submit/rider-ondemand-submit.component';
 import { DriverOndemandSubmitComponent } from './driver-ondemand-submit/driver-ondemand-submit.component';
 import { AccountComponent } from './account/account.component';
+import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AccountComponent } from './account/account.component';
     RiderPlannedSubmitComponent,
     RiderOndemandSubmitComponent,
     DriverOndemandSubmitComponent,
-    AccountComponent
+    AccountComponent,
+    FourzerofourComponent
   ],
   imports: [
     BrowserModule,
