@@ -16,6 +16,7 @@ import { RiderOndemandSubmitComponent } from './rider-ondemand-submit/rider-onde
 import { DriverOndemandSubmitComponent } from './driver-ondemand-submit/driver-ondemand-submit.component';
 import { AccountComponent } from './account/account.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
+import {AgmCoreModule} from 'angular2-google-maps/core'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routes
+    routes,
+      AgmCoreModule.forRoot({apiKey:'AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM'})
   ],
   providers: [],
   bootstrap: [AppComponent]
