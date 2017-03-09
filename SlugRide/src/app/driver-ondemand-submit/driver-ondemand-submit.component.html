@@ -1,11 +1,28 @@
-  <h1 class="text-center">Driver On Demand</h1>
+<div class="container">
+<h1 class="text-center">Driver On Demand</h1>
   <div class= "text-center">
-        <input type = "password" placeholder="Destination" name="psswrd"><br>
+
         <a routerLink="/drivertype" class="btn btn-default">Submit</a> <br>
   </div>
   <div class= "text-left">
-        <a routerLink="/drivertype" class="btn btn-default">Back</a> <br> 
+        <a routerLink="/drivertype" class="btn btn-default">Back</a> <br>
   </div>
-  <sebm-google-map [latitude]="lat" [longitude]="lng">
-      <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-  </sebm-google-map>
+
+  <div class="form-group">
+      <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl]="destinationInput">
+      <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl]="destinationOutput" >
+  </div>
+
+
+
+  <!Google Maps HTML Code>
+    <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
+        <!-- <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+            <sebm-google-map-info-window>
+                <strong>InfoWindow content</strong>
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker> -->
+        <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
+    </sebm-google-map>
+
+</div>
