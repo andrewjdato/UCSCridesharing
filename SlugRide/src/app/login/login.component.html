@@ -1,10 +1,17 @@
-  <h1 class="text-center">Slug Ride</h1> 
-    <form name="login">
-      <div class= "login text-center">
-        <input type = "text" placeholder="Username/UCSC Email" name="userid"><br>
-        <input type = "password" placeholder="Password" name="psswrd"><br>
-        <input routerLink="/usertype" type = "button" value="Login"><br>
-        <a routerLink="/register">Register</a> <br> 
-        <a routerLink="/forgot" >Forgot Password?</a> 
-      </div>
+    <h2 class="text-center">Slug Ride</h2>
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input placeholder="Username" type="text" class="form-control text-center" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input placeholder="Password" type="password" class="form-control text-center" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-primary ">Login</button> <br>
+            <a [routerLink]="['/register']" class="btn btn-link">Register</a> <br>
+            <a [routerLink]="['/forgot']" class="btn btn-link">Forgot Password</a> <br>
+            <a routerLink="/usertype">Temp Login</a> 
+        </div>
     </form>
