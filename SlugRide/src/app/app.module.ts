@@ -18,6 +18,11 @@ import { AccountComponent } from './account/account.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import {AgmCoreModule} from 'angular2-google-maps/core'
 import { DirectionsMapDirective } from 'app/map/google-map.directive';
+
+import { AuthGuard } from './_auth/auth.guard';
+import { AuthService }  from './_services/auth.service';
+import { UserService }  from './_services/user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +48,11 @@ import { DirectionsMapDirective } from 'app/map/google-map.directive';
     routes,
       AgmCoreModule.forRoot({apiKey:'AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM',libraries:["places"] })
   ],
-  providers: [],
+  providers: [
+        AuthGuard,
+        AuthService,
+        UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
