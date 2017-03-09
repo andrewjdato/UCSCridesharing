@@ -1,10 +1,23 @@
-  <h1 class="text-center">Register</h1>
-  <body>
-    <div class= "text-center">
-      <input type = "text" placeholder="Username/UCSC Email" name="userid"><br>
-      <input type = "password" placeholder="Password" name="psswrd"><br>
-      <input type = "password" placeholder="Verify Password" name="psswrd"><br>
-      <input type = "button" value="Submit"><br>
-      <a routerLink="/login">Back</a> 
-    </div>
-  </body>
+    <h2 class="text-center">Register</h2>
+    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input placeholder ="First Name"type="text" class="form-control text-center" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input type="text" placeholder ="Last Name" class="form-control text-center" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input type="text" placeholder ="Email" class="form-control text-center" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input type="password" placeholder ="Password" class="form-control text-center" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-primary">Register</button> <br>
+            <a [routerLink]="['/login']" class="btn btn-link">Back</a>
+        </div>
+    </form>
