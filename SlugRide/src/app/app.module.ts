@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule,FormControl } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.router';
 import { AppComponent } from './app.component';
@@ -17,7 +17,7 @@ import { DriverOndemandSubmitComponent } from './driver-ondemand-submit/driver-o
 import { AccountComponent } from './account/account.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import {AgmCoreModule} from 'angular2-google-maps/core'
-
+import { DirectionsMapDirective } from 'app/map/google-map.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +26,7 @@ import {AgmCoreModule} from 'angular2-google-maps/core'
     LoginComponent,
     UserTypeComponent,
     DriverTypeComponent,
+    DirectionsMapDirective,
     RiderTypeComponent,
     DriverPlannedSubmitComponent,
     RiderPlannedSubmitComponent,
@@ -38,8 +39,9 @@ import {AgmCoreModule} from 'angular2-google-maps/core'
     BrowserModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     routes,
-      AgmCoreModule.forRoot({apiKey:'AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM'})
+      AgmCoreModule.forRoot({apiKey:'AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM',libraries:["places"] })
   ],
   providers: [],
   bootstrap: [AppComponent]
