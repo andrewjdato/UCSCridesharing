@@ -14,7 +14,10 @@ import { DriverPlannedSubmitComponent } from './driver-planned-submit/driver-pla
 import { RiderPlannedSubmitComponent } from './rider-planned-submit/rider-planned-submit.component';
 import { AccountComponent } from './account/account.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
+import { AccountEditComponent } from './account-edit/account-edit.component';
 
+
+import { AuthGuard } from './_auth/auth.guard';
 
 
 export const router: Routes = [
@@ -22,14 +25,15 @@ export const router: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot', component: ForgotComponent },
-    { path: 'drivertype', component: DriverTypeComponent },
-    { path: 'ridertype', component: RiderTypeComponent },
-    { path: 'usertype', component: UserTypeComponent },
-    { path: 'driverondemandsubmit', component: DriverOndemandSubmitComponent },
-    { path: 'riderondemandsubmit', component: RiderOndemandSubmitComponent },
-    { path: 'driverplannedsubmit', component: DriverPlannedSubmitComponent },
-    { path: 'riderplannedsubmit', component: RiderPlannedSubmitComponent },
-    { path: 'account', component: AccountComponent },
+    { path: 'drivertype', component: DriverTypeComponent, canActivate: [AuthGuard] },
+    { path: 'ridertype', component: RiderTypeComponent, canActivate: [AuthGuard] },
+    { path: 'usertype', component: UserTypeComponent, canActivate: [AuthGuard] },
+    { path: 'driverondemandsubmit', component: DriverOndemandSubmitComponent, canActivate: [AuthGuard] },
+    { path: 'riderondemandsubmit', component: RiderOndemandSubmitComponent, canActivate: [AuthGuard] },
+    { path: 'driverplannedsubmit', component: DriverPlannedSubmitComponent, canActivate: [AuthGuard] },
+    { path: 'riderplannedsubmit', component: RiderPlannedSubmitComponent, canActivate: [AuthGuard] },
+    { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+    { path: 'accountedit', component: AccountEditComponent, canActivate: [AuthGuard] },
 
     { path: '**', component: FourzerofourComponent }
 
