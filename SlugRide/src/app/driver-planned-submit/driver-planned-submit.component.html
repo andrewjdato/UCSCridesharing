@@ -1,11 +1,25 @@
-  <h1 class="text-center">Driver Planned</h1>
-  <div class= "text-center">
-        <input type = "text" placeholder="Start Location" name="userid"><br>
-        <input type = "password" placeholder="End Destination" name="psswrd"><br>
-        <input type = "text" placeholder="Time of Departure" name="userid"><br>
-        <input type = "password" placeholder="Day" name="psswrd"><br>
-        <a routerLink = "/drivertype" class="btn btn-default">Submit</a> <br>
-  </div>
-  <div class= "text-left">
-        <a routerLink = "/drivertype" class="btn btn-default">Back</a> <br> 
-  </div>
+    <h2 class="text-center">Driver Planned</h2>
+    <form name="form" (ngSubmit)="f.form.valid && driverPlanned()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !startlocation.valid }">
+            <input placeholder ="Start Location"type="text" class="form-control text-center" name="startlocation" [(ngModel)]="model.startlocation" #startlocation="ngModel" required />
+            <div *ngIf="f.submitted && !startlocation.valid" class="help-block">Start Location is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !enddestination.valid }">
+            <input type="text" placeholder ="End Destination" class="form-control text-center" name="enddestination" [(ngModel)]="model.enddestination" #enddestination="ngModel" required />
+            <div *ngIf="f.submitted && !enddestination.valid" class="help-block">End Destination is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !timeofdepart.valid }">
+            <input type="text" placeholder ="Time of Departure" class="form-control text-center" name="timeofdepart" [(ngModel)]="model.timeofdepart" #timeofdepart="ngModel" required />
+            <div *ngIf="f.submitted && !timeofdepart.valid" class="help-block">Time of Departure is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !day.valid }">
+            <input type="text" placeholder ="Day" class="form-control text-center" name="day" [(ngModel)]="model.day" #dayt="ngModel" required />
+            <div *ngIf="f.submitted && !day.valid" class="help-block">Day is required</div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-primary">Submit</button> <br>
+        </div>
+        <div class= "text-left">
+            <a routerLink = "/drivertype" class="btn btn-default">Back</a> <br> 
+        </div>
+    </form>

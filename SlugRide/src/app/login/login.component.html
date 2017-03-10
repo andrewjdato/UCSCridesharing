@@ -1,8 +1,8 @@
     <h2 class="text-center">Slug Ride</h2>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <input placeholder="Username" type="text" class="form-control text-center" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <input placeholder="UCSC Email" type="text" class="form-control text-center" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">UCSC Email is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <input placeholder="Password" type="password" class="form-control text-center" name="password" [(ngModel)]="model.password" #password="ngModel" required />
