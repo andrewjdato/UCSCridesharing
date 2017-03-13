@@ -8,14 +8,18 @@ import { UserService } from '../_services/user.service';
   templateUrl: './forgot.component.html',
   styleUrls: ['./forgot.component.css']
 })
-export class ForgotComponent {
+export class ForgotComponent implements OnInit{
     model: any = {};
-
+    incorrect_forgot: boolean; 
  
     constructor(
         private router: Router,
         private userService: UserService) { }
  
+    ngOnInit() {
+        this.incorrect_forgot = false; 
+    }
+
     forgot() {
         this.userService.check(this.model)
             .subscribe(
@@ -25,6 +29,7 @@ export class ForgotComponent {
                     this.router.navigate(['/login']);
                 },
                 error => {
+                    this.incorrect_forgot = true; 
                     //Insert bad here
                 });
     }

@@ -1,4 +1,5 @@
     <h2 class="text-center">Register</h2>
+    <div *ngIf="f.submitted && this.incorrect_register" class="text-center text-danger ">UCSC Email already in use</div>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <input placeholder ="First Name"type="text" class="form-control text-center" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
