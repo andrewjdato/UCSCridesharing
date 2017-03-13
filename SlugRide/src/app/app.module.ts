@@ -66,9 +66,9 @@ import { RiderScheduleComponent } from './rider-schedule/rider-schedule.componen
         UserService,
 
         // providers used to create fake backend
-        fakeBackendProvider,
-        MockBackend,
-        BaseRequestOptions
+        //fakeBackendProvider,
+        //MockBackend,
+        //BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })
