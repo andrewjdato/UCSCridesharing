@@ -1,7 +1,19 @@
   <h1 class="text-center">Account Information</h1>
+  <h2 class="text-left"> Personal Information </h2>
+  <p class="text-left">First Name:</p> <p class="text-right"> {{currentUser.firstName}} </p> <br>
+  <p class="text-left">Last Name: </p> <p class="text-right"> {{currentUser.lastName}} </p>  <br>
+  <p class="text-left">Email: </p> <p class="text-right"> {{currentUser.email}} </p> <br>
+  <p class="text-left">Password:</p> <p class="text-right"> {{currentUser.password}} </p> <br>
+
+  <h2 class="text-left"> User Statistics</h2>
+  <p class="text-left">Driver Rating:</p> <p class="text-right"> {{this.driver_rating}}/5 </p> <br>
+  <p class="text-left">Driver Given: </p> <p class="text-right"> {{this.rides_given}} </p>  <br>
+  <p class="text-left">Rider Rating </p> <p class="text-right"> {{this.rider_rating}}/5 </p> <br>
+  <p class="text-left">Rider Taken:</p> <p class="text-right"> {{this.rides_taken}} </p> <br>
+
   <div class= "text-center">
     <div class="btn-group-vertical">
-      <a routerLink="/usertype" class="btn btn-default">Edit</a> <br> 
+      <a routerLink="/accountedit" class="btn btn-default">Edit</a> <br> 
       <a routerLink="/usertype" class="btn btn-default">Back</a> <br> 
     </div>
   </div>

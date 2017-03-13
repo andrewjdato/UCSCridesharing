@@ -11,6 +11,7 @@ import { AuthService } from '../_services/auth.service';
 export class LoginComponent implements OnInit {
     model: any = {};
     returnUrl: string;
+    incorrect_login: boolean; 
  
     constructor(
         private route: ActivatedRoute,
@@ -20,17 +21,18 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
- 
+        this.incorrect_login = false; 
         // get return url from route parameters or default to '/'
     }
  
     login() {
-        this.authenticationService.login(this.model.username, this.model.password)
+        this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(
                 data => {
                     this.router.navigate(['/usertype']);
                 },
                 error => {
+                    this.incorrect_login = true; 
                     //Insert Notification Here
                 });
     }

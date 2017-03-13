@@ -23,6 +23,14 @@ import { AuthGuard } from './_auth/auth.guard';
 import { AuthService }  from './_services/auth.service';
 import { UserService }  from './_services/user.service';
 
+import { fakeBackendProvider } from './_temp/fakebackend';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
+import { AccountEditComponent } from './account-edit/account-edit.component';
+import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
+import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
+import { RiderScheduleComponent } from './rider-schedule/rider-schedule.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +46,11 @@ import { UserService }  from './_services/user.service';
     RiderOndemandSubmitComponent,
     DriverOndemandSubmitComponent,
     AccountComponent,
-    FourzerofourComponent
+    FourzerofourComponent,
+    AccountEditComponent,
+    RiderPlannedComponent,
+    DriverScheduleComponent,
+    RiderScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +63,12 @@ import { UserService }  from './_services/user.service';
   providers: [
         AuthGuard,
         AuthService,
-        UserService
+        UserService,
+
+        // providers used to create fake backend
+        fakeBackendProvider,
+        MockBackend,
+        BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })
