@@ -1,20 +1,20 @@
     <h2 class="text-center">Driver Planned</h2>
     <form name="form" (ngSubmit)="f.form.valid && driverPlanned()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !startlocation.valid }">
-            <input placeholder ="Start Location"type="text" class="form-control text-center" name="startlocation" [(ngModel)]="model.startlocation" #startlocation="ngModel" required />
-            <div *ngIf="f.submitted && !startlocation.valid" class="help-block">Start Location is required</div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !driver_destination.valid }">
+            <input placeholder ="Start Location"type="text" class="form-control text-center" name="driver_destination" [(ngModel)]="model.driver_destination" #driver_destination="ngModel" required />
+            <div *ngIf="f.submitted && !driver_destination.valid" class="help-block">Start Location is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !enddestination.valid }">
-            <input type="text" placeholder ="End Destination" class="form-control text-center" name="enddestination" [(ngModel)]="model.enddestination" #enddestination="ngModel" required />
-            <div *ngIf="f.submitted && !enddestination.valid" class="help-block">End Destination is required</div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !driver_departure.valid }">
+            <input type="text" placeholder ="End Destination" class="form-control text-center" name="driver_departure" [(ngModel)]="model.driver_departure" #driver_departure="ngModel" required />
+            <div *ngIf="f.submitted && !driver_departure.valid" class="help-block">End Destination is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !timeofdepart.valid }">
-            <input type="text" placeholder ="Time of Departure" class="form-control text-center" name="timeofdepart" [(ngModel)]="model.timeofdepart" #timeofdepart="ngModel" required />
-            <div *ngIf="f.submitted && !timeofdepart.valid" class="help-block">Time of Departure is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !day.valid }">
-            <input type="text" placeholder ="Day" class="form-control text-center" name="day" [(ngModel)]="model.day" #dayt="ngModel" required />
-            <div *ngIf="f.submitted && !day.valid" class="help-block">Day is required</div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !driver_timeofdeparture.valid }">
+            <input type="text" placeholder ="Time of Departure" class="form-control text-center" name="driver_timeofdeparture" [(ngModel)]="model.driver_timeofdeparture" #driver_timeofdeparture="ngModel" required />
+            <div *ngIf="f.submitted && !driver_timeofdeparture.valid" class="help-block">Time of Departure is required</div>
+        </div>     
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !driver_days.valid }">
+            <input type="text" placeholder ="Day" class="form-control text-center" name="driver_days" [(ngModel)]="model.driver_days" #driver_days="ngModel" required />
+            <div *ngIf="f.submitted && !driver_days.valid" class="help-block">Day is required</div>
         </div>
         <div class="form-group text-center">
             <button class="btn btn-primary">Submit</button> <br>
