@@ -27,6 +27,9 @@ import { fakeBackendProvider } from './_temp/fakebackend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { AccountEditComponent } from './account-edit/account-edit.component';
+import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
+import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
+import { RiderScheduleComponent } from './rider-schedule/rider-schedule.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { AccountEditComponent } from './account-edit/account-edit.component';
     DriverOndemandSubmitComponent,
     AccountComponent,
     FourzerofourComponent,
-    AccountEditComponent
+    AccountEditComponent,
+    RiderPlannedComponent,
+    DriverScheduleComponent,
+    RiderScheduleComponent
   ],
   imports: [
     BrowserModule,

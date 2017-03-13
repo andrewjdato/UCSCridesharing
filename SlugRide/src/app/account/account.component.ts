@@ -10,12 +10,21 @@ import { UserService } from '../_services/user.service';
 })
 export class AccountComponent implements OnInit {
     currentUser: User;
+    driver_rating: number;
+    rides_given: number; 
+    rider_rating: number;
+    rides_taken: number; 
+    
  
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
   ngOnInit() {
+    this.driver_rating = 5; 
+    this.rides_given = 19; 
+    this.rider_rating = 5; 
+    this.rides_taken = 10; 
   }
 
 }

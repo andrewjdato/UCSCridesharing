@@ -1,4 +1,5 @@
     <h2 class="text-center">Slug Ride</h2>
+    <div *ngIf="f.submitted && this.incorrect_login" class="text-center text-danger ">Incorrect Password or UCSC Email</div>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <input placeholder="UCSC Email" type="text" class="form-control text-center" name="email" [(ngModel)]="model.email" #email="ngModel" required />
@@ -12,6 +13,5 @@
             <button class="btn btn-primary ">Login</button> <br>
             <a [routerLink]="['/register']" class="btn btn-link">Register</a> <br>
             <a [routerLink]="['/forgot']" class="btn btn-link">Forgot Password</a> <br>
-            <a routerLink="/usertype">Temp Login</a> 
         </div>
     </form>
