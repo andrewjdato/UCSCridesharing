@@ -43,6 +43,7 @@ export class DirectionsMapDirective {
                 origin: {placeId : this.originPlaceId },
                 destination: {placeId : this.destinationPlaceId },
                 avoidHighways: true,
+                waypoints: [],
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
                 //travelMode: 'DRIVING'
             }, function(response: any, status: any) {
