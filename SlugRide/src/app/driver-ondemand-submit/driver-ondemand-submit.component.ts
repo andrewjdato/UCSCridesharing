@@ -10,10 +10,43 @@ declare var jQuery:any;
 
 @Component({
   selector: 'app-driver-ondemand-submit',
-  templateUrl: './driver-ondemand-submit.component.html',
+  //templateUrl: './driver-ondemand-submit.component.html',
   styleUrls: ['./driver-ondemand-submit.component.css'],
-  providers: [GoogleMapsAPIWrapper]
-})
+  providers: [GoogleMapsAPIWrapper],
+  template:` <div class="container">
+  <h1 class="text-center">Driver On Demand</h1>
+  <div class= "text-center">
+
+  <a routerLink="/drivertype" class="btn btn-default">Submit</a> <br>
+      </div>
+  <div class= "text-left">
+  <a routerLink="/drivertype" class="btn btn-default">Back</a> <br>
+      </div>
+
+  <div class="form-group">
+    <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl]="destinationInput">
+    <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl]="destinationOutput" >
+    <input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
+
+    </div>
+
+
+
+    <!Google Maps HTML Code>
+<sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
+<!-- <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+    <sebm-google-map-info-window>
+    <strong>InfoWindow content</strong>
+</sebm-google-map-info-window>
+</sebm-google-map-marker> -->
+<sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
+    </sebm-google-map>
+
+    </div> 
+    <div></div>
+    <div *ngIf = "true">Estimated time of route: {{this.vc.estimatedTime}} </div>
+    <div *ngIf = "true">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
+`})
 
 export class DriverOndemandSubmitComponent implements OnInit {
   public latitude: number;
@@ -23,10 +56,12 @@ export class DriverOndemandSubmitComponent implements OnInit {
   //
   public destinationInput: FormControl;
   public destinationOutput: FormControl;
+  public destinationWaypoint: FormControl;
   public iconurl: string;
   public mapCustomStyles: any;
   public estimatedTime: any;
   public estimatedDistance: any;
+
   //
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -37,6 +72,9 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
   @ViewChild("pickupOutput")
   public pickupOutputElementRef: ElementRef;
+
+  @ViewChild("waypoint")
+  public waypointElementRef: ElementRef;
 
   @ViewChild("scrollMe")
   private scrollContainer: ElementRef;
@@ -65,6 +103,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     //create search FormControl
     this.destinationInput = new FormControl();
     this.destinationOutput = new FormControl();
+    this.destinationWaypoint = new FormControl();
     //set current position
     this.setCurrentPosition();
 
@@ -77,9 +116,13 @@ export class DriverOndemandSubmitComponent implements OnInit {
       let autocompleteOutput = new google.maps.places.Autocomplete(this.pickupOutputElementRef.nativeElement, {
         types: ["address"]
       });
+      let autocompleteWaypoint = new google.maps.places.Autocomplete(this.waypointElementRef.nativeElement, {
+        types: ["address"]
+      });
 
       this.setupPlaceChangedListener(autocompleteInput, 'ORG');
       this.setupPlaceChangedListener(autocompleteOutput, 'DES');
+      this.setupPlaceChangedListener(autocompleteWaypoint,'WAY');
     });
   }
 
@@ -96,9 +139,12 @@ export class DriverOndemandSubmitComponent implements OnInit {
         if (mode === 'ORG') {
           this.vc.origin = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
           this.vc.originPlaceId = place.place_id;
-        } else {
+        } else if(mode === 'DES'){
           this.vc.destination = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()}; // its a example aleatory position
           this.vc.destinationPlaceId = place.place_id;
+        } else if(mode==='WAY'){
+
+
         }
 
         if (this.vc.directionsDisplay === undefined) {
@@ -109,6 +155,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
         //Update the directions
         this.vc.updateDirections();
+
+        this.getDistanceAndDuration();
         this.zoom = 12;
       });
 
