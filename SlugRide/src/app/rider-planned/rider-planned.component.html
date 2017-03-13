@@ -1,3 +1,12 @@
-<p>
-  rider-planned works!
-</p>
+<h1 class="text-center"> Availble Riders </h1> 
+<div class="col-md-6 col-md-offset-3">
+        <li *ngFor="let user of users">
+            {{user.username}} ({{user.firstName}} {{user.lastName}}) <br>
+            <div class= "text-left">
+              <a class="btn btn-primary" (click)="joinRide()">Join</a> <br> 
+            </div>
+        </li>
+</div>
+<div class= "text-left">
+    <a routerLink = "/ridertype" class="btn btn-default">Back</a> <br> 
+</div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
  
-import { User } from '../_models/models';
+import { User } from '../_user/user';
  
 @Injectable()
 export class UserService {
@@ -18,7 +18,6 @@ export class UserService {
     update(user: User) {
         return this.http.put('/api/users/', user, this.jwt()).map((response: Response) => response.json());
     }
-
 
     check(email: string) {
         return this.http.post('/api/forgot', JSON.stringify({email: email})).map((response: Response) => response.json());

@@ -15,7 +15,8 @@ import { RiderPlannedSubmitComponent } from './rider-planned-submit/rider-planne
 import { AccountComponent } from './account/account.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { AccountEditComponent } from './account-edit/account-edit.component';
-
+import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
+import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
 
 import { AuthGuard } from './_auth/auth.guard';
 
@@ -34,6 +35,8 @@ export const router: Routes = [
     { path: 'riderplannedsubmit', component: RiderPlannedSubmitComponent, canActivate: [AuthGuard] },
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
     { path: 'accountedit', component: AccountEditComponent, canActivate: [AuthGuard] },
+    { path: 'riderplanned', component: RiderPlannedComponent, canActivate: [AuthGuard] },
+    { path: 'driverschedule', component: DriverScheduleComponent, canActivate: [AuthGuard] },
 
     { path: '**', component: FourzerofourComponent }
 
