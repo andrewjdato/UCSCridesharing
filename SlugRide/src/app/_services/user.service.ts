@@ -21,7 +21,7 @@ export class UserService {
 
 
     check(email: string) {
-            .map((response: Response) => response.json());
+        return this.http.post('/api/forgot', JSON.stringify({email: email})).map((response: Response) => response.json());
     }
  
     // private helper methods
