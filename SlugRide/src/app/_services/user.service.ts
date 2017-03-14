@@ -24,7 +24,7 @@ export class UserService {
     }
 
     tempFunc() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://localhost:8000/chains/', this.jwt()).map((response: Response) => response.json());
     }
 
 
