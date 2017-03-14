@@ -18,6 +18,7 @@ import { AccountEditComponent } from './account-edit/account-edit.component';
 import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
 import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
 import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
+import { TempPageComponent } from './temp-page/temp-page.component';
 
 import { AuthGuard } from './_auth/auth.guard';
 
@@ -25,6 +26,7 @@ import { AuthGuard } from './_auth/auth.guard';
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'temp', component: TempPageComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot', component: ForgotComponent },
     { path: 'drivertype', component: DriverTypeComponent, canActivate: [AuthGuard] },

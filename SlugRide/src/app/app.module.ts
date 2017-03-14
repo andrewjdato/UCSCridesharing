@@ -32,6 +32,7 @@ import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
 import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
 import { RiderScheduleComponent } from './rider-schedule/rider-schedule.component';
 import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
+import { TempPageComponent } from './temp-page/temp-page.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DriverPlannedIndividualComponent } from './driver-planned-individual/dr
     RiderPlannedComponent,
     DriverScheduleComponent,
     RiderScheduleComponent,
-    DriverPlannedIndividualComponent
+    DriverPlannedIndividualComponent,
+    TempPageComponent
   ],
   imports: [
     BrowserModule,

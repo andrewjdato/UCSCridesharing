@@ -23,7 +23,11 @@ export class UserService {
         return this.http.post('/api/forgot', JSON.stringify({email: email})).map((response: Response) => response.json());
     }
 
-    
+    tempFunc() {
+        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+    }
+
+
  
     // private helper methods
  
