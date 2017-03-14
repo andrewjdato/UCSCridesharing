@@ -31,6 +31,7 @@ import { AccountEditComponent } from './account-edit/account-edit.component';
 import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
 import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
 import { RiderScheduleComponent } from './rider-schedule/rider-schedule.component';
+import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RiderScheduleComponent } from './rider-schedule/rider-schedule.componen
     AccountEditComponent,
     RiderPlannedComponent,
     DriverScheduleComponent,
-    RiderScheduleComponent
+    RiderScheduleComponent,
+    DriverPlannedIndividualComponent
   ],
   imports: [
     BrowserModule,

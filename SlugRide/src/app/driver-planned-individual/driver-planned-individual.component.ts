@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Driver } from '../_driver/driver';
-import { UserService } from '../_services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from '../_user/user';
+import { UserService } from '../_services/user.service';
 import { PlannedService } from '../_services/planned.service';
 
 @Component({
-  selector: 'app-driver-schedule',
-  templateUrl: './driver-schedule.component.html',
-  styleUrls: ['./driver-schedule.component.css']
+  selector: 'app-driver-planned-individual',
+  templateUrl: './driver-planned-individual.component.html',
+  styleUrls: ['./driver-planned-individual.component.css']
 })
-export class DriverScheduleComponent implements OnInit {
+export class DriverPlannedIndividualComponent implements OnInit {
     currentUser: User;
     users: User[] = []; //change model 
  
@@ -22,30 +21,26 @@ export class DriverScheduleComponent implements OnInit {
     }
  
     ngOnInit() {
-        this.loadAllUsers(); 
-        //Change Method
-
+        this.loadAllUsers();
+        
     }
 
     private loadAllUsers() {
         //Change this object 
         this.userService.getAll().subscribe(users => { this.users = users; });
-        //this.plannedService.getAllDriverRides(currentUser.email).subscribe(users => {this.users = users; });
+        //Change Function
+        //this.userService.getCurrentRiders(id).subscribe(users => { this.users = users; })
     }
 
-    selectRide() {
-      //this.plannedService.riderJoin(this.currentUser.email, this.currentUser.password) //Change second param to trip ID
+    approveRider(approved : boolean) {
+      //this.plannedService.approveRider(approved) //Change second param to trip ID
         //    .subscribe(
           //      data => {
-                    this.router.navigate(['/driverindividual']);
+                    this.router.navigate(['/usertype']);
             //    },
               //  error => {
                     //this.incorrect_login = true; 
                     //Insert Notification Here
                 //});
     }
-
-
 }
-
-//The HTML File needs to be edited once we are connected. 
