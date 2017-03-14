@@ -39,6 +39,7 @@ export class TempPageComponent implements OnInit {
         .tempFunc()
         .subscribe(model =>{ 
             this.model = model
-            console.log(this.model);
+            console.log(model);
     });
-};}
+ };
+}
