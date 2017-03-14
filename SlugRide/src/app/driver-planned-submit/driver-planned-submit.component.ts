@@ -16,6 +16,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
       //model : any = {};
       currentUser: User;
       model : Driver;
+      days : boolean[]; 
 
  
     constructor(
@@ -25,6 +26,14 @@ export class DriverPlannedSubmitComponent implements OnInit{
         }
 
     ngOnInit() {
+        this.days = new Array(7);
+        this.days[0] = false;
+        this.days[1] = false;
+        this.days[2] = false;
+        this.days[3] = false;
+        this.days[4] = false;
+        this.days[5] = false;
+        this.days[6] = false;
         this.model = {
           driver_email: this.currentUser.email, 
           driver_departure: null, 
