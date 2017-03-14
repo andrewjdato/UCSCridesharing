@@ -19,7 +19,7 @@ export class Temp {
   styleUrls: ['./temp-page.component.css']
 })
 export class TempPageComponent implements OnInit {
-  model: Temp;
+  model: Temp[] = [];
 
 
   constructor(
@@ -27,18 +27,10 @@ export class TempPageComponent implements OnInit {
         private userService: UserService) { }
 
   ngOnInit() {
-        this.model = {
-          name: 'Wrong',
-          description: 'Wrong', 
-          slogan: 'Wrong', 
-          founded_date: 'Wrong', 
-          website: 'Wrong',  
-        }
-
     this.userService
         .tempFunc()
         .subscribe(model =>{ 
-            this.model = model[0]
+            this.model = model
             console.log(this.model);
     });
  }
