@@ -29,7 +29,7 @@ export class DriverPlannedIndividualComponent implements OnInit {
         //Change this object 
         this.userService.getAll().subscribe(users => { this.users = users; });
         //Change Function
-        //this.userService.getCurrentRiders(id).subscribe(users => { this.users = users; })
+        //this.plannedService.getCurrentRiders(id).subscribe(users => { this.users = users; })
     }
 
     approveRider(approved : boolean) {
