@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
  
 import { User } from '../_user/user';
- 
 @Injectable()
 export class UserService {
     constructor(private http: Http) { }
@@ -24,7 +23,7 @@ export class UserService {
     }
 
     tempFunc() {
-        return this.http.get('http://localhost:8000/chains/', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://localhost:8000/chains/', this.jwt()).map((model: Response) => model.json());
     }
 
 

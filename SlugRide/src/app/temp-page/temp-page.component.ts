@@ -35,7 +35,10 @@ export class TempPageComponent implements OnInit {
           website: 'Wrong',  
         }
 
-    this.userService.tempFunc().subscribe(model => { this.model = model; });
-  }
-
-}
+    this.userService
+        .tempFunc()
+        .subscribe(model =>{ 
+            this.model = model
+            console.log(this.model);
+    });
+};}
