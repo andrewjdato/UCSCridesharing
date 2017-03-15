@@ -23,6 +23,7 @@ def user_registration(request):
 def user_login(request):
     json_data = JSONParser().parse(request)
     serializer = UserLoginSerializer(data=json_data)
+    #check if email is an email
     print(json_data)
     if serializer.is_valid():
         try:
