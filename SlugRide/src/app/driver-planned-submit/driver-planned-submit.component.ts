@@ -17,6 +17,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
       currentUser: User;
       model : Driver;
       days : boolean[]; 
+      incorrect_submit: boolean; 
 
  
     constructor(
@@ -27,6 +28,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
         }
 
     ngOnInit() {
+        this.incorrect_submit = false;
         this.days = new Array(7);
         this.days[0] = false;
         this.days[1] = false;
@@ -36,7 +38,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
         this.days[5] = false;
         this.days[6] = false;
         this.model = {
-          driver_email: 'temp', 
+          driver_email: this.currentUser.email, 
           driver_departure: null, 
           driver_destination: null, 
           driver_timeofdeparture: null, 
@@ -55,17 +57,17 @@ export class DriverPlannedSubmitComponent implements OnInit{
     driverPlanned() {
         if(this.daysChecker()) {
             this.model.driver_days = this.days;
-            console.log(this.model.driver_days);
-            //this.plannedService.postDriverRide(this.model)
-            //                   .subscribe(
-            //                   data => {
-                    // set success message and pass true paramater to persist the message after redirecting to the login page
+            this.plannedService.postDriverRide(this.model)
+                               .subscribe(
+                               data => {
+                    //set success message and pass true paramater to persist the message after redirecting to the login page
                     //localStorage.setItem('currentDriver', JSON.stringify(Driver));
                                this.router.navigate(['/drivertype']);
-             //   },
-             //                   error => {
+             },
+                               error => {
+                               this.incorrect_submit = true; 
                     //Insert bad here
-             //   });
+             });
         }
     }
 

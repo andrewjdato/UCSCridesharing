@@ -1,9 +1,9 @@
-<h1 class="text-center"> Scheduled Rides </h1> 
+<h1 class="text-center"> Scheduled Driver Rides </h1> 
 <div class="col-md-6 col-md-offset-3">
         <li *ngFor="let user of users">
             {{user.username}} ({{user.first_Name}} {{user.last_Name}}) <br>
             <div class= "text-left">
-              <a class="btn btn-primary" (click)="selectRide()">More Details</a> <br> 
+              <a class="btn btn-primary" (click)="selectRide(this.user.password)">More Details</a> <br> 
             </div>
         </li>
 </div>

@@ -1,3 +1,9 @@
-<p>
-  rider-schedule works!
-</p>
+<h1 class="text-center"> Scheduled Rider Rides </h1> 
+<div class="col-md-6 col-md-offset-3">
+        <li *ngFor="let user of users">
+            {{user.username}} ({{user.first_Name}} {{user.last_Name}}) <br>
+        </li>
+</div>
+<div class= "text-left">
+    <a routerLink = "/usertype" class="btn btn-default">Back</a> <br> 
+</div>

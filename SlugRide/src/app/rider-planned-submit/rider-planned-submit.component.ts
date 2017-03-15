@@ -14,9 +14,9 @@ import { User } from '../_user/user';
 export class RiderPlannedSubmitComponent {
       //model : any = {};
       currentUser: User;
-      model : rider;
+      model : Rider;
       days : boolean[]; 
-
+      incorrect_submit : boolean;
  
     constructor(
         private router: Router,
@@ -26,6 +26,7 @@ export class RiderPlannedSubmitComponent {
         }
 
     ngOnInit() {
+        this.incorrect_submit = false; 
         this.days = new Array(7);
         this.days[0] = false;
         this.days[1] = false;
@@ -35,7 +36,7 @@ export class RiderPlannedSubmitComponent {
         this.days[5] = false;
         this.days[6] = false;
         this.model = {
-          rider_email: 'temp', 
+          rider_email: this.currentUser.email, 
           rider_departure: null, 
           rider_destination: null, 
           rider_timeofdeparture: null, 
@@ -54,17 +55,15 @@ export class RiderPlannedSubmitComponent {
     riderPlanned() {
         if(this.daysChecker()) {
             this.model.rider_days = this.days;
-            console.log(this.model);
-            //this.plannedService.postriderRide(this.model)
-            //                   .subscribe(
-            //                   data => {
-                    // set success message and pass true paramater to persist the message after redirecting to the login page
-                    //localStorage.setItem('currentrider', JSON.stringify(rider));
-                               this.router.navigate(['/riderplanned']);
-             //   },
-             //                   error => {
-                    //Insert bad here
-             //   });
+            this.plannedService.postRiderRide(this.model)
+                               .subscribe(
+                               data => {
+                                  this.router.navigate(['/riderplanned']);
+          },
+                               error => {
+                                  this.incorrect_submit = true;
+
+          });
         }
     }
 }
