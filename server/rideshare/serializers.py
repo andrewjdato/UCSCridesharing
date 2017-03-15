@@ -1,19 +1,20 @@
 from rest_framework import serializers
-from rideshare.models import UserTest
+from django.contrib.auth.models import User
 
 
-class UserTestSerializer(serializers.ModelSerializer):
+class UserRegSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserTest
-        fields = ('id', 'firstname', 'lastname', 'email', 'password')
+        model = User
+        fields = ('id', 'first_name', 'last_name', 'email', 'password',)
 
     def create(self, validated_data):
-        return UserTest.objects.create(**validated_data)
+        return User.objects.create(**validated_data)
         
     def update(self, instance, validated_data):
-        instance.firstname = validated_data.get('firstname', instance.firstname)
-        instance.lastname = validated_data.get('lastname', instance.lastname)
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.email = validated_data.get('email', instance.email)
         instance.password = validated_data.get('password', instance.password)
         instance.save()
         return instance
+        
