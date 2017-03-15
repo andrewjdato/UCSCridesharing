@@ -42,9 +42,18 @@ export class DriverPlannedSubmitComponent implements OnInit{
           driver_days: null,  
         }
     }    
- 
+
+    daysChecker() {
+        var counter = 0;
+        for (counter = 0; counter < this.days.length; counter++) {
+            if (this.days[counter] == true) return true;
+        }
+        return false; 
+    }
+
     driverPlanned() {
-        //this.plannedService.postDriverRide(this.model)
+        if(this.daysChecker()) {
+                    //this.plannedService.postDriverRide(this.model)
             //.subscribe(
               //  data => {
                     // set success message and pass true paramater to persist the message after redirecting to the login page
@@ -54,15 +63,10 @@ export class DriverPlannedSubmitComponent implements OnInit{
                // error => {
                     //Insert bad here
                // });
+        }
     }
 
-    daysChecker() {
-        var counter = 0;
-        for (counter = 0; counter < this.days.length; counter++) {
-            if (this.days[counter] == true) return true;
-        }
-        return false; 
-    }
+
 
 }
 
