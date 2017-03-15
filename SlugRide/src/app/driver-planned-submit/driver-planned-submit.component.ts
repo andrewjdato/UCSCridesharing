@@ -21,6 +21,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
  
     constructor(
         private router: Router,
+        private plannedService : PlannedService,
         private userService: UserService) {
            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         }
@@ -53,32 +54,21 @@ export class DriverPlannedSubmitComponent implements OnInit{
 
     driverPlanned() {
         if(this.daysChecker()) {
-                    //this.plannedService.postDriverRide(this.model)
-            //.subscribe(
-              //  data => {
+            this.model.driver_days = this.days;
+            console.log(this.model.driver_days);
+            //this.plannedService.postDriverRide(this.model)
+            //                   .subscribe(
+            //                   data => {
                     // set success message and pass true paramater to persist the message after redirecting to the login page
                     //localStorage.setItem('currentDriver', JSON.stringify(Driver));
-                    this.router.navigate(['/drivertype']);
-                //},
-               // error => {
+                               this.router.navigate(['/drivertype']);
+             //   },
+             //                   error => {
                     //Insert bad here
-               // });
+             //   });
         }
     }
 
 
 
 }
-
-/*
-        <div class="form-group">
-            <div class="checkbox">
-              <label>
-                  <input type="checkbox" name="monday" [(ngModel)]="model.driver_days[0]">
-                  Monday
-              </label>
-            </div>
-        </div>
-
-
-*/
