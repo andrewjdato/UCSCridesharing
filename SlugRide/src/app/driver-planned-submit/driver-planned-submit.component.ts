@@ -35,7 +35,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
         this.days[5] = false;
         this.days[6] = false;
         this.model = {
-          driver_email: this.currentUser.email, 
+          driver_email: 'temp', 
           driver_departure: null, 
           driver_destination: null, 
           driver_timeofdeparture: null, 
