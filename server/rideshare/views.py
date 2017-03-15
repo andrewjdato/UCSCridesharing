@@ -15,6 +15,9 @@ def user_registration(request):
     if serializer.is_valid():
         serializer.validated_data['username'] = serializer.validated_data['email']
         serializer.save()
+        user = User.objects.get(username= serializer.validated_data['username'])
+        user.set_password(serializer.validated_data['password'])
+        user.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
         
