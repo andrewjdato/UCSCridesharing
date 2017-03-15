@@ -19,31 +19,31 @@
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && (!this.days[0] && !this.days[1] && !this.days[2] && !this.days[3] && !this.days[4] && !this.days[5] && !this.days[6])}">
             <div class="checkbox">
               <label>
-                  <input type="checkbox" name="monday" [(ngModel)]="this.days[0]" #this.days[0]="ngModel" required>
+                  <input type="checkbox" name="monday" [(ngModel)]="this.days[0]">
                   Monday 
               </label>
               <label>
-                  <input type="checkbox" name="tuesday" [(ngModel)]="this.days[1]" #this.days[1]="ngModel" required>
+                  <input type="checkbox" name="tuesday" [(ngModel)]="this.days[1]">
                   Tuesday
               </label>
               <label>
-                  <input type="checkbox" name="wednesday" [(ngModel)]="this.days[2]" #this.days[2]="ngModel" required>
+                  <input type="checkbox" name="wednesday" [(ngModel)]="this.days[2]">
                   Wednesday
               </label>
               <label>
-                  <input type="checkbox" name="thursday" [(ngModel)]="this.days[3]" #this.days[3]="ngModel" required>
+                  <input type="checkbox" name="thursday" [(ngModel)]="this.days[3]">
                   Thursday
               </label>
               <label>
-                  <input type="checkbox" name="friday" [(ngModel)]="this.days[4]" #this.days[4]="ngModel" required>
+                  <input type="checkbox" name="friday" [(ngModel)]="this.days[4]">
                   Friday
               </label>
               <label>
-                  <input type="checkbox" name="saturday" [(ngModel)]="this.days[5]" #this.days[5]="ngModel" required>
+                  <input type="checkbox" name="saturday" [(ngModel)]="this.days[5]">
                   Saturday
               </label>
               <label>
-                  <input type="checkbox" name="sunday" [(ngModel)]="this.days[6]" #this.days[6]="ngModel" required>
+                  <input type="checkbox" name="sunday" [(ngModel)]="this.days[6]">
                   Sunday
               </label>
             </div>
