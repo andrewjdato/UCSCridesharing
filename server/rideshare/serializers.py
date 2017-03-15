@@ -18,3 +18,9 @@ class UserRegSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
         
+class UserLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'password',)
+        
+        

@@ -8,7 +8,7 @@ export class AuthService {
     constructor(private http: Http) { }
  
     login(email: string, password: string) {
-        return this.http.post('/api/authenticate', JSON.stringify({ email: email, password: password }))
+        return this.http.post('http://localhost:8000/rideshare/user_login/', JSON.stringify({ email: email, password: password }))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
