@@ -12,7 +12,7 @@ export class PlannedService {
     
     //Function Post a ride for a Driver
     postDriverRide(driver: Driver) {
-        return this.http.post('/api/users', driver, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('/api/users', driver).map((response: Response) => response.json());
     }
 
     //Function get all current scheduled rides for a driver
@@ -35,12 +35,12 @@ export class PlannedService {
 
     //FUnction post a ride for a rider
     getRiderRide(rider: Rider) {
-        return this.http.post('/api/users', rider, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('/api/users', rider).map((response: Response) => response.json());
     }
 
     //Function to grab all the riders
     getAllDrivers() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/api/users').map((response: Response) => response.json());
     }
 
     //Function to join a ride for a rider
