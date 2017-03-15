@@ -22,22 +22,23 @@ export class DriverScheduleComponent implements OnInit {
     }
  
     ngOnInit() {
-        this.loadAllUsers(); 
+        this.loadRides(); 
         //Change Method
 
     }
 
-    private loadAllUsers() {
+    private loadRides() {
         //Change this object 
-        this.userService.getAll().subscribe(users => { this.users = users; });
+        this.plannedService.getAllDriverRides(this.currentUser.email).subscribe(users => { this.users = users; });
         //this.plannedService.getAllDriverRides(currentUser.email).subscribe(users => {this.users = users; });
     }
 
-    selectRide() {
+    selectRide(id : string) {
       //this.plannedService.riderJoin(this.currentUser.email, this.currentUser.password) //Change second param to trip ID
-        //    .subscribe(
-          //      data => {
-                    this.router.navigate(['/driverindividual']);
+      //      .subscribe(
+      //          data => {
+        this.plannedService.setId(id);
+        this.router.navigate(['/driverindividual']);
             //    },
               //  error => {
                     //this.incorrect_login = true; 

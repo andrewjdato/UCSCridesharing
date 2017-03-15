@@ -1,4 +1,5 @@
     <h2 class="text-center">Driver Planned</h2>
+    <div *ngIf="f.submitted && this.incorrect_submit" class="text-center text-danger ">Invalid Submit</div>
     <form name="form" (ngSubmit)="f.form.valid && driverPlanned()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !driver_destination.valid }">
             <input placeholder ="Start Location"type="text" class="form-control text-center" name="driver_destination" [(ngModel)]="model.driver_destination" #driver_destination="ngModel" required />

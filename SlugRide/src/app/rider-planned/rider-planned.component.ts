@@ -14,6 +14,7 @@ export class RiderPlannedComponent implements OnInit {
 
     currentUser: User;
     users: User[] = []; //change model 
+    incorrect_submit : boolean;
  
     constructor(private userService: UserService,
                 private router: Router,
@@ -23,23 +24,24 @@ export class RiderPlannedComponent implements OnInit {
  
     ngOnInit() {
         this.loadAllUsers();
+        this.incorrect_submit = false;
     }
 
     private loadAllUsers() {
         //Change this object 
-        this.userService.getAll().subscribe(users => { this.users = users; });
+        this.plannedService.getAllDrivers().subscribe(users => { this.users = users; });
     }
 
-    joinRide() {
-      //this.plannedService.riderJoin(this.currentUser.email, this.currentUser.password) //Change second param to trip ID
-        //    .subscribe(
-          //      data => {
-                    this.router.navigate(['/ridertype']);
-            //    },
-              //  error => {
-                    //this.incorrect_login = true; 
-                    //Insert Notification Here
-                //});
+    joinRide(id : string) {
+      this.plannedService.riderJoin(this.currentUser.email, id) //Change second param to trip ID
+                         .subscribe(
+                         data => {
+                            this.router.navigate(['/ridertype']);
+                         },
+                         error => {
+                            this.incorrect_submit = true; 
+                            //Insert Notification Here
+        });
     }
 
 }
