@@ -13,19 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework.routers import DefaultRouter
-from rideshare.views import ChainViewSet, StoreViewSet, EmployeeViewSet
 
-router = DefaultRouter()
-router.register(prefix='chains', viewset=ChainViewSet)
-router.register(prefix='stores', viewset=StoreViewSet)
-router.register(prefix='employees', viewset=EmployeeViewSet)
+from django.conf.urls import url, include
 
-
-urlpatterns = router.urls
-
-#urlpatterns = [
-#   url(r'^admin/', admin.site.urls),
-#]
+urlpatterns = [
+   url(r'^admin/', admin.site.urls),
+   url(r'^', include('rideshare.urls')),
+]

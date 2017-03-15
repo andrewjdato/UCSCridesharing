@@ -11,7 +11,7 @@ export class UserService {
     }
  
     create(user: User) {
-        return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('http://localhost:8000/rideshare/user_registration/', user, this.jwt()).map((response: Response) => response.json());
     }
  
     update(user: User) {
