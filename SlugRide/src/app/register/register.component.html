@@ -2,12 +2,21 @@
     <div *ngIf="f.submitted && this.incorrect_register" class="text-center text-danger ">UCSC Email already in use</div>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+<<<<<<< HEAD
             <input placeholder ="First Name"type="text" class="form-control text-center" name="first_name" [(ngModel)]="model.firstname" #firstname="ngModel" required />
             <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <input type="text" placeholder ="Last Name" class="form-control text-center" name="last_name" [(ngModel)]="model.lastname" #lastname="ngModel" required />
             <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is required</div>
+=======
+            <input placeholder ="First Name"type="text" class="form-control text-center" name="first_name" [(ngModel)]="model.first_name" #first_name="ngModel" required />
+            <div *ngIf="f.submitted && !first_name.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <input type="text" placeholder ="Last Name" class="form-control text-center" name="last_name" [(ngModel)]="model.last_name" #last_name="ngModel" required />
+            <div *ngIf="f.submitted && !last_name.valid" class="help-block">Last Name is required</div>
+>>>>>>> c7e4b633d5ebed951f6953f38c809eb70d23019c
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <input type="text" placeholder ="Email" class="form-control text-center" name="email" [(ngModel)]="model.email" #email="ngModel" required />

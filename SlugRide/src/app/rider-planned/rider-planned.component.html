@@ -1,7 +1,7 @@
 <h1 class="text-center"> Availble Riders </h1> 
 <div class="col-md-6 col-md-offset-3">
         <li *ngFor="let user of users">
-            {{user.username}} ({{user.firstName}} {{user.lastName}}) <br>
+            {{user.username}} ({{user.first_Name}} {{user.last_Name}}) <br>
             <div class= "text-left">
               <a class="btn btn-primary" (click)="joinRide()">Join</a> <br> 
             </div>
