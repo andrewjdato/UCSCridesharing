@@ -3,5 +3,5 @@ export class Driver {
     driver_departure: string;
     driver_destination: string;
     driver_timeofdeparture: string; 
-    driver_days: string; 
+    driver_days: boolean[]; 
 }

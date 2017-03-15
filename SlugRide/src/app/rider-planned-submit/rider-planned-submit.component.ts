@@ -12,35 +12,59 @@ import { User } from '../_user/user';
   styleUrls: ['./rider-planned-submit.component.css']
 })
 export class RiderPlannedSubmitComponent {
+      //model : any = {};
       currentUser: User;
-      model : Rider;
+      model : rider;
+      days : boolean[]; 
 
  
     constructor(
         private router: Router,
+        private plannedService : PlannedService,
         private userService: UserService) {
            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         }
 
     ngOnInit() {
+        this.days = new Array(7);
+        this.days[0] = false;
+        this.days[1] = false;
+        this.days[2] = false;
+        this.days[3] = false;
+        this.days[4] = false;
+        this.days[5] = false;
+        this.days[6] = false;
         this.model = {
-          rider_email: this.currentUser.email, 
+          rider_email: 'temp', 
           rider_departure: null, 
           rider_destination: null, 
           rider_timeofdeparture: null, 
           rider_days: null,  
         }
     }    
- 
+
+    daysChecker() {
+        var counter = 0;
+        for (counter = 0; counter < this.days.length; counter++) {
+            if (this.days[counter] == true) return true;
+        }
+        return false; 
+    }
+
     riderPlanned() {
-        //this.plannedService.getRiderRide(this.model)
-            //.subscribe(
-              //  data => {
+        if(this.daysChecker()) {
+            this.model.rider_days = this.days;
+            console.log(this.model);
+            //this.plannedService.postriderRide(this.model)
+            //                   .subscribe(
+            //                   data => {
                     // set success message and pass true paramater to persist the message after redirecting to the login page
-                    this.router.navigate(['/riderplanned']);
-                //},
-               // error => {
+                    //localStorage.setItem('currentrider', JSON.stringify(rider));
+                               this.router.navigate(['/riderplanned']);
+             //   },
+             //                   error => {
                     //Insert bad here
-               // });
+             //   });
+        }
     }
 }
