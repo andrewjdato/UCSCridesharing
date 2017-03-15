@@ -56,6 +56,14 @@ export class DriverPlannedSubmitComponent implements OnInit{
                // });
     }
 
+    daysChecker() {
+        var counter = 0;
+        for (counter = 0; counter < this.days.length; counter++) {
+            if (this.days[counter] == true) return true;
+        }
+        return false; 
+    }
+
 }
 
 /*

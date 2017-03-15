@@ -9,7 +9,7 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-    currentUser: User;
+    currentUser: any = {};
     driver_rating: number;
     rides_given: number; 
     rider_rating: number;
