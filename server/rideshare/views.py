@@ -24,9 +24,10 @@ def user_login(request):
     json_data = JSONParser().parse(request)
     serializer = UserLoginSerializer(data=json_data)
     #check if email is an email
-    print(json_data)
     if serializer.is_valid():
         try:
+            print('email ' + serializer.validated_data['email'])
+            print('password ' + serializer.validated_data['password'])
             user = authenticate(username=serializer.validated_data['email'], password=serializer.validated_data['password'])
             serializer = UserSerializer(user)
             print(serializer.data)
