@@ -15,7 +15,10 @@ import { RiderPlannedSubmitComponent } from './rider-planned-submit/rider-planne
 import { AccountComponent } from './account/account.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { AccountEditComponent } from './account-edit/account-edit.component';
-
+import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
+import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
+import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
+import { TempPageComponent } from './temp-page/temp-page.component';
 
 import { AuthGuard } from './_auth/auth.guard';
 
@@ -23,6 +26,7 @@ import { AuthGuard } from './_auth/auth.guard';
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'temp', component: TempPageComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot', component: ForgotComponent },
     { path: 'drivertype', component: DriverTypeComponent, canActivate: [AuthGuard] },
@@ -34,6 +38,9 @@ export const router: Routes = [
     { path: 'riderplannedsubmit', component: RiderPlannedSubmitComponent, canActivate: [AuthGuard] },
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
     { path: 'accountedit', component: AccountEditComponent, canActivate: [AuthGuard] },
+    { path: 'riderplanned', component: RiderPlannedComponent, canActivate: [AuthGuard] },
+    { path: 'driverschedule', component: DriverScheduleComponent, canActivate: [AuthGuard] },
+    { path: 'driverindividual', component: DriverPlannedIndividualComponent, canActivate: [AuthGuard] },
 
     { path: '**', component: FourzerofourComponent }
 

@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
                 },
                 error => {
                     this.incorrect_register = true; 
+                    console.log("error")
                     //Insert bad here
                 });
     }

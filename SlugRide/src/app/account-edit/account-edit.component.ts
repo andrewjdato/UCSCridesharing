@@ -17,7 +17,7 @@ export class AccountEditComponent {
         private userService: UserService) { }
  
     accountEdit() {
-        //this.userService.create(this.model)
+        //this.userService.put(this.model)
             //.subscribe(
               //  data => {
                     // set success message and pass true paramater to persist the message after redirecting to the login page
