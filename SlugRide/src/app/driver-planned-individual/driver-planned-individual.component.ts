@@ -13,7 +13,9 @@ import { PlannedService } from '../_services/planned.service';
 export class DriverPlannedIndividualComponent implements OnInit {
     currentUser: User;
     users: User[] = []; //change model 
- 
+    id : string;
+    incorrect_submit : boolean; 
+
     constructor(private userService: UserService,
                 private router: Router,
                 private plannedService: PlannedService) {
@@ -21,26 +23,29 @@ export class DriverPlannedIndividualComponent implements OnInit {
     }
  
     ngOnInit() {
+        this.incorrect_submit = false; 
+        this.id = this.plannedService.getid();
         this.loadAllUsers();
         
     }
 
     private loadAllUsers() {
         //Change this object 
-        this.userService.getAll().subscribe(users => { this.users = users; });
+        this.plannedService.getCurrentRiders(this.currentUser.email, this.id).subscribe(users => { this.users = users; });
         //Change Function
         //this.plannedService.getCurrentRiders(id).subscribe(users => { this.users = users; })
     }
 
-    approveRider(approved : boolean) {
-      //this.plannedService.approveRider(approved) //Change second param to trip ID
-        //    .subscribe(
-          //      data => {
-                    this.router.navigate(['/usertype']);
-            //    },
-              //  error => {
-                    //this.incorrect_login = true; 
+    approveRider(email : string, approved : boolean) {
+      this.plannedService.approveRider(email, approved) //Change second param to trip ID
+        .subscribe(
+        data => {
+            this.router.navigate(['/usertype']);
+        },
+        error => {
+            this.incorrect_submit = true; 
                     //Insert Notification Here
-                //});
+            
+        });
     }
 }

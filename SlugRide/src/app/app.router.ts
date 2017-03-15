@@ -17,6 +17,7 @@ import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { AccountEditComponent } from './account-edit/account-edit.component';
 import { RiderPlannedComponent } from './rider-planned/rider-planned.component';
 import { DriverScheduleComponent } from './driver-schedule/driver-schedule.component';
+import { RiderScheduleComponent } from './rider-schedule/rider-schedule.component';
 import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
 import { TempPageComponent } from './temp-page/temp-page.component';
 
@@ -39,6 +40,7 @@ export const router: Routes = [
     { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
     { path: 'accountedit', component: AccountEditComponent, canActivate: [AuthGuard] },
     { path: 'riderplanned', component: RiderPlannedComponent, canActivate: [AuthGuard] },
+    { path: 'riderschedule', component: RiderScheduleComponent, canActivate: [AuthGuard] },
     { path: 'driverschedule', component: DriverScheduleComponent, canActivate: [AuthGuard] },
     { path: 'driverindividual', component: DriverPlannedIndividualComponent, canActivate: [AuthGuard] },
 

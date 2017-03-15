@@ -30,9 +30,11 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate(['/usertype']);
+                    console.log('Success');
                 },
                 error => {
                     this.incorrect_login = true; 
+                    console.log('Error');
                     //Insert Notification Here
                 });
     }

@@ -21,24 +21,24 @@ export class PlannedService {
     }
 
     //Get all the riders for the scheduled ride for a driver
-    getCurrentRiders(id : string) {
-        return this.http.post('/api/forgot', JSON.stringify({id : id})).map((response: Response) => response.json());
+    getCurrentRiders(email : string, id : string) {
+        return this.http.post('/api/forgot', JSON.stringify({email : email, id : id})).map((response: Response) => response.json());
     }
 
     //Send in a approval request for Driver
-    approveRider(approved : boolean) {
-        return this.http.post('/api/forgot', JSON.stringify({approved : approved})).map((response: Response) => response.json());
+    approveRider(email : string, approved : boolean) {
+        return this.http.post('/api/forgot', JSON.stringify({email : email, approved : approved})).map((response: Response) => response.json());
     }
 
 
     //Rider Functions
 
     //FUnction post a ride for a rider
-    getRiderRide(rider: Rider) {
+    postRiderRide(rider: Rider) {
         return this.http.post('/api/users', rider).map((response: Response) => response.json());
     }
 
-    //Function to grab all the riders
+    //Function to grab all the driver
     getAllDrivers() {
         return this.http.get('/api/users').map((response: Response) => response.json());
     }
@@ -48,6 +48,23 @@ export class PlannedService {
         return this.http.post('/api/forgot', JSON.stringify({email: email, id : id})).map((response: Response) => response.json());
     }
 
+    //Function get all current scheduled rides for a Rider
+    getAllRiderRides(email: string) {
+        return this.http.post('/api/forgot', JSON.stringify({email: email})).map((response: Response) => response.json());
+    }
+
+
+
+    //Extra Functions
+    id : string;
+
+    setId(id: string) {
+        this.id = id;
+    } 
+
+    getid() {
+        return this.id; 
+    }
 
     private jwt() {
         // create authorization header with jwt token
