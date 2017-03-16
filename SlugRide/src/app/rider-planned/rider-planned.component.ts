@@ -39,7 +39,7 @@ export class RiderPlannedComponent implements OnInit {
 
     private loadAllUsers() {
         //Change this object 
-        this.plannedService.getAllDrivers().subscribe(users => { this.users = users; });
+        this.plannedService.getAllCurrentPlannedDrivers().subscribe(users => { this.users = users; });
     }
 
     joinRide(id : number) {

@@ -40,7 +40,7 @@ export class PlannedService {
     }
 
     //Function to grab all the driver
-    getAllDrivers() {
+    getAllCurrentPlannedDrivers() {
         return this.http.get('/api/users').map((response: Response) => response.json());
     }
 
