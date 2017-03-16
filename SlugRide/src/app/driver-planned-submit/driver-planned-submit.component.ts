@@ -32,7 +32,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
         private userService: UserService) {
            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         }
-
+ 
     ngOnInit() {
         this.incorrect_submit = false;
         this.model = {

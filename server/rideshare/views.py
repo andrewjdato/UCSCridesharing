@@ -10,6 +10,24 @@ from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
 
 @api_view(['POST'])
+@parser_classes((JSONParser,))
+def new_planned_trip(request):
+    serializer = PlannedTripSerializer(data = request.data)
+    #print(request.data)
+    if serializer.is_valid():
+        serializer.validated_data['monday'] = serializer.validated_data['driver_days'].get('monday')
+        serializer.validated_data['tuesday'] = serializer.validated_data['driver_days'].get('tuesday')
+        serializer.validated_data['wednesday'] = serializer.validated_data['driver_days'].get('wednesday')
+        serializer.validated_data['thursday'] = serializer.validated_data['driver_days'].get('thursday')
+        serializer.validated_data['friday'] = serializer.validated_data['driver_days'].get('friday')
+        serializer.validated_data['saturday'] = serializer.validated_data['driver_days'].get('saturday')
+        serializer.validated_data['sunday'] = serializer.validated_data['driver_days'].get('sunday')
+        serializer.save()
+        return JsonResponse(serializer.validated_data, status=201)
+    print(serializer.errors)
+    return JsonResponse(serializer.errors, status=400)
+
+@api_view(['POST'])
 def user_registration(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -29,21 +47,9 @@ def user_login(request):
     #check if email is an email
     if serializer.is_valid():
         try:
-            print('email ' + serializer.validated_data['email'])
-            print('password ' + serializer.validated_data['password'])
             user = authenticate(username=serializer.validated_data['email'], password=serializer.validated_data['password'])
             serializer = UserSerializer(user)
             print(serializer.data)
             return JsonResponse(serializer.data, status=201)
         except User.DoesNotExist:
             return Response(serializer.data, status=400)
-            
-@api_view(['POST'])
-@parser_classes((JSONParser,))
-def new_planned_trip(request):
-    serializer = PlannedTripSerializer(data = request.data)
-    print(request.data)
-    if serializer.is_valid():
-        print(serializer.validated_data)
-        return JsonResponse(serializer.data, status=201)
-    return JsonResponse(serializer.errors, status=400)
