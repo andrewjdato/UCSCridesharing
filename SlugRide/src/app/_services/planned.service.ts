@@ -41,7 +41,7 @@ export class PlannedService {
 
     //Function to grab all the driver
     getAllCurrentPlannedDrivers() {
-        return this.http.get('/api/users').map((response: Response) => response.json());
+        return this.http.get('http://localhost:8000/rideshare/get_all_planned_trips/').map((response: Response) => response.json());
     }
 
     //Function to join a ride for a rider

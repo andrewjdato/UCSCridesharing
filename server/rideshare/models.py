@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class PlannedTrips(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     driver_email = models.CharField(max_length=100)
     driver_departure = models.CharField(max_length=200)
     driver_destination = models.CharField(max_length=200)

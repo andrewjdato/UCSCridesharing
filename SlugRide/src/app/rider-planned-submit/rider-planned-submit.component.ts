@@ -48,7 +48,7 @@ export class RiderPlannedSubmitComponent {
         if (this.days.thursday == true) return true; 
         if (this.days.friday == true) return true; 
         if (this.days.saturday == true) return true; 
-        if (this.days.sunday == true) return true; 
+        if (this.days.sunday == true) return true;
         return false; 
     }
 
