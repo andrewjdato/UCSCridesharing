@@ -30,7 +30,7 @@ export class PlannedService {
         return this.http.post('/api/forgot', JSON.stringify({email : email, approved : approved})).map((response: Response) => response.json());
     }
 
-
+    //Test
     //Rider Functions
 
     //FUnction post a ride for a rider

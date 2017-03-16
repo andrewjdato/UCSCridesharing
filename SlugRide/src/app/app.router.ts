@@ -24,6 +24,7 @@ import { TempPageComponent } from './temp-page/temp-page.component';
 import { AuthGuard } from './_auth/auth.guard';
 
 
+
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
