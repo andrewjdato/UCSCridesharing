@@ -24,28 +24,31 @@ declare var jQuery:any;
       </div>
 
   <div class="form-group">
-    <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl]="destinationInput">
-    <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl]="destinationOutput" >
-    <input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
-
+    <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl] = "destinationInput">
+    <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl] = "destinationOutput" >
+    <input placeholder="Waypoints" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl] = "destinationWaypoint" >
+    <!--<input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
+    -->
     </div>
 
 
 
     <!Google Maps HTML Code>
 <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
-<!-- <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
-    <sebm-google-map-info-window>
-    <strong>InfoWindow content</strong>
-</sebm-google-map-info-window>
-</sebm-google-map-marker> -->
+ <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+</sebm-google-map-marker>
 <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
     </sebm-google-map>
 
     </div> 
+ 
+ <div >
+ <button class="btn btn-primary">Post Ride</button>
+ </div>
     <div></div>
     <div *ngIf = "true">Estimated time of route: {{this.vc.estimatedTime}} </div>
     <div *ngIf = "true">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
+    <div *ngIf = "true">Placeid A: {{this.vc.waypointsPlaceId}} </div>
 `})
 
 export class DriverOndemandSubmitComponent implements OnInit {
@@ -109,6 +112,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
+
+      //autocomplete gets the information from the inputs in the html code
       let autocompleteInput = new google.maps.places.Autocomplete(this.pickupInputElementRef.nativeElement, {
         types: ["address"]
       });
@@ -124,9 +129,15 @@ export class DriverOndemandSubmitComponent implements OnInit {
       this.setupPlaceChangedListener(autocompleteOutput, 'DES');
       this.setupPlaceChangedListener(autocompleteWaypoint,'WAY');
     });
+
+
+
+
+
+
   }
 
-
+//setupPlaceChangedListner
   private setupPlaceChangedListener(autocomplete: any, mode: any) {
     autocomplete.addListener("place_changed", () => {
       this.ngZone.run(() => {
@@ -139,12 +150,12 @@ export class DriverOndemandSubmitComponent implements OnInit {
         if (mode === 'ORG') {
           this.vc.origin = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
           this.vc.originPlaceId = place.place_id;
-        } else if(mode === 'DES'){
+        } else if(mode ==='DES'){
           this.vc.destination = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()}; // its a example aleatory position
           this.vc.destinationPlaceId = place.place_id;
-        } else if(mode==='WAY'){
-
-
+        } else if(mode === 'WAY'){
+          this.vc.waypoints = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
+          this.vc.waypointsPlaceId = place.place_id;
         }
 
         if (this.vc.directionsDisplay === undefined) {
@@ -155,7 +166,6 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
         //Update the directions
         this.vc.updateDirections();
-
         this.getDistanceAndDuration();
         this.zoom = 12;
       });
@@ -191,6 +201,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         this.longitude = position.coords.longitude;
         this.zoom = 12;
       });
+
     }
   }
 
