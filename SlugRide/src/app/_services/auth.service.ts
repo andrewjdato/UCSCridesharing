@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthService {
     constructor(private http: Http) { }
- 
+    //Authentication services for the login inforatation.
+    //Tokens currently unavailible
     login(email: string, password: string) {
         return this.http.post('http://localhost:8000/rideshare/user_login/', JSON.stringify({ email: email, password: password }))
             .map((response: Response) => {
