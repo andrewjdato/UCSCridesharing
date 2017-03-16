@@ -56,12 +56,14 @@ export class PlannedService {
 
 
     //Extra Functions
-    id : string;
+    id : string; //ID for the driver schedule and driver individual sections
 
+    //Used in driver planned schedule to contain the id for driver indivdual
     setId(id: string) {
         this.id = id;
     } 
 
+    //Function to grab the id for the driver indivdual function
     getid() {
         return this.id; 
     }
