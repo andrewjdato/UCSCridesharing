@@ -6,5 +6,11 @@ export class Driver {
     driver_departure: string;
     driver_destination: string;
     driver_timeofdeparture: string; 
-    driver_days = {}; 
+    monday : boolean;
+    tuesday : boolean;
+    wednesday : boolean;
+    thursday : boolean;
+    friday : boolean;
+    saturday : boolean;
+    sunday : boolean;
 }
