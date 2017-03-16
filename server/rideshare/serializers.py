@@ -1,31 +1,22 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rideshare.models import *
-
-
-class DaysSerializer(serializers.Serializer):
-    monday = serializers.BooleanField()
-    tuesday = serializers.BooleanField()
-    wednesday = serializers.BooleanField()
-    thursday = serializers.BooleanField()
-    friday = serializers.BooleanField()
-    saturday = serializers.BooleanField()
-    sunday = serializers.BooleanField()
+import json
 
 class PlannedTripSerializer(serializers.ModelSerializer):
-    driver_days = DaysSerializer(many=False)
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
     class Meta:
         model = PlannedTrips
-        fields = ('id','first_name','last_name','driver_email','driver_departure','driver_destination','driver_timeofdeparture','driver_days',)
+        fields = ('id','first_name','last_name','driver_email','driver_departure','driver_destination','driver_timeofdeparture','monday','tuesday','wednesday','thursday','friday','saturday','sunday',)
     
     def create(self, validated_data):
         return PlannedTrips.objects.create(**validated_data)
         
 class ProposedTripSerializer(serializers.ModelSerializer):
-    rider_days = DaysSerializer(many=False)
     class Meta:
         model = ProposedTrips
-        fields = ('id','rider_email','rider_departure','rider_destination','rider_timeofdeparture','rider_days',)
+        fields = ('id','rider_email','rider_departure','rider_destination','rider_timeofdeparture','monday','tuesday','wednesday','thursday','friday','saturday','sunday',)
     
     def create(self, validated_data):
         return ProposedTrips.objects.create(**validated_data)
