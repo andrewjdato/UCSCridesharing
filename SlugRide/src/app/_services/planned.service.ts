@@ -45,7 +45,7 @@ export class PlannedService {
 
     //Function to join a ride for a rider
     riderJoin(email : string, id : string) {
-        return this.http.post('/api/forgot', JSON.stringify({email: email, id : id})).map((response: Response) => response.json());
+        return this.http.post('assets/data/Test.JSON', JSON.stringify({email: email, id : id})).map((response: Response) => response.json());
     }
 
     //Function get all current scheduled rides for a Rider

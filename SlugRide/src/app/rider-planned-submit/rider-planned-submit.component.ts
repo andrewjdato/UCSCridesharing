@@ -15,8 +15,15 @@ export class RiderPlannedSubmitComponent {
       //model : any = {};
       currentUser: User;
       model : Rider;
-      days : boolean[]; 
       incorrect_submit : boolean;
+      days = { monday : false,
+              tuesday : false,
+              wednesday : false,
+              thursday : false, 
+              friday : false, 
+              saturday : false, 
+              sunday : false};
+
  
     constructor(
         private router: Router,
@@ -26,15 +33,7 @@ export class RiderPlannedSubmitComponent {
         }
 
     ngOnInit() {
-        this.incorrect_submit = false; 
-        this.days = new Array(7);
-        this.days[0] = false;
-        this.days[1] = false;
-        this.days[2] = false;
-        this.days[3] = false;
-        this.days[4] = false;
-        this.days[5] = false;
-        this.days[6] = false;
+        this.incorrect_submit = false;
         this.model = {
           rider_email: this.currentUser.email, 
           rider_departure: null, 
@@ -45,10 +44,13 @@ export class RiderPlannedSubmitComponent {
     }    
 
     daysChecker() {
-        var counter = 0;
-        for (counter = 0; counter < this.days.length; counter++) {
-            if (this.days[counter] == true) return true;
-        }
+        if (this.days.monday == true) return true; 
+        if (this.days.tuesday == true) return true; 
+        if (this.days.wednesday == true) return true; 
+        if (this.days.thursday == true) return true; 
+        if (this.days.friday == true) return true; 
+        if (this.days.saturday == true) return true; 
+        if (this.days.sunday == true) return true; 
         return false; 
     }
 

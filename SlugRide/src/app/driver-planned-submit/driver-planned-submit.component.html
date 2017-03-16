@@ -13,38 +13,38 @@
             <input type="text" placeholder ="Time of Departure" class="form-control text-center" name="driver_timeofdeparture" [(ngModel)]="model.driver_timeofdeparture" #driver_timeofdeparture="ngModel" required />
             <div *ngIf="f.submitted && !driver_timeofdeparture.valid" class="help-block">Time of Departure is required</div>
         </div>     
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && (!this.days[0] && !this.days[1] && !this.days[2] && !this.days[3] && !this.days[4] && !this.days[5] && !this.days[6])}">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && (!this.days.monday && !this.days.tuesday && !this.days.wednesday && !this.days.thursday && !this.days.friday && !this.days.saturday && !this.days.sunday)}">
             <div class="checkbox">
               <label>
-                  <input type="checkbox" name="monday" [(ngModel)]="this.days[0]">
+                  <input type="checkbox" name="monday" [(ngModel)]="this.days.monday">
                   Monday 
               </label>
               <label>
-                  <input type="checkbox" name="tuesday" [(ngModel)]="this.days[1]">
+                  <input type="checkbox" name="tuesday" [(ngModel)]="this.days.tuesday">
                   Tuesday
               </label>
               <label>
-                  <input type="checkbox" name="wednesday" [(ngModel)]="this.days[2]">
+                  <input type="checkbox" name="wednesday" [(ngModel)]="this.days.wednesday">
                   Wednesday
               </label>
               <label>
-                  <input type="checkbox" name="thursday" [(ngModel)]="this.days[3]">
+                  <input type="checkbox" name="thursday" [(ngModel)]="this.days.thursday">
                   Thursday
               </label>
               <label>
-                  <input type="checkbox" name="friday" [(ngModel)]="this.days[4]">
+                  <input type="checkbox" name="friday" [(ngModel)]="this.days.friday">
                   Friday
               </label>
               <label>
-                  <input type="checkbox" name="saturday" [(ngModel)]="this.days[5]">
+                  <input type="checkbox" name="saturday" [(ngModel)]="this.days.saturday">
                   Saturday
               </label>
               <label>
-                  <input type="checkbox" name="sunday" [(ngModel)]="this.days[6]">
+                  <input type="checkbox" name="sunday" [(ngModel)]="this.days.sunday">
                   Sunday
               </label>
             </div>
-            <div *ngIf="f.submitted && (!this.days[0] && !this.days[1] && !this.days[2] && !this.days[3] && !this.days[4] && !this.days[5] && !this.days[6])" class="help-block">Please choose at least one day</div>
+            <div *ngIf="f.submitted && (!this.days.monday && !this.days.tuesday && !this.days.wednesday && !this.days.thursday && !this.days.friday && !this.days.saturday && !this.days.sunday)" class="help-block">Please choose at least one day</div>
         </div>
         <div class="form-group text-center">
             <button class="btn btn-primary">Submit</button> <br>
