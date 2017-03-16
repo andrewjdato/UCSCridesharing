@@ -9,7 +9,7 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
 
-@api_view(['POST'])
+@api_view(['GET'])
 @parser_classes((JSONParser,))
 def get_all_planned_trips(request):
     tripset = PlannedTrips.objects.all()
