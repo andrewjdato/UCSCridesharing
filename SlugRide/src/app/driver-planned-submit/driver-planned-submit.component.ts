@@ -15,9 +15,15 @@ import { User } from '../_user/user';
 export class DriverPlannedSubmitComponent implements OnInit{
       //model : any = {};
       currentUser: User;
-      model : Driver;
-      days : boolean[]; 
+      model : Driver; 
       incorrect_submit: boolean; 
+      days = { monday : false,
+              tuesday : false,
+              wednesday : false,
+              thursday : false, 
+              friday : false, 
+              saturday : false, 
+              sunday : false};
 
  
     constructor(
@@ -29,14 +35,6 @@ export class DriverPlannedSubmitComponent implements OnInit{
 
     ngOnInit() {
         this.incorrect_submit = false;
-        this.days = new Array(7);
-        this.days[0] = false;
-        this.days[1] = false;
-        this.days[2] = false;
-        this.days[3] = false;
-        this.days[4] = false;
-        this.days[5] = false;
-        this.days[6] = false;
         this.model = {
           driver_email: this.currentUser.email, 
           driver_departure: null, 
@@ -47,16 +45,20 @@ export class DriverPlannedSubmitComponent implements OnInit{
     }    
 
     daysChecker() {
-        var counter = 0;
-        for (counter = 0; counter < this.days.length; counter++) {
-            if (this.days[counter] == true) return true;
-        }
+        if (this.days.monday == true) return true; 
+        if (this.days.tuesday == true) return true; 
+        if (this.days.wednesday == true) return true; 
+        if (this.days.thursday == true) return true; 
+        if (this.days.friday == true) return true; 
+        if (this.days.saturday == true) return true; 
+        if (this.days.sunday == true) return true; 
         return false; 
     }
 
     driverPlanned() {
         if(this.daysChecker()) {
             this.model.driver_days = this.days;
+            console.log(this.days);
             this.plannedService.postDriverRide(this.model)
                                .subscribe(
                                data => {
