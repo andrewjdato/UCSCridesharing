@@ -17,13 +17,7 @@ export class DriverPlannedSubmitComponent implements OnInit{
       currentUser: User;
       model : Driver; 
       incorrect_submit: boolean; 
-      days = { monday : false,
-              tuesday : false,
-              wednesday : false,
-              thursday : false, 
-              friday : false, 
-              saturday : false, 
-              sunday : false};
+
 
  
     constructor(
@@ -40,25 +34,29 @@ export class DriverPlannedSubmitComponent implements OnInit{
           driver_departure: null, 
           driver_destination: null, 
           driver_timeofdeparture: null, 
-          driver_days: null,  
+          monday : false,
+          tuesday : false,
+          wednesday : false,
+          thursday : false,
+          friday : false,
+          saturday : false,
+          sunday : false  
         }
     }    
 
     daysChecker() {
-        if (this.days.monday == true) return true; 
-        if (this.days.tuesday == true) return true; 
-        if (this.days.wednesday == true) return true; 
-        if (this.days.thursday == true) return true; 
-        if (this.days.friday == true) return true; 
-        if (this.days.saturday == true) return true; 
-        if (this.days.sunday == true) return true; 
+        if (this.model.monday == true) return true; 
+        if (this.model.tuesday == true) return true; 
+        if (this.model.wednesday == true) return true; 
+        if (this.model.thursday == true) return true; 
+        if (this.model.friday == true) return true; 
+        if (this.model.saturday == true) return true; 
+        if (this.model.sunday == true) return true; 
         return false; 
     }
 
     driverPlanned() {
         if(this.daysChecker()) {
-            this.model.driver_days = this.days;
-            console.log(this.days);
             this.plannedService.postDriverRide(this.model)
                                .subscribe(
                                data => {

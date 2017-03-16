@@ -7,5 +7,11 @@ export class Rider {
     rider_departure: string;
     rider_destination: string;
     rider_timeofdeparture: string; 
-    rider_days = {};  
+    monday : boolean;
+    tuesday : boolean;
+    wednesday : boolean;
+    thursday : boolean;
+    friday : boolean;
+    saturday : boolean;
+    sunday : boolean; 
 }
