@@ -35,7 +35,7 @@ export class PlannedService {
 
     //FUnction post a ride for a rider
     postRiderRide(rider: Rider) {
-        return this.http.post('/api/users', rider).map((response: Response) => response.json());
+        return this.http.post('http://localhost:8000/rideshare/new_proposed_trip/', rider).map((response: Response) => response.json());
     }
 
     //Function to grab all the driver

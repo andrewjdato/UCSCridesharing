@@ -16,10 +16,19 @@ class PlannedTripSerializer(serializers.ModelSerializer):
     driver_days = DaysSerializer(many=False)
     class Meta:
         model = PlannedTrips
-        fields = ('id','driver_email','driver_departure','driver_destination','driver_timeofdeparture','driver_days','monday')
+        fields = ('id','driver_email','driver_departure','driver_destination','driver_timeofdeparture','driver_days',)
     
     def create(self, validated_data):
         return PlannedTrips.objects.create(**validated_data)
+        
+class ProposedTripSerializer(serializers.ModelSerializer):
+    rider_days = DaysSerializer(many=False)
+    class Meta:
+        model = ProposedTrips
+        fields = ('id','rider_email','rider_departure','rider_destination','rider_timeofdeparture','rider_days',)
+    
+    def create(self, validated_data):
+        return ProposedTrips.objects.create(**validated_data)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

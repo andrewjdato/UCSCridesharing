@@ -26,6 +26,24 @@ def new_planned_trip(request):
         return JsonResponse(serializer.validated_data, status=201)
     print(serializer.errors)
     return JsonResponse(serializer.errors, status=400)
+    
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def new_proposed_trip(request):
+    serializer = ProposedTripSerializer(data = request.data)
+    #print(request.data)
+    if serializer.is_valid():
+        serializer.validated_data['monday'] = serializer.validated_data['rider_days'].get('monday')
+        serializer.validated_data['tuesday'] = serializer.validated_data['rider_days'].get('tuesday')
+        serializer.validated_data['wednesday'] = serializer.validated_data['rider_days'].get('wednesday')
+        serializer.validated_data['thursday'] = serializer.validated_data['rider_days'].get('thursday')
+        serializer.validated_data['friday'] = serializer.validated_data['rider_days'].get('friday')
+        serializer.validated_data['saturday'] = serializer.validated_data['rider_days'].get('saturday')
+        serializer.validated_data['sunday'] = serializer.validated_data['rider_days'].get('sunday')
+        serializer.save()
+        return JsonResponse(serializer.validated_data, status=201)
+    print(serializer.errors)
+    return JsonResponse(serializer.errors, status=400)
 
 @api_view(['POST'])
 def user_registration(request):
