@@ -1,6 +1,16 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from rideshare.models import *
 
+class PlannedTripSerializer(serializers.ModelSerializer):
+    driver_days = serializers.ListField(child=serializers.CharField(max_length=150))
+    class Meta:
+        model = PlannedTrips
+        fields = ('id','driver_email','driver_departure','driver_destination','driver_timeofdeparture','driver_days',)
+    
+    def create(self, validated_data):
+        return PlannedTrips.objects.create(**validated_data)
+    
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

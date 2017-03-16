@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rideshare.serializers import UserSerializer, UserLoginSerializer
+from rideshare.serializers import *
 from django.contrib.auth.models import User
 
 from rest_framework import status
@@ -37,3 +37,13 @@ def user_login(request):
             return JsonResponse(serializer.data, status=201)
         except User.DoesNotExist:
             return Response(serializer.data, status=400)
+            
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def new_planned_trip(request):
+    serializer = PlannedTripSerializer(data = request.data)
+    print(request.data)
+    if serializer.is_valid():
+        print(serializer.validated_data)
+        return JsonResponse(serializer.data, status=201)
+    return JsonResponse(serializer.errors, status=400)

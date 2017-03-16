@@ -12,7 +12,7 @@ export class PlannedService {
     
     //Function Post a ride for a Driver
     postDriverRide(driver: Driver) {
-        return this.http.post('/api/users', driver).map((response: Response) => response.json());
+        return this.http.post('http://localhost:8000/rideshare/new_planned_trip/', driver).map((response: Response) => response.json());
     }
 
     //Function get all current scheduled rides for a driver
