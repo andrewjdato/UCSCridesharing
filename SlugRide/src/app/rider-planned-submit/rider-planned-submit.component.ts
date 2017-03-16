@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Rider } from '../_rider/rider';
 
-import { UserService } from '../_services/user.service';
 import { PlannedService } from '../_services/planned.service';
 import { User } from '../_user/user';
 
@@ -27,8 +26,7 @@ export class RiderPlannedSubmitComponent {
  
     constructor(
         private router: Router,
-        private plannedService : PlannedService,
-        private userService: UserService) {
+        private plannedService : PlannedService) {
            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         }
 
