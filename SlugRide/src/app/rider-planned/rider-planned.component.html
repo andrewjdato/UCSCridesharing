@@ -2,9 +2,9 @@
 <div *ngIf="f.submitted && this.incorrect_submit" class="text-center text-danger ">Cannot Join Ride</div>
 <div class="col-md-6 col-md-offset-3">
         <li *ngFor="let user of users">
-            {{user.username}} ({{user.first_Name}} {{user.last_Name}}) <br>
+            ({{user.first_Name}} {{user.last_Name}} {{user.driver_location}} {{user.driver_destination}} {{user.timeofdeparture}}) <br>
             <div class= "text-left">
-              <a class="btn btn-primary" (click)="joinRide(this.user.password)">Join</a> <br> 
+              <a class="btn btn-primary" (click)="joinRide(this.user.planned_tripid)">Join</a> <br> 
             </div>
         </li>
 </div>

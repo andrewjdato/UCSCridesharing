@@ -13,7 +13,7 @@ import { PlannedService } from '../_services/planned.service';
 export class DriverPlannedIndividualComponent implements OnInit {
     currentUser: User;
     users: User[] = []; //change model 
-    id : string;
+    id : number;
     incorrect_submit : boolean; 
 
     constructor(private userService: UserService,

@@ -33,7 +33,7 @@ export class DriverScheduleComponent implements OnInit {
         //this.plannedService.getAllDriverRides(currentUser.email).subscribe(users => {this.users = users; });
     }
 
-    selectRide(id : string) {
+    selectRide(id : number) {
       //this.plannedService.riderJoin(this.currentUser.email, this.currentUser.password) //Change second param to trip ID
       //      .subscribe(
       //          data => {

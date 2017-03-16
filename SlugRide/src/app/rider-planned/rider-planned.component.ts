@@ -5,6 +5,16 @@ import { User } from '../_user/user';
 import { UserService } from '../_services/user.service';
 import { PlannedService } from '../_services/planned.service';
 
+export class driverInfo {
+    first_name : string;
+    last_name : string;
+    driver_location : string;
+    driver_destination : string;
+    driver_timeofdeparture : string;
+    driver_days = {};
+    planned_tripid : number;
+}
+
 @Component({
   selector: 'app-rider-planned',
   templateUrl: './rider-planned.component.html',
@@ -13,7 +23,7 @@ import { PlannedService } from '../_services/planned.service';
 export class RiderPlannedComponent implements OnInit {
 
     currentUser: User;
-    users: User[] = []; //change model 
+    users: driverInfo[] = []; //change model 
     incorrect_submit : boolean;
  
     constructor(private userService: UserService,
@@ -32,7 +42,7 @@ export class RiderPlannedComponent implements OnInit {
         this.plannedService.getAllDrivers().subscribe(users => { this.users = users; });
     }
 
-    joinRide(id : string) {
+    joinRide(id : number) {
       this.plannedService.riderJoin(this.currentUser.email, id) //Change second param to trip ID
                          .subscribe(
                          data => {
