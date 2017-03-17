@@ -46,7 +46,7 @@ export class PlannedService {
 
     //Function to join a ride for a rider
     riderJoin(email : string, trip_id : number) {
-        console.log(JSON.stringify({email: email, tri_id : trip_id}));
+        console.log(JSON.stringify({email: email, trip_id : trip_id}));
         return this.http.post('http://localhost:8000/rideshare/ride_join_trip/', JSON.stringify({email: email, trip_id : trip_id})).map((response: Response) => response.json());
     }
 
