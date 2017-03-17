@@ -5,51 +5,18 @@ import { FormControl,FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import {AgmCoreModule, MapsAPILoader } from 'angular2-google-maps/core';
 import { DirectionsMapDirective } from 'app/map/google-map.directive';
+import {driverodServ} from "../_services/driverOnDemand.service"
+import {Driverondemand} from '../_driverondemand/driverod'
+import { AuthService } from '../_services/auth.service';
 declare var google: any;
 declare var jQuery:any;
 
 @Component({
   selector: 'app-driver-ondemand-submit',
-  //templateUrl: './driver-ondemand-submit.component.html',
+  templateUrl: './driver-ondemand-submit.component.html',
   styleUrls: ['./driver-ondemand-submit.component.css'],
-  providers: [GoogleMapsAPIWrapper],
-  template:` <div class="container">
-  <h1 class="text-center">Driver On Demand</h1>
-  <div class= "text-center">
-
-  <a routerLink="/drivertype" class="btn btn-default">Submit</a> <br>
-      </div>
-  <div class= "text-left">
-  <a routerLink="/drivertype" class="btn btn-default">Back</a> <br>
-      </div>
-
-  <div class="form-group">
-    <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl] = "destinationInput">
-    <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl] = "destinationOutput" >
-    <input placeholder="Waypoints" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl] = "destinationWaypoint" >
-    <!--<input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
-    -->
-    </div>
-
-
-
-    <!Google Maps HTML Code>
-<sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
- <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
-</sebm-google-map-marker>
-<sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
-    </sebm-google-map>
-
-    </div> 
- 
- <div >
- <button class="btn btn-primary">Post Ride</button>
- </div>
-    <div></div>
-    <div *ngIf = "true">Estimated time of route: {{this.vc.estimatedTime}} </div>
-    <div *ngIf = "true">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
-    <div *ngIf = "true">Placeid A: {{this.vc.waypointsPlaceId}} </div>
-`})
+  providers: [GoogleMapsAPIWrapper]
+})
 
 export class DriverOndemandSubmitComponent implements OnInit {
   public latitude: number;
@@ -64,6 +31,9 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public mapCustomStyles: any;
   public estimatedTime: any;
   public estimatedDistance: any;
+  public destid: string;
+  public originid: string;
+  public driverx: Driverondemand;
 
   //
   @ViewChild("search")
@@ -87,11 +57,9 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-              private ngZone: NgZone,
-              //private gmapsApi: GoogleMapsAPIWrapper,
-              //private _elementRef : ElementRef
-  ) {
-  }
+              public driverodx: driverodServ,
+              private ngZone: NgZone
+              ) {}
 
   ngOnInit() {
     //set google maps defaults
@@ -167,6 +135,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         //Update the directions
         this.vc.updateDirections();
         this.getDistanceAndDuration();
+        this.getPlaceid();
         this.zoom = 12;
       });
 
@@ -174,15 +143,41 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
   }
 
+
+  //gets distance and duration of route
   getDistanceAndDuration() {
     this.estimatedTime = this.vc.estimatedTime;
     this.estimatedDistance = this.vc.estimatedDistance;
+  }
+
+  //gets the placeid of the destination and origin
+  getPlaceid(){
+    this.driverx.driverod_destination = this.destid =this.vc.destinationPlaceId;
+    this.driverx.driverod_departure = this.originid = this.vc.originPlaceId;
+
+  }
+
+  //formats data to be sent to server, such as origin place id, destination place id
+  driverodSend() {
+
+
+    this.driverodx.driverodPost(this.driverx).subscribe(
+        data =>{
+          console.log("Success");
+        },
+        error =>{
+          console.log("Error");
+       }
+    )
+
   }
 
   scrollToBottom(): void {
     jQuery('html, body').animate({scrollTop: jQuery(document).height()}, 3000);
   }
 
+
+  //sets latitude and longitude form google maps api
   private setPickUpLocation(place: any) {
     //verify result
     if (place.geometry === undefined || place.geometry === null) {
@@ -194,6 +189,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.zoom = 12;
   }
 
+  //sets current position in maps from your geolocation
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
