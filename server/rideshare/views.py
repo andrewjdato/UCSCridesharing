@@ -9,16 +9,21 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.exceptions import *
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def ride_join_trip(request):
-    serializer = RideJoinTripSerializer(data = request.data)
+    try:
+        serializer = RideJoinTripSerializer(data = request.data)
+    except UnsupportedMediaType:
+        print("testing")
+        print("testing")
     if serializer.is_valid():
         print(serializer.validated_data)
-        return JsonResponse(serializer.validated_data, status=201)
+        returnResponse(serializer.validated_data, status=201)
     print(serializer.errors)
-    return JsonResponse(status=400)
+    return Response(status=400)
 
 @api_view(['GET'])
 @parser_classes((JSONParser,))

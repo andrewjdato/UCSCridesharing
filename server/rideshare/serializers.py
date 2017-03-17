@@ -7,6 +7,9 @@ class RideJoinTripSerializer(serializers.ModelSerializer):
     class Meta:
         model = RiderJoin
         fields = ('email','trip_id',)
+        
+    def create(self, validated_data):
+        RideJoin.objects.create(**validated_data)
 
 class PlannedTripSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(required=False)
