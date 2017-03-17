@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 import json
+from django.contrib.auth.models import User
 
 class PlannedTrips(models.Model):
     first_name = models.CharField(max_length=100)
@@ -32,3 +33,9 @@ class ProposedTrips(models.Model):
     friday = models.BooleanField(default=False)
     saturday = models.BooleanField(default=False)
     sunday = models.BooleanField(default=False)
+    
+class RideProfile(models.Model):
+    desired_trip = models.ManyToManyField(PlannedTrips)
+    proposed_trip = models.ManyToManyField(ProposedTrips)
+    user_account = models.OneToOneField(User)
+    email = models.CharField(max_length=100)

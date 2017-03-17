@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^rideshare/new_planned_trip/$', views.new_planned_trip),
     url(r'^rideshare/new_proposed_trip/$', views.new_proposed_trip),
     url(r'^rideshare/get_all_planned_trips/$', views.get_all_planned_trips),
+    url(r'^rideshare/ride_join_trip/$', views.ride_join_trip),
 ]

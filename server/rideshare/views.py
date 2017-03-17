@@ -9,6 +9,16 @@ from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
 
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def ride_join_trip(request):
+    serializer = RideJoinTripSerializer(data = request.data)
+    if serializer.is_valid():
+        print(serializer.validated_data)
+        return JsonResponse(serializer.validated_data, status=201)
+    print(serializer.errors)
+    return JsonResponse(serializer.errors, status=400)
+
 @api_view(['GET'])
 @parser_classes((JSONParser,))
 def get_all_planned_trips(request):
