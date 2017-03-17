@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 from rideshare.models import *
 import json
 
-class RideJoinTripSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    email = serializers.CharField()
+class RideJoinTripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RiderJoin
+        fields = ('email','trip_id',)
 
 class PlannedTripSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(required=False)
