@@ -13,7 +13,7 @@ class PlannedTripSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(required=False)
     class Meta:
         model = PlannedTrips
-        fields = ('id','first_name','last_name','driver_email','driver_departure','driver_destination','driver_timeofdeparture','monday','tuesday','wednesday','thursday','friday','saturday','sunday',)
+        fields = ('trip_id','first_name','last_name','driver_email','driver_departure','driver_destination','driver_timeofdeparture','monday','tuesday','wednesday','thursday','friday','saturday','sunday',)
     
     def create(self, validated_data):
         return PlannedTrips.objects.create(**validated_data)
