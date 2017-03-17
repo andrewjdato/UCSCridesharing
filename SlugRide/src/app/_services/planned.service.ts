@@ -55,6 +55,7 @@ export class PlannedService {
     riderJoin(email : string, trip_id : string) {
         this.joinride.email = email; 
         this.joinride.trip_id = trip_id;
+        console.log(this.joinride);
         return this.http.post('http://localhost:8000/rideshare/ride_join_trip/', this.joinride).map((response: Response) => response.json());
     }
 
