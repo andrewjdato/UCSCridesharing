@@ -5,6 +5,7 @@ import json
 from django.contrib.auth.models import User
 
 class PlannedTrips(models.Model):
+    trip_id = models.PositiveIntegerField(blank=True, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     driver_email = models.CharField(max_length=100)
@@ -22,6 +23,7 @@ class PlannedTrips(models.Model):
         return json.loads(driver_days)
     
 class ProposedTrips(models.Model):
+    trip_id = models.PositiveIntegerField(blank=True, null=True)
     rider_email = models.CharField(max_length=100)
     rider_departure = models.CharField(max_length=200)
     rider_destination = models.CharField(max_length=200)

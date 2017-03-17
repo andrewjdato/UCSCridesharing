@@ -38,6 +38,9 @@ def new_planned_trip(request):
         user = User.objects.get(email = serializer.validated_data['driver_email'])
         trip.first_name = user.first_name
         trip.last_name = user.last_name
+        trip.trip_id = 1
+        trip.save()
+        trip.trip_id = trip.id
         trip.save()
         return JsonResponse(serializer.validated_data, status=201)
     print(serializer.errors)
@@ -49,7 +52,11 @@ def new_proposed_trip(request):
     serializer = ProposedTripSerializer(data = request.data)
     #print(request.data)
     if serializer.is_valid():
-        serializer.save()
+        trip = serializer.save()
+        trip.trip_id = 1
+        trip.save()
+        trip.trip_id = trip.id
+        trip.save()
         return JsonResponse(serializer.validated_data, status=201)
     print(serializer.errors)
     return JsonResponse(serializer.errors, status=400)
