@@ -4,7 +4,7 @@
         <li *ngFor="let user of users">
             ({{user.first_Name}} {{user.last_Name}} {{user.driver_location}} {{user.driver_destination}} {{user.timeofdeparture}}) <br>
             <div class= "text-left">
-              <a class="btn btn-primary" (click)="joinRide(this.user.planned_tripid)">Join</a> <br> 
+              <a class="btn btn-primary" (click)="joinRide(this.user.trip_id)">Join</a> <br> 
             </div>
         </li>
 </div>

@@ -18,7 +18,7 @@ export class driverInfo {
     friday : boolean;
     saturday : boolean;
     sunday : boolean; 
-    planned_tripid : number;
+    trip_id : number;
 }
 
 @Component({
@@ -46,6 +46,7 @@ export class RiderPlannedComponent implements OnInit {
     private loadAllUsers() {
         //Change this object 
         this.plannedService.getAllCurrentPlannedDrivers().subscribe(users => { this.users = users; });
+        console.log(this.users[0]);
     }
 
     joinRide(id : number) {
