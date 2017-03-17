@@ -18,7 +18,7 @@ export class driverInfo {
     friday : boolean;
     saturday : boolean;
     sunday : boolean; 
-    trip_id : number;
+    trip_id : string;
 }
 
 @Component({
@@ -48,7 +48,7 @@ export class RiderPlannedComponent implements OnInit {
         this.plannedService.getAllCurrentPlannedDrivers().subscribe(users => { this.users = users; });
     }
 
-    joinRide(id : number) {
+    joinRide(id : string) {
       console.log(id);
       this.plannedService.riderJoin(this.currentUser.email, id) //Change second param to trip ID
                          .subscribe(
