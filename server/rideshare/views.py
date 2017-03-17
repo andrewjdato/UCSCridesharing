@@ -8,16 +8,22 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
-@api_view(['POST'])
-@parser_classes((JSONParser,))
+#@api_view(['POST'])
+@csrf_exempt
 def ride_join_trip(request):
-    serializer = RideJoinTripSerializer(data = request.data)
-    if serializer.is_valid():
-        print(serializer.validated_data)
-        return JsonResponse(serializer.validated_data, status=201)
-    print(serializer.errors)
-    return JsonResponse(serializer.errors, status=400)
+    if request.method == 'POST':
+        print("blah")
+        #print(request.data['email'])
+        print(request)
+        #serializer = RideJoinTripSerializer(data = request.data)
+        #if serializer.is_valid():
+            #print(serializer.validated_data)
+            #return Response(serializer.validated_data, status=201)
+        #print(serializer.errors)
+        return Response(status=201)
+    return
 
 @api_view(['GET'])
 @parser_classes((JSONParser,))

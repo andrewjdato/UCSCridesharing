@@ -39,3 +39,7 @@ class RideProfile(models.Model):
     proposed_trip = models.ManyToManyField(ProposedTrips)
     user_account = models.OneToOneField(User)
     email = models.CharField(max_length=100)
+    
+class RiderJoin(models.Model):
+    trip_id = models.IntegerField()
+    email = models.CharField(max_length=100)
