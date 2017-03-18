@@ -22,8 +22,11 @@ export class RegisterComponent implements OnInit {
     }
 
     register() {
-        this.userService.create(this.model)
-            .subscribe(
+        var checker = "@ucsc.edu"
+        if (this.model.email.search(checker) != -1){
+            console.log("success");
+            this.userService.create(this.model)
+                .subscribe(
                 data => {
                     // set success message and pass true paramater to persist the message after redirecting to the login page
 
@@ -34,5 +37,8 @@ export class RegisterComponent implements OnInit {
                     console.log("error")
                     //Insert bad here
                 });
+        } else {
+            console.log("Fail");
+        }
     }
 }
