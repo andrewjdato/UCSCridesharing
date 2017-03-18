@@ -1,8 +1,29 @@
-  <h1 class="text-center">Rider On Demand</h1>
-  <div class= "text-center">
-        <input type = "password" placeholder="Destination" name="psswrd"><br>
-        <a routerLink="/ridertype" class="btn btn-default">Submit</a> <br>
-  </div>
-  <div class= "text-left">
-        <a routerLink="/ridertype" class="btn btn-default">Back</a> <br> 
+
+  <div class="container">
+      <h1 class="text-center">Rider On Demand</h1>
+      <div class= "text-center">
+
+          <a routerLink="/ridertype" class="btn btn-default">Submit</a> <br>
+      </div>
+      <div class= "text-left">
+          <a routerLink="/ridertype" class="btn btn-default">Back</a> <br>
+      </div>
+
+      <div class="form-group">
+          <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"  #pickupInput [formControl] = "destinationInput">
+          <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl] = "destinationOutput" >
+          <input placeholder="Waypoints" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl] = "destinationWaypoint" >
+          <!--<input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
+          -->
+      </div>
+
+
+
+      <!Google Maps HTML Code>
+      <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
+          <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+          </sebm-google-map-marker>
+          <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
+      </sebm-google-map>
+
   </div>

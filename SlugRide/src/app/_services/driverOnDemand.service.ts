@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import {Driverondemand} from '../_driverondemand/driverod'
 
-import {Driverondemand} from '../_driverondemand/Driverondemand'
-
+import 'rxjs/add/operator/map'
 
 @Injectable()
-export class driverOnDemand{
+export class driverodServ{
     constructor(private http: Http){}
 
 
@@ -15,9 +16,17 @@ export class driverOnDemand{
 
     }
 
-    //checks to see if anyone has responded to ride
-    driverodCheck(){
 
+    //sends informat
+    driverodPost(driverx: Driverondemand){
+        return this.http.post('/api/users', JSON.stringify({Driverondemand: driverx}))
+            .map((response: Response)=> {
+
+                let user = response.json();
+
+
+
+            })
 
     }
 
