@@ -4,11 +4,6 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Driver } from '../_driver/driver';
 import { Rider } from '../_rider/rider';
  
-export class joinRide {
-    email : string;
-    trip_id : string;
-}
-
 @Injectable()
 export class PlannedService {
     constructor(private http: Http) { }
@@ -49,14 +44,13 @@ export class PlannedService {
         return this.http.get('http://localhost:8000/rideshare/get_all_planned_trips/').map((response: Response) => response.json());
     }
 
-    joinride : joinRide;
-
     //Function to join a ride for a rider
     riderJoin(email : string, trip_id : string) {
-        this.joinride.email = email; 
-        this.joinride.trip_id = trip_id;
-        console.log(this.joinride);
-        return this.http.post('http://localhost:8000/rideshare/ride_join_trip/', this.joinride).map((response: Response) => response.json());
+        console.log("You Made it!")
+        console.log(email);
+        console.log(trip_id);
+        console.log(JSON.stringify({ email: email, trip_id }))
+        return this.http.post('http://localhost:8000/rideshare/ride_join_trip/', JSON.stringify({ email: email, trip_id : trip_id })).map((response: Response) => response.json());
     }
 
     //Function get all current scheduled rides for a Rider

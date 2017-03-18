@@ -49,8 +49,8 @@ export class RiderPlannedComponent implements OnInit {
     }
 
     joinRide(id : string) {
-      console.log(id);
-      this.plannedService.riderJoin(this.currentUser.email, id) //Change second param to trip ID
+      //console.log(id);
+      this.plannedService.riderJoin(this.currentUser.email, id)//Change second param to trip ID
                          .subscribe(
                          data => {
                             this.router.navigate(['/ridertype']);
