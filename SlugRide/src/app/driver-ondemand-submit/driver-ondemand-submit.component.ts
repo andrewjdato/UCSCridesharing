@@ -7,7 +7,9 @@ import {AgmCoreModule, MapsAPILoader } from 'angular2-google-maps/core';
 import { DirectionsMapDirective } from 'app/map/google-map.directive';
 import {driverodServ} from "../_services/driverOnDemand.service"
 import {Driverondemand} from '../_driverondemand/driverod'
+import {Riderondemand} from '../_riderondemand/riderod'
 import { AuthService } from '../_services/auth.service';
+import {Observable} from 'rxjs/Rx';
 declare var google: any;
 declare var jQuery:any;
 
@@ -23,6 +25,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
+  public a: number;
   //
   public destinationInput: FormControl;
   public destinationOutput: FormControl;
@@ -33,7 +36,29 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public estimatedDistance: any;
   public destid: string;
   public originid: string;
+
+  //boolean to show text lines for estimated time and distance
+  public showinfo: boolean;
+  //paired is the true or false of a pairing, by default it is false
+  public paired: boolean;
+  //boolean to show if there is a current rider
+  public showReject: boolean;
+
+  //driverx is an instance of the driverod class
   public driverx: Driverondemand;
+  //flag will tell us when we receive rider info
+  public flagreqR: number;
+  //driverodx is an instance of driverodServ where we are able to use its functions
+  public driverodx: driverodServ;
+  //variables for intervals in functions
+  public myvar1: any;
+  public polling:any;
+  //riderx is the instance of the rider info that we receive
+  public riderx: Riderondemand;
+  //rider waypoint is the placeId of the rider, will be used as a waypoint on maps
+  public riderwpt: string;
+
+
 
   //
   @ViewChild("search")
@@ -57,18 +82,25 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-              public driverodx: driverodServ,
+
               private ngZone: NgZone
               ) {}
 
   ngOnInit() {
+    //test for observable
+    //let timer = Observable.interval(1000).subscribe(()=>this.add());
+
     //set google maps defaults
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
+    this.a=12;
     //this.iconurl = '../image/map-icon.png';
     this.iconurl = '../image/map-icon.png';
+    this.paired = false;
+    this.showinfo = false;
+    this.showReject = false;
 
     // this.mapCustomStyles = this.getMapCusotmStyles();
     //create search FormControl
@@ -77,6 +109,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.destinationWaypoint = new FormControl();
     //set current position
     this.setCurrentPosition();
+
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -89,6 +122,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
       let autocompleteOutput = new google.maps.places.Autocomplete(this.pickupOutputElementRef.nativeElement, {
         types: ["address"]
       });
+
+
       let autocompleteWaypoint = new google.maps.places.Autocomplete(this.waypointElementRef.nativeElement, {
         types: ["address"]
       });
@@ -97,6 +132,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
       this.setupPlaceChangedListener(autocompleteOutput, 'DES');
       this.setupPlaceChangedListener(autocompleteWaypoint,'WAY');
     });
+
 
 
 
@@ -123,6 +159,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
           this.vc.destinationPlaceId = place.place_id;
         } else if(mode === 'WAY'){
           this.vc.waypoints = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
+
+
           this.vc.waypointsPlaceId = place.place_id;
         }
 
@@ -148,13 +186,16 @@ export class DriverOndemandSubmitComponent implements OnInit {
   getDistanceAndDuration() {
     this.estimatedTime = this.vc.estimatedTime;
     this.estimatedDistance = this.vc.estimatedDistance;
+
+    this.showinfo=true;
   }
 
   //gets the placeid of the destination and origin
   getPlaceid(){
-    this.driverx.driverod_destination = this.destid =this.vc.destinationPlaceId;
-    this.driverx.driverod_departure = this.originid = this.vc.originPlaceId;
-
+     this.destid =this.vc.destinationPlaceId;
+     this.originid = this.vc.originPlaceId;
+     this.driverx.driverod_destination = this.vc.destinationPlaceId;
+     this.driverx.driverod_departure = this.vc.originPlaceId;
   }
 
   //formats data to be sent to server, such as origin place id, destination place id
@@ -164,6 +205,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.driverodx.driverodPost(this.driverx).subscribe(
         data =>{
           console.log("Success");
+          //starts the function to begin polling for rider requests
+          this.setRiderint();
         },
         error =>{
           console.log("Error");
@@ -171,6 +214,95 @@ export class DriverOndemandSubmitComponent implements OnInit {
     )
 
   }
+
+  //CAN THIS= MULTITHREAD!???: no
+  setRiderint(){
+
+    //sets interval for get request in order to keep checking for rider waypoint
+
+    this.polling = Observable.interval(5000);
+    return this.polling.subscribe(()=>getRiderinfo());
+
+    //getRiderinfo is the function that keeps checking for rider info
+    //once it has gotten rider info then a flag will be set high and the intervals will stop
+    function getRiderinfo(){
+      while(this.flagreqR === 0){
+
+
+        //riderx becomes the object that we receive from the server
+        this.riderx = this.driverodx.driverodRequestr().subscribe(
+            data => {
+
+              //flag goes high for driver round
+              this.flagreqR = 1;
+              //stop intervals
+              this.polling.unsubscribe();
+              console.log("Success");
+              //boolean to show reject button on webpage
+              this.showReject = true;
+
+            },
+            error => {
+
+              console.log("Error");
+            }
+        )
+
+      }
+
+    }
+
+
+
+  }
+
+  accRider(){
+    this.driverodx.acceptRider().subscribe(
+        data => {
+
+
+          console.log("Success");
+          //boolean to show reject button on webpage
+
+
+        },
+        error => {
+
+          console.log("Error");
+        }
+    )
+  }
+
+  //tester for observable.interval()
+  testerf(){
+    this.a++;
+
+
+
+
+    this.myvar1 = Observable.interval(5000);
+    return this.myvar1.subscribe(()=> this.add());
+
+
+
+
+
+
+
+  }
+   add(){
+  this.a++;
+     clearInterval(this.myvar1);
+  // this.testerf().remove(myvar1)
+     if(this.a>15) {
+      this.myvar1.unsubsribe();
+
+     }
+
+}
+
+
+
 
   scrollToBottom(): void {
     jQuery('html, body').animate({scrollTop: jQuery(document).height()}, 3000);

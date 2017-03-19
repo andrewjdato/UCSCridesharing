@@ -9,13 +9,13 @@ declare var google: any;
 @Directive({
     selector: 'sebm-google-map-directions'
 })
-export class DirectionsMapDirective {
+export class DirectionsMapDirectiver {
     @Input() origin:any ;
     @Input() destination:any;
     @Input() originPlaceId:any;
     @Input() destinationPlaceId:any;
-    @Input() waypoints:any;
-    @Input() waypointsPlaceId:any;
+    // @Input() waypoints:any;
+    // @Input() waypointsPlaceId:any;
     @Input() directionsDisplay:any;
     @Input() estimatedTime : any;
     @Input() estimatedDistance : any;
@@ -31,7 +31,7 @@ export class DirectionsMapDirective {
             var me = this;
             var latLngA = new google.maps.LatLng({lat: this.origin.latitude, lng: this.origin.longitude });
             var latLngB = new google.maps.LatLng({lat: this.destination.latitude, lng: this.destination.longitude });
-            var waypts = new google.maps.LatLng({lat: this.waypoints.latitude, lng:this.waypoints.longitude});
+            //var waypts = new google.maps.LatLng({lat: this.waypoints.latitude, lng:this.waypoints.longitude});
 
             //var latLngC = new google.maps.LatLng({lat: this.waypoints.latitude, lng: this.waypoints.longitude});
             this.directionsDisplay.setMap(map);
@@ -46,14 +46,9 @@ export class DirectionsMapDirective {
             directionsService.route({
                 origin: {placeId : this.originPlaceId },
                 destination: {placeId : this.destinationPlaceId },
-                avoidHighways: true,
-                waypoints: [{
-                    location: waypts,
-                    stopover: false
-                }],
-                optimizeWaypoints:true,
-                //travelMode: google.maps.DirectionsTravelMode.DRIVING,
-                travelMode: 'DRIVING'
+                avoidHighways: false,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+                //travelMode: 'DRIVING'
             }, function(response: any, status: any) {
                 if (status === 'OK') {
                     me.directionsDisplay.setDirections(response);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {Riderondemand} from '../_riderondemand/Riderondemand'
+import {Riderondemand} from '../_riderondemand/riderod'
 
 
 @Injectable()
@@ -27,6 +27,7 @@ export class riderodServ {
             })
 
     }
+
 
 
 }
