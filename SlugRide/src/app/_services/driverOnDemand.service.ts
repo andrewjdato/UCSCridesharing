@@ -17,7 +17,7 @@ export class driverodServ{
     }
 
 
-    //sends informat
+    //sends information of driver coordinates and info
     driverodPost(driverx: Driverondemand){
         return this.http.post('/api/users', JSON.stringify({Driverondemand: driverx}))
             .map((response: Response)=> {

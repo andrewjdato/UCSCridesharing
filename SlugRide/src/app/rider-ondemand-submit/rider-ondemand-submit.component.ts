@@ -9,6 +9,7 @@ import {riderodServ} from "../_services/riderOnDemand.service"
 import {Riderondemand} from '../_riderondemand/riderod'
 import { AuthService } from '../_services/auth.service';
 import {Observable} from 'rxjs/Rx';
+import { User } from '../_user/user';
 declare var google: any;
 declare var jQuery:any;
 
@@ -35,6 +36,8 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public originid: string;
   public riderx: Riderondemand;
   private riderodx: riderodServ;
+
+  private curUser: User;
 
 
   //
@@ -71,6 +74,10 @@ export class RiderOndemandSubmitComponent implements OnInit {
     this.longitude = -98.5795;
     //this.iconurl = '../image/map-icon.png';
     this.iconurl = '../image/map-icon.png';
+
+    //will get user information from local storage
+    // this.curUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.riderx.riderod_email = this.curUser.email;
 
     // this.mapCustomStyles = this.getMapCusotmStyles();
     //create search FormControl

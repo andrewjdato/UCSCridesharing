@@ -10,6 +10,7 @@ import {Driverondemand} from '../_driverondemand/driverod'
 import {Riderondemand} from '../_riderondemand/riderod'
 import { AuthService } from '../_services/auth.service';
 import {Observable} from 'rxjs/Rx';
+import { User } from '../_user/user';
 declare var google: any;
 declare var jQuery:any;
 
@@ -36,6 +37,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public estimatedDistance: any;
   public destid: string;
   public originid: string;
+
+  private curUser: User;
 
   //boolean to show text lines for estimated time and distance
   public showinfo: boolean;
@@ -101,6 +104,10 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.paired = false;
     this.showinfo = false;
     this.showReject = false;
+
+    //will get user information from local storage
+    //this.curUser = JSON.parse(localStorage.getItem('currentUser'));
+    //this.driverx.driverod_email = this.curUser.email;
 
     // this.mapCustomStyles = this.getMapCusotmStyles();
     //create search FormControl
@@ -226,7 +233,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     //getRiderinfo is the function that keeps checking for rider info
     //once it has gotten rider info then a flag will be set high and the intervals will stop
     function getRiderinfo(){
-      while(this.flagreqR === 0){
+      //while(this.flagreqR === 0){
 
 
         //riderx becomes the object that we receive from the server
@@ -248,7 +255,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
             }
         )
 
-      }
+      //}
 
     }
 
