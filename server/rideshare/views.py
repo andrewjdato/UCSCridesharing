@@ -78,7 +78,11 @@ def ride_join_trip(request):
     rider_profile = RideProfile.objects.get(email = jsonobj['email'])
     rider_profile.desired_trip.add(trip)
     rider_profile.save()
-    rider_approve_trip = RiderApproveTrip.objects.create(user_profile = rider_profile, planned_trip = trip, approve = False)
+    rider_approve = RiderApproveTrip.objects.filter(user_profile = rider_profile, planned_trip = trip)
+    if rider_approve.count() > 0:
+        return JsonResponse(jsonobj, status=201)
+    else:
+        rider_approve = RiderApproveTrip.objects.create(user_profile = rider_profile, planned_trip = trip)
     if rider_approve_trip is None:
         rider_approve_trip.save()
         print("saved join trip")
