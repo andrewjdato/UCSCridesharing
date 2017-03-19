@@ -52,8 +52,8 @@ export class DirectionsMapDirective {
                     stopover: false
                 }],
                 optimizeWaypoints:true,
-                //travelMode: google.maps.DirectionsTravelMode.DRIVING,
-                travelMode: 'DRIVING'
+                travelMode: google.maps.DirectionsTravelMode.DRIVING,
+                //travelMode: 'DRIVING'
             }, function(response: any, status: any) {
                 if (status === 'OK') {
                     me.directionsDisplay.setDirections(response);
