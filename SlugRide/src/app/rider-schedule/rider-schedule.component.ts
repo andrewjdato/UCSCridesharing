@@ -6,6 +6,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_user/user';
 import { PlannedService } from '../_services/planned.service';
 
+export class riderTripInfo {
+    first_name : string;
+    last_name : string;
+    driver_location : string;
+    driver_destination : string;
+    driver_timeofdeparture : string;
+    monday : boolean;
+    tuesday : boolean;
+    wednesday : boolean;
+    thursday : boolean;
+    friday : boolean;
+    saturday : boolean;
+    sunday : boolean; 
+    trip_id : string;
+}
+
+
 @Component({
   selector: 'app-rider-schedule',
   templateUrl: './rider-schedule.component.html',
@@ -13,7 +30,7 @@ import { PlannedService } from '../_services/planned.service';
 })
 export class RiderScheduleComponent implements OnInit {
     currentUser: User;
-    users: User[] = []; //change model 
+    users: riderTripInfo[] = []; //change model 
  
     constructor(private userService: UserService,
                 private router: Router,
@@ -24,7 +41,6 @@ export class RiderScheduleComponent implements OnInit {
     ngOnInit() {
         this.loadRides(); 
         //Change Method
-
     }
 
     private loadRides() {
