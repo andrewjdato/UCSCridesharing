@@ -1,11 +1,24 @@
 <h1 class="text-center"> Scheduled Driver Rides </h1> 
 <div class="col-md-6 col-md-offset-3">
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.first_Name}} {{user.last_Name}}) <br>
-            <div class= "text-left">
-              <a class="btn btn-primary" (click)="selectRide(this.user.password)">More Details</a> <br> 
+        <div *ngFor="let user of users">
+            <div class="row"> Departure Location : {{user.driver_departure}} </div>
+            <div class="row"> Destination        : {{user.driver_destination}} </div>
+            <div class="row"> Time of Departure  : {{user.driver_timeofdeparture}} </div>
+            <div class="row"> Days of Departure  : |      
+                <div *ngIf="user.monday">Mon | </div>
+                <div *ngIf="user.tuesday">Tue |</div>
+                <div *ngIf="user.wednesday">Wed |</div>
+                <div *ngIf="user.thursday">Thu |</div>
+                <div *ngIf="user.friday">Fri |</div>
+                <div *ngIf="user.saturday">Sat |</div>
+                <div *ngIf="user.sunday">Sun |</div> 
             </div>
-        </li>
+            <div class="row"> Rider Count        : {{user.rider_count}} </div>
+            <div class="row"> Trip id            : {{user.trip_id}} </div> <br>
+            <div class= "text-left">
+              <a class="btn btn-primary" (click)="joinRide(this.user.trip_id)">Join</a> <br> <br> <br>
+            </div>
+        </div>
 </div>
 <div class= "text-left">
     <a routerLink = "/usertype" class="btn btn-default">Back</a> <br> 

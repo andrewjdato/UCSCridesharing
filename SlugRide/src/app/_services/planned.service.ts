@@ -21,7 +21,7 @@ export class PlannedService {
     }
 
     //Get all the riders for the scheduled ride for a driver
-    getCurrentRiders(email : string, id : number) {
+    getCurrentRiders(email : string, id : string) {
         return this.http.post('/api/forgot', JSON.stringify({email : email, id : id})).map((response: Response) => response.json());
     }
 
@@ -61,10 +61,10 @@ export class PlannedService {
 
 
     //Extra Functions
-    id : number; //ID for the driver schedule and driver individual sections
+    id : string; //ID for the driver schedule and driver individual sections
 
     //Used in driver planned schedule to contain the id for driver indivdual
-    setId(id: number) {
+    setId(id: string) {
         this.id = id;
     } 
 
