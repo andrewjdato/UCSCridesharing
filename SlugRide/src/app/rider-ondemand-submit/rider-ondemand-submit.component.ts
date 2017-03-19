@@ -33,6 +33,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public destid: string;
   public originid: string;
   public riderx: Riderondemand;
+  private riderodx: riderodServ;
 
   //
   @ViewChild("search")
@@ -56,7 +57,6 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-              private riderodx: riderodServ,
               private ngZone: NgZone) {
   }
 

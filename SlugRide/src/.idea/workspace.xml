@@ -23,11 +23,9 @@
             <file leaf-file-name="driverOnDemand.service.ts" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/app/_services/driverOnDemand.service.ts">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="285">
-                    <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-                    <folding>
-                      <element signature="e#0#43#0" expanded="true" />
-                    </folding>
+                  <state relative-caret-position="45">
+                    <caret line="3" column="32" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+                    <folding />
                   </state>
                 </provider>
               </entry>
@@ -36,7 +34,7 @@
               <entry file="file://$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.ts">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="338">
-                    <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+                    <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
                     <folding>
                       <element signature="e#0#88#0" expanded="true" />
                     </folding>
@@ -47,8 +45,8 @@
             <file leaf-file-name="driver-ondemand-submit.component.html" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.html">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="195">
-                    <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                  <state relative-caret-position="225">
+                    <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
                     <folding />
                   </state>
                 </provider>
@@ -65,8 +63,8 @@
       <file leaf-file-name="rider-ondemand-submit.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="149" column="38" lean-forward="true" selection-start-line="149" selection-start-column="38" selection-end-line="149" selection-end-column="38" />
+            <state relative-caret-position="285">
+              <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
               <folding>
                 <element signature="e#0#88#0" expanded="true" />
               </folding>
@@ -78,10 +76,20 @@
         <entry file="file://$PROJECT_DIR$/app/_services/riderOnDemand.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rider-ondemand-submit.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="179" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/app/_riderondemand/riderOnDemand.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -115,13 +123,13 @@
         <option value="$PROJECT_DIR$/app/_riderondemand/riderOnDemand.ts" />
         <option value="$PROJECT_DIR$/app/map/google-map.directive.ts" />
         <option value="$PROJECT_DIR$/app/_services/driverOnDemand.service.ts" />
-        <option value="$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.ts" />
         <option value="$PROJECT_DIR$/app/_driverondemand/driverod.ts" />
         <option value="$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.css" />
         <option value="$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.html" />
-        <option value="$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.html" />
-        <option value="$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.ts" />
         <option value="$PROJECT_DIR$/app/_services/riderOnDemand.service.ts" />
+        <option value="$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.html" />
+        <option value="$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.ts" />
+        <option value="$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.ts" />
       </list>
     </option>
   </component>
@@ -505,16 +513,16 @@
       <workItem from="1489364358499" duration="12251000" />
       <workItem from="1489554339103" duration="6026000" />
       <workItem from="1489636290630" duration="1340000" />
-      <workItem from="1489705744341" duration="12315000" />
+      <workItem from="1489705744341" duration="13028000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50118000" />
+    <option name="totallyTimeSpent" value="51158000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1915" y="-257" width="1140" height="1019" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33684212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -571,9 +579,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#64#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -797,7 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -817,7 +822,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
-            <marker date="1489705943000" expanded="true" signature="526:626" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -834,7 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,7 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -909,26 +911,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/_riderondemand/riderOnDemand.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/_services/riderOnDemand.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="179" />
           <folding />
         </state>
       </provider>
@@ -936,39 +940,35 @@
     <entry file="file://$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
-          <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
           <folding>
             <element signature="e#0#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/_services/riderOnDemand.service.ts">
+    <entry file="file://$PROJECT_DIR$/app/driver-ondemand-submit/driver-ondemand-submit.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="149" column="38" lean-forward="true" selection-start-line="149" selection-start-column="38" selection-end-line="149" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#88#0" expanded="true" />
-          </folding>
+          <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/_services/driverOnDemand.service.ts">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="32" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/rider-ondemand-submit/rider-ondemand-submit.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#88#0" expanded="true" />
           </folding>
         </state>
       </provider>

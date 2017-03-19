@@ -34,7 +34,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public destid: string;
   public originid: string;
   public driverx: Driverondemand;
-
+  public driverodx: driverodServ;
   //
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -57,7 +57,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-              public driverodx: driverodServ,
+
               private ngZone: NgZone
               ) {}
 
@@ -152,8 +152,10 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
   //gets the placeid of the destination and origin
   getPlaceid(){
-    this.driverx.driverod_destination = this.destid =this.vc.destinationPlaceId;
-    this.driverx.driverod_departure = this.originid = this.vc.originPlaceId;
+    this.destid =this.vc.destinationPlaceId;
+    this.originid = this.vc.originPlaceId;
+    this.driverx.driverod_departure = this.vc.originPlaceId;
+    this.driverx.driverod_destination = this.vc.destinationPlaceId;
 
   }
 
