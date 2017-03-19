@@ -21,8 +21,24 @@ def get_riders_on_trip(request):
     trip_id = jsonobj['trip_id']
     trip = PlannedTrips.objects.get(trip_id=trip_id)
     riderapprove = RiderApproveTrip.objects.filter(planned_trip=trip)
-    ridera_serialize = serializers.serialize('json', riderapprove)
-    return JsonResponse(ridera_serialize, safe=False,status=201)
+    #ridera_serialize = serializers.serialize('json', riderapprove)
+    objlist = []
+    for obj in riderapprove:
+        objiter = {}
+        #needs rider_ for json object
+        email = obj.user_profile.email
+        firstname = obj.user_profile.rider_firstname
+        lastname = obj.user_profile.rider_lastname
+        location = obj.user_profile.rider_location
+        destination = obj.user_profile.rider_destination
+        tod = obj.user_profile.rider_timeofdeparture
+        approved = obj.approve
+        objiter = {"rider_email": email,"rider_firstname":firstname,"rider_lastname":lastname,"rider_location":location,"rider_destination":destination,"rider_timeofdeparture":tod,"rider_approved":approved}
+        objlist.append(objiter)
+    #print(ridera_serialize)
+    objret = json.dumps(objlist)
+    print(objret)
+    return JsonResponse(objret, safe=False,status=201)
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
@@ -55,6 +71,7 @@ def ride_join_trip(request):
 def get_all_planned_trips(request):
     tripset = PlannedTrips.objects.all()
     serializer = PlannedTripSerializer(tripset, many=True)
+    print(serializer.data)
     return JsonResponse(serializer.data, safe=False, status=201)
 
 @api_view(['POST'])
