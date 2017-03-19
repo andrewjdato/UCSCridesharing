@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(PlannedTrips)
 admin.site.register(ProposedTrips)
+admin.site.register(RideProfile)

@@ -14,16 +14,14 @@ from rest_framework.exceptions import *
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def ride_join_trip(request):
-    try:
-        serializer = RideJoinTripSerializer(data = request.data)
-    except UnsupportedMediaType:
-        print("testing")
-        print("testing")
-    if serializer.is_valid():
-        print(serializer.validated_data)
-        returnResponse(serializer.validated_data, status=201)
-    print(serializer.errors)
-    return Response(status=400)
+    jsonobj = json.loads(request.body)
+    trip = PlannedTrips.objects.get(trip_id=jsonobj['trip_id'])
+    if trip is None:
+        return Response(status=400)
+    rider_profile = RideProfile.objects.get(email = jsonobj['email'])
+    rider_profile.desired_trip.add(trip)
+    rider_profile.save()
+    return JsonResponse(jsonobj, status=201)
 
 @api_view(['GET'])
 @parser_classes((JSONParser,))
@@ -75,6 +73,8 @@ def user_registration(request):
         user = User.objects.get(username= serializer.validated_data['username'])
         user.set_password(serializer.validated_data['password'])
         user.save()
+        rider_profile = RideProfile.objects.create(email = serializer.validated_data['email'],user_account=user)
+        rider_profile.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
         
