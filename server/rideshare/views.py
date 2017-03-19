@@ -19,10 +19,11 @@ def rider_apprival(request):
     trip_id = jsonobj['trip_id']
     rider_email = jsonobj['rider_email']
     rider_approval = jsonobj['rider_approval'] #boolean
-    trip = RideProfile.objects.get(email=rider_email)
-    user = User.objects.get(email=jsonobj['rider_email'])
-    riderapprove = RiderApproveTrip.objects.get(planned_trip=trip, user_profile = user)
-    if riderapprove is None:
+    trip = PlannedTrips.objects.get(trip_id=trip_id)
+    user = RideProfile.objects.get(email=jsonobj['rider_email'])
+    try:
+        riderapprove = RiderApproveTrip.objects.get(planned_trip=trip, user_profile = user)
+    except RiderApproveTrip.DoesNotExist:
         return Response(status=400)
     if rider_approval is False:
         riderapprove.delete()
