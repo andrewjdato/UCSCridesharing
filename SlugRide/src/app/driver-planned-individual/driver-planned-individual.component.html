@@ -9,8 +9,8 @@
             <div class="row"> Time of Departure  : {{user.rider_timeofdeparture}} </div>
             <div class="row"> Trip id            : {{user.approved}} </div> <br>
             <div class= "text-left">
-              <a class="btn btn-primary" (click)="approveRider(this.user.email, true)">Approve</a> <br> 
-              <a class="btn btn-primary" (click)="approveRider(this.user.email, false)">Deny</a> <br> <br>
+              <a class="btn btn-primary" (click)="approveRider(this.user.rider_email, true)">Approve</a> <br> 
+              <a class="btn btn-primary" (click)="approveRider(this.user.rider_email, false)">Deny</a> <br> <br>
             </div>
         </div>
 </div>
