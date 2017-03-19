@@ -1,14 +1,20 @@
 <h1 class="text-center"> Current Riders </h1> 
-<div *ngIf="f.submitted && this.incorrect_submit" class="text-center text-danger ">Error in accepting</div>
+<div *ngIf="this.incorrect_submit" class="text-center text-danger ">Error in accepting</div>
 <div class="col-md-6 col-md-offset-3">
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.first_Name}} {{user.last_Name}}) <br>
+        <div *ngFor="let user of users">
+            <div class="row"> First Name         : {{user.rider_firstname}} </div>
+            <div class="row"> Last Name          : {{user.rider_lastname}} </div>
+            <div class="row"> Departure Location : {{user.rider_departure}} </div>
+            <div class="row"> Destination        : {{user.rider_destination}} </div>
+            <div class="row"> Time of Departure  : {{user.rider_timeofdeparture}} </div>
+            <div class="row"> Trip id            : {{user.approved}} </div> <br>
             <div class= "text-left">
               <a class="btn btn-primary" (click)="approveRider(this.user.email, true)">Approve</a> <br> 
-              <a class="btn btn-primary" (click)="approveRider(this.user.email. false)">Deny</a> <br> 
+              <a class="btn btn-primary" (click)="approveRider(this.user.email. false)">Deny</a> <br> <br>
             </div>
-        </li>
+        </div>
+
 </div>
 <div class= "text-left">
-    <a routerLink = "/ridertype" class="btn btn-default">Back</a> <br> 
+    <a routerLink = "/driverschedule" class="btn btn-default">Back</a> <br> 
 </div>

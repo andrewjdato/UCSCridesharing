@@ -26,8 +26,8 @@ export class PlannedService {
     }
 
     //Send in a approval request for Driver
-    approveRider(email : string, approved : boolean) {
-        return this.http.post('/api/forgot', JSON.stringify({email : email, approved : approved})).map((response: Response) => response.json());
+    approveRider(driver_email : string, rider_email : string, trip_id : string, approved : boolean) {
+        return this.http.post('/api/forgot', JSON.stringify({driver_email : driver_email, rider_email : rider_email, trip_id : trip_id, approved : approved})).map((response: Response) => response.json());
     }
 
     //Test

@@ -5,6 +5,17 @@ import { User } from '../_user/user';
 import { UserService } from '../_services/user.service';
 import { PlannedService } from '../_services/planned.service';
 
+export class riderInfo{
+    rider_email : string
+    rider_firstname : string;
+    rider_lastname : string;
+    rider_location : string;
+    rider_destination : string;
+    rider_timeofdeparture : string;
+    rider_approved : string
+}
+
+
 @Component({
   selector: 'app-driver-planned-individual',
   templateUrl: './driver-planned-individual.component.html',
@@ -12,7 +23,7 @@ import { PlannedService } from '../_services/planned.service';
 })
 export class DriverPlannedIndividualComponent implements OnInit {
     currentUser: User;
-    users: User[] = []; //change model 
+    users: riderInfo[] = []; //change model 
     id : string;
     incorrect_submit : boolean; 
 
@@ -37,7 +48,7 @@ export class DriverPlannedIndividualComponent implements OnInit {
     }
 
     approveRider(email : string, approved : boolean) {
-      this.plannedService.approveRider(email, approved) //Change second param to trip ID
+      this.plannedService.approveRider(this.currentUser.email, email, this.id, approved) //Change second param to trip ID
         .subscribe(
         data => {
             this.router.navigate(['/usertype']);
