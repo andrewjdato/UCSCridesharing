@@ -12,7 +12,24 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.exceptions import *
 from django.core import serializers
 
-
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def rider_apprival(request):
+    jsonobj = json.loads(request.body)
+    trip_id = jsonobj['trip_id']
+    rider_email = jsonobj['rider_email']
+    rider_approval = jsonobj['rider_approval'] #boolean
+    trip = RideProfile.objects.get(email=rider_email)
+    user = User.objects.get(email=jsonobj['rider_email'])
+    riderapprove = RiderApproveTrip.objects.get(planned_trip=trip, user_profile = user)
+    if riderapprove is None:
+        return Response(status=400)
+    if rider_approval is False:
+        riderapprove.delete()
+    elif rider_approval is True:
+        riderapprove.approve = True
+    return HttpResponse(status=201)
+    
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def get_riders_on_trip(request):
