@@ -22,7 +22,8 @@ export class PlannedService {
 
     //Get all the riders for the scheduled ride for a driver
     getCurrentRiders(email : string, trip_id : string) {
-        return this.http.post('http://localhost:8000/rideshare/get_riders_on_trip/', JSON.stringify({email : email, trip_id : trip_id})).map((response: Response) => response.json());
+        console.log(email, trip_id);
+        return this.http.post('http://localhost:8000/rideshare/get_riders_on_trip/', JSON.stringify({ email: email, trip_id : trip_id })).map((response: Response) => response.json());
     }
 
     //Send in a approval request for Driver
