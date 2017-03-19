@@ -13,6 +13,14 @@ from rest_framework.exceptions import *
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
+def get_riders_on_trip(request):
+    jsonobj = json.loads(request.body)
+    email = jsonobj['email']
+    trip_id = jsonobj['trip_id']
+    return Response(status=201)
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
 def get_driver_planned_trips(request):
     jsonobj = json.loads(request.body)
     tripset = PlannedTrips.objects.filter(driver_email=jsonobj['email'])
