@@ -12,9 +12,8 @@ export class riderInfo{
     rider_location : string;
     rider_destination : string;
     rider_timeofdeparture : string;
-    rider_approved : string
+    rider_approved : boolean;
 }
-
 
 @Component({
   selector: 'app-driver-planned-individual',
@@ -23,7 +22,7 @@ export class riderInfo{
 })
 export class DriverPlannedIndividualComponent implements OnInit {
     currentUser: User;
-    users: riderInfo[] = []; //change model 
+    users: any[] = []; //change model 
     id : string;
     incorrect_submit : boolean; 
 
@@ -36,13 +35,19 @@ export class DriverPlannedIndividualComponent implements OnInit {
     ngOnInit() {
         this.incorrect_submit = false; 
         this.id = this.plannedService.getid();
+        console.log(this.id);
         this.loadAllUsers();
+        console.log(this.users);
+        //console.log("check 2");
         
     }
 
     private loadAllUsers() {
-        //Change this object 
+        //Change this object
+        //this.plannedService.getAllDriverRides(this.currentUser.email).subscribe(users => { this.users = users; }); 
+        console.log(this.id , this.currentUser.email);
         this.plannedService.getCurrentRiders(this.currentUser.email, this.id).subscribe(users => { this.users = users; });
+        
         //Change Function
         //this.plannedService.getCurrentRiders(id).subscribe(users => { this.users = users; })
     }
