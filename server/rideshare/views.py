@@ -36,7 +36,7 @@ def get_riders_on_trip(request):
         objiter = {"rider_email": email,"rider_firstname":firstname,"rider_lastname":lastname,"rider_location":location,"rider_destination":destination,"rider_timeofdeparture":tod,"rider_approved":approved}
         objlist.append(objiter)
     #print(ridera_serialize)
-    objret = json.dumps(objlist)
+    objret = json.dump(objlist)
     print(objret)
     return JsonResponse(objret, safe=False,status=201)
 
