@@ -11,7 +11,7 @@
     <div class="form-group">
         <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"  #pickupInput [formControl] = "destinationInput">
         <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl] = "destinationOutput" >
-
+        <input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
         <!--<input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
         -->
     </div>
@@ -28,10 +28,20 @@
 </div>
 
 <div >
-    <button class="btn btn-primary" onclick = "driverodSend()">Post Ride</button>
+    <!-----first button posts rider--->
+    <button class="btn btn-primary" (click) = "this.driverodSend()">Post Ride</button>
+    <!-----button tests out functions--->
+    <button class="btn btn-primary" (click) = "testerf()">Tester</button>
+    <!-----gets another rider --->
+    <div *ngIf = "this.showReject">
+    <button class="btn btn-primary" (click) = "this.setRiderint()">Reject/Find Different Rider</button>
+        <button class="btn btn-primary" (click) = "this.accRider()">Accept Rider</button>
+    </div>
 </div>
 <div></div>
-<div *ngIf = "true">Estimated time of route: {{this.vc.estimatedTime}} </div>
-<div *ngIf = "true">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
-<div *ngIf = "true">Placeid A: {{this.vc.originPlaceId}} </div>
-<div *ngIf = "true">Origin ID: {{this.originid}} </div>
+<div *ngIf = "this.showinfo">Estimated time of route: {{this.vc.estimatedTime}} </div>
+<div *ngIf = "this.showinfo">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
+<div >Placeid A: {{this.vc.originPlaceId}} </div>
+<div >Origin ID: {{this.originid}} </div>
+<!---<div >Value of a: {{this.a}} </div>--->
+<div>Is Paired? {{this.paired}}</div>

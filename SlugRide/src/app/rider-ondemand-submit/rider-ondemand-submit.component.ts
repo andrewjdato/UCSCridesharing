@@ -4,10 +4,11 @@ import { Directive,  Input} from '@angular/core';
 import { FormControl,FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import {AgmCoreModule, MapsAPILoader } from 'angular2-google-maps/core';
-import { DirectionsMapDirective } from 'app/map/google-map.directive';
+import { DirectionsMapDirectiver } from 'app/map/google-mapRider.directive';
 import {riderodServ} from "../_services/riderOnDemand.service"
-import {Riderondemand} from '../_riderondemand/Riderondemand'
+import {Riderondemand} from '../_riderondemand/riderod'
 import { AuthService } from '../_services/auth.service';
+import {Observable} from 'rxjs/Rx';
 declare var google: any;
 declare var jQuery:any;
 
@@ -25,7 +26,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
   //
   public destinationInput: FormControl;
   public destinationOutput: FormControl;
-  public destinationWaypoint: FormControl;
+  //public destinationWaypoint: FormControl;
   public iconurl: string;
   public mapCustomStyles: any;
   public estimatedTime: any;
@@ -33,6 +34,8 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public destid: string;
   public originid: string;
   public riderx: Riderondemand;
+  private riderodx: riderodServ;
+
 
   //
   @ViewChild("search")
@@ -45,18 +48,18 @@ export class RiderOndemandSubmitComponent implements OnInit {
   @ViewChild("pickupOutput")
   public pickupOutputElementRef: ElementRef;
 
-  @ViewChild("waypoint")
-  public waypointElementRef: ElementRef;
+  // @ViewChild("waypoint")
+  // public waypointElementRef: ElementRef;
 
   @ViewChild("scrollMe")
   private scrollContainer: ElementRef;
 
-  @ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
+  @ViewChild(DirectionsMapDirectiver) vc: DirectionsMapDirectiver;
   //
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-              private riderodx: riderodServ,
+
               private ngZone: NgZone) {
   }
 
@@ -73,7 +76,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
     //create search FormControl
     this.destinationInput = new FormControl();
     this.destinationOutput = new FormControl();
-    this.destinationWaypoint = new FormControl();
+    // this.destinationWaypoint = new FormControl();
     //set current position
     this.setCurrentPosition();
 
@@ -88,13 +91,13 @@ export class RiderOndemandSubmitComponent implements OnInit {
       let autocompleteOutput = new google.maps.places.Autocomplete(this.pickupOutputElementRef.nativeElement, {
         types: ["address"]
       });
-      let autocompleteWaypoint = new google.maps.places.Autocomplete(this.waypointElementRef.nativeElement, {
-        types: ["address"]
-      });
+      // let autocompleteWaypoint = new google.maps.places.Autocomplete(this.waypointElementRef.nativeElement, {
+      //   types: ["address"]
+      // });
 
       this.setupPlaceChangedListener(autocompleteInput, 'ORG');
       this.setupPlaceChangedListener(autocompleteOutput, 'DES');
-      this.setupPlaceChangedListener(autocompleteWaypoint, 'WAY');
+      // this.setupPlaceChangedListener(autocompleteWaypoint, 'WAY');
     });
 
 
@@ -113,13 +116,13 @@ export class RiderOndemandSubmitComponent implements OnInit {
         if (mode === 'ORG') {
           this.vc.origin = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
           this.vc.originPlaceId = place.place_id;
-        } else if (mode === 'DES') {
+        } else {
           this.vc.destination = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()}; // its a example aleatory position
-          this.vc.destinationPlaceId = place.place_id;
-        } else if (mode === 'WAY') {
-          this.vc.waypoints = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
-          this.vc.waypointsPlaceId = place.place_id;
-        }
+          this.vc.destinationPlaceId = place.place_id;}
+        // } else if (mode === 'WAY') {
+        //   this.vc.waypoints = {longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat()};
+        //   this.vc.waypointsPlaceId = place.place_id;
+        // }
 
         if (this.vc.directionsDisplay === undefined) {
           this.mapsAPILoader.load().then(() => {
@@ -147,8 +150,10 @@ export class RiderOndemandSubmitComponent implements OnInit {
 
   //gets the placeid of the destination and origin
   getPlaceid() {
-    this.riderx.riderod_destination = this.destid = this.vc.destinationPlaceId;
-    this.riderx.riderod_departure = this.originid = this.vc.originPlaceId;
+    this.destid = this.vc.destinationPlaceId;
+    this.originid = this.vc.originPlaceId;
+    this.riderx.riderod_departure = this.vc.originPlaceId;
+    this.riderx.riderod_destination = this.vc.destinationPlaceId;
 
   }
 
@@ -164,6 +169,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
     )
 
   }
+
 
 
   scrollToBottom(): void {

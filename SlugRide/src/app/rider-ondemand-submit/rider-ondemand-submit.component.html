@@ -12,7 +12,7 @@
       <div class="form-group">
           <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"  #pickupInput [formControl] = "destinationInput">
           <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl] = "destinationOutput" >
-          <input placeholder="Waypoints" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl] = "destinationWaypoint" >
+
           <!--<input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
           -->
       </div>
@@ -25,5 +25,10 @@
           </sebm-google-map-marker>
           <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
       </sebm-google-map>
+
+  </div>
+
+  <div>
+  <button class="btn btn-primary" (click) = "this.postrider()">Post Ride</button>
 
   </div>

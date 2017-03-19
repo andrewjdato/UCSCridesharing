@@ -30,5 +30,29 @@ export class driverodServ{
 
     }
 
+    driverodRequestr(){
+        return this.http.get('http://localhost:8000/rideshare/riderondemand/').map((response: Response)=> response.json())
+
+    }
+
+    //should provide next rider, if driver does not accept
+    driverodNext(){
+        return this.http.get('http://localhost:8000/rideshare/riderondemand/').map((response: Response)=> response.json())
+
+    }
+
+    //acceptrider
+    acceptRider(){
+        return this.http.post('/api/users', JSON.stringify({boolean:true}))
+            .map((response: Response)=> {
+
+                let user = response.json();
+
+
+
+            })
+
+    }
+
 
 }
