@@ -17,7 +17,7 @@ export class PlannedService {
 
     //Function get all current scheduled rides for a driver
     getAllDriverRides(email: string) {
-        return this.http.post('/api/forgot', JSON.stringify({email: email})).map((response: Response) => response.json());
+        return this.http.post('http://localhost:8000/rideshare/get_driver_planned_trips/', JSON.stringify({email: email})).map((response: Response) => response.json());
     }
 
     //Get all the riders for the scheduled ride for a driver

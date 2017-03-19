@@ -13,6 +13,16 @@ from rest_framework.exceptions import *
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
+def get_driver_planned_trips(request):
+    jsonobj = json.loads(request.body)
+    tripset = PlannedTrips.objects.filter(driver_email=jsonobj['email'])
+    if tripset is None:
+        return Response(status=400)
+    serializer = PlannedTripSerializer(tripset, many=True)
+    return JsonResponse(serializer.data, safe=False, status=201)
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
 def ride_join_trip(request):
     jsonobj = json.loads(request.body)
     trip = PlannedTrips.objects.get(trip_id=jsonobj['trip_id'])
