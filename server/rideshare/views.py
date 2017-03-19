@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.exceptions import *
+from django.core import serializers
+
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
@@ -17,7 +19,10 @@ def get_riders_on_trip(request):
     jsonobj = json.loads(request.body)
     email = jsonobj['email']
     trip_id = jsonobj['trip_id']
-    return Response(status=201)
+    trip = PlannedTrips.objects.get(trip_id=trip_id)
+    riderapprove = RiderApproveTrip.objects.filter(planned_trip=trip)
+    ridera_serialize = serializers.serialize('json', riderapprove)
+    return JsonResponse(ridera_serialize, safe=False,status=201)
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
@@ -40,7 +45,9 @@ def ride_join_trip(request):
     rider_profile.desired_trip.add(trip)
     rider_profile.save()
     rider_approve_trip = RiderApproveTrip.objects.create(user_profile = rider_profile, planned_trip = trip, approve = False)
-    rider_approve_trip.save()
+    if rider_approve_trip is None:
+        rider_approve_trip.save()
+        print("saved join trip")
     return JsonResponse(jsonobj, status=201)
 
 @api_view(['GET'])
