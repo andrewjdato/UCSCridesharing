@@ -57,8 +57,10 @@ export class DriverPlannedIndividualComponent implements OnInit {
         //Change this object
         //this.plannedService.getAllDriverRides(this.currentUser.email).subscribe(users => { this.users = users; }); 
         console.log(this.id , this.currentUser.email);
-        this.plannedService.getCurrentRiders(this.currentUser.email, this.id).subscribe(users => { this.users = users; });
-        console.log(this.users);
+        this.plannedService.getCurrentRiders(this.currentUser.email, this.id).subscribe(users => { 
+        this.users = users
+        console.log(this.users)
+        });
         //Change Function
         //this.plannedService.getCurrentRiders(id).subscribe(users => { this.users = users; })
     }
