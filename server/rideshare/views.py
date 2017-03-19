@@ -31,6 +31,8 @@ def ride_join_trip(request):
     rider_profile = RideProfile.objects.get(email = jsonobj['email'])
     rider_profile.desired_trip.add(trip)
     rider_profile.save()
+    rider_approve_trip = RiderApproveTrip.objects.create(user_profile = rider_profile, planned_trip = trip, approve = False)
+    rider_approve_trip.save()
     return JsonResponse(jsonobj, status=201)
 
 @api_view(['GET'])
@@ -62,6 +64,7 @@ def new_planned_trip(request):
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def new_proposed_trip(request):
+    jsonobj = json.loads(request.body)
     serializer = ProposedTripSerializer(data = request.data)
     #print(request.data)
     if serializer.is_valid():
@@ -70,6 +73,14 @@ def new_proposed_trip(request):
         trip.save()
         trip.trip_id = trip.id
         trip.save()
+        # rider_email  rider_departure rider_destination rider_timeofdeparture
+        riderprofile = RideProfile.objects.get(email = jsonobj['rider_email'])
+        riderprofile.rider_location = jsonobj['rider_departure']
+        riderprofile.rider_destination = jsonobj['rider_destination']
+        riderprofile.rider_timeofdeparture = jsonobj['rider_timeofdeparture']
+        riderprofile.rider_firstname = riderprofile.user_account.first_name
+        riderprofile.rider_lastname = riderprofile.user_account.last_name
+        riderprofile.save()
         return JsonResponse(serializer.validated_data, status=201)
     print(serializer.errors)
     return JsonResponse(serializer.errors, status=400)

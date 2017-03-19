@@ -41,7 +41,13 @@ class RideProfile(models.Model):
     proposed_trip = models.ManyToManyField(ProposedTrips)
     user_account = models.OneToOneField(User)
     email = models.CharField(max_length=100)
-    
-class RiderJoin(models.Model):
-    trip_id = models.IntegerField()
-    email = models.CharField(max_length=100)
+    rider_firstname = models.CharField(max_length=100)
+    rider_lastname = models.CharField(max_length=100)
+    rider_location = models.CharField(max_length=100)
+    rider_destination = models.CharField(max_length=100)
+    rider_timeofdeparture = models.CharField(max_length=100)
+
+class RiderApproveTrip(models.Model):
+    user_profile = models.ForeignKey(RideProfile,  on_delete=models.CASCADE)
+    planned_trip = models.ForeignKey(PlannedTrips, on_delete=models.CASCADE)
+    approve = models.BooleanField(default=False)
