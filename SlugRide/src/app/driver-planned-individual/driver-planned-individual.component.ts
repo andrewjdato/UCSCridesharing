@@ -36,16 +36,6 @@ export class DriverPlannedIndividualComponent implements OnInit {
         this.incorrect_submit = false; 
         this.id = this.plannedService.getid();
         console.log(this.id);
-
-        this.users = [{
-                rider_email : "check",
-                rider_firstname : "check",
-                rider_lastname : "check",
-                rider_location : "check",
-                rider_destination : "check",
-                rider_timeofdeparture : "check",
-                rider_approved : false,
-        }]
         console.log(Array.isArray(this.users));
         this.loadAllUsers();
         
