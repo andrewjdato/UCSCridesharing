@@ -36,7 +36,7 @@ export class DriverPlannedIndividualComponent implements OnInit {
         this.incorrect_submit = false; 
         this.id = this.plannedService.getid();
         console.log(this.id);
-/*
+
         this.users = [{
                 rider_email : "check",
                 rider_firstname : "check",
@@ -46,7 +46,7 @@ export class DriverPlannedIndividualComponent implements OnInit {
                 rider_timeofdeparture : "check",
                 rider_approved : false,
         }]
-*/
+        console.log(Array.isArray(this.users));
         this.loadAllUsers();
         
         //console.log("check 2");
@@ -58,8 +58,8 @@ export class DriverPlannedIndividualComponent implements OnInit {
         //this.plannedService.getAllDriverRides(this.currentUser.email).subscribe(users => { this.users = users; }); 
         console.log(this.id , this.currentUser.email);
         this.plannedService.getCurrentRiders(this.currentUser.email, this.id).subscribe(users => { 
-        this.users = users
-        console.log(this.users)
+        this.users = users;
+        console.log(Array.isArray(users), users)
         });
         //Change Function
         //this.plannedService.getCurrentRiders(id).subscribe(users => { this.users = users; })
