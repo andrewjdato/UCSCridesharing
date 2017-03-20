@@ -23,6 +23,7 @@ import { AuthGuard } from './_auth/auth.guard';
 import { AuthService }  from './_services/auth.service';
 import { UserService }  from './_services/user.service';
 import { PlannedService }  from './_services/planned.service';
+import {driverodServ} from './_services/driverOnDemand.service';
 
 import { fakeBackendProvider } from './_temp/fakebackend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -72,6 +73,7 @@ import {DirectionsMapDirectiver} from "./map/google-mapRider.directive";
         AuthService,
         UserService,
         PlannedService,
+      driverodServ
 
         // providers used to create fake backend
         //fakeBackendProvider,
