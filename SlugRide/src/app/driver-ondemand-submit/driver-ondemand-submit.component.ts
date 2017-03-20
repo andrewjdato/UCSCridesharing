@@ -38,7 +38,10 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public destid: string;
   public originid: string;
 
-  private curUser: User;
+  public curUser: User;
+
+  public name: string;
+
 
   //boolean to show text lines for estimated time and distance
   public showinfo: boolean;
@@ -48,7 +51,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public showReject: boolean;
 
   //driverx is an instance of the driverod class
-  public driverx: Driverondemand;
+  driverx: Driverondemand;
   //flag will tell us when we receive rider info
   public flagreqR: number;
   //driverodx is an instance of driverodServ where we are able to use its functions
@@ -87,7 +90,9 @@ export class DriverOndemandSubmitComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader,
               private driverodx: driverodServ,
               private ngZone: NgZone
-              ) {}
+              ) {
+    this.curUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
     //test for observable
@@ -99,6 +104,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.latitude = 39.8282;
     this.longitude = -98.5795;
     this.a=12;
+
     //this.iconurl = '../image/map-icon.png';
     this.iconurl = '../image/map-icon.png';
     this.paired = false;
@@ -116,6 +122,12 @@ export class DriverOndemandSubmitComponent implements OnInit {
     //set current position
     this.setCurrentPosition();
 
+    this.driverx = {
+      driverod_email: this.curUser.email,
+      driverod_departure: null ,
+      driverod_timeofdeparture: null,
+      driverod_destination: null
+    }
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -180,7 +192,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         this.vc.updateDirections();
         this.getDistanceAndDuration();
         this.getPlaceid();
-        this.getEmail();
+
         this.zoom = 12;
       });
 
@@ -279,8 +291,9 @@ export class DriverOndemandSubmitComponent implements OnInit {
   // }
 
   getEmail(){
-    this.curUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.driverx.driverod_email = this.curUser.email;
+
+    console.log(this.driverx.driverod_email.toString());
+
 
   }
 

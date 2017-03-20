@@ -36,10 +36,12 @@
     <!-----gets another rider --->
     <div *ngIf = "this.showReject">
     <button class="btn btn-primary" (click) = "this.setRiderint()">Reject/Find Different Rider</button>
+
         <button class="btn btn-primary" (click) = "this.accRider()">Accept Rider</button>
     </div>
 </div>
 <div></div>
+<button class="btn btn-primary" (click) = "this.getEmail()">console email</button>
 <div *ngIf = "this.showinfo">Estimated time of route: {{this.vc.estimatedTime}} </div>
 <div *ngIf = "this.showinfo">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
 <div >Placeid A: {{this.vc.originPlaceId}} </div>
