@@ -278,10 +278,10 @@ export class DriverOndemandSubmitComponent implements OnInit {
   //
   // }
 
-  // getEmail(){
-  //
-  //
-  // }
+  getEmail(){
+
+
+  }
 
   accRider(){
     this.driverodx.acceptRider().subscribe(
