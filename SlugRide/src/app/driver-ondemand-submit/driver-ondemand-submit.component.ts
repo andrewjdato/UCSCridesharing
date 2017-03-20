@@ -106,8 +106,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.showReject = false;
 
     //will get user information from local storage
-    //this.curUser = JSON.parse(localStorage.getItem('currentUser'));
-    //this.driverx.driverod_email = this.curUser.email;
+
 
     // this.mapCustomStyles = this.getMapCusotmStyles();
     //create search FormControl
@@ -181,6 +180,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         this.vc.updateDirections();
         this.getDistanceAndDuration();
         this.getPlaceid();
+        this.getEmail();
         this.zoom = 12;
       });
 
@@ -279,7 +279,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
   // }
 
   getEmail(){
-
+    this.curUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.driverx.driverod_email = this.curUser.email;
 
   }
 
