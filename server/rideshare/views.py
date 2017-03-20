@@ -14,6 +14,29 @@ from django.core import serializers
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
+def driver_ondemand_change(request):
+    jsonobj = json.loads(request.body)
+    user = jsonobj['driverod_email']
+    email = jsonobj['driverod_email']
+    dep = jsonobj['driverod_departure']
+    dest = jsonobj['driverod_destination']
+    tod = jsonobj['driverod_timeofdeparture']
+    try:
+        rideapp = DriverActive.objects.get(driverod_email = email)
+    except DriverActive.DoesNotExist:
+        return HttpResponse(status=400)
+    if rideapp.isactive is False:
+        rideapp.isactive = True
+    else:
+        rideapp.isactive = False
+    rideapp.driverod_departure = dep
+    rideapp.driverod_destination = dest
+    rideapp.driverod_timeofdeparture = tod
+    rideapp.save()
+    return HttpResponse(status=201)
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
 def rider_apprival(request):
     jsonobj = json.loads(request.body)
     trip_id = jsonobj['trip_id']
@@ -83,8 +106,8 @@ def ride_join_trip(request):
         return JsonResponse(jsonobj, status=201)
     else:
         rider_approve = RiderApproveTrip.objects.create(user_profile = rider_profile, planned_trip = trip)
-    if rider_approve_trip is None:
-        rider_approve_trip.save()
+    if rider_approve is None:
+        rider_approve.save()
         print("saved join trip")
     return JsonResponse(jsonobj, status=201)
 
@@ -150,6 +173,8 @@ def user_registration(request):
         user.save()
         rider_profile = RideProfile.objects.create(email = serializer.validated_data['email'],user_account=user)
         rider_profile.save()
+        driver_active = DriverActive.objects.create(driverod_email = serializer.validated_data['email'], user_account=user)
+        driver_active.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
         

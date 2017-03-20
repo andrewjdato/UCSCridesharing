@@ -51,3 +51,11 @@ class RiderApproveTrip(models.Model):
     user_profile = models.ForeignKey(RideProfile,  on_delete=models.CASCADE)
     planned_trip = models.ForeignKey(PlannedTrips, on_delete=models.CASCADE)
     approve = models.BooleanField(default=False)
+    
+class DriverActive(models.Model):
+    isactive = models.BooleanField(default=False)
+    user_account = models.OneToOneField(User)
+    driverod_email = models.CharField(max_length=100)
+    driverod_departure = models.CharField(max_length=200)
+    driverod_destination = models.CharField(max_length=200)
+    driverod_timeofdeparture = models.CharField(max_length=10)
