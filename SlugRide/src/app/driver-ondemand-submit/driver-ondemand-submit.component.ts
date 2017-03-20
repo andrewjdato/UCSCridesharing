@@ -52,7 +52,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   //flag will tell us when we receive rider info
   public flagreqR: number;
   //driverodx is an instance of driverodServ where we are able to use its functions
-  public driverodx: driverodServ;
+  //public driverodx: driverodServ;
   //variables for intervals in functions
   public myvar1: any;
   public polling:any;
@@ -85,7 +85,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-
+              private driverodx: driverodServ,
               private ngZone: NgZone
               ) {}
 
@@ -262,6 +262,26 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
 
   }
+
+
+  //deactivates drivers search for riders
+  // deactivate(){
+  //   this.driverodx.deactivateDriver().subscribe(
+  //       data =>{
+  //         console.log("Success");
+  //         //starts the function to begin polling for rider requests
+  //         this.setRiderint();
+  //       },
+  //       error =>{
+  //         console.log("Error");}
+  //   )
+  //
+  // }
+
+  // getEmail(){
+  //
+  //
+  // }
 
   accRider(){
     this.driverodx.acceptRider().subscribe(
