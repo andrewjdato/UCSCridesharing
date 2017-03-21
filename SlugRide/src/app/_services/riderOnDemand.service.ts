@@ -10,10 +10,10 @@ export class riderodServ {
 
 
     //submits information regarding driver ride to server
-    postRider(rider: Riderondemand){
-        return this.http.post('/api/users', rider).map((response: Response) => response.json());
-
-    }
+    // postRider(rider: Riderondemand){
+    //     return this.http.post('/api/users', rider).map((response: Response) => response.json());
+    //
+    // }
 
     //checks to see if anyone has responded to ride
     riderodPost(riderx: Riderondemand){
@@ -28,6 +28,18 @@ export class riderodServ {
 
     }
 
+
+    //searches for any current active drivers
+    getDrivers(){
+        return this.http.get('/api/users').map((response: Response)=> response.json())
+
+    }
+
+    request(){
+
+
+
+    }
 
 
 }

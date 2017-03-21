@@ -49,9 +49,20 @@ export class driverodServ{
 
     }
 
-    //acceptrider
-    acceptRider(){
-        return this.http.post('/api/users', JSON.stringify({boolean:true}))
+    //acceptrider, driveremail rideremail are sent along with the request response Accept
+    acceptRider(driveremail: string, rideremail:string, response:string){
+        return this.http.post('/api/users', JSON.stringify({driveremail:driveremail,rideremail:rideremail,response: response}))
+            .map((response: Response)=> {
+
+                let user = response.json();
+
+
+
+            })
+
+    }
+    rejectRider(driveremail: string, rideremail:string, response:string){
+        return this.http.post('/api/users', JSON.stringify({driveremail:driveremail,rideremail:rideremail,response: response}))
             .map((response: Response)=> {
 
                 let user = response.json();

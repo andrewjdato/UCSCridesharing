@@ -49,6 +49,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
   public paired: boolean;
   //boolean to show if there is a current rider
   public showReject: boolean;
+  //flag when driver is activated
+  public activate: boolean;
 
   //driverx is an instance of the driverod class
   driverx: Driverondemand;
@@ -58,11 +60,14 @@ export class DriverOndemandSubmitComponent implements OnInit {
   //public driverodx: driverodServ;
   //variables for intervals in functions
   public myvar1: any;
+  //used to poll the server
   public polling:any;
   //riderx is the instance of the rider info that we receive
   public riderx: Riderondemand;
   //rider waypoint is the placeId of the rider, will be used as a waypoint on maps
   public riderwpt: string;
+
+
 
 
 
@@ -106,7 +111,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.a=12;
 
     //this.iconurl = '../image/map-icon.png';
-    this.iconurl = '../image/map-icon.png';
+    this.iconurl = 'src/ionic.png';
     this.paired = false;
     this.showinfo = false;
     this.showReject = false;
@@ -180,6 +185,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
 
           this.vc.waypointsPlaceId = place.place_id;
+
         }
 
         if (this.vc.directionsDisplay === undefined) {
@@ -220,6 +226,8 @@ export class DriverOndemandSubmitComponent implements OnInit {
   //formats data to be sent to server, such as origin place id, destination place id
   driverodSend() {
 
+    //flag to activate rider goes high
+    this.activate = true;
 
     this.driverodx.driverodPost(this.driverx).subscribe(
         data =>{
@@ -229,47 +237,80 @@ export class DriverOndemandSubmitComponent implements OnInit {
         },
         error =>{
           console.log("Error");
+          this.setRiderint();
        }
     )
 
   }
 
-  //CAN THIS= MULTITHREAD!???: no
+  //setriderint will start the polling in order to continously check for new rider requests
   setRiderint(){
 
-    //sets interval for get request in order to keep checking for rider waypoint
-
+    //sets interval for get request in order to keep checking for rider requests
     this.polling = Observable.interval(5000);
-    return this.polling.subscribe(()=>getRiderinfo());
+    return this.polling.subscribe(()=>this.checkRequests());
 
-    //getRiderinfo is the function that keeps checking for rider info
+    //checkRequests is the function that keeps checking for rider info
     //once it has gotten rider info then a flag will be set high and the intervals will stop
-    function getRiderinfo(){
-      //while(this.flagreqR === 0){
+    // function checkRequests(){
+    //
+    //     console.log("checking requests");
+    //
+    //     //riderx becomes the object that we receive from the server
+    //      this.driverodx.driverodRequestr().subscribe(
+    //         data => {
+    //           //gets the data and puts it into our riderx variable
+    //           this.riderx = data;
+    //           //flag goes high for driver round
+    //           this.flagreqR = 1;
+    //           //stop intervals, after pairing works polling should continue
+    //           this.polling.unsubscribe();
+    //           console.log("Rider Request Received");
+    //           //boolean to show reject button on webpage
+    //           this.showReject = true;
+    //
+    //         },
+    //         error => {
+    //
+    //           console.log("Check Request Error");
+    //         }
+    //     )
+    //
+    //
+    // }
 
 
-        //riderx becomes the object that we receive from the server
-        this.riderx = this.driverodx.driverodRequestr().subscribe(
-            data => {
 
-              //flag goes high for driver round
-              this.flagreqR = 1;
-              //stop intervals
-              this.polling.unsubscribe();
-              console.log("Success");
-              //boolean to show reject button on webpage
-              this.showReject = true;
 
-            },
-            error => {
+  }
 
-              console.log("Error");
-            }
-        )
+  //checkrequests is the function that is being continously called in order to check new requests
+  checkRequests(){
 
-      //}
+    //console to check if function is being executed
+    //console.log("checking requests");
 
-    }
+    //riderx becomes the object that we receive from the server
+    this.driverodx.driverodRequestr().subscribe(
+        data => {
+          //gets the data and puts it into our riderx variable
+          this.riderx = data;
+          //flag goes high for driver round
+          this.flagreqR = 1;
+          //stop intervals, after pairing works polling should continue
+          this.polling.unsubscribe();
+          console.log("Rider Request Received");
+          //check to see if the the correct rider function is received
+          console.log(this.riderx.riderod_email.toString());
+          //boolean to show reject button on webpage
+          this.showReject = true;
+
+        },
+        error => {
+
+          console.log("Check Request Error");
+        }
+    )
 
 
 
@@ -277,18 +318,19 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
 
   //deactivates drivers search for riders
-  // deactivate(){
-  //   this.driverodx.deactivateDriver().subscribe(
-  //       data =>{
-  //         console.log("Success");
-  //         //starts the function to begin polling for rider requests
-  //         this.setRiderint();
-  //       },
-  //       error =>{
-  //         console.log("Error");}
-  //   )
-  //
-  // }
+  deactivate(){
+    this.activate =false;
+    this.driverodx.deactivateDriver().subscribe(
+        data =>{
+          console.log("Success");
+          //starts the function to begin polling for rider requests
+          this.setRiderint();
+        },
+        error =>{
+          console.log("Error");}
+    )
+
+  }
 
   getEmail(){
 
@@ -298,39 +340,72 @@ export class DriverOndemandSubmitComponent implements OnInit {
   }
 
   accRider(){
-    this.driverodx.acceptRider().subscribe(
+    this.paired=true;
+    //sends the accept rider request with current driver email, rider who has requested email, and the string accept
+    this.driverodx.acceptRider(this.driverx.driverod_email,this.riderx.riderod_email, "accept").subscribe(
         data => {
 
+          //get the waypoint from rider and set for google  maps
+          this.setRiderwypt();
 
-          console.log("Success");
+          console.log("Accept Rider Success");
           //boolean to show reject button on webpage
 
 
         },
         error => {
 
-          console.log("Error");
+          console.log("Accept Rider Error");
         }
     )
+
+  }
+  rejRider(){
+//sends the accept rider request with current driver email, rider who has requested email, and the string reject
+    this.driverodx.rejectRider(this.driverx.driverod_email,this.riderx.riderod_email, "reject").subscribe(
+        data => {
+
+
+          console.log("Reject Rider Success");
+          //boolean to show reject button on webpage
+
+
+        },
+        error => {
+
+          console.log("Reject Rider Error");
+        }
+    )
+
+  }
+  //this function will be called when the rider request is accepted
+  //functin will take the rider origin and place it in the waypoint so that it is processed for the maps
+  setRiderwypt(){
+
+    //changes the waypoint from the map to the riders origin
+    this.vc.waypointsPlaceId = this.riderx.riderod_departure;
+    this.vc.updateDirections();
+
+
   }
 
   //tester for observable.interval()
   testerf(){
-    this.a++;
+
+    //test to see if waypoints will change, does it work?: WORKING
+    this.vc.waypointsPlaceId = "ChIJn-xda51qjoARwck5kd8IRRA";
+    this.vc.updateDirections();
 
 
 
-
-    this.myvar1 = Observable.interval(5000);
-    return this.myvar1.subscribe(()=> this.add());
-
-
-
-
-
+    // this.a++;
+    //
+    // this.myvar1 = Observable.interval(5000);
+    // return this.myvar1.subscribe(()=> this.add());
 
 
   }
+
    add(){
   this.a++;
      clearInterval(this.myvar1);
@@ -366,8 +441,11 @@ export class DriverOndemandSubmitComponent implements OnInit {
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
+
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
+        //var latlngx = new google.maps.LatLng(this.latitude,this.longitude);
+        //marker.setPosition(latlngx);
         this.zoom = 12;
       });
 

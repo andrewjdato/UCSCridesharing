@@ -20,7 +20,7 @@
 
     <!Google Maps HTML Code>
     <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
-        <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+        <sebm-google-map-marker [latitude]="this.latitude" [longitude]="this.longitude" [label]="'M'">
 
         </sebm-google-map-marker>
         <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
@@ -33,18 +33,25 @@
     <button class="btn btn-primary" (click) = "this.driverodSend()">Post Ride</button>
     <!-----button tests out functions--->
     <button class="btn btn-primary" (click) = "testerf()">Tester</button>
+
+    <div *ngIf = "this.activate">
+
+        <button class="btn btn-primary" (click) = "this.deactivate()">DeActivate Driver</button>
+
+    </div>
     <!-----gets another rider --->
     <div *ngIf = "this.showReject">
-    <button class="btn btn-primary" (click) = "this.setRiderint()">Reject/Find Different Rider</button>
 
         <button class="btn btn-primary" (click) = "this.accRider()">Accept Rider</button>
+        <button class="btn btn-primary" (click) = "this.rejRider()">Reject Rider</button>
     </div>
 </div>
 <div></div>
-<button class="btn btn-primary" (click) = "this.getEmail()">console email</button>
+
+<button class="btn btn-primary" (click) = "this.testerf()">console email</button>
 <div *ngIf = "this.showinfo">Estimated time of route: {{this.vc.estimatedTime}} </div>
 <div *ngIf = "this.showinfo">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
 <div >Placeid A: {{this.vc.originPlaceId}} </div>
-<div >Origin ID: {{this.originid}} </div>
+<div >Waypointid: {{this.vc.waypointsPlaceId}} </div>
 <!---<div >Value of a: {{this.a}} </div>--->
 <div>Is Paired? {{this.paired}}</div>
