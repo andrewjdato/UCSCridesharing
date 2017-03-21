@@ -237,7 +237,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         },
         error =>{
           console.log("Error");
-          this.setRiderint();
+          //this.setRiderint();
        }
     )
 

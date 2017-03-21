@@ -41,8 +41,11 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public driverx: Driverondemand;
   //used to poll the server
   public polling:any;
+  public reqpoll:any;
   //flag to show a driver found
   public driverfound:boolean;
+  //flag for pairing
+  public paired:boolean;
 
 
   private curUser: User;
@@ -87,6 +90,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
     //initialize driverfound to false because no driver is found
     //at initialization
     this.driverfound =false;
+    this.paired=false;
 
     //set the current riderx email
     this.riderx = {
@@ -238,14 +242,63 @@ export class RiderOndemandSubmitComponent implements OnInit {
 
   }
 
-  sendRequest(){
+  //function to send request to driver
+  riderRequest(){
+    this.riderodx.sendRequest(this.riderx,this.driverx.driverod_email).subscribe(
+      data =>{
+        console.log("Rider Send Request Success");
+
+        //begin polling for driver response to request
+        this.pollResponse()
+
+
+      },
+          error =>{
+        console.log("Rider Send Request Error");
+
+          })
+
+
+    }
+
+    //this starts polling for a response
+    pollResponse(){
+
+    this.reqpoll = Observable.interval(5000);
+    return this.reqpoll.subscribe(()=>this.getResponse());
+    }
+
+    //function getResponse will keep checking with the server until response is given
+    getResponse(){
+
+      this.riderodx.getResponse().subscribe(
+          data => {
+
+            //log to make sure data was returned
+            console.log("Response get success");
+            this.paired = true;
+            //stops the polling for responses
+            this.reqpoll.unsubscribe();
+
+          },
+          error => {
+            console.log("Response get error");
+
+          }
+      )
+
+
+    }
 
 
 
 
 
 
-  }
+
+
+
+
 
 
 
