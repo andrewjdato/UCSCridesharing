@@ -47,6 +47,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
   //flag for pairing
   public paired:boolean;
 
+  public reqResponse:string;
 
   private curUser: User;
 
@@ -277,7 +278,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
 
       this.riderodx.getResponse(this.riderx.riderod_email).subscribe(
           data => {
-
+            this.reqResponse=data;
             //log to make sure data was returned
             console.log("Response get success");
             this.paired = true;
