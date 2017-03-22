@@ -28,7 +28,7 @@ export class PlannedService {
 
     //Send in a approval request for Driver
     approveRider(driver_email : string, rider_email : string, trip_id : string, rider_approval : boolean) {
-        return this.http.post('http://localhost:8000/rideshare/rider_apprival/', JSON.stringify({driver_email : driver_email, rider_email : rider_email, trip_id : trip_id, rider_approval : rider_approval})).map((response: Response) => response.json());
+        return this.http.post('http://localhost:8000/rideshare/rider_apprival/', JSON.stringify({driver_email : driver_email, rider_email : rider_email, trip_id : trip_id, rider_approval : rider_approval}));
     }
 
     //Test

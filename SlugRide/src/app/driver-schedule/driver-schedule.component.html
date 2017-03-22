@@ -1,25 +1,23 @@
 <h1 class="text-center"> Scheduled Driver Rides </h1> 
-<div class="col-md-6 col-md-offset-3">
-        <div *ngFor="let user of users">
-            <div class="row"> Departure Location : {{user.driver_departure}} </div>
-            <div class="row"> Destination        : {{user.driver_destination}} </div>
-            <div class="row"> Time of Departure  : {{user.driver_timeofdeparture}} </div>
-            <div class="row"> Days of Departure  : |      
-                <div *ngIf="user.monday">Mon | </div>
-                <div *ngIf="user.tuesday">Tue |</div>
-                <div *ngIf="user.wednesday">Wed |</div>
-                <div *ngIf="user.thursday">Thu |</div>
-                <div *ngIf="user.friday">Fri |</div>
-                <div *ngIf="user.saturday">Sat |</div>
-                <div *ngIf="user.sunday">Sun |</div> 
+        <span *ngFor="let user of users">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+              <a class="btn btn-warning" (click)="selectRide(this.user.trip_id)"><span class="glyphicon glyphicon-list-alt"></span> Details</a>
             </div>
-            <div class="row"> Rider Count        : {{user.rider_count}} </div>
-            <div class="row"> Trip id            : {{user.trip_id}} </div> <br>
-            <div class= "text-left">
-              <a class="btn btn-primary" (click)="selectRide(this.user.trip_id)">Join</a> <br> <br> <br>
+            <div><span class="glyphicon glyphicon-send"></span>  Departure Location : {{user.driver_departure}} </div>
+            <div><span class="glyphicon glyphicon-flag"></span>  Destination        : {{user.driver_destination}} </div>
+            <div><span class="glyphicon glyphicon-time"></span>  {{user.driver_timeofdeparture}} </div>
+            <div><span class="glyphicon glyphicon-calendar"></span> 
+                <span *ngIf="user.monday">Mon | </span>
+                <span *ngIf="user.tuesday">Tue |</span>
+                <span *ngIf="user.wednesday">Wed |</span>
+                <span *ngIf="user.thursday">Thu |</span>
+                <span *ngIf="user.friday">Fri |</span>
+                <span *ngIf="user.saturday">Sat |</span>
+                <span *ngIf="user.sunday">Sun |</span> 
             </div>
         </div>
-</div>
+        </span>
 <div class= "text-left">
     <a routerLink = "/usertype" class="btn btn-default">Back</a> <br> 
 </div>
