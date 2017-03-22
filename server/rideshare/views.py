@@ -14,9 +14,16 @@ from django.core import serializers
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
-def driver_ondemand_change(request):
+def driver_ondemand_get_rider(request):
     jsonobj = json.loads(request.body)
     print(jsonobj)
+    email = jsonobj['driverod_email']
+    return HttpResponse(status=201)
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def driver_ondemand_change(request):
+    jsonobj = json.loads(request.body)
     email = jsonobj['Driverondemand']['driverod_email']
     dep = jsonobj['Driverondemand']['driverod_departure']
     dest = jsonobj['Driverondemand']['driverod_destination']
@@ -177,6 +184,8 @@ def user_registration(request):
         rider_profile.save()
         driver_active = DriverActive.objects.create(driverod_email = serializer.validated_data['email'], user_account=user)
         driver_active.save()
+        rider_active = RiderActive.objects.create(user_account = user)
+        rider_active.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
         

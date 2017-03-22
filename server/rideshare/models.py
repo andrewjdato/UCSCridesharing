@@ -59,3 +59,8 @@ class DriverActive(models.Model):
     driverod_departure = models.CharField(max_length=200)
     driverod_destination = models.CharField(max_length=200)
     driverod_timeofdeparture = models.CharField(max_length=10)
+    
+class RiderActive(models.Model):
+    driverod_email = models.CharField(max_length=100)
+    user_account = models.OneToOneField(User)
+    driverod_active_profile = models.OneToOneField(DriverActive, blank=True, null=True)
