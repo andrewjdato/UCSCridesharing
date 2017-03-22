@@ -21,7 +21,7 @@
 
       <!Google Maps HTML Code>
       <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
-          <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="iconurl">
+          <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" [label]="'M'">
           </sebm-google-map-marker>
           <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
       </sebm-google-map>
@@ -30,5 +30,11 @@
 
   <div>
   <button class="btn btn-primary" (click) = "this.postrider()">Post Ride</button>
+
+  </div>
+  <div *ngIf = "this.driverfound">
+
+      //button to request driver, need to change function on click
+      <button class="btn btn-primary" (click) = "this.riderRequest()">Request driver</button>
 
   </div>

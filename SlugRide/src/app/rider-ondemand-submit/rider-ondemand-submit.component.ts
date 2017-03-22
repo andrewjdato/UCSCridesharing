@@ -10,6 +10,7 @@ import {Riderondemand} from '../_riderondemand/riderod'
 import { AuthService } from '../_services/auth.service';
 import {Observable} from 'rxjs/Rx';
 import { User } from '../_user/user';
+import {Driverondemand} from "../_driverondemand/driverod";
 declare var google: any;
 declare var jQuery:any;
 
@@ -35,7 +36,17 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public destid: string;
   public originid: string;
   public riderx: Riderondemand;
-  private riderodx: riderodServ;
+
+
+  public driverx: Driverondemand;
+  //used to poll the server
+  public polling:any;
+  public reqpoll:any;
+  //flag to show a driver found
+  public driverfound:boolean;
+  //flag for pairing
+  public paired:boolean;
+
 
   private curUser: User;
 
@@ -62,8 +73,9 @@ export class RiderOndemandSubmitComponent implements OnInit {
   public origin: any; // its a example aleatory position
   public destination: any; // its a example aleatory position
   constructor(private mapsAPILoader: MapsAPILoader,
-
+              private riderodx: riderodServ,
               private ngZone: NgZone) {
+    this.curUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -75,9 +87,20 @@ export class RiderOndemandSubmitComponent implements OnInit {
     //this.iconurl = '../image/map-icon.png';
     this.iconurl = '../image/map-icon.png';
 
-    //will get user information from local storage
-    // this.curUser = JSON.parse(localStorage.getItem('currentUser'));
-    // this.riderx.riderod_email = this.curUser.email;
+    //initialize driverfound to false because no driver is found
+    //at initialization
+    this.driverfound =false;
+    this.paired=false;
+
+    //set the current riderx email
+    this.riderx = {
+      riderod_email: this.curUser.email,
+      riderod_destination: null,
+      riderod_timeofdeparture: null,
+      riderod_departure: null
+    }
+
+
 
     // this.mapCustomStyles = this.getMapCusotmStyles();
     //create search FormControl
@@ -165,9 +188,13 @@ export class RiderOndemandSubmitComponent implements OnInit {
   }
 
   postrider() {
+
+
     this.riderodx.riderodPost(this.riderx).subscribe(
        data =>{
          console.log("Success");
+         //starts the polling to check for drivers
+         this.setPolling();
        } ,
         error => {
          console.log("Error");
@@ -176,6 +203,108 @@ export class RiderOndemandSubmitComponent implements OnInit {
     )
 
   }
+
+  //starts the polling for finding drivers
+  setPolling(){
+    this.polling = Observable.interval(5000);
+    return this.polling.subscribe(()=>this.findDrivers() );
+
+  }
+
+
+  //function to find drivers to request
+  findDrivers(){
+
+
+
+  this.riderodx.getDrivers().subscribe(
+      data => {
+        //returns the data as a driverod class in order
+        //to extract information
+        this.driverx = data;
+
+        //flags to post driver info and request
+        this.driverfound = true;
+        //log to make sure data was returned
+        console.log("Driver Found");
+
+        //stops the polling
+        this.polling.unsubscribe();
+
+  },
+      error => {
+        console.log("Driver Get Error");
+
+    }
+
+  )
+
+
+  }
+
+  //function to send request to driver
+  riderRequest(){
+    this.riderodx.sendRequest(this.riderx,this.driverx.driverod_email).subscribe(
+      data =>{
+        console.log("Rider Send Request Success");
+
+        //begin polling for driver response to request
+        this.pollResponse()
+
+
+      },
+          error =>{
+        console.log("Rider Send Request Error");
+
+          })
+
+
+    }
+
+    //this starts polling for a response
+    pollResponse(){
+
+    this.reqpoll = Observable.interval(5000);
+    return this.reqpoll.subscribe(()=>this.getResponse());
+    }
+
+    //function getResponse will keep checking with the server until response is given
+    getResponse(){
+
+      this.riderodx.getResponse().subscribe(
+          data => {
+
+            //log to make sure data was returned
+            console.log("Response get success");
+            this.paired = true;
+            //stops the polling for responses
+            this.reqpoll.unsubscribe();
+
+          },
+          error => {
+            console.log("Response get error");
+
+          }
+      )
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -45,10 +45,11 @@ export class DirectionsMapDirective {
             this.directionsDisplay.setDirections({routes: []});
             directionsService.route({
                 origin: {placeId : this.originPlaceId },
-                destination: {placeId : this.destinationPlaceId },
+                destination: {location : latLngB},
                 avoidHighways: true,
                 waypoints: [{
-                    location: waypts,
+                    //location: latLngA,
+                    location: {placeId: this.waypointsPlaceId},
                     stopover: false
                 }],
                 optimizeWaypoints:true,
