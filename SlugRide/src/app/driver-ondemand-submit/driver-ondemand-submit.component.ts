@@ -352,11 +352,11 @@ export class DriverOndemandSubmitComponent implements OnInit {
         data => {
 
           //get the waypoint from rider and set for google  maps
-          this.setRiderwypt();
+
 
           console.log("Accept Rider Success");
           //boolean to show reject button on webpage
-
+          this.setRiderwypt();
 
         },
         error => {
