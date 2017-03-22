@@ -16,10 +16,11 @@ from django.core import serializers
 @parser_classes((JSONParser,))
 def driver_ondemand_change(request):
     jsonobj = json.loads(request.body)
-    email = jsonobj['driverod_email']
-    dep = jsonobj['driverod_departure']
-    dest = jsonobj['driverod_destination']
-    tod = jsonobj['driverod_timeofdeparture']
+    print(jsonobj)
+    email = jsonobj['Driverondemand']['driverod_email']
+    dep = jsonobj['Driverondemand']['driverod_departure']
+    dest = jsonobj['Driverondemand']['driverod_destination']
+    tod = jsonobj['Driverondemand']['driverod_timeofdeparture']
     try:
         rideapp = DriverActive.objects.get(driverod_email = email)
     except DriverActive.DoesNotExist:
