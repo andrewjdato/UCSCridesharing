@@ -17,7 +17,18 @@ from django.core.exceptions import ObjectDoesNotExist
 @parser_classes((JSONParser,))
 def rider_ondemand(request):
     jsonobj = json.loads(request.body)
-    print(jsonobj)
+    email = jsonobj['Riderondemand']['riderod_email']
+    dest = jsonobj['Riderondemand']['riderod_destination']
+    dep = jsonobj['Riderondemand']['riderod_departure']
+    user = User.objects.get(email=email)
+    try:
+        rideractive = RiderActive.objects.get(user_account=user)
+    except ObjectDoesNotExist:
+        return HttpResponse(status=400)
+    rideractive.isactive = True
+    rideractive.riderod_departure = dep
+    rideractive.riderod_destination = dest
+    rideractive.save()
     return HttpResponse(status=200)
 
 @api_view(['POST'])

@@ -18,7 +18,7 @@ export class riderodServ {
 
     //checks to see if anyone has responded to ride
     activateR(riderx: Riderondemand){
-        return this.http.post('/api/users', JSON.stringify({Riderondemand: riderx}))
+        return this.http.post('http://localhost:8000/rideshare/rider_ondemand/', JSON.stringify({Riderondemand: riderx}))
             .map((response: Response)=> {
 
                // let user = response.json();
