@@ -195,7 +195,36 @@ def rider_apprival(request):
         riderapprove.approve = True
     riderapprove.save()
     return HttpResponse(status=201)
-    
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def get_riders_approved_trips(request):
+    jsonobj = json.loads(request.body)
+    email = jsonobj['email']
+    user = User.objects.get(email = email)
+    ride_profile = RideProfile.objects.get(user_account = user)
+    rides_approved = RiderApproveTrip.objects.filter(user_profile = ride_profile)
+    objlist = []
+    for obj in rides_approved:
+        objiter = {}
+        first_name = user.first_name
+        last_name = user.last_name
+        driver_location = obj.planned_trip.driver_departure
+        driver_destination = obj.planned_trip.driver_destination
+        driver_timeofdeparture = obj.planned_trip.driver_timeofdeparture
+        monday = obj.planned_trip.monday
+        tuesday = obj.planned_trip.tuesday
+        wednesday = obj.planned_trip.wednesday
+        thursday = obj.planned_trip.thursday
+        friday = obj.planned_trip.friday
+        saturday = obj.planned_trip.saturday
+        sunday = obj.planned_trip.sunday
+        trip_id  = obj.planned_trip.trip_id
+        objiter = {"first_name": first_name,"last_name":last_name,"driver_location":driver_location,"driver_destination":driver_destination,"driver_timeofdeparture":driver_timeofdeparture,"monday":monday,"tuesday":tuesday,"wednesday":wednesday,"thursday":thursday,"friday":friday,"saturday":saturday,"sunday":sunday,"trip_id":trip_id}
+        objlist.append(objiter)
+    objret = json.dumps(objlist)
+    return HttpResponse(objret, status=200, content_type='application/json')
+
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def get_riders_on_trip(request):
