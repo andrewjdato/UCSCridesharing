@@ -291,14 +291,18 @@ export class DriverOndemandSubmitComponent implements OnInit {
     //console.log("checking requests");
 
     //riderx becomes the object that we receive from the server
+
     this.driverodx.driverodRequestr(this.driverx.driverod_email).subscribe(
+
+
         data => {
           //gets the data and puts it into our riderx variable
           this.riderx = data;
+
           //flag goes high for driver round
           this.flagreqR = 1;
           //stop intervals, after pairing works polling should continue
-          this.polling.unsubscribe();
+          //this.polling.unsubscribe();
           console.log("Rider Request Received");
           //check to see if the the correct rider function is received
           console.log(this.riderx.riderod_email.toString());
@@ -309,9 +313,10 @@ export class DriverOndemandSubmitComponent implements OnInit {
         error => {
 
           console.log("Check Request Error");
-          console.log(error);
+
         }
-    )
+    );
+
 
 
 
@@ -448,7 +453,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         //var latlngx = new google.maps.LatLng(this.latitude,this.longitude);
         //marker.setPosition(latlngx);
         this.zoom = 12;
-        
+
 
       });
 
