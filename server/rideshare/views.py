@@ -18,16 +18,15 @@ from django.core.exceptions import ObjectDoesNotExist
 def rider_getdrivers_ondemand(request):
     drivers = DriverActive.objects.filter(isactive=True).first()
     objlist = []
-    for obj in drivers:
-        objiter = {}
-        email = obj.driverod_email
-        dep = obj.driverod_departure
-        dest = obj.driverod_destination
-        objiter = {"driverod_email": email,"driverod_departure": dep,"driverod_destination":dest}
-        objlist.append(objiter)
+    objiter = {}
+    email = drivers.driverod_email
+    dep = drivers.driverod_departure
+    dest = drivers.driverod_destination
+    objiter = {"driverod_email": email,"driverod_departure": dep,"driverod_destination":dest}
+    objlist.append(objiter)
     objret = json.dumps(objlist)
     print(objret)
-    return HttpResponse(obj, status=200, content_type='application/json')
+    return HttpResponse(objret, status=200, content_type='application/json')
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
