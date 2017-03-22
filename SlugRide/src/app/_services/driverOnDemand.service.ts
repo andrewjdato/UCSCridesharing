@@ -57,11 +57,11 @@ export class driverodServ{
         return this.http.post('http://localhost:8000/rideshare/decide_rider_ondemand/', JSON.stringify({driveremail:driveremail,rideremail:rideremail,response: response}))
             .map((response: Response)=> {
 
-                let user = response.json();
+               // let user = response.json();
 
 
 
-            })
+            });
 
     }
     rejectRider(driveremail: string, rideremail:string, response:string){
@@ -72,7 +72,7 @@ export class driverodServ{
 
 
 
-            })
+            });
 
     }
 
