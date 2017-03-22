@@ -309,6 +309,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         error => {
 
           console.log("Check Request Error");
+          console.log(error);
         }
     )
 
