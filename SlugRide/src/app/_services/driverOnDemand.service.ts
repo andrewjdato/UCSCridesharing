@@ -24,11 +24,12 @@ export class driverodServ{
 
            .map((response: Response)=> {
 
-                let user = response.json();
-
-
-
-            })
+           //      let user = response.json();
+           //
+           //
+           //
+            }
+            )
 
     }
 
