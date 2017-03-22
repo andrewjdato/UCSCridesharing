@@ -56,8 +56,11 @@ export class riderodServ {
 
     //gets response from driver, this function is constantly polled until response is given
     //response should send back eta and distance from driver to rider
-    getResponse(){
-        return this.http.get('/api/users').map((response:Response)=>response.json())
+    getResponse(rideremail:string){
+        return this.http.post('/api/users',JSON.stringify({rideremail:rideremail}))
+            .map((response:Response)=>{});
+
+                //response.json())
     }
 
 

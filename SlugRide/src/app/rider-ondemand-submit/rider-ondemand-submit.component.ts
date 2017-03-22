@@ -275,7 +275,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
     //function getResponse will keep checking with the server until response is given
     getResponse(){
 
-      this.riderodx.getResponse().subscribe(
+      this.riderodx.getResponse(this.riderx.riderod_email).subscribe(
           data => {
 
             //log to make sure data was returned
