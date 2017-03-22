@@ -15,6 +15,13 @@ from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
+def rider_ondemand(request):
+    jsonobj = json.loads(request.body)
+    print(jsonobj)
+    return HttpResponse(status=200)
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
 def decide_rider_ondemand(request):
     jsonobj = json.loads(request.body)
     print(jsonobj)

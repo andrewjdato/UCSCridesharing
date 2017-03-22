@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^rideshare/driver_ondemand_change/$', views.driver_ondemand_change),
     url(r'^rideshare/driver_ondemand_get_rider/$', views.driver_ondemand_get_rider),
     url(r'^rideshare/decide_rider_ondemand/$', views.decide_rider_ondemand),
+    url(r'^rideshare/rider_ondemand/$', views.rider_ondemand),
 ]
