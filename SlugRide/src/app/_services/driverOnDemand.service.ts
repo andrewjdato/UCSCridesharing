@@ -34,8 +34,10 @@ export class driverodServ{
     }
 
     //get request for driver, return will be rider originplaceid
-    driverodRequestr(){
-        return this.http.get('http://localhost:8000/rideshare/riderondemand/').map((response: Response)=> response.json())
+    driverodRequestr(driveremail: string){
+        return this.http.post('http://localhost:8000/rideshare/riderondemand/', JSON.stringify({string:driveremail}))
+            .map((response: Response) =>
+                response.json())
 
     }
 

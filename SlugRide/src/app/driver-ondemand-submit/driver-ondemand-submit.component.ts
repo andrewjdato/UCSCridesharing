@@ -291,7 +291,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
     //console.log("checking requests");
 
     //riderx becomes the object that we receive from the server
-    this.driverodx.driverodRequestr().subscribe(
+    this.driverodx.driverodRequestr(this.driverx.driverod_email).subscribe(
         data => {
           //gets the data and puts it into our riderx variable
           this.riderx = data;
