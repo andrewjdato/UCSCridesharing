@@ -16,7 +16,6 @@ from django.core import serializers
 @parser_classes((JSONParser,))
 def driver_ondemand_change(request):
     jsonobj = json.loads(request.body)
-    user = jsonobj['driverod_email']
     email = jsonobj['driverod_email']
     dep = jsonobj['driverod_departure']
     dest = jsonobj['driverod_destination']

@@ -19,7 +19,7 @@ export class driverodServ{
 
     //sends information of driver coordinates and info
     driverodPost(driverx: Driverondemand){
-        return this.http.post('http://localhost:8000/rideshare/driver_ondemand_change', JSON.stringify({Driverondemand: driverx}))
+        return this.http.post('http://localhost:8000/rideshare/driver_ondemand_change/', JSON.stringify({Driverondemand: driverx}))
 
 
            .map((response: Response)=> {
