@@ -15,6 +15,27 @@ from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
+def decide_rider_ondemand(request):
+    jsonobj = json.loads(request.body)
+    demail = jsonobj['driveremail']
+    remail = jsonobj['rideremail']
+    response = jsonobj['response']
+    if response is "accept":
+        rider_user = User.objects.get(email=remail)
+        rider_active = RideActive.objects.get(user_account=user)
+        driver_active = DriverActive.objects.get(driverod_email=demail)
+        rider_active.driverod_active_profile = driver_active
+        rider_active.save() 
+        return HttpResponse(status=200)
+    elif response is "deny":
+        print(response)
+        return HttpResponse(status=200)
+    else:
+        print(response)
+        return HttpResponse(status=400)
+        
+@api_view(['POST'])
+@parser_classes((JSONParser,))
 def driver_ondemand_get_rider(request):
     jsonobj = json.loads(request.body)
     email = jsonobj['driverod_email']
