@@ -11,14 +11,26 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.exceptions import *
 from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def driver_ondemand_get_rider(request):
     jsonobj = json.loads(request.body)
-    print(jsonobj)
     email = jsonobj['driverod_email']
-    return HttpResponse(status=201)
+    driverod_active_profile = DriverActive.objects.get(driverod_email = email)
+    try:
+        rider_active_profile = driverod_active_profile.rideractive
+    except ObjectDoesNotExist:
+        print("No active rider has picked this driver")
+        return HttpResponse(status=400)
+    riderod_email = rider_active_profile.user_account.email
+    riderod_dep = rider_active_profile.driverod_departure
+    riderod_dest = rider_active_profile.driverod_destination
+    objlist = []
+    objdict = {"riderod_email": riderod_email, "riderod_departure": riderod_dep, "riderod_destination": riderod_dest, "riderod_timeofdeparture": "default"}
+    objlist.append(objdict)
+    return HttpResponse(objlist, status=201, content_type='application/json')
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
