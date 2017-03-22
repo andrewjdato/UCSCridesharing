@@ -113,7 +113,7 @@ def driver_ondemand_change(request):
     email = jsonobj['Driverondemand']['driverod_email']
     dep = jsonobj['Driverondemand']['driverod_departure']
     dest = jsonobj['Driverondemand']['driverod_destination']
-    tod = jsonobj['Driverondemand']['driverod_timeofdeparture']
+    #tod = jsonobj['Driverondemand']['driverod_timeofdeparture']
     #just for now
     tod = "default"
     try:
