@@ -305,7 +305,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
           //this.polling.unsubscribe();
           console.log("Rider Request Received");
           //check to see if the the correct rider function is received
-          console.log(this.riderx.riderod_email.toString());
+          //console.log(this.riderx.riderod_email.toString());
           //boolean to show reject button on webpage
           this.showReject = true;
 
