@@ -88,6 +88,7 @@ def rider_ondemand(request):
     rideractive.isactive = True
     rideractive.riderod_departure = dep
     rideractive.riderod_destination = dest
+    rideractive.save()
     return HttpResponse(status=200)
 
 @api_view(['POST'])
@@ -132,7 +133,6 @@ def driver_ondemand_get_rider(request):
         #r_user = User.objects.get(email = driverod_active_profile.riderod_email)
         rider_active_profile = RiderActive.objects.get(user_account = r_user)
     except ObjectDoesNotExist:
-        print("No active rider has picked this driver")
         objlist = []
         objdict = {"riderod_email": "no rider matched", "riderod_departure": "no rider matched", "riderod_destination": "no rider matched", "riderod_timeofdeparture": "default"}
         objlist.append(objdict)
@@ -146,7 +146,6 @@ def driver_ondemand_get_rider(request):
     objlist.append(objdict)
     objret = json.dumps(objlist)
     print(riderod_email)
-    print("driver accepting this rider")
     return HttpResponse(objret, status=200, content_type='application/json')
 
 @api_view(['POST'])
