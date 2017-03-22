@@ -1,60 +1,25 @@
 <h1 class="text-center"> Availble Trips</h1> 
 <div *ngIf="this.incorrect_submit" class="text-center text-danger ">Cannot Join Ride</div>
-    <div class="row">
-        <div class="col"> First Name </div>
-        <div class="col"> Last Name </div>
-        <div class="col"> Departure Location </div>
-        <div class="col"> Destination </div>    
-        <div class="col"> Time of Departure</div>   
-        <div class="col"> Days of Departure </div>
-        <div class="col"> Join </div>
-    </div>
-    <div class="row">
-    <div class="col">
-        <div *ngFor="let user of users">
-            <div class="row"> {{user.first_name}} </div> <br>
-        </div>
-    </div>
-    <div class="col">
-        <div *ngFor="let user of users">
-            <div class="row"> {{user.last_name}} </div> <br>
-        </div>
-    </div>
-    <div class="col">
-        <div *ngFor="let user of users">
-            <div class="row"> {{user.driver_departure}}  </div> <br>
-        </div>
-    </div>
-    <div class="col">
-        <div *ngFor="let user of users">
-            <div class="row"> {{user.driver_destination}} </div> <br>
-        </div>
-    </div>
-    <div class="col">
-        <div *ngFor="let user of users">
-            <div class="row"> {{user.driver_timeofdeparture}} </div> <br>
-        </div>
-    </div>
-    <div class="col">
-        <div *ngFor="let user of users">
-            <div class="row">       
-                <div *ngIf="user.monday">Mon | </div> 
-                <div *ngIf="user.tuesday">Tue |</div> 
-                <div *ngIf="user.wednesday">Wed |</div> 
-                <div *ngIf="user.thursday">Thu |</div>
-                <div *ngIf="user.friday">Fri |</div> 
-                <div *ngIf="user.saturday">Sat |</div>
-                <div *ngIf="user.sunday">Sun |</div> 
+        <span *ngFor="let user of users">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+                <a class="btn btn-warning" (click)="joinRide(this.user.trip_id)">Join</a> <br> 
             </div>
-            <br>
+            <div><span class="glyphicon glyphicon-user"></span>{{user.first_name}} {{user.last_name}}  </div>
+            <div><span class="glyphicon glyphicon-send"></span>  Departure Location : {{user.driver_departure}}} </div>
+            <div><span class="glyphicon glyphicon-flag"></span>  Destination        : {{user.driver_destination}} </div>
+            <div><span class="glyphicon glyphicon-time"></span>  {{user.driver_timeofdeparture}} </div>
+            <div><span class="glyphicon glyphicon-calendar"></span> 
+                <span *ngIf="user.monday">Mon | </span>
+                <span *ngIf="user.tuesday">Tue |</span>
+                <span *ngIf="user.wednesday">Wed |</span>
+                <span *ngIf="user.thursday">Thu |</span>
+                <span *ngIf="user.friday">Fri |</span>
+                <span *ngIf="user.saturday">Sat |</span>
+                <span *ngIf="user.sunday">Sun |</span> 
+            </div>
         </div>
-    </div>
-    <div class="col">
-        <div *ngFor="let user of users">
-            <a class="btn btn-primary btn-xlarge" (click)="joinRide(this.user.trip_id)">Join</a> <br> 
-        </div>
-    </div>
-    </div>
+        </span>
 <div class= "text-left">
     <a routerLink = "/ridertype" class="btn btn-default">Back</a> <br> 
 </div>

@@ -1,19 +1,21 @@
 <h1 class="text-center"> Current Riders </h1> 
 <div *ngIf="this.incorrect_submit" class="text-center text-danger ">Error in accepting</div>
-<div class="col-md-6 col-md-offset-3">
-        <div *ngFor="let user of users">
-            <div class="row"> First Name         : {{user.rider_firstname}} </div>
-            <div class="row"> Last Name          : {{user.rider_lastname}} </div>
-            <div class="row"> Departure Location : {{user.rider_departure}} </div>
-            <div class="row"> Destination        : {{user.rider_destination}} </div>
-            <div class="row"> Time of Departure  : {{user.rider_timeofdeparture}} </div>
-            <div class="row"> Trip id            : {{user.approved}} </div> <br>
-            <div class= "text-left">
-              <a class="btn btn-primary" (click)="approveRider(this.user.rider_email, true)">Approve</a> <br> 
-              <a class="btn btn-primary" (click)="approveRider(this.user.rider_email, false)">Deny</a> <br> <br>
+        <span *ngFor="let user of users">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+                <a class="btn btn-warning" (click)="approveRider(this.user.rider_email, true)">Approve</a>
+                <a class="btn btn-warning" (click)="approveRider(this.user.rider_email, false)">Deny</a>
+            </div>
+            <div><span class="glyphicon glyphicon-user"></span>{{user.rider_firstname}} {{user.rider_lastname}}  </div>
+            <div><span class="glyphicon glyphicon-send"></span>  Departure Location : {{user.rider_departure}}} </div>
+            <div><span class="glyphicon glyphicon-flag"></span>  Destination        : {{user.rider_destination}} </div>
+            <div><span class="glyphicon glyphicon-time"></span>  {{user.rider_timeofdeparture}} </div>
+            <div><span class="glyphicon glyphicon-ok"></span> 
+                <span *ngIf="user.approved">Approved</span>
+                <span *ngIf="!user.approved">Pending</span>
             </div>
         </div>
-</div>
+        </span>
 <div class= "text-left">
     <a routerLink = "/driverschedule" class="btn btn-default">Back</a> <br> 
 </div>
