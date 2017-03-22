@@ -13,6 +13,14 @@ from rest_framework.exceptions import *
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def rider_request_driver(request):
+    jsonobj = json.loads(request.body)
+    print(jsonobj)
+    #driver = DriveActive.objects.get(driverod_email = 
+    return HttpResponse(status=200)
+
 @api_view(['GET'])
 @parser_classes((JSONParser,))
 def rider_getdrivers_ondemand(request):
@@ -25,7 +33,6 @@ def rider_getdrivers_ondemand(request):
     objiter = {"driverod_email": email,"driverod_departure": dep,"driverod_destination":dest}
     objlist.append(objiter)
     objret = json.dumps(objlist)
-    print(objret)
     return HttpResponse(objret, status=200, content_type='application/json')
 
 @api_view(['POST'])
