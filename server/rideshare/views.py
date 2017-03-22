@@ -17,6 +17,7 @@ from django.core.exceptions import ObjectDoesNotExist
 @parser_classes((JSONParser,))
 def rider_request_driver(request):
     jsonobj = json.loads(request.body)
+    print(jsonobj)
     email = jsonobj['riderod']['riderod_email']
     dest = jsonobj['riderod']['riderod_destination']
     dep = jsonobj['riderod']['riderod_departure']
