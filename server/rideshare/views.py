@@ -26,14 +26,16 @@ def driver_ondemand_get_rider(request):
         objlist = []
         objdict = {"riderod_email": "no rider matched", "riderod_departure": "no rider matched", "riderod_destination": "no rider matched", "riderod_timeofdeparture": "default"}
         objlist.append(objdict)
-        return HttpResponse(objlist, status=201, content_type='application/json')
+        objret = json.dumps(objlist)
+        return HttpResponse(objret, status=201, content_type='application/json')
     riderod_email = rider_active_profile.user_account.email
     riderod_dep = rider_active_profile.driverod_departure
     riderod_dest = rider_active_profile.driverod_destination
     objlist = []
     objdict = {"riderod_email": riderod_email, "riderod_departure": riderod_dep, "riderod_destination": riderod_dest, "riderod_timeofdeparture": "default"}
     objlist.append(objdict)
-    return HttpResponse(objlist, status=200, content_type='application/json')
+    objret = json.dumps(objlist)
+    return HttpResponse(objret, status=200, content_type='application/json')
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
