@@ -2,9 +2,8 @@
        <span *ngFor="let user of users">
             <div class="panel panel-primary">
             <div class="panel-heading">
-                <a class="btn btn-warning" (click)="joinRide(this.user.trip_id)">Join</a> <br> 
+                <div><span class="glyphicon glyphicon-user"></span>{{user.first_name}} {{user.last_name}}  </div> 
             </div>
-            <div><span class="glyphicon glyphicon-user"></span>{{user.first_name}} {{user.last_name}}  </div>
             <div><span class="glyphicon glyphicon-send"></span>  Departure Location : {{user.driver_location}}} </div>
             <div><span class="glyphicon glyphicon-flag"></span>  Destination        : {{user.driver_destination}} </div>
             <div><span class="glyphicon glyphicon-time"></span>  {{user.driver_timeofdeparture}} </div>
