@@ -21,7 +21,7 @@ export class riderodServ {
         return this.http.post('/api/users', JSON.stringify({Riderondemand: riderx}))
             .map((response: Response)=> {
 
-                let user = response.json();
+               // let user = response.json();
 
 
 
