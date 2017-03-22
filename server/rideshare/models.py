@@ -69,3 +69,4 @@ class RiderActive(models.Model):
     riderod_departure = models.CharField(max_length=200)
     riderod_destination = models.CharField(max_length=200)
     has_trip = models.BooleanField(default=False)
+    has_response = models.BooleanField(default=False)
