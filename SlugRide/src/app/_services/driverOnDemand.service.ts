@@ -65,7 +65,7 @@ export class driverodServ{
 
     }
     rejectRider(driveremail: string, rideremail:string, response:string){
-        return this.http.post('/api/users', JSON.stringify({driveremail:driveremail,rideremail:rideremail,response: response}))
+        return this.http.post('http://localhost:8000/rideshare/decide_rider_ondemand/', JSON.stringify({driveremail:driveremail,rideremail:rideremail,response: response}))
             .map((response: Response)=> {
 
                 let user = response.json();

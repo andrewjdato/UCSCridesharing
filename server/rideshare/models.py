@@ -68,3 +68,4 @@ class RiderActive(models.Model):
     driverod_active_profile = models.OneToOneField(DriverActive, blank=True, null=True)
     riderod_departure = models.CharField(max_length=200)
     riderod_destination = models.CharField(max_length=200)
+    has_trip = models.BooleanField(default=False)

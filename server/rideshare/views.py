@@ -16,6 +16,11 @@ from django.db import IntegrityError
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
+def get_drive_response_ondemand(request):
+    return HttpResponse(status=200)
+    
+@api_view(['POST'])
+@parser_classes((JSONParser,))
 def rider_request_driver(request):
     jsonobj = json.loads(request.body)
     print(jsonobj)
@@ -80,6 +85,8 @@ def decide_rider_ondemand(request):
     remail = jsonobj['rideremail']
     response = jsonobj['response']
     if response == "accept":
+        rider_active = RiderActive.objects.get(user_account=rider_user)
+        rider_active.has_trip = True
         return HttpResponse(status=200)
     elif response == "reject":
         rider_user = User.objects.get(email=remail)
@@ -87,6 +94,7 @@ def decide_rider_ondemand(request):
         driver_active = DriverActive.objects.get(driverod_email=demail)
         rider_active.driverod_email = None
         driver_active.riderod_email = None
+        rider_active.has_trip = False
         return HttpResponse(status=200)
     else:
         print(response)
