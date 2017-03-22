@@ -297,7 +297,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         data => {
           //gets the data and puts it into our riderx variable
           this.riderx = data;
-
+          console.log(this.riderx);
           //flag goes high for driver round
           this.flagreqR = 1;
           //stop intervals, after pairing works polling should continue

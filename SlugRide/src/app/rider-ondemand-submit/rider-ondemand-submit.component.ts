@@ -223,7 +223,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
         //returns the data as a driverod class in order
         //to extract information
         this.driverx = data;
-
+        console.log(this.driverx);
         //flags to post driver info and request
         this.driverfound = true;
         //log to make sure data was returned
