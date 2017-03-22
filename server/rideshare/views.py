@@ -16,7 +16,7 @@ from django.core.exceptions import ObjectDoesNotExist
 @api_view(['GET'])
 @parser_classes((JSONParser,))
 def rider_getdrivers_ondemand(request):
-    drivers = DriverActive.objects.filter(isactive=True)
+    drivers = DriverActive.objects.filter(isactive=True).first()
     objlist = []
     for obj in drivers:
         objiter = {}
