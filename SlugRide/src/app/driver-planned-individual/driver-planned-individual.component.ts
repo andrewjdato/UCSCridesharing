@@ -59,7 +59,7 @@ export class DriverPlannedIndividualComponent implements OnInit {
       this.plannedService.approveRider(this.currentUser.email, email, this.id, approved) //Change second param to trip ID
                          .subscribe(
                          data => {
-                            this.router.navigate(['/driverindividual']);
+                            this.router.navigate(['/driverschedule']);
                          },
                          error => {
                             this.incorrect_submit = true; 

@@ -11,8 +11,8 @@
             <div><span class="glyphicon glyphicon-flag"></span>  Destination        : {{user.rider_destination}} </div>
             <div><span class="glyphicon glyphicon-time"></span>  {{user.rider_timeofdeparture}} </div>
             <div><span class="glyphicon glyphicon-ok"></span> 
-                <span *ngIf="user.approved">Approved</span>
-                <span *ngIf="!user.approved">Pending</span>
+                <span *ngIf="user.rider_approved">Approved</span>
+                <span *ngIf="!user.rider_approved">Pending</span>
             </div>
         </div>
         </span>
