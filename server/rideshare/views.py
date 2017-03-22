@@ -21,11 +21,19 @@ def rider_request_driver(request):
     email = jsonobj['riderod']['riderod_email']
     dest = jsonobj['riderod']['riderod_destination']
     dep = jsonobj['riderod']['riderod_departure']
+    driver = jsonobj['driverodemail']
     try:
         user = User.objects.get(email = email)
     except ObjectDoesNotExist:
         return HttpResponse(status=400)
+    try:
+        d_user = User.objects.get(email = driver)
+    except ObjectDoesNotExist:
+        return HttpResponse(status=400)
     rider = RiderActive.objects.get(user_account = user)
+    driver = DriverActive.objects.get(user_account = d_user)
+    rider.driverod_active_profile = driver
+    rider.save()
     return HttpResponse(status=200)
 
 @api_view(['GET'])
@@ -98,8 +106,8 @@ def driver_ondemand_get_rider(request):
         objret = json.dumps(objlist)
         return HttpResponse(objret, status=201, content_type='application/json')
     riderod_email = rider_active_profile.user_account.email
-    riderod_dep = rider_active_profile.driverod_departure
-    riderod_dest = rider_active_profile.driverod_destination
+    riderod_dep = rider_active_profile.riderod_departure
+    riderod_dest = rider_active_profile.riderod_destination
     objlist = []
     objdict = {"riderod_email": riderod_email, "riderod_departure": riderod_dep, "riderod_destination": riderod_dest, "riderod_timeofdeparture": "default"}
     objlist.append(objdict)
