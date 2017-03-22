@@ -130,7 +130,6 @@ export class DriverOndemandSubmitComponent implements OnInit {
     this.driverx = {
       driverod_email: this.curUser.email,
       driverod_departure: null ,
-      driverod_timeofdeparture: null,
       driverod_destination: null
     }
 

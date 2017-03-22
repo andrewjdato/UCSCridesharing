@@ -96,7 +96,6 @@ export class RiderOndemandSubmitComponent implements OnInit {
     this.riderx = {
       riderod_email: this.curUser.email,
       riderod_destination: null,
-      riderod_timeofdeparture: null,
       riderod_departure: null
     }
 
