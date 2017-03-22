@@ -21,6 +21,8 @@ def driver_ondemand_change(request):
     dep = jsonobj['Driverondemand']['driverod_departure']
     dest = jsonobj['Driverondemand']['driverod_destination']
     tod = jsonobj['Driverondemand']['driverod_timeofdeparture']
+    #just for now
+    tod = "default"
     try:
         rideapp = DriverActive.objects.get(driverod_email = email)
     except DriverActive.DoesNotExist:
