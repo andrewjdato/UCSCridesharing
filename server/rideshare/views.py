@@ -23,7 +23,9 @@ def driver_ondemand_get_rider(request):
         rider_active_profile = driverod_active_profile.rideractive
     except ObjectDoesNotExist:
         print("No active rider has picked this driver")
+        objlist = []
         objdict = {"riderod_email": "no rider matched", "riderod_departure": "no rider matched", "riderod_destination": "no rider matched", "riderod_timeofdeparture": "default"}
+        onjlist.append(objdict)
         return HttpResponse(objlist, status=201, content_type='application/json')
     riderod_email = rider_active_profile.user_account.email
     riderod_dep = rider_active_profile.driverod_departure
