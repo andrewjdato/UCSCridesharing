@@ -448,6 +448,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
         //var latlngx = new google.maps.LatLng(this.latitude,this.longitude);
         //marker.setPosition(latlngx);
         this.zoom = 12;
+        
 
       });
 
