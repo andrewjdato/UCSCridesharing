@@ -51,7 +51,16 @@
 <button class="btn btn-primary" (click) = "this.testerf()">console email</button>
 <div *ngIf = "this.showinfo">Estimated time of route: {{this.vc.estimatedTime}} </div>
 <div *ngIf = "this.showinfo">Estimated distance of route: {{this.vc.estimatedDistance}} </div>
-<div >Placeid A: {{this.vc.originPlaceId}} </div>
+<div >origin A: {{this.vc.originPlaceId}} </div>
+<div >destination A: {{this.vc.destinationPlaceId}} </div>
 <div >Waypointid: {{this.vc.waypointsPlaceId}} </div>
 <!---<div >Value of a: {{this.a}} </div>--->
+
+<div *ngIf ="this.flagreqR" >
+<div>rider origin A: {{this.riderx.riderod_departure}} </div>
+<div>rider destination A: {{this.riderx.riderod_destination}} </div>
+    <div>rider wypt A: {{this.riderwpt}} </div>
+
+</div>
 <div>Is Paired? {{this.paired}}</div>
+

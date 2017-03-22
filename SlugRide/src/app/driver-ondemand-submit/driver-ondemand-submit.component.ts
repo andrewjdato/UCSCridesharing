@@ -296,7 +296,14 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
         data => {
           //gets the data and puts it into our riderx variable
-          this.riderx = data;
+          console.log("check");
+          console.log(data[0].riderod_destination);
+         this.riderx = data[0];
+
+
+          console.log("check1");
+
+
           console.log(this.riderx);
           //flag goes high for driver round
           this.flagreqR = 1;
@@ -346,7 +353,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
 
   accRider(){
     this.paired=true;
-    this.riderx.riderod_email="od1@ucsc.edu"
+
     //sends the accept rider request with current driver email, rider who has requested email, and the string accept
     this.driverodx.acceptRider(this.driverx.driverod_email,this.riderx.riderod_email, "accept").subscribe(
         data => {
