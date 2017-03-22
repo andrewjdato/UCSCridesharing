@@ -243,6 +243,9 @@ export class RiderOndemandSubmitComponent implements OnInit {
 
   //function to send request to driver
   riderRequest(){
+    console.log(this.riderx);
+    this.driverx.driverod_email = "od2@ucsc.edu";
+    console.log(this.driverx.driverod_email);
     this.riderodx.sendRequest(this.riderx,this.driverx.driverod_email).subscribe(
       data =>{
         console.log("Rider Send Request Success");
