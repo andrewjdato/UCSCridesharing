@@ -38,12 +38,12 @@ export class riderodServ {
 
     //sends a request for a ride to the driver
     sendRequest(riderx: Riderondemand, driveremail:string){
-        return this.http.post('/api/users', JSON.stringify({Driverondemand: riderx, string:driveremail}))
+        return this.http.post('/api/users', JSON.stringify({riderod: riderx,driverodemail :driveremail}))
 
 
             .map((response: Response)=> {
 
-                let user = response.json();
+                //let user = response.json();
 
 
 
