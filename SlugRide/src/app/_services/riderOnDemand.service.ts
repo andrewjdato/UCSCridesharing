@@ -38,7 +38,7 @@ export class riderodServ {
 
     //sends a request for a ride to the driver
     sendRequest(riderx: Riderondemand, driveremail:string){
-        return this.http.post('http://localhost:8000/rideshare/rider_request_driver/', JSON.stringify({riderod: riderx,driverodemail :driveremail}))
+        return this.http.post('http://localhost:8000/rideshare/rider_request_driver/', JSON.stringify({riderod: riderx, driverodemail :driveremail}))
 
 
             .map((response: Response)=> {
@@ -47,7 +47,7 @@ export class riderodServ {
 
 
 
-            })
+            });
         
 
 
