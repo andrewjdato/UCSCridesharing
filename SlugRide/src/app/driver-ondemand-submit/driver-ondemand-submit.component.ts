@@ -348,6 +348,7 @@ export class DriverOndemandSubmitComponent implements OnInit {
   accRider(){
     this.paired=true;
     //sends the accept rider request with current driver email, rider who has requested email, and the string accept
+    this.riderx.riderod_email = "od1@ucsc.edu";
     this.driverodx.acceptRider(this.driverx.driverod_email,this.riderx.riderod_email, "accept").subscribe(
         data => {
 
