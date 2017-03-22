@@ -107,6 +107,7 @@ def rider_apprival(request):
         riderapprove.delete()
     elif rider_approval is True:
         riderapprove.approve = True
+    riderapprove.save()
     return HttpResponse(status=201)
     
 @api_view(['POST'])
