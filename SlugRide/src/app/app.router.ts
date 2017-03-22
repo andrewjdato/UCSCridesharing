@@ -20,6 +20,7 @@ import { DriverScheduleComponent } from './driver-schedule/driver-schedule.compo
 import { RiderScheduleComponent } from './rider-schedule/rider-schedule.component';
 import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
 import { TempPageComponent } from './temp-page/temp-page.component';
+import { PlannedMapsComponent } from './planned-maps/planned-maps.component';
 
 import { AuthGuard } from './_auth/auth.guard';
 
@@ -44,7 +45,7 @@ export const router: Routes = [
     { path: 'riderschedule', component: RiderScheduleComponent, canActivate: [AuthGuard] },
     { path: 'driverschedule', component: DriverScheduleComponent, canActivate: [AuthGuard] },
     { path: 'driverindividual', component: DriverPlannedIndividualComponent, canActivate: [AuthGuard] },
-
+    { path: 'plannedmaps', component: PlannedMapsComponent, canActivate: [AuthGuard] },
     { path: '**', component: FourzerofourComponent }
 
 ];

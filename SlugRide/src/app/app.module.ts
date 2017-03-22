@@ -36,6 +36,7 @@ import { RiderScheduleComponent } from './rider-schedule/rider-schedule.componen
 import { DriverPlannedIndividualComponent } from './driver-planned-individual/driver-planned-individual.component';
 import { TempPageComponent } from './temp-page/temp-page.component';
 import {DirectionsMapDirectiver} from "./map/google-mapRider.directive";
+import { PlannedMapsComponent } from './planned-maps/planned-maps.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {DirectionsMapDirectiver} from "./map/google-mapRider.directive";
     DriverScheduleComponent,
     RiderScheduleComponent,
     DriverPlannedIndividualComponent,
-    TempPageComponent
+    TempPageComponent,
+    PlannedMapsComponent
   ],
   imports: [
     BrowserModule,
