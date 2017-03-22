@@ -19,6 +19,7 @@ from django.db import IntegrityError
 def get_driver_response_ondemand(request):
     jsonobj = json.loads(request.body)
     email = jsonobj['rideremail']
+    email = "od2@ucsc.edu"
     user = User.objects.get(email = email)
     rider = RiderActive.objects.get(user_account = user)
     objlist = []
