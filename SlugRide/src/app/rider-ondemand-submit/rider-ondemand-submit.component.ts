@@ -164,6 +164,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
         this.getDistanceAndDuration();
         this.getPlaceid();
         this.zoom = 12;
+        
       });
 
     });
