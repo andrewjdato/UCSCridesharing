@@ -13,6 +13,22 @@ from rest_framework.exceptions import *
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 
+@api_view(['GET'])
+@parser_classes((JSONParser,))
+def rider_getdrivers_ondemand(request):
+    drivers = DriverActive.objects.filter(isactive=True)
+    objlist = []
+    for obj in drivers:
+        objiter = {}
+        email = obj.driverod_email
+        dep = obj.driverod_departure
+        dest = obj.driverod_destination
+        objiter = {"driverod_email": email,"driverod_departure": dep,"driverod_destination":dest}
+        objlist.append(objiter)
+    objret = json.dumps(objlist)
+    print(objret)
+    return HttpResponse(obj, status=200, content_type='application/json')
+
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def rider_ondemand(request):

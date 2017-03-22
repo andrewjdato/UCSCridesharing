@@ -32,7 +32,7 @@ export class riderodServ {
 
     //searches for any current active drivers
     getDrivers(){
-        return this.http.get('/api/users').map((response: Response)=> response.json())
+        return this.http.get('http://localhost:8000/rideshare/rider_getdrivers_ondemand/').map((response: Response)=> response.json())
 
     }
 
