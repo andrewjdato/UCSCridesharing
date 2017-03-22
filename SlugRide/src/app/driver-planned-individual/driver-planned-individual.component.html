@@ -1,5 +1,9 @@
-<h1 class="text-center"> Current Riders </h1> 
+<h1 class="text-center"> Trip Details </h1> 
 <div *ngIf="this.incorrect_submit" class="text-center text-danger ">Error in accepting</div>
+<div class= "text-left">
+    <a routerLink = "/driverschedule" class="btn btn-default">Back</a> <br> 
+</div>
+<h2 class="text-left"> Rider Information </h2> 
         <span *ngFor="let user of users">
             <div class="panel panel-primary">
             <div class="panel-heading">
@@ -7,7 +11,7 @@
                 <a class="btn btn-warning" (click)="approveRider(this.user.rider_email, false)">Deny</a>
             </div>
             <div><span class="glyphicon glyphicon-user"></span>{{user.rider_firstname}} {{user.rider_lastname}}  </div>
-            <div><span class="glyphicon glyphicon-send"></span>  Departure Location : {{user.rider_departure}}} </div>
+            <div><span class="glyphicon glyphicon-send"></span>  Departure Location : {{user.rider_location}} </div>
             <div><span class="glyphicon glyphicon-flag"></span>  Destination        : {{user.rider_destination}} </div>
             <div><span class="glyphicon glyphicon-time"></span>  {{user.rider_timeofdeparture}} </div>
             <div><span class="glyphicon glyphicon-ok"></span> 
@@ -16,6 +20,31 @@
             </div>
         </div>
         </span>
-<div class= "text-left">
-    <a routerLink = "/driverschedule" class="btn btn-default">Back</a> <br> 
+
+
+<div class= "text-right">
+    <a class="btn btn-warning" (click)="this.depart=!this.depart"> Depart<span class="glyphicon glyphicon-arrow-right"></span></a>
+</div>
+
+<div *ngIf="this.depart">
+<h3 class="text-left"> Enter Information When Ready to Depart </h3> 
+
+    <div class="form-group">
+        <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"  #pickupInput [formControl] = "destinationInput">
+        <input placeholder="Enter destination" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupOutput [formControl] = "destinationOutput" >
+        <input placeholder="Enter Rider Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
+        <!--<input placeholder="Enter location of extra marker" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #waypoint [formControl]="destinationWaypoint" >
+        -->
+    </div>
+
+
+
+    <!Google Maps HTML Code>
+    <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
+        <sebm-google-map-marker [latitude]="this.latitude" [longitude]="this.longitude" [label]="'M'">
+
+        </sebm-google-map-marker>
+        <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
+    </sebm-google-map>
+
 </div>
