@@ -228,7 +228,7 @@ export class RiderOndemandSubmitComponent implements OnInit {
         console.log("Driver Found");
 
         //stops the polling
-        this.polling.unsubscribe();
+        //this.polling.unsubscribe();
 
   },
       error => {

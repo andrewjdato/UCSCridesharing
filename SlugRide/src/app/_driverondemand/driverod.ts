@@ -3,6 +3,6 @@ export class Driverondemand {
     driverod_departure: string;
     driverod_destination: string;
 
-    //driver_spots: string;
+
 
 }
