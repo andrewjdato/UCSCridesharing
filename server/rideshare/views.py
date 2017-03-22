@@ -17,6 +17,7 @@ from django.core.exceptions import ObjectDoesNotExist
 @parser_classes((JSONParser,))
 def decide_rider_ondemand(request):
     jsonobj = json.loads(request.body)
+    print(jsonobj)
     demail = jsonobj['driveremail']
     remail = jsonobj['rideremail']
     response = jsonobj['response']
@@ -27,7 +28,7 @@ def decide_rider_ondemand(request):
         rider_active.driverod_active_profile = driver_active
         rider_active.save() 
         return HttpResponse(status=200)
-    elif response is "deny":
+    elif response is "reject":
         print(response)
         return HttpResponse(status=200)
     else:

@@ -187,10 +187,10 @@ export class RiderOndemandSubmitComponent implements OnInit {
 
   }
 
-  activateRider() {
+  postrider() {
 
 
-    this.riderodx.activateR(this.riderx).subscribe(
+    this.riderodx.riderodPost(this.riderx).subscribe(
        data =>{
          console.log("Success");
          //starts the polling to check for drivers

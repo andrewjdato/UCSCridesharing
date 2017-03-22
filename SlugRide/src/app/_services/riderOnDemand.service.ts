@@ -17,7 +17,7 @@ export class riderodServ {
     // }
 
     //checks to see if anyone has responded to ride
-    activateR(riderx: Riderondemand){
+    riderodPost(riderx: Riderondemand){
         return this.http.post('/api/users', JSON.stringify({Riderondemand: riderx}))
             .map((response: Response)=> {
 
