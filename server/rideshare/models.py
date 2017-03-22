@@ -59,6 +59,7 @@ class DriverActive(models.Model):
     driverod_departure = models.CharField(max_length=200)
     driverod_destination = models.CharField(max_length=200)
     driverod_timeofdeparture = models.CharField(max_length=10)
+    riderod_email = models.CharField(max_length=100)
     
 class RiderActive(models.Model):
     isactive = models.BooleanField(default=False)

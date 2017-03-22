@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.exceptions import *
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 
 @api_view(['POST'])
 @parser_classes((JSONParser,))
@@ -32,7 +33,10 @@ def rider_request_driver(request):
         return HttpResponse(status=400)
     rider = RiderActive.objects.get(user_account = user)
     driver = DriverActive.objects.get(user_account = d_user)
-    rider.driverod_active_profile = driver
+    #rider.driverod_active_profile = driver
+    rider.driverod_email = email
+    driver.riderod_email = email
+    driver.save()
     rider.save()
     return HttpResponse(status=200)
 
@@ -65,7 +69,6 @@ def rider_ondemand(request):
     rideractive.isactive = True
     rideractive.riderod_departure = dep
     rideractive.riderod_destination = dest
-    rideractive.save()
     return HttpResponse(status=200)
 
 @api_view(['POST'])
@@ -76,15 +79,14 @@ def decide_rider_ondemand(request):
     demail = jsonobj['driveremail']
     remail = jsonobj['rideremail']
     response = jsonobj['response']
-    if response is "accept":
-        rider_user = User.objects.get(email=remail)
-        rider_active = RideActive.objects.get(user_account=user)
-        driver_active = DriverActive.objects.get(driverod_email=demail)
-        rider_active.driverod_active_profile = driver_active
-        rider_active.save() 
+    if response == "accept":
         return HttpResponse(status=200)
-    elif response is "reject":
-        print(response)
+    elif response == "reject":
+        rider_user = User.objects.get(email=remail)
+        rider_active = RiderActive.objects.get(user_account=rider_user)
+        driver_active = DriverActive.objects.get(driverod_email=demail)
+        rider_active.driverod_email = None
+        driver_active.riderod_email = None
         return HttpResponse(status=200)
     else:
         print(response)
@@ -97,7 +99,8 @@ def driver_ondemand_get_rider(request):
     email = jsonobj['driverod_email']
     driverod_active_profile = DriverActive.objects.get(driverod_email = email)
     try:
-        rider_active_profile = driverod_active_profile.rideractive
+        r_user = User.objects.get(email = driverod_active_profile.riderod_email)
+        rider_active_profile = RiderActive.objects.get(user_account = r_user)
     except ObjectDoesNotExist:
         print("No active rider has picked this driver")
         objlist = []
