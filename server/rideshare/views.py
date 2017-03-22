@@ -19,9 +19,13 @@ from django.db import IntegrityError
 def get_driver_response_ondemand(request):
     jsonobj = json.loads(request.body)
     email = jsonobj['rideremail']
-    print(jsonobj)
+    user = User.objects.get(email = email)
+    rider = RiderActive.objects.get(user_account = user)
     objlist = []
-    objiter = {"response": "check"}
+    if rider.has_response is True:
+        objiter = {"response": "accept"}
+    else:
+        objiter = {"response": "check"}
     objlist.append(objiter)
     objret = json.dumps(objlist)
     return HttpResponse(objret, status=200, content_type='application/json')
@@ -89,14 +93,17 @@ def rider_ondemand(request):
 @parser_classes((JSONParser,))
 def decide_rider_ondemand(request):
     jsonobj = json.loads(request.body)
-    print(jsonobj)
     demail = jsonobj['driveremail']
     remail = jsonobj['rideremail']
+    #temp
+    remail = "od2@ucsc.edu"
     response = jsonobj['response']
     if response == "accept":
+        rider_user = User.objects.get(email=remail)
         rider_active = RiderActive.objects.get(user_account=rider_user)
         rider_active.has_trip = True
-        rider_has_response = True
+        rider_active.has_response = True
+        rider_active.save()
         return HttpResponse(status=200)
     elif response == "reject":
         rider_user = User.objects.get(email=remail)
@@ -106,6 +113,7 @@ def decide_rider_ondemand(request):
         driver_active.riderod_email = None
         rider_active.has_trip = False
         rider_has_response = True
+        ride_active.save()
         return HttpResponse(status=200)
     else:
         print(response)
@@ -117,8 +125,10 @@ def driver_ondemand_get_rider(request):
     jsonobj = json.loads(request.body)
     email = jsonobj['driverod_email']
     driverod_active_profile = DriverActive.objects.get(driverod_email = email)
+    #temporary change
     try:
-        r_user = User.objects.get(email = driverod_active_profile.riderod_email)
+        r_user = User.objects.get(email = "od2@ucsc.edu")
+        #r_user = User.objects.get(email = driverod_active_profile.riderod_email)
         rider_active_profile = RiderActive.objects.get(user_account = r_user)
     except ObjectDoesNotExist:
         print("No active rider has picked this driver")
@@ -134,6 +144,8 @@ def driver_ondemand_get_rider(request):
     objdict = {"riderod_email": riderod_email, "riderod_departure": riderod_dep, "riderod_destination": riderod_dest, "riderod_timeofdeparture": "default"}
     objlist.append(objdict)
     objret = json.dumps(objlist)
+    print(riderod_email)
+    print("driver accepting this rider")
     return HttpResponse(objret, status=200, content_type='application/json')
 
 @api_view(['POST'])
@@ -157,6 +169,10 @@ def driver_ondemand_change(request):
     rideapp.driverod_departure = dep
     rideapp.driverod_destination = dest
     rideapp.driverod_timeofdeparture = tod
+    if rideapp.driverod_destination is None:
+        rideapp.driverod_destination = "dest"
+    if rideapp.driverod_departure is None:
+        rideapp.driverod_departure = "dep"
     rideapp.save()
     return HttpResponse(status=201)
 
