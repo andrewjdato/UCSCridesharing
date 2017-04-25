@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 
 
@@ -18,16 +19,42 @@ class DriverOnDemandSubmitViewController : UIViewController{
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
-    //var placesClient: GMSPlacesClient!
+    var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
     
+    @IBOutlet weak var Departure: UITextField!
+    @IBOutlet weak var Destination: UITextField!
     
     
+    // An array to hold the list of likely places.
+    var likelyPlaces: [GMSPlace] = []
+    
+    // The currently selected place.
+    var selectedPlace: GMSPlace?
+    
+    // A default location to use when location permission is not granted.
+    let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
+    
+    // Update the map once the user has made their selection.
+    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
+        // Clear the map.
+        mapView.clear()
+        
+        // Add a marker to the map.
+        if selectedPlace != nil {
+            let marker = GMSMarker(position: (self.selectedPlace?.coordinate)!)
+            marker.title = selectedPlace?.name
+            marker.snippet = selectedPlace?.formattedAddress
+            marker.map = mapView
+        }
+        
+        listLikelyPlaces()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = false
         
+        // Initialize the location manager.
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -35,46 +62,57 @@ class DriverOnDemandSubmitViewController : UIViewController{
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-       // placesClient = GMSPlacesClient.shared()
-    }
-    
-    // An array to hold the list of likely places.
-    //var likelyPlaces: [GMSPlace] = []
-    
-    // The currently selected place.
-    //var selectedPlace: GMSPlace?
-    
-    
-    
-    
-    override func loadView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
+        placesClient = GMSPlacesClient.shared()
         
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
+        // Create a map.
+        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
+                                              longitude: defaultLocation.coordinate.longitude,
+                                              zoom: zoomLevel)
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView.settings.myLocationButton = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.isMyLocationEnabled = true
+        
+        // Add the map to the view, hide it until we've got a location update.
+        view.addSubview(mapView)
+        mapView.isHidden = true
+        
+        listLikelyPlaces()
     }
     
-   
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+    // Populate the array with the list of likely places.
+    func listLikelyPlaces() {
+        // Clean up from previous sessions.
+        likelyPlaces.removeAll()
+        
+        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
+            if let error = error {
+                // TODO: Handle the error.
+                print("Current Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            // Get likely places and add to the list.
+            if let likelihoodList = placeLikelihoods {
+                for likelihood in likelihoodList.likelihoods {
+                    let place = likelihood.place
+                    self.likelyPlaces.append(place)
+                }
+            }
+        })
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+    // Prepare the segue.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToSelect" {
+            if let nextViewController = segue.destination as? PlacesViewController {
+                nextViewController.likelyPlaces = likelyPlaces
+            }
+        }
     }
 }
 
+// Delegates to handle events for the location manager.
 extension DriverOnDemandSubmitViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
@@ -93,7 +131,7 @@ extension DriverOnDemandSubmitViewController: CLLocationManagerDelegate {
             mapView.animate(to: camera)
         }
         
-       // listLikelyPlaces()
+        listLikelyPlaces()
     }
     
     // Handle authorization for the location manager.
@@ -119,3 +157,5 @@ extension DriverOnDemandSubmitViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
 }
+
+
