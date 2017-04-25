@@ -24,6 +24,8 @@
 		58B53E471EAEBCE000060707 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E461EAEBCE000060707 /* QuartzCore.framework */; };
 		58B53E491EAEBCE800060707 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E481EAEBCE800060707 /* SystemConfiguration.framework */; };
 		58B53E4B1EAEBCEF00060707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E4A1EAEBCEF00060707 /* UIKit.framework */; };
+		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
+		882C660EA34CB955CC125D52 /* libPods-Slug Ride 2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE60570E01518BF590851B2 /* libPods-Slug Ride 2.a */; };
 		9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */; };
 		9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */; };
 		9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */; };
@@ -64,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3CE60570E01518BF590851B2 /* libPods-Slug Ride 2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Slug Ride 2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B53E281EAEB94200060707 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		58B53E291EAEB94200060707 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		58B53E2C1EAEB95400060707 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 		58B53E461EAEBCE000060707 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		58B53E481EAEBCE800060707 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		58B53E4A1EAEBCEF00060707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
 		9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverScheduleViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		9BAA30E81EA74EE5003A5B54 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9BAA30EA1EA75488003A5B54 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9BAA30EC1EA756F6003A5B54 /* ForgotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		CBC1CEA0BC36FC21620282D6 /* Pods-Slug Ride 2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug Ride 2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slug Ride 2/Pods-Slug Ride 2.release.xcconfig"; sourceTree = "<group>"; };
+		D5968621BE11B165B0BE059A /* Pods-Slug Ride 2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug Ride 2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Slug Ride 2/Pods-Slug Ride 2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 				58B53E2D1EAEB95400060707 /* GoogleMapsBase.framework in Frameworks */,
 				58B53E2A1EAEB94200060707 /* GoogleMaps.framework in Frameworks */,
 				58B53E2B1EAEB94200060707 /* GoogleMapsCore.framework in Frameworks */,
+				882C660EA34CB955CC125D52 /* libPods-Slug Ride 2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		393F26D9E7324F812FA7E814 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5968621BE11B165B0BE059A /* Pods-Slug Ride 2.debug.xcconfig */,
+				CBC1CEA0BC36FC21620282D6 /* Pods-Slug Ride 2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		58B53E311EAEBC3F00060707 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +182,7 @@
 				58B53E361EAEBC4C00060707 /* CoreGraphics.framework */,
 				58B53E341EAEBC4600060707 /* CoreData.framework */,
 				58B53E321EAEBC3F00060707 /* Accelerate.framework */,
+				3CE60570E01518BF590851B2 /* libPods-Slug Ride 2.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -182,6 +199,7 @@
 				9BAA30D91EA730C0003A5B54 /* Slug Ride 2UITests */,
 				9BAA30B81EA730C0003A5B54 /* Products */,
 				58B53E311EAEBC3F00060707 /* Frameworks */,
+				393F26D9E7324F812FA7E814 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -198,6 +216,7 @@
 		9BAA30B91EA730C0003A5B54 /* Slug Ride 2 */ = {
 			isa = PBXGroup;
 			children = (
+				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
 				9BAA30BC1EA730C0003A5B54 /* ViewController.swift */,
 				9BAA30BE1EA730C0003A5B54 /* Main.storyboard */,
@@ -246,10 +265,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BAA30DF1EA730C0003A5B54 /* Build configuration list for PBXNativeTarget "Slug Ride 2" */;
 			buildPhases = (
+				051ECAA2D73030A1DC357D8B /* [CP] Check Pods Manifest.lock */,
 				9BAA30B31EA730C0003A5B54 /* Sources */,
 				9BAA30B41EA730C0003A5B54 /* Frameworks */,
 				9BAA30B51EA730C0003A5B54 /* Resources */,
 				58B53E301EAEBB2400060707 /* ShellScript */,
+				BFA27B41F34A92A0CF1709C9 /* [CP] Embed Pods Frameworks */,
+				E6F7FEDA560CEEE440909332 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -371,6 +393,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		051ECAA2D73030A1DC357D8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		58B53E301EAEBB2400060707 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,6 +420,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "";
+		};
+		BFA27B41F34A92A0CF1709C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Slug Ride 2/Pods-Slug Ride 2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6F7FEDA560CEEE440909332 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Slug Ride 2/Pods-Slug Ride 2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -403,6 +470,7 @@
 				9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */,
 				9B7D457E1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift in Sources */,
 				9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */,
+				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
 				9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */,
 				9BAA30EB1EA75488003A5B54 /* RegisterViewController.swift in Sources */,
 				9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */,
@@ -559,6 +627,7 @@
 		};
 		9BAA30E01EA730C0003A5B54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5968621BE11B165B0BE059A /* Pods-Slug Ride 2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -575,6 +644,7 @@
 		};
 		9BAA30E11EA730C0003A5B54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBC1CEA0BC36FC21620282D6 /* Pods-Slug Ride 2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
