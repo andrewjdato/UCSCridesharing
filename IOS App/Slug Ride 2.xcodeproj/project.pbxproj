@@ -25,7 +25,9 @@
 		58B53E491EAEBCE800060707 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E481EAEBCE800060707 /* SystemConfiguration.framework */; };
 		58B53E4B1EAEBCEF00060707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E4A1EAEBCEF00060707 /* UIKit.framework */; };
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
-		882C660EA34CB955CC125D52 /* libPods-Slug Ride 2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE60570E01518BF590851B2 /* libPods-Slug Ride 2.a */; };
+		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
+		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
+		882C660EA34CB955CC125D52 /* libPods-Slug Ride 2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE60570E01518BF590851B2 /* libPods-Slug Ride 2.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */; };
 		9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */; };
 		9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */; };
@@ -85,6 +87,8 @@
 		58B53E481EAEBCE800060707 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		58B53E4A1EAEBCEF00060707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
+		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverScheduleViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				9B7D45821EA77B6800FA2FF5 /* RiderScheduleViewController.swift */,
 				9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */,
 				9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */,
+				5B392A8A1EB05A56008FF85B /* MenuViewController.swift */,
+				5B392A8C1EB09910008FF85B /* StartViewController.swift */,
 			);
 			path = "Slug Ride 2";
 			sourceTree = "<group>";
@@ -463,12 +469,14 @@
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
 				9B7D45881EA7805D00FA2FF5 /* RiderOnDemandViewController.swift in Sources */,
 				9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */,
+				5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */,
 				9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */,
 				9BAA30ED1EA756F6003A5B54 /* ForgotViewController.swift in Sources */,
 				9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */,
 				9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */,
 				9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */,
 				9B7D457E1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift in Sources */,
+				5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */,
 				9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */,
 				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
 				9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */,

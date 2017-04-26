@@ -354,6 +354,8 @@ def user_registration(request):
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def user_login(request):
+    jsonobj = json.loads(request.body)
+    print(jsonobj)
     json_data = JSONParser().parse(request)
     serializer = UserLoginSerializer(data=json_data)
     #check if email is an email
