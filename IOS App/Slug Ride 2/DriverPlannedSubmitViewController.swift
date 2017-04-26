@@ -12,6 +12,9 @@ import UIKit
 class DriverPlannedSubmitViewController : UIViewController{
     
     
+    @IBOutlet weak var dp_location: UITextField!
+    @IBOutlet weak var dp_destination: UITextField!
+    @IBOutlet weak var dp_time: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false

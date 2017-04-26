@@ -13,7 +13,7 @@
         <scene sceneID="gTY-1S-j7O">
             <objects>
                 <navigationController restorationIdentifier="StartViewController" storyboardIdentifier="StartViewController" id="FNp-S1-Dae" customClass="StartViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8jg-ax-BOL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8jg-ax-BOL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -609,7 +609,7 @@
         <scene sceneID="NCP-8y-xe2">
             <objects>
                 <navigationController restorationIdentifier="MenuViewController" storyboardIdentifier="MenuViewController" id="uhG-4i-p2W" customClass="MenuViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GyM-JM-Oqx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GyM-JM-Oqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -878,23 +878,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Open Seats" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ePw-ps-3Cf">
-                                        <rect key="frame" x="35" y="383" width="299" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5O-9i-mYK">
-                                        <rect key="frame" x="35" y="433" width="299" height="40"/>
+                                        <rect key="frame" x="35" y="389" width="299" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0032251161040000001" green="0.35189943540000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Register">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="7Ch-F5-1hN" kind="show" id="L5H-Ep-exV"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -902,6 +892,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="dp_destination" destination="rBD-Vw-k0R" id="Zue-wr-Vu1"/>
+                        <outlet property="dp_location" destination="1Ri-sl-pgb" id="3lI-OA-BFb"/>
+                        <outlet property="dp_time" destination="3Cw-z8-yYB" id="jLd-R7-Dwe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJK-Kl-EhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1209,7 +1204,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="QwO-JZ-c2X"/>
-        <segue reference="tX7-Fe-fSY"/>
         <segue reference="0hN-oJ-oCx"/>
     </inferredMetricsTieBreakers>
 </document>
