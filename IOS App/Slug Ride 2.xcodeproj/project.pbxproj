@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		586F37DA1EAFEF9C00442196 /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586F37D91EAFEF9C00442196 /* MapTasks.swift */; };
+		587D1C941EB7D49000388580 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D1C931EB7D49000388580 /* SearchResultsController.swift */; };
 		58B53E2A1EAEB94200060707 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E281EAEB94200060707 /* GoogleMaps.framework */; };
 		58B53E2B1EAEB94200060707 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E291EAEB94200060707 /* GoogleMapsCore.framework */; };
 		58B53E2D1EAEB95400060707 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E2C1EAEB95400060707 /* GoogleMapsBase.framework */; };
@@ -67,6 +69,8 @@
 
 /* Begin PBXFileReference section */
 		3CE60570E01518BF590851B2 /* libPods-Slug Ride 2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Slug Ride 2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		586F37D91EAFEF9C00442196 /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
+		587D1C931EB7D49000388580 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		58B53E281EAEB94200060707 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		58B53E291EAEB94200060707 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		58B53E2C1EAEB95400060707 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -219,7 +223,9 @@
 				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
 				9BAA30BC1EA730C0003A5B54 /* ViewController.swift */,
+				586F37D91EAFEF9C00442196 /* MapTasks.swift */,
 				9BAA30BE1EA730C0003A5B54 /* Main.storyboard */,
+				587D1C931EB7D49000388580 /* SearchResultsController.swift */,
 				9BAA30C11EA730C0003A5B54 /* Assets.xcassets */,
 				9BAA30C31EA730C0003A5B54 /* LaunchScreen.storyboard */,
 				9BAA30C61EA730C0003A5B54 /* Info.plist */,
@@ -462,6 +468,7 @@
 				9BAA30E91EA74EE5003A5B54 /* LoginViewController.swift in Sources */,
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
 				9B7D45881EA7805D00FA2FF5 /* RiderOnDemandViewController.swift in Sources */,
+				587D1C941EB7D49000388580 /* SearchResultsController.swift in Sources */,
 				9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */,
 				9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */,
 				9BAA30ED1EA756F6003A5B54 /* ForgotViewController.swift in Sources */,
@@ -473,6 +480,7 @@
 				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
 				9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */,
 				9BAA30EB1EA75488003A5B54 /* RegisterViewController.swift in Sources */,
+				586F37DA1EAFEF9C00442196 /* MapTasks.swift in Sources */,
 				9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

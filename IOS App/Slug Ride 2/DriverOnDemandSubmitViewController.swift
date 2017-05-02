@@ -13,149 +13,148 @@ import GooglePlaces
 
 
 
-class DriverOnDemandSubmitViewController : UIViewController{
+class DriverOnDemandSubmitViewController : UIViewController,UISearchBarDelegate, LocateOnTheMap,GMSAutocompleteFetcherDelegate{
     
     
-    var locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
-    var mapView: GMSMapView!
-    var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 15.0
-    
-    @IBOutlet weak var Departure: UITextField!
-    @IBOutlet weak var Destination: UITextField!
-    
-    
-    // An array to hold the list of likely places.
-    var likelyPlaces: [GMSPlace] = []
-    
-    // The currently selected place.
-    var selectedPlace: GMSPlace?
-    
-    // A default location to use when location permission is not granted.
-    let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
-    
-    // Update the map once the user has made their selection.
-    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
-        // Clear the map.
-        mapView.clear()
-        
-        // Add a marker to the map.
-        if selectedPlace != nil {
-            let marker = GMSMarker(position: (self.selectedPlace?.coordinate)!)
-            marker.title = selectedPlace?.name
-            marker.snippet = selectedPlace?.formattedAddress
-            marker.map = mapView
-        }
-        
-        listLikelyPlaces()
+    public func didFailAutocompleteWithError(_ error: Error) {
+        //        resultText?.text = error.localizedDescription
     }
+    
+    /**
+     * Called when autocomplete predictions are available.
+     * @param predictions an array of GMSAutocompletePrediction objects.
+     */
+    public func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+        //  self.resultsArray.count + 1
+        
+        for prediction in predictions {
+            
+            if let prediction = prediction as GMSAutocompletePrediction!{
+                self.resultsArray.append(prediction.attributedFullText.string)
+            }
+        }
+        self.searchResultController.reloadDataWithArray(self.resultsArray)
+        //   self.searchResultsTable.reloadDataWithArray(self.resultsArray)
+        print(resultsArray)
+    }
+    
+    
+    @IBOutlet weak var googleMapsContainer: UIView!
+    
+    var googleMapsView: GMSMapView!
+    var searchResultController: SearchResultsController!
+    var resultsArray = [String]()
+    var gmsFetcher: GMSAutocompleteFetcher!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Initialize the location manager.
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 50
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
-        
-        placesClient = GMSPlacesClient.shared()
-        
-        // Create a map.
-        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
-                                              longitude: defaultLocation.coordinate.longitude,
-                                              zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
-        mapView.settings.myLocationButton = true
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.isMyLocationEnabled = true
-        
-        // Add the map to the view, hide it until we've got a location update.
-        view.addSubview(mapView)
-        mapView.isHidden = true
-        
-        listLikelyPlaces()
+        // Do any additional setup after loading the view, typically from a nib.
     }
     
-    // Populate the array with the list of likely places.
-    func listLikelyPlaces() {
-        // Clean up from previous sessions.
-        likelyPlaces.removeAll()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
-            if let error = error {
-                // TODO: Handle the error.
-                print("Current Place error: \(error.localizedDescription)")
-                return
-            }
+        self.googleMapsView = GMSMapView(frame: self.googleMapsContainer.frame)
+        self.view.addSubview(self.googleMapsView)
+        
+        searchResultController = SearchResultsController()
+        searchResultController.delegate = self
+        gmsFetcher = GMSAutocompleteFetcher()
+        gmsFetcher.delegate = self
+        
+    }
+    
+    /**
+     action for search location by address
+     
+     - parameter sender: button search location
+     */
+    @IBAction func searchWithAddress(_ sender: AnyObject) {
+        let searchController = UISearchController(searchResultsController: searchResultController)
+        
+        searchController.searchBar.delegate = self
+        
+        
+        
+        self.present(searchController, animated:true, completion: nil)
+        
+        
+    }
+    
+    /**
+     Locate map with longitude and longitude after search location on UISearchBar
+     
+     - parameter lon:   longitude location
+     - parameter lat:   latitude location
+     - parameter title: title of address location
+     */
+    func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
+        
+        
+        
+        DispatchQueue.main.async { () -> Void in
             
-            // Get likely places and add to the list.
-            if let likelihoodList = placeLikelihoods {
-                for likelihood in likelihoodList.likelihoods {
-                    let place = likelihood.place
-                    self.likelyPlaces.append(place)
-                }
-            }
-        })
+            let position = CLLocationCoordinate2DMake(lat, lon)
+            let marker = GMSMarker(position: position)
+            
+            let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: 10)
+            self.googleMapsView.camera = camera
+            
+            marker.title = "Address : \(title)"
+            marker.map = self.googleMapsView
+            
+        }
+        
     }
     
-    // Prepare the segue.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToSelect" {
-            if let nextViewController = segue.destination as? PlacesViewController {
-                nextViewController.likelyPlaces = likelyPlaces
-            }
-        }
+    /**
+     Searchbar when text change
+     
+     - parameter searchBar:  searchbar UI
+     - parameter searchText: searchtext description
+     */
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        //        let placeClient = GMSPlacesClient()
+        //
+        //
+        //        placeClient.autocompleteQuery(searchText, bounds: nil, filter: nil)  {(results, error: Error?) -> Void in
+        //           // NSError myerr = Error;
+        //            print("Error @%",Error.self)
+        //
+        //            self.resultsArray.removeAll()
+        //            if results == nil {
+        //                return
+        //            }
+        //
+        //            for result in results! {
+        //                if let result = result as? GMSAutocompletePrediction {
+        //                    self.resultsArray.append(result.attributedFullText.string)
+        //                }
+        //            }
+        //
+        //            self.searchResultController.reloadDataWithArray(self.resultsArray)
+        //
+        //        }
+        
+        
+        self.resultsArray.removeAll()
+        gmsFetcher?.sourceTextHasChanged(searchText)
+        
+        
     }
+    
+    
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
 }
 
-// Delegates to handle events for the location manager.
-extension DriverOnDemandSubmitViewController: CLLocationManagerDelegate {
-    
-    // Handle incoming location events.
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        print("Location: \(location)")
-        
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
-                                              zoom: zoomLevel)
-        
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
-        } else {
-            mapView.animate(to: camera)
-        }
-        
-        listLikelyPlaces()
-    }
-    
-    // Handle authorization for the location manager.
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .restricted:
-            print("Location access was restricted.")
-        case .denied:
-            print("User denied access to location.")
-            // Display the map using the default location.
-            mapView.isHidden = false
-        case .notDetermined:
-            print("Location status not determined.")
-        case .authorizedAlways: fallthrough
-        case .authorizedWhenInUse:
-            print("Location status is OK.")
-        }
-    }
-    
-    // Handle location manager errors.
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        locationManager.stopUpdatingLocation()
-        print("Error: \(error)")
-    }
-}
 
 

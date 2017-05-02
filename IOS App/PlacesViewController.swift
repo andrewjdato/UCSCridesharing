@@ -34,13 +34,13 @@ class PlacesViewController: UIViewController {
     }
     
     // Pass the selected place to the new view controller.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindToMain" {
-            if let nextViewController = segue.destination as? DriverOnDemandSubmitViewController {
-                nextViewController.selectedPlace = selectedPlace
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "unwindToMain" {
+//            if let nextViewController = segue.destination as? DriverOnDemandSubmitViewController {
+//                nextViewController.selectedPlace = selectedPlace
+//            }
+//        }
+//    }
 }
 
 // Respond when a user selects a place.
