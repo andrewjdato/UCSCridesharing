@@ -1,15 +1,15 @@
 //
-//  DriverScheduleViewController.swift
+//  RideSelectViewController.swift
 //  Slug Ride 2
 //
-//  Created by Andrew Dato 
+//  Created by Andrew dato on 5/2/17.
 //  Copyright © 2017 Andrew Dat0. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class DriverScheduleViewController : UIViewController{
+class RideSelectViewController : UIViewController{
     
     
     override func viewDidLoad() {
@@ -21,17 +21,12 @@ class DriverScheduleViewController : UIViewController{
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let dict = ["email":appDelegate.user_email] as [String: Any]
-        print(dict)
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
-            
             print("success")
-            let url = NSURL(string: "http://localhost:8000/rideshare/get_driver_planned_trips/")!
+            let url = NSURL(string: "http://localhost:8000/rideshare/get_all_planned_trips/")!
             let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
+            request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
+
             
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
@@ -59,9 +54,8 @@ class DriverScheduleViewController : UIViewController{
             }
             
             task.resume()
-            
-        }
-
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

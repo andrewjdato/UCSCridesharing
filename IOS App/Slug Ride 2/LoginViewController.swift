@@ -11,18 +11,21 @@ import UIKit
 
 class LoginViewController : UIViewController{
     
-    
     let login_url = "http://localhost:8000/rideshare/user_login/"
     //let checksession_url = "http://localhost:8000/rideshare/user_login/"
     
     
     var login_session:String = ""
     
+    var user_email:String = ""
+    var user_firstname:String = ""
+    var user_lastname:String = ""
+    
     @IBOutlet weak var username_input: UITextField!
     @IBOutlet weak var password_input: UITextField!
     
     @IBOutlet weak var login_button: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
@@ -101,8 +104,51 @@ class LoginViewController : UIViewController{
                 }
                 
                 
-                let json = try! JSONSerialization.jsonObject(with: data, options: [])
-                print(json)
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                if let userEmail = json["email"] as AnyObject? {
+                    guard let b = userEmail as? String
+                        else {
+                            print("Error") // Was not a string
+                            return // needs a return or break here
+                    }
+                    if b == "" {
+                        print("Error") // Was not a string
+                        return // needs a return or break here
+                    }
+                    self.user_email = b
+                }
+                if let userfirstname = json["first_name"] as AnyObject? {
+                    guard let b = userfirstname as? String
+                        else {
+                            print("Error") // Was not a string
+                            return // needs a return or break here
+                    }
+                    if b == "" {
+                        print("Error") // Was not a string
+                        return // needs a return or break here
+                    }
+                    self.user_firstname = b
+                }
+                if let userfirstname = json["last_name"] as AnyObject? {
+                    guard let b = userfirstname as? String
+                        else {
+                            print("Error") // Was not a string
+                            return // needs a return or break here
+                    }
+                    if b == "" {
+                        print("Error") // Was not a string
+                        return // needs a return or break here
+                    }
+                    self.user_lastname = b
+                }
+
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.user_email = self.user_email
+                appDelegate.user_lastname = self.user_lastname
+                appDelegate.user_firstname = self.user_firstname
+
+
+                
                 DispatchQueue.main.async(execute: self.LoginDone)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
@@ -116,83 +162,6 @@ class LoginViewController : UIViewController{
 
     }
     
-    
-    
-    
-    /*
-    func check_session()
-    {
-        let post_data: NSDictionary = NSMutableDictionary()
-        
-        
-        post_data.setValue(login_session, forKey: "session")
-        
-        let url:URL = URL(string: checksession_url)!
-        let session = URLSession.shared
-        
-        let request = NSMutableURLRequest(url: url)
-        request.httpMethod = "POST"
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-        
-        var paramString = ""
-        
-        
-        for (key, value) in post_data
-        {
-            paramString = paramString + (key as! String) + "=" + (value as! String) + "&"
-        }
-        
-        request.httpBody = paramString.data(using: String.Encoding.utf8)
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {
-            (
-            data, response, error) in
-            
-            guard let _:Data = data, let _:URLResponse = response  , error == nil else {
-                
-                return
-            }
-            
-            
-            let json: Any?
-            
-            do
-            {
-                json = try JSONSerialization.jsonObject(with: data!, options: [])
-            }
-            catch
-            {
-                return
-            }
-            
-            guard let server_response = json as? NSDictionary else
-            {
-                return
-            }
-            
-            if let response_code = server_response["response_code"] as? Int
-            {
-                if(response_code == 200)
-                {
-                    DispatchQueue.main.async(execute: self.LoginDone)
-                    
-                    
-                }
-                else
-                {
-                    DispatchQueue.main.async(execute: self.LoginToDo)
-                }
-            }
-            
-            
-            
-        })
-        
-        task.resume()
-        
-        
-    }
-    */
     
     
     

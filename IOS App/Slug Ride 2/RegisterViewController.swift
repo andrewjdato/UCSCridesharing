@@ -17,6 +17,7 @@ class RegisterViewController : UIViewController{
     @IBOutlet weak var lastname_register: UITextField!
     @IBOutlet weak var password_register: UITextField!
     @IBOutlet weak var submit_register: UIButton!
+    @IBOutlet weak var password_verify: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,11 @@ class RegisterViewController : UIViewController{
             if let text1 = firstname_register.text, !text1.isEmpty {
                 if let text2 = lastname_register.text, !text2.isEmpty {
                     if let text3 = password_register.text, !text3.isEmpty {
-                        register_now(email:email_register.text!, password: password_register.text!, firstname: firstname_register.text!, lastname: lastname_register.text!)
+                        if let text4 = password_verify.text, !text4.isEmpty{
+                            if (password_verify.text == password_register.text) {
+                                register_now(email:email_register.text!, password: password_register.text!, firstname: firstname_register.text!, lastname:  lastname_register.text!)
+                            }
+                        }
                     }
                 }
             }
@@ -85,6 +90,7 @@ class RegisterViewController : UIViewController{
         password_register.isEnabled = false
         firstname_register.isEnabled = false
         lastname_register.isEnabled = false
+        password_verify.isEnabled = false
         
         submit_register.isEnabled = false
         

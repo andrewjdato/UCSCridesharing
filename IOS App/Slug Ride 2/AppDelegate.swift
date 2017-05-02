@@ -14,7 +14,10 @@ import GooglePlaces
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var user_email:String = "temp"
+    var user_firstname:String = "temp"
+    var user_lastname:String = "temp"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
