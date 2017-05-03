@@ -30,8 +30,8 @@ class LoginViewController : UIViewController{
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         
-        //username_input.text = "try@me.com"
-        //password_input.text = "test"
+        username_input.text = "adato@ucsc.edu"
+        password_input.text = "Anjod123"
         
         /*
         let preferences = UserDefaults.standard
