@@ -30,7 +30,7 @@ class DriverScheduleViewController : UIViewController{
     
     @IBOutlet weak var details_button: UIButton!
     
-    
+    var current_id = 0
     var arrJson:AnyObject?
     var max = 1
     var count = 0
@@ -38,7 +38,7 @@ class DriverScheduleViewController : UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        
+        self.max = 1
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let dict = ["email":appDelegate.user_email] as [String: Any]
         print(dict)
@@ -95,52 +95,59 @@ class DriverScheduleViewController : UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rd_tripid = self.current_id
     }
     
     func loadDone() {
         print("load Success")
+        var tempCount = 0
         let users = self.arrJson as? [[String: Any]]
         for user in users! {
-            print(user["driver_departure"]!)
-            dp_location.text = user["driver_departure"] as? String
-            dp_destination.text = user["driver_destination"] as? String
-            dp_time.text = user["driver_timeofdeparture"] as? String
-            if user["monday"] as? Bool == false {
-                dp_mon.text = "Mon"
-            } else {
-                dp_mon.text = "Mon X"
+            if tempCount == count {
+                print(user["driver_departure"]!)
+                self.current_id = user["trip_id"] as! Int
+                dp_location.text = user["driver_departure"] as? String
+                dp_destination.text = user["driver_destination"] as? String
+                dp_time.text = user["driver_timeofdeparture"] as? String
+                if user["monday"] as? Bool == false {
+                    dp_mon.text = "Mon"
+                } else {
+                    dp_mon.text = "Mon X"
+                }
+                if user["tuesday"] as? Bool == false {
+                    dp_tue.text = "Tue"
+                } else {
+                    dp_tue.text = "Tue X"
+                }
+                if user["wednesday"] as? Bool == false {
+                    dp_wed.text = "Wed"
+                } else {
+                    dp_wed.text = "Wed X"
+                }
+                if user["thursday"] as? Bool == false {
+                    dp_thu.text = "Thu"
+                } else {
+                    dp_thu.text = "Thu X"
+                }
+                if user["friday"] as? Bool == false {
+                    dp_fri.text = "Fri"
+                } else {
+                    dp_fri.text = "Fri X"
+                }
+                if user["saturday"] as? Bool == false {
+                    dp_sat.text = "Sat"
+                } else {
+                    dp_sat.text = "Sat X"
+                }
+                if user["sunday"] as? Bool == false {
+                    dp_sun.text = "Sun"
+                } else {
+                    dp_sun.text = "Sun X"
+                }
+                break
             }
-            if user["tuesday"] as? Bool == false {
-                dp_tue.text = "Tue"
-            } else {
-                dp_tue.text = "Tue X"
-            }
-            if user["wednesday"] as? Bool == false {
-                dp_wed.text = "Wed"
-            } else {
-                dp_wed.text = "Wed X"
-            }
-            if user["thursday"] as? Bool == false {
-                dp_thu.text = "Thu"
-            } else {
-                dp_thu.text = "Thu X"
-            }
-            if user["friday"] as? Bool == false {
-                dp_fri.text = "Fri"
-            } else {
-                dp_fri.text = "Fri X"
-            }
-            if user["saturday"] as? Bool == false {
-                dp_sat.text = "Sat"
-            } else {
-                dp_sat.text = "Sat X"
-            }
-            if user["sunday"] as? Bool == false {
-                dp_sun.text = "Sun"
-            } else {
-                dp_sun.text = "Sun X"
-            }
-            break
+            tempCount+=1
         }
         dp_max.text = "\(self.max-1)"
         dp_count.text = "\(self.count+1)"
@@ -155,6 +162,7 @@ class DriverScheduleViewController : UIViewController{
             for user in users! {
                 if tempCount == count {
                     print(user["driver_departure"]!)
+                    self.current_id = user["trip_id"] as! Int
                     dp_location.text = user["driver_departure"] as? String
                     dp_destination.text = user["driver_destination"] as? String
                     dp_time.text = user["driver_timeofdeparture"] as? String
@@ -211,6 +219,7 @@ class DriverScheduleViewController : UIViewController{
             for user in users! {
                 if tempCount == count {
                     print(user["driver_departure"]!)
+                    self.current_id = user["trip_id"] as! Int
                     dp_location.text = user["driver_departure"] as? String
                     dp_destination.text = user["driver_destination"] as? String
                     dp_time.text = user["driver_timeofdeparture"] as? String

@@ -11,6 +11,7 @@ import UIKit
 
 class RideSelectViewController : UIViewController{
     
+    @IBOutlet weak var join_label: UILabel!
     
     @IBOutlet weak var rs_count: UILabel!
     @IBOutlet weak var rs_max: UILabel!
@@ -34,6 +35,7 @@ class RideSelectViewController : UIViewController{
     var arrJson:AnyObject?
     var max = 1
     var count = 0
+    var current_id = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,52 +45,53 @@ class RideSelectViewController : UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        join_button.isEnabled = false
+        print("success")
+        let url = NSURL(string: "http://localhost:8000/rideshare/get_all_planned_trips/")!
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-            print("success")
-            let url = NSURL(string: "http://localhost:8000/rideshare/get_all_planned_trips/")!
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "GET"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-                if let httpResponse = response as? HTTPURLResponse {
-                    print(httpResponse.statusCode)
-                    if(httpResponse.statusCode != 201) {
-                        print("error")
-                        return
-                    }
-                }
-                guard error == nil else {
-                    print(error!)
+        
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse {
+                print(httpResponse.statusCode)
+                if(httpResponse.statusCode != 201) {
+                    print("error")
                     return
                 }
-                guard let data = data else {
-                    print("Data is empty")
-                    return
-                }
-                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                print(json)
-                self.arrJson = json
-                print(self.arrJson!)
-                
-                
-                let users = self.arrJson as? [[String: Any]]
-                for user in users! {
-                    print(user)
-                    self.max += 1
-                }
-                print(self.max)
-                DispatchQueue.main.async(execute: self.loadDone)
-                
-                
-                //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                //let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-                //self.present(newViewController, animated: true, completion: nil)
             }
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            guard let data = data else {
+                print("Data is empty")
+                return
+            }
+            let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+            print(json)
+            self.arrJson = json
+            print(self.arrJson!)
             
-            task.resume()
+            
+            let users = self.arrJson as? [[String: Any]]
+            for user in users! {
+                print(user)
+                self.max += 1
+            }
+            print(self.max)
+            DispatchQueue.main.async(execute: self.loadDone)
+            
+            
+            //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            //let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            //self.present(newViewController, animated: true, completion: nil)
+        }
+        
+        task.resume()
+
         
         
     }
@@ -102,7 +105,10 @@ class RideSelectViewController : UIViewController{
         print("load Success")
         let users = self.arrJson as? [[String: Any]]
         for user in users! {
+            join_label.text = "Join"
+            join_button.isEnabled = true
             print(user["driver_departure"]!)
+            self.current_id = user["trip_id"] as! Int
             rs_firstname.text = user["first_name"] as? String
             rs_lastname.text = user["last_name"] as? String
             rs_location.text = user["driver_departure"] as? String
@@ -150,6 +156,8 @@ class RideSelectViewController : UIViewController{
     }
     
     @IBAction func SwipeLeft(_ sender: UISwipeGestureRecognizer) {
+        join_label.text = "Join"
+        join_button.isEnabled = true
         print("swipe left")
         if self.count+1 < max-1 {
             self.count += 1
@@ -158,6 +166,7 @@ class RideSelectViewController : UIViewController{
             for user in users! {
                 if tempCount == count {
                     print(user["driver_departure"]!)
+                    self.current_id = user["trip_id"] as! Int
                     rs_firstname.text = user["first_name"] as? String
                     rs_lastname.text = user["last_name"] as? String
                     rs_location.text = user["driver_departure"] as? String
@@ -208,6 +217,8 @@ class RideSelectViewController : UIViewController{
         
     }
     @IBAction func SwipeRight(_ sender: UISwipeGestureRecognizer) {
+        join_label.text = "Join"
+        join_button.isEnabled = true
         print("swipe right")
         if count > 0 {
             self.count -= 1
@@ -216,6 +227,7 @@ class RideSelectViewController : UIViewController{
             for user in users! {
                 if tempCount == count {
                     print(user["driver_departure"]!)
+                    self.current_id = user["trip_id"] as! Int
                     rs_firstname.text = user["first_name"] as? String
                     rs_lastname.text = user["last_name"] as? String
                     rs_location.text = user["driver_departure"] as? String
@@ -263,5 +275,57 @@ class RideSelectViewController : UIViewController{
             rs_max.text = "\(self.max-1)"
             rs_count.text = "\(self.count+1)"
         }
+    }
+    
+    
+    @IBAction func join_press(_ sender: Any) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let dict = ["email":appDelegate.user_email, "trip_id":self.current_id] as [String: Any]
+        print(dict)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
+            
+            print("success")
+            let url = NSURL(string: "http://localhost:8000/rideshare/ride_join_trip/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+                if let httpResponse = response as? HTTPURLResponse {
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 201) {
+                        print("error")
+                        return
+                    }
+                }
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                guard let data = data else {
+                    print("Data is empty")
+                    return
+                }
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
+                DispatchQueue.main.async(execute: self.joinDone)
+                //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                //let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                //self.present(newViewController, animated: true, completion: nil)
+            }
+            
+            task.resume()
+            
+            
+        }
+    }
+    
+    func joinDone() {
+        join_label.text = "Joined"
+        join_button.isEnabled = false
+        print("Joined!")
     }
 }

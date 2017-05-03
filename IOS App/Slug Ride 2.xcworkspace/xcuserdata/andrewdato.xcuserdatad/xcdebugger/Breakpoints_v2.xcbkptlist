@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slug Ride 2/DriverScheduleViewController.swift"
-            timestampString = "515471359.75095"
+            timestampString = "515481152.922542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315">
+            startingLineNumber = "324"
+            endingLineNumber = "324">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"

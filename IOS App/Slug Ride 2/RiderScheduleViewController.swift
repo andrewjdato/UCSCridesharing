@@ -11,8 +11,6 @@ import UIKit
 
 class RiderScheduleViewController : UIViewController{
     
-    
-    
     @IBOutlet weak var rp_count: UILabel!
     @IBOutlet weak var rp_max: UILabel!
     @IBOutlet weak var rp_firstname: UILabel!
@@ -33,7 +31,7 @@ class RiderScheduleViewController : UIViewController{
     var arrJson:AnyObject?
     var max = 1
     var count = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
@@ -99,6 +97,9 @@ class RiderScheduleViewController : UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
+
+        
+        
     }
     
     
