@@ -47,7 +47,7 @@ class RideSelectViewController : UIViewController{
         self.navigationController?.isNavigationBarHidden = false
         join_button.isEnabled = false
         print("success")
-        let url = NSURL(string: "http://localhost:8000/rideshare/get_all_planned_trips/")!
+        let url = NSURL(string: "http://138.68.252.198:8000/rideshare/get_all_planned_trips/")!
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -286,7 +286,7 @@ class RideSelectViewController : UIViewController{
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
             
             print("success")
-            let url = NSURL(string: "http://localhost:8000/rideshare/ride_join_trip/")!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/ride_join_trip/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -30,8 +30,8 @@ class LoginViewController : UIViewController{
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         
-        username_input.text = "adato@ucsc.edu"
-        password_input.text = "Anjod123"
+        username_input.text = "od1@ucsc.edu"
+        password_input.text = "od1"
         
         /*
         let preferences = UserDefaults.standard
@@ -76,10 +76,11 @@ class LoginViewController : UIViewController{
     {
         //let session = URLSession.shared
         let dict = ["email":username, "password":password] as [String: Any]
+        print(dict)
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
             
-            
-            let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
+            print(jsonData)
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -105,6 +106,7 @@ class LoginViewController : UIViewController{
                 
                 
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
                 if let userEmail = json["email"] as AnyObject? {
                     guard let b = userEmail as? String
                         else {

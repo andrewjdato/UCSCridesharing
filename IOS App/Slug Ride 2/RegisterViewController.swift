@@ -49,7 +49,7 @@ class RegisterViewController : UIViewController{
     {
         let dict = ["first_name":firstname, "last_name":lastname, "email":email, "password":password] as [String: Any]
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
-            let url = NSURL(string: "http://localhost:8000/rideshare/user_registration/")!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_registration/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
