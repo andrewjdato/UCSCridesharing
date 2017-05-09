@@ -15,6 +15,7 @@ import Alamofire
 enum Location {
     case startLocation
     case destinationLocation
+    case wptLocation
 }
 
 class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate ,  CLLocationManagerDelegate {
@@ -22,6 +23,8 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     @IBOutlet weak var googleMaps: GMSMapView!
     @IBOutlet weak var startLocation: UITextField!
     @IBOutlet weak var destinationLocation: UITextField!
+    @IBOutlet weak var wptLocation: UITextField!
+    
     
     
     var locationManager = CLLocationManager()
@@ -29,6 +32,8 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     var locationStart = CLLocation()
     var locationEnd = CLLocation()
+    var locationWaypoint = CLLocation()
+    var isthereaWpt = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,13 +124,14 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     //MARK: - this is function for create direction path, from start location to desination location
     
-    func drawPath(startLocation: CLLocation, endLocation: CLLocation)
+    func drawPath(startLocation: CLLocation, endLocation: CLLocation, waypoints: CLLocation)
     {
         let origin = "\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)"
         let destination = "\(endLocation.coordinate.latitude),\(endLocation.coordinate.longitude)"
+        let wpt = "\(waypoints.coordinate.latitude),\(waypoints.coordinate.longitude)"
         
         
-        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
         
         Alamofire.request(url).responseJSON { response in
             
@@ -137,6 +143,10 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
             
+            //let distance = startLocation.distance(from: endLocation)
+            //let distance = startLocation.
+            
+            
             // print route using Polyline
             for route in routes
             {
@@ -144,6 +154,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 let points = routeOverviewPolyline?["points"]?.stringValue
                 let path = GMSPath.init(fromEncodedPath: points!)
                 let polyline = GMSPolyline.init(path: path)
+                
                 polyline.strokeWidth = 4
                 polyline.strokeColor = UIColor.red
                 polyline.map = self.googleMaps
@@ -151,6 +162,9 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
             
         }
     }
+    
+    
+    
     
     // MARK: when start location tap, this will open the search location
     @IBAction func openStartLocation(_ sender: UIButton) {
@@ -185,10 +199,30 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     }
     
     
+    @IBAction func wptButton(_ sender: UIButton) {
+        isthereaWpt = true
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
+        
+        locationSelected = .wptLocation
+        
+        UISearchBar.appearance().setTextColor(color: UIColor.black)
+        self.locationManager.stopUpdatingLocation()
+        
+        self.present(autoCompleteController, animated: true, completion:nil)
+        
+        
+    }
+    
+    
     // MARK: SHOW DIRECTION WITH BUTTON
     @IBAction func showDirection(_ sender: UIButton) {
+        
+        
         // when button direction tapped, must call drawpath func
-        self.drawPath(startLocation: locationStart, endLocation: locationEnd)
+        self.drawPath(startLocation: locationStart, endLocation: locationEnd,waypoints: locationWaypoint)
+       
+        
     }
     
 }
@@ -211,10 +245,14 @@ extension DriverOnDemandSubmitViewController: GMSAutocompleteViewControllerDeleg
             startLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
             locationStart = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             createMarker(titleMarker: "Location Start", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-        } else {
+        } else if locationSelected == .destinationLocation {
             destinationLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
             locationEnd = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             createMarker(titleMarker: "Location End", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        } else if locationSelected == .wptLocation{
+            wptLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            locationWaypoint = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            createMarker(titleMarker: "Waypoint", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         }
         
         
@@ -239,7 +277,7 @@ extension DriverOnDemandSubmitViewController: GMSAutocompleteViewControllerDeleg
 
 public extension UISearchBar {
     
-    public func setTextColor(color: UIColor) {
+    public func setTextColor00(color: UIColor) {
         let svs = subviews.flatMap { $0.subviews }
         guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return }
         tf.textColor = color
