@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var user_firstname:String = "temp"
     var user_lastname:String = "temp"
     var rd_tripid:Int = 0
+    var rider_dayChecker  = [Bool]()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         GMSServices.provideAPIKey("AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM")

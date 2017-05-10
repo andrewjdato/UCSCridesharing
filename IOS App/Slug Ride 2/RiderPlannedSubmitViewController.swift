@@ -200,8 +200,7 @@ class RiderPlannedSubmitViewController : UIViewController{
         
     }
     
-    func submitDone()
-    {
+    func submitDone() {
         rp_time.isEnabled = false
         rp_destination.isEnabled = false
         rp_location.isEnabled = false
@@ -216,6 +215,18 @@ class RiderPlannedSubmitViewController : UIViewController{
         saturday_button.isEnabled  = false
         sunday_button.isEnabled  = false
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        while !appDelegate.rider_dayChecker.isEmpty {
+            appDelegate.rider_dayChecker.remove(at: 0)
+        }
+        appDelegate.rider_dayChecker.append(self.monday)
+        appDelegate.rider_dayChecker.append(self.tuesday)
+        appDelegate.rider_dayChecker.append(self.wednesday)
+        appDelegate.rider_dayChecker.append(self.thursday)
+        appDelegate.rider_dayChecker.append(self.friday)
+        appDelegate.rider_dayChecker.append(self.saturday)
+        appDelegate.rider_dayChecker.append(self.sunday)
+        print(appDelegate.rider_dayChecker)
         
         submit_button.setTitle("Submitted", for: .normal)
     }
