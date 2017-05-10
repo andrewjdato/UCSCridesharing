@@ -223,13 +223,17 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     @IBAction func driverPostRide(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let dict = ["driver_email":appDelegate.user_email,"driver_departure": locationStart,"driver_destination": locationEnd] as [String: Any]
+        
+        
+//        let dict = ["driver_email":appDelegate.user_email,"driver_departure": locationStart,"driver_destination": locationEnd] as [String: Any]
+        
+        let dict = ["driver_email":appDelegate.user_email,"driver_departure": "place1","driver_destination": ""] as [String: Any]
         print(dict)
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
             print("success")
             //SUBJECT TO URL CHANGE!!!!!
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/new_planned_trip/")!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/driver_ondemand_change/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -253,8 +257,6 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                     print("data is empty")
                     return
                 }
-                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                print(json)
                 
             }
             task.resume()

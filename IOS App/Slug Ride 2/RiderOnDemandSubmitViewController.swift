@@ -24,15 +24,26 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var wptLocation: UITextField!
     
+    var timer = Timer()
+    
     
     
     var locationManager = CLLocationManager()
     var locationSelected = Location.startLocation
     
+    var arrJson:AnyObject?
+    
+    
+    //var for current user data
     var locationStart = CLLocation()
     var locationEnd = CLLocation()
     var locationWaypoint = CLLocation()
     var isthereaWpt = false;
+    
+    //var for driver received data
+    var driverLocationStart = CLLocation()
+    var driverLocationEnd = CLLocation()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -222,13 +233,13 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     @IBAction func riderPostRide(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let dict = ["rider_email":appDelegate.user_email,"rider_departure": locationStart,"rider_destination": locationEnd] as [String: Any]
+        let dict = ["rider_email":appDelegate.user_email,"rider_departure": "place3","rider_destination": "place4"] as [String: Any]
         print(dict)
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
         print("success")
             //SUBJECT TO URL CHANGE!!!!!
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/new_planned_trip/")!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_ondemand/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -256,6 +267,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 print(json)
                 
             }
+            timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
             task.resume()
             
             
@@ -263,6 +275,116 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         }
         
     }
+    
+    
+    //function that receives driver data once ride has been posted
+    func pollforDrivers(_ sender: Any){
+        print("Server Poll")
+        let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_getdrivers_ondemand/")!
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse {
+                print(httpResponse.statusCode)
+                if(httpResponse.statusCode != 201) {
+                    print("error")
+                    
+                    
+                    //Alert Handler for when Driver is found
+                    let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: nil))
+                    alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    return
+                }
+            }
+            guard error == nil else {
+                print("no info")
+                return
+            }
+            
+            
+            //if data is recieved then the data must be decoded into driver email, departure
+            //and destination
+            //this must be put into var's and rider must be able to request the driver
+            guard let data = data else {
+                print("Data is empty")
+                return
+            }
+            let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+            print(json)
+            self.arrJson = json
+            print(self.arrJson!)
+            
+            
+            let users = self.arrJson as? [[String: Any]]
+            for user in users! {
+                print(user)
+               
+            }
+            
+            
+            
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    
+    //function for when driver is to be requested by rider
+    func requestDriver(_ sender: Any){
+         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let dict = ["rider_email":appDelegate.user_email,"driver_email": "driver email goes here","rider_departure": "place3","rider_destination": "place4"] as [String: Any]
+        print(dict)
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+            print("success")
+            //SUBJECT TO URL CHANGE!!!!!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_request_driver/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 201){
+                        print("error")
+                        return
+                    }
+                }
+                
+                guard error == nil else{
+                    print(error!)
+                    return
+                }
+                guard let data = data else{
+                    print("data is empty")
+                    return
+                }
+                
+            }
+            task.resume()
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
     
     // MARK: SHOW DIRECTION WITH BUTTON
     @IBAction func showDirection(_ sender: UIButton) {
