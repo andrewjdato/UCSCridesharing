@@ -2231,21 +2231,14 @@
                                     <action selector="showDirection:" destination="xeg-Fk-xWD" eventType="touchUpInside" id="Mah-w5-9sy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UmC-T3-en3">
-                                <rect key="frame" x="16" y="574" width="117" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk9-Ab-Zcb">
+                                <rect key="frame" x="11" y="577" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Waypoint Button"/>
+                                <state key="normal" title="Post Ride"/>
                                 <connections>
-                                    <action selector="wptButton:" destination="xeg-Fk-xWD" eventType="touchUpInside" id="PrD-MO-N0N"/>
+                                    <action selector="driverPostRide:" destination="xeg-Fk-xWD" eventType="touchUpInside" id="76I-SB-r5V"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m88-Ru-5gw" userLabel="Waypoint Location">
-                                <rect key="frame" x="175" y="576" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -2280,8 +2273,8 @@
                     <connections>
                         <outlet property="destinationLocation" destination="By2-mG-kgC" id="3nh-4w-VVk"/>
                         <outlet property="googleMaps" destination="a6N-Sf-PVf" id="OMg-Jx-x3D"/>
+                        <outlet property="postButton" destination="Dk9-Ab-Zcb" id="LP7-KM-YwF"/>
                         <outlet property="startLocation" destination="p1C-9L-vjE" id="GsR-QD-63E"/>
-                        <outlet property="wptLocation" destination="m88-Ru-5gw" id="eiG-AU-lnP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diV-zj-mV3" sceneMemberID="firstResponder"/>
@@ -2326,8 +2319,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqn-Ez-qJ2">
-                                <rect key="frame" x="20" y="498" width="335" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqn-Ez-qJ2">
+                                <rect key="frame" x="20" y="498" width="244" height="35"/>
                                 <connections>
                                     <action selector="openDestinationLocation:" destination="FZA-fj-pwb" eventType="touchUpInside" id="Vl2-uk-lSb"/>
                                 </connections>
@@ -2345,19 +2338,12 @@
                                     <action selector="showDirection:" destination="FZA-fj-pwb" eventType="touchUpInside" id="OTn-H3-9uG"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kmq-GF-KXb" userLabel="Waypoint Location">
-                                <rect key="frame" x="171" y="553" width="169" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVQ-yE-zd1">
+                                <rect key="frame" x="16" y="582" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sa8-os-31W">
-                                <rect key="frame" x="20" y="553" width="117" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Waypoint Button"/>
+                                <state key="normal" title="Post Ride"/>
                                 <connections>
-                                    <action selector="wptButton:" destination="FZA-fj-pwb" eventType="touchUpInside" id="gCv-OC-aIH"/>
+                                    <action selector="riderPostRide:" destination="FZA-fj-pwb" eventType="touchUpInside" id="EaR-Wd-On9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2396,13 +2382,13 @@
                     <connections>
                         <outlet property="destinationLocation" destination="o4D-Uj-h7Z" id="S28-p3-GCi"/>
                         <outlet property="googleMaps" destination="cvJ-ta-eg8" id="ftG-kU-0ll"/>
+                        <outlet property="postButton" destination="FVQ-yE-zd1" id="TxS-UU-Khw"/>
                         <outlet property="startLocation" destination="DmP-rR-aVM" id="aNJ-XY-DHR"/>
-                        <outlet property="wptLocation" destination="Kmq-GF-KXb" id="P54-xd-aeK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnj-zM-Eq9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5906" y="851"/>
+            <point key="canvasLocation" x="5904.8000000000002" y="850.52473763118451"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

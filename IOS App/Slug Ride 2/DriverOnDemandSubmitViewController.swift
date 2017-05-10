@@ -26,6 +26,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     @IBOutlet weak var wptLocation: UITextField!
     
     
+    @IBOutlet weak var postButton: UIButton!
     
     var locationManager = CLLocationManager()
     var locationSelected = Location.startLocation
@@ -37,6 +38,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.postButton.isHidden = true
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -130,8 +132,12 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         let destination = "\(endLocation.coordinate.latitude),\(endLocation.coordinate.longitude)"
         let wpt = "\(waypoints.coordinate.latitude),\(waypoints.coordinate.longitude)"
         
+        //url for waypoints
+//        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
         
-        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+        
+        
         
         Alamofire.request(url).responseJSON { response in
             
@@ -198,26 +204,72 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         self.present(autoCompleteController, animated: true, completion: nil)
     }
     
+    //waypoints button
+//    @IBAction func wptButton(_ sender: UIButton) {
+//        isthereaWpt = true
+//        let autoCompleteController = GMSAutocompleteViewController()
+//        autoCompleteController.delegate = self
+//        
+//        locationSelected = .wptLocation
+//        
+//        UISearchBar.appearance().setTextColor(color: UIColor.black)
+//        self.locationManager.stopUpdatingLocation()
+//        
+//        self.present(autoCompleteController, animated: true, completion:nil)
+//        
+//        
+//    }
     
-    @IBAction func wptButton(_ sender: UIButton) {
-        isthereaWpt = true
-        let autoCompleteController = GMSAutocompleteViewController()
-        autoCompleteController.delegate = self
+    @IBAction func driverPostRide(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        locationSelected = .wptLocation
+        let dict = ["driver_email":appDelegate.user_email,"driver_departure": locationStart,"driver_destination": locationEnd] as [String: Any]
+        print(dict)
         
-        UISearchBar.appearance().setTextColor(color: UIColor.black)
-        self.locationManager.stopUpdatingLocation()
-        
-        self.present(autoCompleteController, animated: true, completion:nil)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+            print("success")
+            //SUBJECT TO URL CHANGE!!!!!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/new_planned_trip/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 201){
+                        print("error")
+                        return
+                    }
+                }
+                
+                guard error == nil else{
+                    print(error!)
+                    return
+                }
+                guard let data = data else{
+                    print("data is empty")
+                    return
+                }
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
+                
+            }
+            task.resume()
+            
+            
+            
+        }
+
         
         
     }
     
-    
     // MARK: SHOW DIRECTION WITH BUTTON
     @IBAction func showDirection(_ sender: UIButton) {
-        
+        self.postButton.isHidden = false
         
         // when button direction tapped, must call drawpath func
         self.drawPath(startLocation: locationStart, endLocation: locationEnd,waypoints: locationWaypoint)
