@@ -31,6 +31,8 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     var locationManager = CLLocationManager()
     var locationSelected = Location.startLocation
     
+    var timer = Timer()
+    
     var locationStart = CLLocation()
     var locationEnd = CLLocation()
     var locationWaypoint = CLLocation()
@@ -259,6 +261,9 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 }
                 
             }
+            
+            //polls for requests at an interval of 20 seconds
+            timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
             task.resume()
             
             
@@ -267,6 +272,59 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
 
         
         
+    }
+    
+    func pollforRequests(_ sender: Any){
+        print("Server Poll")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        
+        
+        //        let dict = ["driver_email":appDelegate.user_email,"driver_departure": locationStart,"driver_destination": locationEnd] as [String: Any]
+        
+        let dict = ["driver_email":appDelegate.user_email] as [String: Any]
+        print(dict)
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+            print("success")
+            //SUBJECT TO URL CHANGE!!!!!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/driver_ondemand_get_rider/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 200){
+                        print("error")
+                        return
+                    }
+                }
+                
+                guard error == nil else{
+                    print(error!)
+                    return
+                }
+                guard let data = data else{
+                    print("data is empty")
+                    return
+                }
+                
+                //gets request if there is one, along with info in order to get rider coordinates
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
+                
+            }
+            task.resume()
+            
+            
+            
+        }
+
+    
     }
     
     // MARK: SHOW DIRECTION WITH BUTTON
