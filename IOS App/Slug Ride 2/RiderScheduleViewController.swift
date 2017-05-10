@@ -138,37 +138,37 @@ class RiderScheduleViewController : UIViewController{
                 if user["monday"] as? Bool == false {
                     rp_mon.text = "Mon"
                 } else {
-                    rp_mon.text = "Mon X"
+                    rp_mon.text = "MonX"
                 }
                 if user["tuesday"] as? Bool == false {
                     rp_tue.text = "Tue"
                 } else {
-                    rp_tue.text = "Tue X"
+                    rp_tue.text = "TueX"
                 }
                 if user["wednesday"] as? Bool == false {
                     rp_wed.text = "Wed"
                 } else {
-                    rp_wed.text = "Wed X"
+                    rp_wed.text = "WedX"
                 }
                 if user["thursday"] as? Bool == false {
                     rp_thu.text = "Thu"
                 } else {
-                    rp_thu.text = "Thu X"
+                    rp_thu.text = "ThuX"
                 }
                 if user["friday"] as? Bool == false {
                     rp_fri.text = "Fri"
                 } else {
-                    rp_fri.text = "Fri X"
+                    rp_fri.text = "FriX"
                 }
                 if user["saturday"] as? Bool == false {
                     rp_sat.text = "Sat"
                 } else {
-                    rp_sat.text = "Sat X"
+                    rp_sat.text = "SatX"
                 }
                 if user["sunday"] as? Bool == false {
                     rp_sun.text = "Sun"
                 } else {
-                    rp_sun.text = "Sun X"
+                    rp_sun.text = "SunX"
                 }
                 break
             }

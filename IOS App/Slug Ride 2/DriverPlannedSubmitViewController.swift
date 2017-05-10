@@ -8,9 +8,18 @@
 
 import Foundation
 import UIKit
+import GoogleMaps
+import GooglePlaces
+import SwiftyJSON
+import Alamofire
 
-class DriverPlannedSubmitViewController : UIViewController{
+class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,  CLLocationManagerDelegate{
     
+
+    @IBOutlet weak var startloc_label: UILabel!
+    @IBOutlet weak var destLoc_label: UILabel!
+    @IBOutlet weak var startloc_button: UIButton!
+    @IBOutlet weak var destloc_button: UIButton!
     @IBOutlet weak var submit_button: UIButton!
     
     @IBOutlet weak var dp_location: UITextField!
@@ -43,8 +52,13 @@ class DriverPlannedSubmitViewController : UIViewController{
     var saturday: Bool = false
     var sunday: Bool = false
     
+    var locationManager = CLLocationManager()
+    var locationSelected = Location.startLocation
+    
+    
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         monday_label.text = "Mon   "
@@ -54,6 +68,13 @@ class DriverPlannedSubmitViewController : UIViewController{
         friday_label.text = "Fri   "
         saturday_label.text = "Sat   "
         sunday_label.text = "Sun   "
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
         
     }
     
@@ -232,4 +253,88 @@ class DriverPlannedSubmitViewController : UIViewController{
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
+
+    @IBAction func openStartLocation(_ sender: UIButton) {
+        
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
+        
+        // selected location
+        locationSelected = .startLocation
+        
+        // Change text color
+        UISearchBar.appearance().setTextColor(color: UIColor.black)
+        self.locationManager.stopUpdatingLocation()
+        
+        self.present(autoCompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func openDestinationLocation(_ sender: UIButton) {
+        
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
+        
+        // selected location
+        locationSelected = .destinationLocation
+        
+        // Change text color
+        UISearchBar.appearance().setTextColor(color: UIColor.black)
+        self.locationManager.stopUpdatingLocation()
+        
+        self.present(autoCompleteController, animated: true, completion: nil)
+    }
+
 }
+
+
+// MARK: - GMS Auto Complete Delegate, for autocomplete search location
+extension DriverPlannedSubmitViewController : GMSAutocompleteViewControllerDelegate {
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error \(error)")
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+        // Change map location
+        //let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 16.0
+        //)
+        
+        // set coordinate to text
+        if locationSelected == .startLocation {
+            destLoc_label.text = place.name
+            //locationStart = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            //createMarker(titleMarker: "Location Start", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        } else if locationSelected == .destinationLocation {
+            startloc_label.text = place.name
+            //destinationLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            //locationEnd = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            //createMarker(titleMarker: "Location End", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        } else if locationSelected == .wptLocation{
+            //wptLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            //locationWaypoint = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            //createMarker(titleMarker: "Waypoint", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        }
+        
+        
+        //self.googleMaps.camera = camera
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+}
+
+
+

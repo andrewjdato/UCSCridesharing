@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C6B740A8AC5CB0E2603C36F549DF4A5"
-               BuildableName = "Pods_Slug_Ride_2.framework"
-               BlueprintName = "Pods-Slug Ride 2"
+               BlueprintIdentifier = "D82432A8B6F8DD4EE7EF779662BB6361"
+               BuildableName = "ObjectMapper.framework"
+               BlueprintName = "ObjectMapper"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4C6B740A8AC5CB0E2603C36F549DF4A5"
-            BuildableName = "Pods_Slug_Ride_2.framework"
-            BlueprintName = "Pods-Slug Ride 2"
+            BlueprintIdentifier = "D82432A8B6F8DD4EE7EF779662BB6361"
+            BuildableName = "ObjectMapper.framework"
+            BlueprintName = "ObjectMapper"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4C6B740A8AC5CB0E2603C36F549DF4A5"
-            BuildableName = "Pods_Slug_Ride_2.framework"
-            BlueprintName = "Pods-Slug Ride 2"
+            BlueprintIdentifier = "D82432A8B6F8DD4EE7EF779662BB6361"
+            BuildableName = "ObjectMapper.framework"
+            BlueprintName = "ObjectMapper"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

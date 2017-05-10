@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rider_dayChecker  = [Bool]()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        IQKeyboardManager.sharedManager().enable = true
         GMSServices.provideAPIKey("AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM")
         GMSPlacesClient.provideAPIKey("AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM")
         // Override point for customization after application launch.
