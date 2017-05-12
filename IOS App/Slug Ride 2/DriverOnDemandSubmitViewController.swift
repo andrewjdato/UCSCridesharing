@@ -337,6 +337,16 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
 }
 
 // MARK: - GMS Auto Complete Delegate, for autocomplete search location

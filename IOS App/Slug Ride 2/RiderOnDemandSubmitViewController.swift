@@ -44,6 +44,15 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     var driverLocationStart = CLLocation()
     var driverLocationEnd = CLLocation()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -273,6 +282,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             
         
         }
+    
         
     }
     

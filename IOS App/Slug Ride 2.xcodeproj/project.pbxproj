@@ -25,6 +25,7 @@
 		58B53E491EAEBCE800060707 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E481EAEBCE800060707 /* SystemConfiguration.framework */; };
 		58B53E4B1EAEBCEF00060707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E4A1EAEBCEF00060707 /* UIKit.framework */; };
 		58B83E871EBA47E7000CFF57 /* Google Direction-07674dbf8433 in Resources */ = {isa = PBXBuildFile; fileRef = 58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */; };
+		58B83E8C1EC58415000CFF57 /* slugridevid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */; };
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
@@ -107,6 +108,7 @@
 		58B53E481EAEBCE800060707 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		58B53E4A1EAEBCEF00060707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Google Direction-07674dbf8433"; sourceTree = "<group>"; };
+		58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = slugridevid.mp4; sourceTree = "<group>"; };
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		9BAA30B91EA730C0003A5B54 /* Slug Ride 2 */ = {
 			isa = PBXGroup;
 			children = (
+				58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */,
 				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
 				9BAA30BC1EA730C0003A5B54 /* ViewController.swift */,
@@ -489,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B83E8C1EC58415000CFF57 /* slugridevid.mp4 in Resources */,
 				9BAA30C51EA730C0003A5B54 /* LaunchScreen.storyboard in Resources */,
 				9BAA30C01EA730C0003A5B54 /* Main.storyboard in Resources */,
 				58B53E2F1EAEB9E500060707 /* GoogleMaps.bundle in Resources */,
