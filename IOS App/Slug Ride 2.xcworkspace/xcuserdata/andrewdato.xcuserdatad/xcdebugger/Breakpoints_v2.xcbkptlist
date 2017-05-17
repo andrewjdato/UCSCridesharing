@@ -49,5 +49,83 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slug Ride 2/DriverPlannedSubmitViewController.swift"
+            timestampString = "516681525.898333"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "DriverPlannedSubmitViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Slug_Ride_2.DriverPlannedSubmitViewController.friday.getter : Swift.Bool"
+                  moduleName = "Slug Ride 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewdato/Documents/UCSCridesharing/IOS%20App/Slug%20Ride%202/DriverPlannedSubmitViewController.swift"
+                  timestampString = "516679251.76136"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Slug_Ride_2.DriverPlannedSubmitViewController.friday.setter : Swift.Bool"
+                  moduleName = "Slug Ride 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewdato/Documents/UCSCridesharing/IOS%20App/Slug%20Ride%202/DriverPlannedSubmitViewController.swift"
+                  timestampString = "516679251.762972"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Slug_Ride_2.DriverPlannedSubmitViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Slug_Ride_2.DriverPlannedSubmitViewController"
+                  moduleName = "Slug Ride 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewdato/Documents/UCSCridesharing/IOS%20App/Slug%20Ride%202/DriverPlannedSubmitViewController.swift"
+                  timestampString = "516679251.764432"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "880">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Slug_Ride_2.DriverPlannedSubmitViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Slug_Ride_2.DriverPlannedSubmitViewController&gt;"
+                  moduleName = "Slug Ride 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewdato/Documents/UCSCridesharing/IOS%20App/Slug%20Ride%202/DriverPlannedSubmitViewController.swift"
+                  timestampString = "516679251.765893"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "788">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

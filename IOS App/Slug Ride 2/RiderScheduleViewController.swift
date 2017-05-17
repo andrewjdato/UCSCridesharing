@@ -129,12 +129,12 @@ class RiderScheduleViewController : UIViewController{
         let users = self.arrJson as? [[String: Any]]
         for user in users! {
             if tempCount == count {
-                print(user["driver_location"]!)
+                //print(user["driver_location"]!)
                 rp_firstname.text = user["first_name"] as? String
                 rp_lastname.text = user["last_name"] as? String
-                rp_location.text = user["driver_location"] as? String
-                rp_destination.text = user["driver_destination"] as? String
-                rp_time.text = user["driver_timeofdeparture"] as? String
+                //rp_location.text = user["driver_location"] as? String
+                //rp_destination.text = user["driver_destination"] as? String
+                //rp_time.text = user["driver_timeofdeparture"] as? String
                 if user["monday"] as? Bool == false {
                     rp_mon.text = "Mon"
                 } else {

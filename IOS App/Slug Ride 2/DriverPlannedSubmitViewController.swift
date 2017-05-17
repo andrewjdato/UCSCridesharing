@@ -13,7 +13,7 @@ import GooglePlaces
 import SwiftyJSON
 import Alamofire
 
-class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,  CLLocationManagerDelegate{
+class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,  CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     
 
     @IBOutlet weak var startloc_label: UILabel!
@@ -21,28 +21,21 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
     @IBOutlet weak var startloc_button: UIButton!
     @IBOutlet weak var destloc_button: UIButton!
     @IBOutlet weak var submit_button: UIButton!
-    
-    @IBOutlet weak var dp_location: UITextField!
-    @IBOutlet weak var dp_destination: UITextField!
-    @IBOutlet weak var dp_time: UITextField!
-  
-    @IBOutlet weak var monday_button: UIButton!
-    @IBOutlet weak var tuesday_button: UIButton!
-    @IBOutlet weak var wednesday_button: UIButton!
-    @IBOutlet weak var thursday_button: UIButton!
-    @IBOutlet weak var friday_button: UIButton!
-    @IBOutlet weak var saturday_button: UIButton!
-    @IBOutlet weak var sunday_button: UIButton!
+
+    @IBOutlet weak var mon_switch: UISwitch!
+    @IBOutlet weak var tue_switch: UISwitch!
+    @IBOutlet weak var wed_switch: UISwitch!
+    @IBOutlet weak var thu_switch: UISwitch!
+    @IBOutlet weak var fri_switch: UISwitch!
+    @IBOutlet weak var sat_switch: UISwitch!
+    @IBOutlet weak var sun_switch: UISwitch!
+
     
     
+    let hour = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
     
-    @IBOutlet weak var monday_label: UILabel!
-    @IBOutlet weak var tueday_label: UILabel!
-    @IBOutlet weak var wednesday_label: UILabel!
-    @IBOutlet weak var thursday_label: UILabel!
-    @IBOutlet weak var friday_label: UILabel!
-    @IBOutlet weak var saturday_label: UILabel!
-    @IBOutlet weak var sunday_label: UILabel!
+    let minute = [00,05,10,15,20,25,30,35,40,45,50,55]
+    
     
     var monday: Bool = false
     var tuesday: Bool = false
@@ -51,23 +44,48 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
     var friday: Bool = false
     var saturday: Bool = false
     var sunday: Bool = false
+    var selhour: Int = 0
+    var selminute: Int = 0
+    
+    @IBOutlet weak var hourPicker: UIPickerView!
+    @IBOutlet weak var minutePicker: UIPickerView!
     
     var locationManager = CLLocationManager()
     var locationSelected = Location.startLocation
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == hourPicker {
+            return "\(self.hour[row])"
+        } else {
+            return "\(self.minute[row])"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == hourPicker {
+            return self.hour.count
+        } else {
+            return self.minute.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == hourPicker {
+            self.selhour = self.hour[row]
+        } else {
+            self.selminute = self.minute[row]
+        }
+    }
     
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        monday_label.text = "Mon   "
-        tueday_label.text = "Tue   "
-        wednesday_label.text = "Wed   "
-        thursday_label.text = "Thu   "
-        friday_label.text = "Fri   "
-        saturday_label.text = "Sat   "
-        sunday_label.text = "Sun   "
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -78,71 +96,63 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
         
     }
     
-    @IBAction func monday_press(_ sender: Any) {
-        if self.monday == false {
-            monday_label.text = "Mon  X"
+    @IBAction func mon_flip(_ sender: UISwitch) {
+        
+        if sender.isOn == true {
             self.monday = true
         } else {
-            monday_label.text = "Mon   "
             self.monday = false
         }
     }
-    @IBAction func tueday_press(_ sender: Any) {
-        if self.tuesday == false {
-            tueday_label.text = "Tue   X"
+
+    @IBAction func tue_flip(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.tuesday = true
         } else {
-            tueday_label.text = "Tue   "
             self.tuesday = false
         }
     }
-    @IBAction func wednesday_press(_ sender: Any) {
-        if self.wednesday == false {
-            wednesday_label.text = "Wed  X"
+    
+    @IBAction func wed_flip(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.wednesday = true
         } else {
-            wednesday_label.text = "Wed   "
             self.wednesday = false
         }
     }
-
-    @IBAction func thursday_press(_ sender: Any) {
-        if self.thursday == false {
-            thursday_label.text = "Thu   X"
+    
+    @IBAction func thu_flip(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.thursday = true
         } else {
-            thursday_label.text = "Thu   "
             self.thursday = false
         }
     }
-    @IBAction func friday_press(_ sender: Any) {
-        if self.friday == false {
-            friday_label.text = "Fri     X"
+    
+    @IBAction func fri_flip(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.friday = true
         } else {
-            friday_label.text = "Fri   "
             self.friday = false
         }
     }
-    @IBAction func saturday_press(_ sender: Any) {
-        if self.saturday == false {
-            saturday_label.text = "Sat    X"
+    
+    @IBAction func sat_flip(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.saturday = true
         } else {
-            saturday_label.text = "Sat   "
             self.saturday = false
         }
     }
-    @IBAction func sunday_press(_ sender: Any) {
-        if self.sunday == false {
-            sunday_label.text = "Sun   X"
+    
+    
+    @IBAction func sun_flip(_ sender: UISwitch) {
+        if sender.isOn == true {
             self.sunday = true
         } else {
-            sunday_label.text = "Sun   "
             self.sunday = false
         }
     }
-    
     
     @IBAction func submit_press(_ sender: Any) {
         if  self.monday == false &&
@@ -154,20 +164,8 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
             self.sunday == false  {
                 print("Pick a Day")
                 return
-        } else if let text = dp_location.text, text.isEmpty  {
-            print("Insert a Location")
-            return
-        } else if let text = dp_destination.text, text.isEmpty  {
-            print("Insert a Destination")
-            return
-        } else if let text = dp_time.text, text.isEmpty  {
-            print("Insert a Time")
-            return
-        } else {
+        }  else {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let loc:String = self.dp_location.text!
-            let des:String = self.dp_destination.text!
-            let time:String = self.dp_time.text!
             let mon:Bool = self.monday
             let tue:Bool = self.tuesday
             let wed:Bool = self.wednesday
@@ -176,8 +174,7 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
             let sat:Bool = self.saturday
             let sun:Bool = self.sunday
             //let session = URLSession.shared
-            let dict = ["driver_email":appDelegate.user_email, "driver_departure":loc, "driver_destination":des,
-                        "driver_timeofdeparture":time, "monday":mon, "tuesday":tue, "wednesday":wed,
+            let dict = ["driver_email":appDelegate.user_email, "monday":mon, "tuesday":tue, "wednesday":wed,
                         "thursday":thu, "friday":fri, "saturday":sat, "sunday":sun] as [String: Any]
             print(dict)
             if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
@@ -226,19 +223,10 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
     
     func submitDone()
     {
-        dp_time.isEnabled = false
-        dp_destination.isEnabled = false
-        dp_location.isEnabled = false
+
         
         submit_button.isEnabled = false
-        
-        monday_button.isEnabled  = false
-        tuesday_button.isEnabled  = false
-        wednesday_button.isEnabled  = false
-        thursday_button.isEnabled  = false
-        friday_button.isEnabled  = false
-        saturday_button.isEnabled  = false
-        sunday_button.isEnabled  = false
+
         
         
         submit_button.setTitle("Submitted", for: .normal)
