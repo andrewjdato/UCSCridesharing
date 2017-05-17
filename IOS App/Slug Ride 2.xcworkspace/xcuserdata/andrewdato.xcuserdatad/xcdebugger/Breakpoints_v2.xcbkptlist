@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slug Ride 2/DriverPlannedSubmitViewController.swift"
-            timestampString = "516681525.898333"
+            timestampString = "516690880.259707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "DriverPlannedSubmitViewController"
             landmarkType = "3">
             <Locations>

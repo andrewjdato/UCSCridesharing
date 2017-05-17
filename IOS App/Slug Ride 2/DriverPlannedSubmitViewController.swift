@@ -16,8 +16,9 @@ import Alamofire
 class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,  CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     
 
-    @IBOutlet weak var startloc_label: UILabel!
-    @IBOutlet weak var destLoc_label: UILabel!
+
+    @IBOutlet weak var startLoc: UILabel!
+    @IBOutlet weak var destLoc: UILabel!
     @IBOutlet weak var startloc_button: UIButton!
     @IBOutlet weak var destloc_button: UIButton!
     @IBOutlet weak var submit_button: UIButton!
@@ -46,6 +47,10 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
     var sunday: Bool = false
     var selhour: Int = 0
     var selminute: Int = 0
+    var startLong : Double = 0
+    var startLat : Double = 0
+    var endLong : Double = 0
+    var endLat : Double = 0
     
     @IBOutlet weak var hourPicker: UIPickerView!
     @IBOutlet weak var minutePicker: UIPickerView!
@@ -57,14 +62,6 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == hourPicker {
-            return "\(self.hour[row])"
-        } else {
-            return "\(self.minute[row])"
-        }
-    }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == hourPicker {
             return self.hour.count
@@ -73,10 +70,23 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
         }
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == hourPicker {
+            return "\(self.hour[row]) : "
+        } else {
+            if self.minute[row] < 10 {
+                return "0\(self.minute[row])"
+            } else {
+                return "\(self.minute[row])"
+            }
+        }
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == hourPicker {
             self.selhour = self.hour[row]
         } else {
+            
             self.selminute = self.minute[row]
         }
     }
@@ -86,6 +96,19 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
 
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        
+        hourPicker.delegate = self
+        hourPicker.dataSource = self
+        minutePicker.delegate = self
+        minutePicker.dataSource = self
+        
+        mon_switch.setOn(false, animated: false)
+        tue_switch.setOn(false, animated: false)
+        wed_switch.setOn(false, animated: false)
+        thu_switch.setOn(false, animated: false)
+        fri_switch.setOn(false, animated: false)
+        sat_switch.setOn(false, animated: false)
+        sun_switch.setOn(false, animated: false)
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -97,7 +120,6 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
     }
     
     @IBAction func mon_flip(_ sender: UISwitch) {
-        
         if sender.isOn == true {
             self.monday = true
         } else {
@@ -106,10 +128,13 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
     }
 
     @IBAction func tue_flip(_ sender: UISwitch) {
+        print("check")
         if sender.isOn == true {
             self.tuesday = true
+            print("check 2")
         } else {
             self.tuesday = false
+            print("check 3")
         }
     }
     
@@ -164,7 +189,13 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
             self.sunday == false  {
                 print("Pick a Day")
                 return
-        }  else {
+        }  else if startLong == 0 && startLat == 0 {
+                print("Pick a Location")
+                return
+        }  else if endLong == 0 && endLat == 0{
+                print("Pick a Destination")
+                return
+        }   else {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let mon:Bool = self.monday
             let tue:Bool = self.tuesday
@@ -174,8 +205,7 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
             let sat:Bool = self.saturday
             let sun:Bool = self.sunday
             //let session = URLSession.shared
-            let dict = ["driver_email":appDelegate.user_email, "monday":mon, "tuesday":tue, "wednesday":wed,
-                        "thursday":thu, "friday":fri, "saturday":sat, "sunday":sun] as [String: Any]
+            let dict = ["driver_email":appDelegate.user_email, "driver_departure_longitude":self.startLong, "driver_departure_latitude":self.startLat, "driver_destination_longitude":self.endLong, "driver_destination_latitude":self.endLat, "driver_timeofdeparture_hour":self.selhour, "driver_timeofdeparture_minute":self.selminute, "monday":mon, "tuesday":tue, "wednesday":wed, "thursday":thu, "friday":fri, "saturday":sat, "sunday":sun] as [String: Any]
             print(dict)
             if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
                 
@@ -190,7 +220,7 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
                 let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
                     if let httpResponse = response as? HTTPURLResponse {
                         print(httpResponse.statusCode)
-                        if(httpResponse.statusCode != 201) {
+                        if(httpResponse.statusCode != 200) {
                             print("error")
                             return
                         }
@@ -203,8 +233,8 @@ class DriverPlannedSubmitViewController : UIViewController, GMSMapViewDelegate ,
                         print("Data is empty")
                         return
                     }
-                    let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                    print(json)
+                    //let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                    //print(json)
                     DispatchQueue.main.async(execute: self.submitDone)
                     //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     //let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
@@ -290,11 +320,15 @@ extension DriverPlannedSubmitViewController : GMSAutocompleteViewControllerDeleg
         
         // set coordinate to text
         if locationSelected == .startLocation {
-            destLoc_label.text = place.name
+            startLoc.text = place.name
+            startLong = place.coordinate.longitude
+            startLat = place.coordinate.latitude
             //locationStart = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             //createMarker(titleMarker: "Location Start", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         } else if locationSelected == .destinationLocation {
-            startloc_label.text = place.name
+            destLoc.text = place.name
+            endLong = place.coordinate.longitude
+            endLat = place.coordinate.latitude
             //destinationLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
             //locationEnd = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             //createMarker(titleMarker: "Location End", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)

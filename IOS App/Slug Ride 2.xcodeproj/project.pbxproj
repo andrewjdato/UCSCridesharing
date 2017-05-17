@@ -30,6 +30,7 @@
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
 		5B4BB8CC1EB998FD0011E792 /* RiderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */; };
+		5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */; };
 		5B737E1B1EC2EA7000D14DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1A1EC2EA7000D14DBB /* Images.xcassets */; };
 		5B737E1D1EC2EAA800D14DBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */; };
 		5B737E361EC2FD6000D14DBB /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737E201EC2FD6000D14DBB /* IQNSArray+Sort.swift */; };
@@ -113,6 +114,7 @@
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderDetailsViewController.swift; sourceTree = "<group>"; };
+		5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTestViewController.swift; sourceTree = "<group>"; };
 		5B737E1A1EC2EA7000D14DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B737E201EC2FD6000D14DBB /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */,
 				58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */,
 				5B737E1A1EC2EA7000D14DBB /* Images.xcassets */,
+				5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */,
 			);
 			path = "Slug Ride 2";
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
 				9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */,
 				5B737E3F1EC2FD6000D14DBB /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */,
 				5B737E3B1EC2FD6000D14DBB /* IQUIWindow+Hierarchy.swift in Sources */,
 				5B737E431EC2FD6000D14DBB /* IQTitleBarButtonItem.swift in Sources */,
 				9BAA30EB1EA75488003A5B54 /* RegisterViewController.swift in Sources */,
