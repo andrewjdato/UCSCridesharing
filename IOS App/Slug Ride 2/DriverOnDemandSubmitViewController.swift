@@ -38,6 +38,15 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     var locationWaypoint = CLLocation()
     var isthereaWpt = false;
     
+    
+    
+    //var for rider who requests
+    var riderEmail: String!
+    var riderDepLat: Double!
+    var riderDepLon: Double!
+    var riderDesLat: Double!
+    var riderDesLon: Double!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.postButton.isHidden = true
@@ -80,9 +89,9 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
         let location = locations.last
         
-        //		let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         
-        let locationTujuan = CLLocation(latitude: 37.784023631590777, longitude: -122.40486681461333)
+        
         
         //        createMarker(titleMarker: "Lokasi Tujuan",iconMarker: #imageLiteral(resourceName: "ic_compass_needle.png"), latitude: locationTujuan.coordinate.latitude, longitude: locationTujuan.coordinate.longitude)
         //
@@ -90,7 +99,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         //
         //        drawPath(startLocation: location!, endLocation: locationTujuan)
         
-        //		self.googleMaps?.animate(to: camera)
+        self.googleMaps?.animate(to: camera)
         self.locationManager.stopUpdatingLocation()
         
     }
@@ -138,6 +147,50 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
 //        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
         
         let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+        
+        
+        
+        Alamofire.request(url).responseJSON { response in
+            
+            print(response.request as Any)  // original URL request
+            print(response.response as Any) // HTTP URL response
+            print(response.data as Any)     // server data
+            print(response.result as Any)   // result of response serialization
+            
+            let json = JSON(data: response.data!)
+            let routes = json["routes"].arrayValue
+            
+            //let distance = startLocation.distance(from: endLocation)
+            //let distance = startLocation.
+            
+            
+            // print route using Polyline
+            for route in routes
+            {
+                let routeOverviewPolyline = route["overview_polyline"].dictionary
+                let points = routeOverviewPolyline?["points"]?.stringValue
+                let path = GMSPath.init(fromEncodedPath: points!)
+                let polyline = GMSPolyline.init(path: path)
+                
+                polyline.strokeWidth = 4
+                polyline.strokeColor = UIColor.red
+                polyline.map = self.googleMaps
+            }
+            
+        }
+    }
+    
+    
+    func drawPathWaypt(startLocation: CLLocation, endLocation: CLLocation, waypoints: CLLocation)
+    {
+        let origin = "\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)"
+        let destination = "\(endLocation.coordinate.latitude),\(endLocation.coordinate.longitude)"
+        let wpt = "\(waypoints.coordinate.latitude),\(waypoints.coordinate.longitude)"
+        
+        //url for waypoints
+                let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
+        
+        
         
         
         
@@ -229,8 +282,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
 //        let dict = ["driver_email":appDelegate.user_email,"driver_departure": locationStart,"driver_destination": locationEnd] as [String: Any]
         
-        let dict = ["driver_email":appDelegate.user_email,"driver_departure": "place1","driver_destination": ""] as [String: Any]
-        print(dict)
+        let dict = ["driver_email":appDelegate.user_email,"driver_departure_lat": locationStart.coordinate.latitude ,"driver_departure_lon":locationStart.coordinate.longitude,"driver_destination_lat": locationEnd.coordinate.latitude ,"driver_destination_lon":locationEnd.coordinate.longitude] as [String: Any]
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
             print("success")
@@ -245,8 +297,8 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 data, response, error in
                 if let httpResponse = response as? HTTPURLResponse{
                     print(httpResponse.statusCode)
-                    if(httpResponse.statusCode != 201){
-                        print("error")
+                    if(httpResponse.statusCode == 200){
+                        print("HTTP Post is Good")
                         return
                     }
                 }
@@ -263,7 +315,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
             }
             
             //polls for requests at an interval of 20 seconds
-            timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
             task.resume()
             
             
@@ -275,7 +327,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     }
     
     func pollforRequests(_ sender: Any){
-        print("Server Poll")
+        print("Server Poll Driver Side")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         
@@ -286,7 +338,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         print(dict)
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
-            print("success")
+            print("Driver Polling Success")
             //SUBJECT TO URL CHANGE!!!!!
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/driver_ondemand_get_rider/")!
             let request = NSMutableURLRequest(url: url as URL)
@@ -315,7 +367,64 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 
                 //gets request if there is one, along with info in order to get rider coordinates
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print("Rider Object Received: ")
                 print(json)
+                let users = json as? [[String: Any]]
+                
+                
+                
+                for user in users!{
+                    if (user["riderod_email"] != nil){
+                        
+                        self.riderEmail = user["riderod_email"] as! String
+                        //print(self.driverEmail)
+                    }
+                    if (user["rider_departure_lat"] != nil){
+                        
+                        self.riderDepLat = user["rider_departure_lat"] as! Double
+                    }
+                    if (user["rider_departure_lon"] != nil){
+                        
+                        self.riderDepLon = user["rider_departure_lon"] as! Double
+                    }
+                    if (user["rider_destination_lat"] != nil){
+                        
+                        self.riderDesLat = user["rider_destination_lat"] as! Double
+                       
+                    }
+                    if (user["rider_destination_lon"] != nil){
+                        
+                       self.riderDesLon = user["rider_destination_lon"] as! Double
+                        
+                        print(self.riderDesLon)
+                       
+                        
+                    }
+                
+                
+                }
+                
+                
+                print("RIDER LONGITUDE == ")
+                print(self.riderDesLon)
+                
+                if self.riderDesLon != nil {
+                    self.isthereaWpt = true
+                    self.locationWaypoint = CLLocation(latitude: self.riderDesLat,longitude: self.riderDesLon)
+                    
+                    
+                    let alert = UIAlertController(title: "Rider Request", message: "Tap Accept to give a ride to \(self.riderEmail) or Decline to keep checking for Riders ", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: {action in
+                        self.drawPathWaypt(startLocation: self.locationStart, endLocation: self.locationEnd, waypoints: self.locationWaypoint)
+                    }))
+                    alert.addAction(UIAlertAction(title:"Decline",style: UIAlertActionStyle.default))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    
+                    
+                    
+                }
+                
                 
             }
             task.resume()

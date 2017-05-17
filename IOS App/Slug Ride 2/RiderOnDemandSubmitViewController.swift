@@ -5,6 +5,13 @@
 //  Created by Andrew Dato 
 //  Copyright © 2017 Andrew Dat0. All rights reserved.
 //
+//
+//  RiderOnDemandSubmitViewController.swift
+//  Slug Ride 2
+//
+//  Created by Andrew Dato
+//  Copyright © 2017 Andrew Dat0. All rights reserved.
+//
 
 import Foundation
 import UIKit
@@ -40,6 +47,20 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     var locationWaypoint = CLLocation()
     var isthereaWpt = false;
     
+    
+    //var for driver info from server
+    var driverEmail: String!
+    var driverdepart_lat: Double!
+    var driverdepart_lon: Double!
+    var driverdest_lat: Double!
+    var driverdest_lon: Double!
+    
+    
+    //vars for reverse geolocation
+    var revLoc: String!
+    var revLoc2: String!
+    
+    
     //var for driver received data
     var driverLocationStart = CLLocation()
     var driverLocationEnd = CLLocation()
@@ -65,6 +86,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
         
+        
+    
         //Your map initiation code
         let camera = GMSCameraPosition.camera(withLatitude: -7.9293122, longitude: 112.5879156, zoom: 15.0)
         
@@ -74,6 +97,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         self.googleMaps.settings.myLocationButton = true
         self.googleMaps.settings.compassButton = true
         self.googleMaps.settings.zoomGestures = true
+        
+        
         
     }
     
@@ -96,9 +121,9 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         
         let location = locations.last
         
-        //		let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         
-        let locationTujuan = CLLocation(latitude: 37.784023631590777, longitude: -122.40486681461333)
+        
         
         //        createMarker(titleMarker: "Lokasi Tujuan",iconMarker: #imageLiteral(resourceName: "ic_compass_needle.png"), latitude: locationTujuan.coordinate.latitude, longitude: locationTujuan.coordinate.longitude)
         //
@@ -106,7 +131,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         //
         //        drawPath(startLocation: location!, endLocation: locationTujuan)
         
-        //		self.googleMaps?.animate(to: camera)
+        self.googleMaps?.animate(to: camera)
         self.locationManager.stopUpdatingLocation()
         
     }
@@ -151,7 +176,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         //let wpt = "\(waypoints.coordinate.latitude),\(waypoints.coordinate.longitude)"
         
         //url request with waypoints
-//        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
+        //        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&waypoints=\(wpt)&mode=driving"
         
         let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
         
@@ -221,32 +246,32 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     }
     
     //waypoint tester button
-//    @IBAction func wptButton(_ sender: UIButton) {
-//        isthereaWpt = true
-//        let autoCompleteController = GMSAutocompleteViewController()
-//        autoCompleteController.delegate = self
-//        
-//        locationSelected = .wptLocation
-//        
-//        UISearchBar.appearance().setTextColor(color: UIColor.black)
-//        self.locationManager.stopUpdatingLocation()
-//        
-//        self.present(autoCompleteController, animated: true, completion:nil)
-//        
-//        
-//    }
-  
+    //    @IBAction func wptButton(_ sender: UIButton) {
+    //        isthereaWpt = true
+    //        let autoCompleteController = GMSAutocompleteViewController()
+    //        autoCompleteController.delegate = self
+    //
+    //        locationSelected = .wptLocation
+    //
+    //        UISearchBar.appearance().setTextColor(color: UIColor.black)
+    //        self.locationManager.stopUpdatingLocation()
+    //
+    //        self.present(autoCompleteController, animated: true, completion:nil)
+    //
+    //
+    //    }
+    
     //preConditions: Rider must have a destination and origin set!
     //Rider posts their ride
     //Function leads to Rider continously polling for
     @IBAction func riderPostRide(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let dict = ["rider_email":appDelegate.user_email,"rider_departure": "place3","rider_destination": "place4"] as [String: Any]
+        let dict = ["rider_email":appDelegate.user_email,"rider_departure_lat": locationStart.coordinate.latitude ,"rider_departure_lon":locationStart.coordinate.longitude,"rider_destination_lat": locationEnd.coordinate.latitude ,"rider_destination_lon":locationEnd.coordinate.longitude] as [String: Any]
         print(dict)
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
-        print("success")
+            print("success")
             //SUBJECT TO URL CHANGE!!!!!
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_ondemand/")!
             let request = NSMutableURLRequest(url: url as URL)
@@ -257,7 +282,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             let task = URLSession.shared.dataTask(with: request as URLRequest){
                 data, response, error in
                 if let httpResponse = response as? HTTPURLResponse{
-                print(httpResponse.statusCode)
+                    print(httpResponse.statusCode)
                     if(httpResponse.statusCode != 201){
                         print("error")
                         return
@@ -276,20 +301,20 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 print(json)
                 
             }
-            timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
             task.resume()
             
             
-        
+            
         }
-    
+        
         
     }
     
     
     //function that receives driver data once ride has been posted
     func pollforDrivers(_ sender: Any){
-        print("Server Poll")
+        print("Server Poll Rider Side")
         let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_getdrivers_ondemand/")!
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "GET"
@@ -300,15 +325,11 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             if let httpResponse = response as? HTTPURLResponse {
                 print(httpResponse.statusCode)
-                if(httpResponse.statusCode != 201) {
-                    print("error")
+                if(httpResponse.statusCode != 200) {
+                    print("Status Code Not Okay")
                     
                     
-                    //Alert Handler for when Driver is found
-                    let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: nil))
-                    alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default))
-                    self.present(alert, animated: true, completion: nil)
+                    
                     
                     return
                 }
@@ -328,15 +349,119 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             }
             let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
             print(json)
-            self.arrJson = json
-            print(self.arrJson!)
+            let users = json as? [[String: Any]]
             
             
-            let users = self.arrJson as? [[String: Any]]
-            for user in users! {
-                print(user)
+            
+            for user in users!{
+                if (user["driverod_email"] != nil){
+                    
+                    self.driverEmail = user["driverod_email"] as! String
+                    //print(self.driverEmail)
+                }
+                if (user["driver_departure_lat"] != nil){
+                    
+                    self.driverdepart_lat = user["driver_departure_lat"] as! Double
+                }
+                if (user["driver_departure_lon"] != nil){
+                  
+                    self.driverdepart_lon = user["driver_departure_lon"] as! Double
+                }
+                if (user["driver_destination_lat"] != nil){
+                    
+                    self.driverdest_lat = user["driver_destination_lat"] as! Double
+                    print(self.driverdest_lat)
+                    print("check2")
+
+                }
+                if (user["driver_destination_lon"] != nil){
+                    
+                    self.driverdest_lon = user["driver_destination_lon"] as! Double
+                    
+                    print(self.driverdest_lon)
+                    print("check2")
+                    
+                }
+                //reverse Geolocation
+                let driverDepart = CLLocation(latitude: self.driverdepart_lat, longitude: self.driverdepart_lon)
+                
+                
+                //reverse gecoding in order to turn CLLocation into a place name
+                CLGeocoder().reverseGeocodeLocation(driverDepart, completionHandler: {(placemarks,error) in
+                    if (error != nil)
+                    {
+                        print("reverse geodcode fail: \(error!.localizedDescription)")
+                    }
+                    
+                    //Place details
+                    var placeMark: CLPlacemark!
+                    placeMark = placemarks?[0]
+                    
+                    //Location name
+                    if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
+                        print(locationName, terminator: "")
+                        self.revLoc = locationName as? String
+                    }
+                    
+                    
+                    
+                    
+                })
+                
+                
+                let driverDest = CLLocation(latitude: self.driverdest_lat, longitude: self.driverdest_lon)
+                
+                
+                //reverse gecoding in order to turn CLLocation into a place name
+                CLGeocoder().reverseGeocodeLocation(driverDest, completionHandler: {(placemarks,error) in
+                    if (error != nil)
+                    {
+                        print("reverse geodcode fail: \(error!.localizedDescription)")
+                    }
+                    
+                    // Place details
+                    var placeMark: CLPlacemark!
+                    placeMark = placemarks?[0]
+                    
+                    // Location name
+                    if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
+                        print(locationName, terminator: "")
+                        self.revLoc2 = locationName as? String
+                    }
+                    
+                    
+                    
+                    
+                })
+                
+                
+            
                
+             
+                
+                
+                //Alert Handler for when Driver is found
+                let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver from \(self.revLoc) to \(self.revLoc2) or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
+                    self.requestDriver()
+                }))
+                alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default))
+                self.present(alert, animated: true, completion: nil)
+                
+                
+                
             }
+            
+            
+            
+           
+            
+            
+            
+            //self.arrJson = json
+            //print(self.arrJson!)
+            
+            
             
             
             
@@ -349,10 +474,16 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     
     //function for when driver is to be requested by rider
-    func requestDriver(_ sender: Any){
-         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    func requestDriver(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let dict = ["rider_email":appDelegate.user_email,"driver_email": "driver email goes here","rider_departure": "place3","rider_destination": "place4"] as [String: Any]
+        //stops timer
+        
+        self.timer.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.requestDriver), userInfo: nil, repeats: true)
+        
+        
+        let dict = ["rider_email":appDelegate.user_email,"driver_email": self.driverEmail,"riderdest_lat": self.locationEnd.coordinate.latitude,"riderdest_lon": self.locationEnd.coordinate.longitude] as [String: Any]
         print(dict)
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
@@ -382,6 +513,11 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                     print("data is empty")
                     return
                 }
+                //let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                //print(json)
+                
+                
+                
                 
             }
             task.resume()
