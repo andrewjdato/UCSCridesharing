@@ -1093,17 +1093,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6e-gR-gXa">
-                                                <rect key="frame" x="75" y="572" width="229" height="40"/>
-                                                <color key="backgroundColor" red="0.0032251161040000001" green="0.35189943540000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Register">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="submit_press:" destination="Mmq-2b-qoo" eventType="touchUpInside" id="61P-KN-lle"/>
-                                                    <action selector="submit_press:" destination="aTM-bp-uIn" eventType="touchUpInside" id="kGb-4O-ISS"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Planned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCD-mj-skz">
                                                 <rect key="frame" x="36" y="34" width="311" height="161"/>
                                                 <constraints>
@@ -1121,6 +1110,17 @@
                                                 <rect key="frame" x="75" y="298" width="144" height="47"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             </pickerView>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6e-gR-gXa">
+                                                <rect key="frame" x="77" y="555" width="229" height="40"/>
+                                                <color key="backgroundColor" red="0.0032251161040000001" green="0.35189943540000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Register">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="submit_press:" destination="Mmq-2b-qoo" eventType="touchUpInside" id="61P-KN-lle"/>
+                                                    <action selector="submit_press:" destination="aTM-bp-uIn" eventType="touchUpInside" id="kGb-4O-ISS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
