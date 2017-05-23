@@ -42,6 +42,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     
     //var for current user data
+    var curLocation = CLLocation()
     var locationStart = CLLocation()
     var locationEnd = CLLocation()
     var locationWaypoint = CLLocation()
@@ -121,6 +122,10 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         
         let location = locations.last
         
+        
+        //gets the current location and puts it into a global variable to be used in other functions
+        self.curLocation = location!
+        
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         
         
@@ -171,6 +176,12 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     func drawPath(startLocation: CLLocation, endLocation: CLLocation, waypoints: CLLocation)
     {
+        
+        
+        
+        //Uses current location as the first point in route instead of using input location
+        //let origin = "\(curLocation.coordinate.latitude),\(curLocation.coordinate.longitude)"
+        
         let origin = "\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)"
         let destination = "\(endLocation.coordinate.latitude),\(endLocation.coordinate.longitude)"
         //let wpt = "\(waypoints.coordinate.latitude),\(waypoints.coordinate.longitude)"
@@ -413,7 +424,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 
                 
                 //reverse gecoding in order to turn CLLocation into a place name
-                CLGeocoder().reverseGeocodeLocation(driverDest, completionHandler: {(placemarks,error) in
+                CLGeocoder().reverseGeocodeLocation(driverDepart, completionHandler: {(placemarks,error) in
                     if (error != nil)
                     {
                         print("reverse geodcode fail: \(error!.localizedDescription)")
@@ -437,18 +448,25 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 
             
                
-             
-                
+             //if statement to check for driver found
+                if self.driverdest_lon != nil {
+                    
+                    
+                    //stop polling once a new driver has been found
+                    self.timer.invalidate()
                 
                 //Alert Handler for when Driver is found
                 let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver from \(self.revLoc) to \(self.revLoc2) or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
                     self.requestDriver()
                 }))
-                alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default))
+                alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default, handler: {action in
+                self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
+                
+                }))
                 self.present(alert, animated: true, completion: nil)
                 
-                
+                }
                 
             }
             

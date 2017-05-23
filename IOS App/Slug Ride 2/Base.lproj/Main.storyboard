@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FNp-S1-Dae">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FNp-S1-Dae">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -373,7 +373,7 @@
         <!--Rider-->
         <scene sceneID="Nmr-iD-aDi">
             <objects>
-                <viewController id="fLe-cZ-sAr" sceneMemberID="viewController">
+                <viewController id="fLe-cZ-sAr" customClass="RiderViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3ng-qi-5FJ"/>
                         <viewControllerLayoutGuide type="bottom" id="vaj-mM-KBk"/>
@@ -382,125 +382,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rider" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-3k-d1e">
-                                <rect key="frame" x="35" y="9" width="304" height="69"/>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zus-PQ-vF9">
+                                <rect key="frame" x="16" y="194" width="245" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                                <state key="normal" title="On Demand">
+                                    <color key="titleColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FZA-fj-pwb" kind="show" id="FD9-m6-YJA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3b-eO-GVL">
+                                <rect key="frame" x="16" y="418" width="169" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                                <state key="normal" title="Planned">
+                                    <color key="titleColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="aTM-bp-uIn" kind="show" id="ElU-g4-mR1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzi-ZG-Lut">
+                                <rect key="frame" x="16" y="303" width="195" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                                <state key="normal" title="Schedule">
+                                    <color key="titleColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kKe-Pr-2Wf" kind="show" id="Fy8-XE-e8b"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Rider" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-3k-d1e">
+                                <rect key="frame" x="100" y="90" width="175" height="69"/>
                                 <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="60"/>
-                                <color key="textColor" red="0.93441106799999996" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSW-aF-euj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rider" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcH-3Z-64I">
-                                        <rect key="frame" x="35" y="9" width="304" height="161"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="161" id="sBK-4L-UwD"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="60"/>
-                                        <color key="textColor" red="0.93441106799999996" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Lj-Xf-ayB">
-                                        <rect key="frame" x="16" y="140" width="343" height="102"/>
-                                        <color key="backgroundColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-r1-AZa">
-                                        <rect key="frame" x="16" y="270" width="343" height="102"/>
-                                        <color key="backgroundColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndp-jP-Ajw">
-                                        <rect key="frame" x="16" y="401" width="343" height="102"/>
-                                        <color key="backgroundColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zus-PQ-vF9">
-                                        <rect key="frame" x="25" y="149" width="324" height="84"/>
-                                        <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="b59-xs-IyQ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                        <state key="normal" title="On Demand">
-                                            <color key="titleColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="FZA-fj-pwb" kind="show" id="FD9-m6-YJA"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzi-ZG-Lut">
-                                        <rect key="frame" x="25" y="410" width="324" height="84"/>
-                                        <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="2fh-Dm-RcN"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                        <state key="normal" title="Schedule">
-                                            <color key="titleColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="kKe-Pr-2Wf" kind="show" id="Fy8-XE-e8b"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3b-eO-GVL">
-                                        <rect key="frame" x="25" y="279" width="324" height="84"/>
-                                        <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="L40-zx-fzf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                        <state key="normal" title="Planned">
-                                            <color key="titleColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="aTM-bp-uIn" kind="show" id="ElU-g4-mR1"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Z3b-eO-GVL" firstAttribute="leading" secondItem="Qzi-ZG-Lut" secondAttribute="leading" id="5Li-5F-Xll"/>
-                                    <constraint firstItem="4Lj-Xf-ayB" firstAttribute="leading" secondItem="tbt-r1-AZa" secondAttribute="leading" id="5kh-dc-lk5"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="tbt-r1-AZa" secondAttribute="centerX" id="5p8-JH-apE"/>
-                                    <constraint firstItem="ndp-jP-Ajw" firstAttribute="top" secondItem="tbt-r1-AZa" secondAttribute="bottom" constant="29" id="Ctg-3C-Y11"/>
-                                    <constraint firstItem="tbt-r1-AZa" firstAttribute="centerY" secondItem="Z3b-eO-GVL" secondAttribute="centerY" id="DKe-mX-vuy"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="Zus-PQ-vF9" secondAttribute="centerX" id="DLv-vc-Qdc"/>
-                                    <constraint firstItem="Zus-PQ-vF9" firstAttribute="top" secondItem="OcH-3Z-64I" secondAttribute="bottom" constant="-21" id="E4k-nW-Px0"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="leading" secondItem="lSW-aF-euj" secondAttribute="leading" constant="35" id="ERp-bc-64C"/>
-                                    <constraint firstItem="4Lj-Xf-ayB" firstAttribute="leading" secondItem="lSW-aF-euj" secondAttribute="leading" constant="16" id="EYI-IB-ABK"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="Qzi-ZG-Lut" secondAttribute="centerX" id="L8K-Td-sME"/>
-                                    <constraint firstItem="tbt-r1-AZa" firstAttribute="top" secondItem="Zus-PQ-vF9" secondAttribute="bottom" constant="37" id="O1X-cd-bAL"/>
-                                    <constraint firstItem="Zus-PQ-vF9" firstAttribute="leading" secondItem="Z3b-eO-GVL" secondAttribute="leading" id="UpL-mv-GA7"/>
-                                    <constraint firstItem="ndp-jP-Ajw" firstAttribute="centerY" secondItem="Qzi-ZG-Lut" secondAttribute="centerY" id="Yui-7M-6E6"/>
-                                    <constraint firstItem="ndp-jP-Ajw" firstAttribute="top" secondItem="Z3b-eO-GVL" secondAttribute="bottom" constant="38" id="aeA-Lr-tEc"/>
-                                    <constraint firstItem="Zus-PQ-vF9" firstAttribute="leading" secondItem="lSW-aF-euj" secondAttribute="leading" constant="25" id="d9I-l5-oRv"/>
-                                    <constraint firstItem="4Lj-Xf-ayB" firstAttribute="centerY" secondItem="Zus-PQ-vF9" secondAttribute="centerY" id="f5N-cB-VXH"/>
-                                    <constraint firstItem="Qzi-ZG-Lut" firstAttribute="top" secondItem="tbt-r1-AZa" secondAttribute="bottom" constant="38" id="fG3-Hg-yPc"/>
-                                    <constraint firstItem="tbt-r1-AZa" firstAttribute="leading" secondItem="ndp-jP-Ajw" secondAttribute="leading" id="g2e-6F-kcq"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="Z3b-eO-GVL" secondAttribute="centerX" id="hf1-Wn-Izv"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="4Lj-Xf-ayB" secondAttribute="centerX" id="oMm-90-8S9"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="top" secondItem="lSW-aF-euj" secondAttribute="top" constant="9" id="rAM-mY-6VM"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="lSW-aF-euj" secondAttribute="centerX" id="vVq-N6-DCn"/>
-                                    <constraint firstItem="OcH-3Z-64I" firstAttribute="centerX" secondItem="ndp-jP-Ajw" secondAttribute="centerX" id="viI-sN-P7t"/>
-                                    <constraint firstItem="tbt-r1-AZa" firstAttribute="top" secondItem="4Lj-Xf-ayB" secondAttribute="bottom" constant="28" id="wUS-jJ-jg8"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lSW-aF-euj" firstAttribute="centerX" secondItem="m6d-3k-d1e" secondAttribute="centerX" id="82o-rc-l9X"/>
-                            <constraint firstItem="lSW-aF-euj" firstAttribute="leading" secondItem="m41-Ve-KUd" secondAttribute="leading" id="IdF-UT-Dvl"/>
-                            <constraint firstItem="m6d-3k-d1e" firstAttribute="top" secondItem="m41-Ve-KUd" secondAttribute="topMargin" constant="9" id="bgB-w7-Cx4"/>
-                            <constraint firstAttribute="bottom" secondItem="lSW-aF-euj" secondAttribute="bottom" id="kP0-Qf-b7X"/>
-                            <constraint firstItem="m6d-3k-d1e" firstAttribute="leading" secondItem="m41-Ve-KUd" secondAttribute="leadingMargin" constant="19" id="od9-GR-E5E"/>
-                            <constraint firstItem="lSW-aF-euj" firstAttribute="top" secondItem="m41-Ve-KUd" secondAttribute="top" id="sh6-ma-TBD"/>
                             <constraint firstItem="m6d-3k-d1e" firstAttribute="centerX" secondItem="m41-Ve-KUd" secondAttribute="centerX" id="thB-DH-RR8"/>
                         </constraints>
                     </view>
@@ -863,7 +785,7 @@
         <!--Driver-->
         <scene sceneID="zX3-v7-x3m">
             <objects>
-                <viewController storyboardIdentifier="DriverMenu" id="Uwj-F0-MsK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DriverMenu" id="Uwj-F0-MsK" customClass="DriverViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9wR-72-eAn"/>
                         <viewControllerLayoutGuide type="bottom" id="iqO-62-zz4"/>
@@ -872,124 +794,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYA-Hg-mC8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mh-yI-mbG">
-                                        <rect key="frame" x="35" y="9" width="304" height="161"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="161" id="P4b-sJ-t0c"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="60"/>
-                                        <color key="textColor" red="0.93441106799999996" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysc-1g-XEb">
-                                        <rect key="frame" x="16" y="140" width="343" height="102"/>
-                                        <color key="backgroundColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQX-Q9-ZZZ">
-                                        <rect key="frame" x="16" y="270" width="343" height="102"/>
-                                        <color key="backgroundColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Uz-OGZ">
-                                        <rect key="frame" x="16" y="401" width="343" height="102"/>
-                                        <color key="backgroundColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9S-YX-WHn">
-                                        <rect key="frame" x="25" y="149" width="324" height="84"/>
-                                        <color key="backgroundColor" red="0.99607843160629272" green="0.99607843160629272" blue="0.98823529481887817" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="dVc-k6-WGf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                        <state key="normal" title="On Demand">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="xeg-Fk-xWD" kind="show" id="ns3-Mc-99E"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4d-Be-80d">
-                                        <rect key="frame" x="25" y="410" width="324" height="84"/>
-                                        <color key="backgroundColor" red="0.99607843160629272" green="0.99607843160629272" blue="0.98823529481887817" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="aiO-Rm-SYQ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                        <state key="normal" title="Schedule">
-                                            <color key="titleColor" red="1" green="0.95666110709999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="7Ch-F5-1hN" kind="show" id="tX7-Fe-fSY"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-gL-Q45">
-                                        <rect key="frame" x="25" y="279" width="324" height="84"/>
-                                        <color key="backgroundColor" red="0.99607843160629272" green="0.99607843160629272" blue="0.98823529481887817" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="5lg-d4-Fe4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                        <state key="normal" title="Planned">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Mmq-2b-qoo" kind="show" id="ryk-bR-JVD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="r9S-YX-WHn" secondAttribute="centerX" id="2zh-5J-WXK"/>
-                                    <constraint firstItem="OsC-Uz-OGZ" firstAttribute="centerY" secondItem="f4d-Be-80d" secondAttribute="centerY" id="6km-SA-yNJ"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="f4d-Be-80d" secondAttribute="centerX" id="9Oe-Gb-tEP"/>
-                                    <constraint firstItem="LQX-Q9-ZZZ" firstAttribute="leading" secondItem="OsC-Uz-OGZ" secondAttribute="leading" id="D6Q-yj-2w8"/>
-                                    <constraint firstItem="r9S-YX-WHn" firstAttribute="top" secondItem="9mh-yI-mbG" secondAttribute="bottom" constant="-21" id="Gpw-7p-huk"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="leading" secondItem="bYA-Hg-mC8" secondAttribute="leading" constant="35" id="H1f-cM-0LU"/>
-                                    <constraint firstItem="Ysc-1g-XEb" firstAttribute="leading" secondItem="LQX-Q9-ZZZ" secondAttribute="leading" id="I8Q-UY-wt9"/>
-                                    <constraint firstItem="Ysc-1g-XEb" firstAttribute="leading" secondItem="bYA-Hg-mC8" secondAttribute="leading" constant="16" id="LZu-1m-USy"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="seI-gL-Q45" secondAttribute="centerX" id="R7B-Q7-SMG"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="OsC-Uz-OGZ" secondAttribute="centerX" id="SPI-gn-KzK"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="LQX-Q9-ZZZ" secondAttribute="centerX" id="VES-W5-1WG"/>
-                                    <constraint firstItem="LQX-Q9-ZZZ" firstAttribute="centerY" secondItem="seI-gL-Q45" secondAttribute="centerY" id="Vek-WJ-qLw"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="top" secondItem="bYA-Hg-mC8" secondAttribute="top" constant="9" id="Wum-SW-AYT"/>
-                                    <constraint firstItem="r9S-YX-WHn" firstAttribute="leading" secondItem="bYA-Hg-mC8" secondAttribute="leading" constant="25" id="Xgv-Be-bJq"/>
-                                    <constraint firstItem="Ysc-1g-XEb" firstAttribute="centerY" secondItem="r9S-YX-WHn" secondAttribute="centerY" id="eXd-7f-rSK"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="Ysc-1g-XEb" secondAttribute="centerX" id="gB4-0c-7Tf"/>
-                                    <constraint firstItem="OsC-Uz-OGZ" firstAttribute="top" secondItem="LQX-Q9-ZZZ" secondAttribute="bottom" constant="29" id="gJe-1s-WLI"/>
-                                    <constraint firstItem="r9S-YX-WHn" firstAttribute="leading" secondItem="seI-gL-Q45" secondAttribute="leading" id="gK9-sd-see"/>
-                                    <constraint firstItem="seI-gL-Q45" firstAttribute="leading" secondItem="f4d-Be-80d" secondAttribute="leading" id="gPa-Yo-aQz"/>
-                                    <constraint firstItem="f4d-Be-80d" firstAttribute="top" secondItem="LQX-Q9-ZZZ" secondAttribute="bottom" constant="38" id="ipH-1x-Gjj"/>
-                                    <constraint firstItem="LQX-Q9-ZZZ" firstAttribute="top" secondItem="Ysc-1g-XEb" secondAttribute="bottom" constant="28" id="klp-hZ-Sz0"/>
-                                    <constraint firstItem="LQX-Q9-ZZZ" firstAttribute="top" secondItem="r9S-YX-WHn" secondAttribute="bottom" constant="37" id="mT6-lx-tPw"/>
-                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="bYA-Hg-mC8" secondAttribute="centerX" id="qRH-aN-H0f"/>
-                                    <constraint firstItem="OsC-Uz-OGZ" firstAttribute="top" secondItem="seI-gL-Q45" secondAttribute="bottom" constant="38" id="wWL-Vo-FRw"/>
-                                </constraints>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mh-yI-mbG">
+                                <rect key="frame" x="84.5" y="72" width="206.5" height="161"/>
+                                <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="60"/>
+                                <color key="textColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9S-YX-WHn">
+                                <rect key="frame" x="25" y="224" width="283" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                                <state key="normal" title="On Demand">
+                                    <color key="titleColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xeg-Fk-xWD" kind="show" id="ns3-Mc-99E"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4d-Be-80d">
+                                <rect key="frame" x="16" y="455" width="256" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                                <state key="normal" title="Schedule">
+                                    <color key="titleColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7Ch-F5-1hN" kind="show" id="tX7-Fe-fSY"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-gL-Q45">
+                                <rect key="frame" x="25" y="348" width="206" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
+                                <state key="normal" title="Planned">
+                                    <color key="titleColor" white="0.85483099490000003" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Mmq-2b-qoo" kind="show" id="ryk-bR-JVD"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.52631317960000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="bYA-Hg-mC8" secondAttribute="bottom" id="N10-Dl-jsy"/>
-                            <constraint firstItem="bYA-Hg-mC8" firstAttribute="leading" secondItem="HVL-X6-h4i" secondAttribute="leading" id="XUG-mS-nAd"/>
-                            <constraint firstItem="bYA-Hg-mC8" firstAttribute="top" secondItem="HVL-X6-h4i" secondAttribute="top" id="fh3-cG-FgX"/>
-                            <constraint firstAttribute="trailing" secondItem="bYA-Hg-mC8" secondAttribute="trailing" id="gTd-Qt-l1g"/>
+                            <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="HVL-X6-h4i" secondAttribute="centerX" id="RGL-Aw-77t"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Driver" id="XGV-Cx-cwi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ew-ZU-YP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4682" y="-251"/>
+            <point key="canvasLocation" x="4680.8000000000002" y="-251.42428785607197"/>
         </scene>
         <!--Driver Planned Submit View Controller-->
         <scene sceneID="O6F-PV-NXZ">

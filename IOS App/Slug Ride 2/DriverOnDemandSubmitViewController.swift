@@ -33,6 +33,8 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     var timer = Timer()
     
+    
+    var curLocation = CLLocation()
     var locationStart = CLLocation()
     var locationEnd = CLLocation()
     var locationWaypoint = CLLocation()
@@ -89,7 +91,11 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
         let location = locations.last
         
+        //saves the current location to a global
+        self.curLocation = location!
+        
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
+        
         
         
         
@@ -100,7 +106,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         //        drawPath(startLocation: location!, endLocation: locationTujuan)
         
         self.googleMaps?.animate(to: camera)
-        self.locationManager.stopUpdatingLocation()
+        //self.locationManager.stopUpdatingLocation()
         
     }
     
@@ -159,9 +165,9 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
             
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
+            let distance = startLocation.distance(from: endLocation)
+            print(distance)
             
-            //let distance = startLocation.distance(from: endLocation)
-            //let distance = startLocation.
             
             
             // print route using Polyline
@@ -183,6 +189,11 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     func drawPathWaypt(startLocation: CLLocation, endLocation: CLLocation, waypoints: CLLocation)
     {
+        //Uses current location as the first point in route instead of using input location
+        //let origin = "\(curLocation.coordinate.latitude),\(curLocation.coordinate.longitude)"
+        
+        
+        //uses input location 
         let origin = "\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)"
         let destination = "\(endLocation.coordinate.latitude),\(endLocation.coordinate.longitude)"
         let wpt = "\(waypoints.coordinate.latitude),\(waypoints.coordinate.longitude)"
@@ -315,7 +326,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
             }
             
             //polls for requests at an interval of 20 seconds
-            timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
             task.resume()
             
             
@@ -408,7 +419,13 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 print("RIDER LONGITUDE == ")
                 print(self.riderDesLon)
                 
+                
+                //if statement to determine if a rider has been found
                 if self.riderDesLon != nil {
+                    
+                    //stop polling when rider is found
+                    self.timer.invalidate()
+                    
                     self.isthereaWpt = true
                     self.locationWaypoint = CLLocation(latitude: self.riderDesLat,longitude: self.riderDesLon)
                     
@@ -417,7 +434,13 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                     alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: {action in
                         self.drawPathWaypt(startLocation: self.locationStart, endLocation: self.locationEnd, waypoints: self.locationWaypoint)
                     }))
-                    alert.addAction(UIAlertAction(title:"Decline",style: UIAlertActionStyle.default))
+                    alert.addAction(UIAlertAction(title:"Decline",style: UIAlertActionStyle.default, handler:
+                        {action in
+                            
+                            //set timer for polling again because rider was declined
+                           self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+                    }
+                    ))
                     self.present(alert, animated: true, completion: nil)
                     
                     

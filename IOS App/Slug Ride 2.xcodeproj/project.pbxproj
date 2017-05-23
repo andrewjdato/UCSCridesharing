@@ -26,6 +26,10 @@
 		58B53E4B1EAEBCEF00060707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E4A1EAEBCEF00060707 /* UIKit.framework */; };
 		58B83E871EBA47E7000CFF57 /* Google Direction-07674dbf8433 in Resources */ = {isa = PBXBuildFile; fileRef = 58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */; };
 		58B83E8C1EC58415000CFF57 /* slugridevid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */; };
+		58BFA21C1ED3ED9E004B79CE /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFA21B1ED3ED9E004B79CE /* RiderViewController.swift */; };
+		58BFA21E1ED3F596004B79CE /* ridervid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58BFA21D1ED3F554004B79CE /* ridervid.mp4 */; };
+		58BFA2201ED3FB06004B79CE /* drivervid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */; };
+		58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */; };
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
@@ -110,6 +114,10 @@
 		58B53E4A1EAEBCEF00060707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Google Direction-07674dbf8433"; sourceTree = "<group>"; };
 		58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = slugridevid.mp4; sourceTree = "<group>"; };
+		58BFA21B1ED3ED9E004B79CE /* RiderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
+		58BFA21D1ED3F554004B79CE /* ridervid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ridervid.mp4; sourceTree = "<group>"; };
+		58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drivervid.mp4; sourceTree = "<group>"; };
+		58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -334,10 +342,14 @@
 			isa = PBXGroup;
 			children = (
 				58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */,
+				58BFA21D1ED3F554004B79CE /* ridervid.mp4 */,
+				58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */,
 				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
 				9BAA30BC1EA730C0003A5B54 /* ViewController.swift */,
+				58BFA21B1ED3ED9E004B79CE /* RiderViewController.swift */,
 				9BAA30BE1EA730C0003A5B54 /* Main.storyboard */,
+				58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */,
 				9BAA30C31EA730C0003A5B54 /* LaunchScreen.storyboard */,
 				9BAA30C61EA730C0003A5B54 /* Info.plist */,
 				5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */,
@@ -495,6 +507,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58BFA2201ED3FB06004B79CE /* drivervid.mp4 in Resources */,
+				58BFA21E1ED3F596004B79CE /* ridervid.mp4 in Resources */,
 				58B83E8C1EC58415000CFF57 /* slugridevid.mp4 in Resources */,
 				9BAA30C51EA730C0003A5B54 /* LaunchScreen.storyboard in Resources */,
 				9BAA30C01EA730C0003A5B54 /* Main.storyboard in Resources */,
@@ -594,6 +608,7 @@
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
 				9B7D45881EA7805D00FA2FF5 /* RiderOnDemandViewController.swift in Sources */,
 				9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */,
+				58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */,
 				5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */,
 				9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */,
 				5B737E441EC2FD6000D14DBB /* IQToolbar.swift in Sources */,
@@ -617,6 +632,7 @@
 				5B737E401EC2FD6000D14DBB /* IQTextView.swift in Sources */,
 				5B737E3E1EC2FD6000D14DBB /* IQKeyboardManager.swift in Sources */,
 				9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */,
+				58BFA21C1ED3ED9E004B79CE /* RiderViewController.swift in Sources */,
 				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
 				9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */,
 				5B737E3F1EC2FD6000D14DBB /* IQKeyboardReturnKeyHandler.swift in Sources */,
