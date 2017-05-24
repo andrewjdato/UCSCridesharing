@@ -394,56 +394,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                     
                 }
                 //reverse Geolocation
-                let driverDepart = CLLocation(latitude: self.driverdepart_lat, longitude: self.driverdepart_lon)
                 
-                
-                //reverse gecoding in order to turn CLLocation into a place name
-                CLGeocoder().reverseGeocodeLocation(driverDepart, completionHandler: {(placemarks,error) in
-                    if (error != nil)
-                    {
-                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                    }
-                    
-                    //Place details
-                    var placeMark: CLPlacemark!
-                    placeMark = placemarks?[0]
-                    
-                    //Location name
-                    if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
-                        print(locationName, terminator: "")
-                        self.revLoc = locationName as? String
-                    }
-                    
-                    
-                    
-                    
-                })
-                
-                
-                let driverDest = CLLocation(latitude: self.driverdest_lat, longitude: self.driverdest_lon)
-                
-                
-                //reverse gecoding in order to turn CLLocation into a place name
-                CLGeocoder().reverseGeocodeLocation(driverDepart, completionHandler: {(placemarks,error) in
-                    if (error != nil)
-                    {
-                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                    }
-                    
-                    // Place details
-                    var placeMark: CLPlacemark!
-                    placeMark = placemarks?[0]
-                    
-                    // Location name
-                    if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
-                        print(locationName, terminator: "")
-                        self.revLoc2 = locationName as? String
-                    }
-                    
-                    
-                    
-                    
-                })
                 
                 
             
@@ -453,7 +404,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                     
                     
                     //stop polling once a new driver has been found
-                    self.timer.invalidate()
+                    //self.timer.invalidate()
                 
                 //Alert Handler for when Driver is found
                 let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver from \(self.revLoc) to \(self.revLoc2) or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
@@ -461,7 +412,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                     self.requestDriver()
                 }))
                 alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default, handler: {action in
-                self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
+               // self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
                 
                 }))
                 self.present(alert, animated: true, completion: nil)

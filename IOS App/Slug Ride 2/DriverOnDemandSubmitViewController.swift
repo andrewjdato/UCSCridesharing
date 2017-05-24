@@ -296,7 +296,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         let dict = ["driver_email":appDelegate.user_email,"driver_departure_lat": locationStart.coordinate.latitude ,"driver_departure_lon":locationStart.coordinate.longitude,"driver_destination_lat": locationEnd.coordinate.latitude ,"driver_destination_lon":locationEnd.coordinate.longitude] as [String: Any]
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
-            print("success")
+            
             //SUBJECT TO URL CHANGE!!!!!
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/driver_ondemand_change/")!
             let request = NSMutableURLRequest(url: url as URL)
@@ -362,7 +362,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 if let httpResponse = response as? HTTPURLResponse{
                     print(httpResponse.statusCode)
                     if(httpResponse.statusCode != 200){
-                        print("error")
+                        print("Error in Polling for Requests, Driver")
                         return
                     }
                 }
@@ -424,7 +424,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 if self.riderDesLon != nil {
                     
                     //stop polling when rider is found
-                    self.timer.invalidate()
+                    //self.timer.invalidate()
                     
                     self.isthereaWpt = true
                     self.locationWaypoint = CLLocation(latitude: self.riderDesLat,longitude: self.riderDesLon)
@@ -438,7 +438,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                         {action in
                             
                             //set timer for polling again because rider was declined
-                           self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+                           //self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
                     }
                     ))
                     self.present(alert, animated: true, completion: nil)
