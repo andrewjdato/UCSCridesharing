@@ -70,6 +70,10 @@ class DriverViewController: UIViewController {
         paused = true
     }
     
+    @IBAction func move(_ sender: Any) {
+        let newViewController = DSViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
     
     
     

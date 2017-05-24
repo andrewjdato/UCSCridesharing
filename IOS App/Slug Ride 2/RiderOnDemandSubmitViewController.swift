@@ -577,11 +577,11 @@ extension RiderOnDemandSubmitViewController: GMSAutocompleteViewControllerDelega
         
         // set coordinate to text
         if locationSelected == .startLocation {
-            startLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            startLocation.text = place.name
             locationStart = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             createMarker(titleMarker: "Location Start", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         } else if locationSelected == .destinationLocation {
-            destinationLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            destinationLocation.text = place.name	
             locationEnd = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             createMarker(titleMarker: "Location End", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         } else if locationSelected == .wptLocation{

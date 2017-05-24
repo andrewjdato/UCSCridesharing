@@ -71,6 +71,10 @@ class RiderViewController: UIViewController {
     }
     
 
+    @IBAction func move(_ sender: Any) {
+        let newViewController = RSViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
 
 
 

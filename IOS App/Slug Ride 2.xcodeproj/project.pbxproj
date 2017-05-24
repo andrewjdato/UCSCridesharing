@@ -31,6 +31,10 @@
 		58BFA2201ED3FB06004B79CE /* drivervid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */; };
 		58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */; };
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
+		5B2A13F61ED556C400EF914A /* RPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13F51ED556C400EF914A /* RPSViewController.swift */; };
+		5B2A13F81ED583EF00EF914A /* RSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13F71ED583EF00EF914A /* RSViewController.swift */; };
+		5B2A13FA1ED58DD500EF914A /* DSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13F91ED58DD500EF914A /* DSViewController.swift */; };
+		5B2A13FC1ED5938E00EF914A /* DSDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13FB1ED5938E00EF914A /* DSDViewController.swift */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
 		5B4BB8CC1EB998FD0011E792 /* RiderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */; };
@@ -54,16 +58,14 @@
 		5B737E441EC2FD6000D14DBB /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737E321EC2FD6000D14DBB /* IQToolbar.swift */; };
 		5B737E451EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737E331EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift */; };
 		5B737E461EC2FD6000D14DBB /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E351EC2FD6000D14DBB /* IQKeyboardManager.bundle */; };
-		5BFEF54F1EB89FF9007AF43F /* RideSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFEF54E1EB89FF9007AF43F /* RideSelectViewController.swift */; };
+		5BC013B11ED42CDC0032951F /* RiderPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC013B01ED42CDC0032951F /* RiderPickController.swift */; };
 		9A066CC74B8A70EA3F3DF98F /* Pods_Slug_Ride_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */; };
 		9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */; };
 		9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */; };
 		9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */; };
 		9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */; };
 		9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45791EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift */; };
-		9B7D457E1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D457D1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift */; };
 		9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */; };
-		9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45821EA77B6800FA2FF5 /* RiderScheduleViewController.swift */; };
 		9B7D45861EA7804D00FA2FF5 /* DriverOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */; };
 		9B7D45881EA7805D00FA2FF5 /* RiderOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */; };
 		9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */; };
@@ -119,6 +121,10 @@
 		58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drivervid.mp4; sourceTree = "<group>"; };
 		58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
+		5B2A13F51ED556C400EF914A /* RPSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPSViewController.swift; sourceTree = "<group>"; };
+		5B2A13F71ED583EF00EF914A /* RSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSViewController.swift; sourceTree = "<group>"; };
+		5B2A13F91ED58DD500EF914A /* DSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSViewController.swift; sourceTree = "<group>"; };
+		5B2A13FB1ED5938E00EF914A /* DSDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSDViewController.swift; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderDetailsViewController.swift; sourceTree = "<group>"; };
@@ -143,16 +149,42 @@
 		5B737E321EC2FD6000D14DBB /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
 		5B737E331EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		5B737E351EC2FD6000D14DBB /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
-		5BFEF54E1EB89FF9007AF43F /* RideSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideSelectViewController.swift; sourceTree = "<group>"; };
+		5BC0138B1ED421050032951F /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
+		5BC0138C1ED421050032951F /* Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		5BC0138D1ED421050032951F /* DatasourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasourceCell.swift; sourceTree = "<group>"; };
+		5BC0138E1ED421050032951F /* DatasourceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasourceController.swift; sourceTree = "<group>"; };
+		5BC0138F1ED421050032951F /* DefaultCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCells.swift; sourceTree = "<group>"; };
+		5BC013901ED421050032951F /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
+		5BC013911ED421050032951F /* LBTALabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTALabel.swift; sourceTree = "<group>"; };
+		5BC013921ED421050032951F /* LBTATextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTATextView.swift; sourceTree = "<group>"; };
+		5BC013931ED421050032951F /* NSMutableAttributedString+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helper.swift"; sourceTree = "<group>"; };
+		5BC013941ED421050032951F /* UIButton+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Helper.swift"; sourceTree = "<group>"; };
+		5BC013951ED421050032951F /* UIColor+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Helper.swift"; sourceTree = "<group>"; };
+		5BC013961ED421050032951F /* UIImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helper.swift"; sourceTree = "<group>"; };
+		5BC013971ED421050032951F /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
+		5BC0139B1ED421380032951F /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
+		5BC0139C1ED421380032951F /* Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		5BC0139D1ED421380032951F /* DatasourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasourceCell.swift; sourceTree = "<group>"; };
+		5BC0139E1ED421380032951F /* DatasourceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasourceController.swift; sourceTree = "<group>"; };
+		5BC0139F1ED421380032951F /* DefaultCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCells.swift; sourceTree = "<group>"; };
+		5BC013A01ED421380032951F /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
+		5BC013A11ED421380032951F /* LBTALabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTALabel.swift; sourceTree = "<group>"; };
+		5BC013A21ED421380032951F /* LBTATextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTATextView.swift; sourceTree = "<group>"; };
+		5BC013A31ED421380032951F /* NSMutableAttributedString+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helper.swift"; sourceTree = "<group>"; };
+		5BC013A41ED421380032951F /* UIButton+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Helper.swift"; sourceTree = "<group>"; };
+		5BC013A51ED421380032951F /* UIColor+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Helper.swift"; sourceTree = "<group>"; };
+		5BC013A61ED421380032951F /* UIImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helper.swift"; sourceTree = "<group>"; };
+		5BC013A71ED421380032951F /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
+		5BC013A81ED421380032951F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5BC013A91ED421380032951F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5BC013B01ED42CDC0032951F /* RiderPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderPickController.swift; sourceTree = "<group>"; };
 		84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slug_Ride_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverScheduleViewController.swift; sourceTree = "<group>"; };
 		9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
 		9B7D45791EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverPlannedSubmitViewController.swift; sourceTree = "<group>"; };
-		9B7D457D1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderPlannedSubmitViewController.swift; sourceTree = "<group>"; };
 		9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
-		9B7D45821EA77B6800FA2FF5 /* RiderScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderScheduleViewController.swift; sourceTree = "<group>"; };
 		9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandViewController.swift; sourceTree = "<group>"; };
 		9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderOnDemandViewController.swift; sourceTree = "<group>"; };
 		9BAA30B71EA730C0003A5B54 /* Slug Ride 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slug Ride 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +260,8 @@
 		58B53E311EAEBC3F00060707 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BC013981ED421380032951F /* LBTAComponents */,
+				5BC013891ED421050032951F /* LBTAComponents */,
 				58B53E4A1EAEBCEF00060707 /* UIKit.framework */,
 				58B53E481EAEBCE800060707 /* SystemConfiguration.framework */,
 				58B53E461EAEBCE000060707 /* QuartzCore.framework */,
@@ -311,6 +345,74 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		5BC013891ED421050032951F /* LBTAComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5BC0138A1ED421050032951F /* Classes */,
+			);
+			name = LBTAComponents;
+			path = Pods/LBTAComponents/LBTAComponents;
+			sourceTree = "<group>";
+		};
+		5BC0138A1ED421050032951F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5BC0138B1ED421050032951F /* CachedImageView.swift */,
+				5BC0138C1ED421050032951F /* Datasource.swift */,
+				5BC0138D1ED421050032951F /* DatasourceCell.swift */,
+				5BC0138E1ED421050032951F /* DatasourceController.swift */,
+				5BC0138F1ED421050032951F /* DefaultCells.swift */,
+				5BC013901ED421050032951F /* DiscardableImageCacheItem.swift */,
+				5BC013911ED421050032951F /* LBTALabel.swift */,
+				5BC013921ED421050032951F /* LBTATextView.swift */,
+				5BC013931ED421050032951F /* NSMutableAttributedString+Helper.swift */,
+				5BC013941ED421050032951F /* UIButton+Helper.swift */,
+				5BC013951ED421050032951F /* UIColor+Helper.swift */,
+				5BC013961ED421050032951F /* UIImage+Helper.swift */,
+				5BC013971ED421050032951F /* UIView+Anchors.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5BC013981ED421380032951F /* LBTAComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5BC013991ED421380032951F /* LBTAComponents */,
+				5BC013A81ED421380032951F /* LICENSE */,
+				5BC013A91ED421380032951F /* README.md */,
+			);
+			name = LBTAComponents;
+			path = Pods/LBTAComponents;
+			sourceTree = "<group>";
+		};
+		5BC013991ED421380032951F /* LBTAComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5BC0139A1ED421380032951F /* Classes */,
+			);
+			path = LBTAComponents;
+			sourceTree = "<group>";
+		};
+		5BC0139A1ED421380032951F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5BC0139B1ED421380032951F /* CachedImageView.swift */,
+				5BC0139C1ED421380032951F /* Datasource.swift */,
+				5BC0139D1ED421380032951F /* DatasourceCell.swift */,
+				5BC0139E1ED421380032951F /* DatasourceController.swift */,
+				5BC0139F1ED421380032951F /* DefaultCells.swift */,
+				5BC013A01ED421380032951F /* DiscardableImageCacheItem.swift */,
+				5BC013A11ED421380032951F /* LBTALabel.swift */,
+				5BC013A21ED421380032951F /* LBTATextView.swift */,
+				5BC013A31ED421380032951F /* NSMutableAttributedString+Helper.swift */,
+				5BC013A41ED421380032951F /* UIButton+Helper.swift */,
+				5BC013A51ED421380032951F /* UIColor+Helper.swift */,
+				5BC013A61ED421380032951F /* UIImage+Helper.swift */,
+				5BC013A71ED421380032951F /* UIView+Anchors.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		9BAA30AE1EA730C0003A5B54 = {
 			isa = PBXGroup;
 			children = (
@@ -361,18 +463,20 @@
 				9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */,
 				9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */,
 				9B7D45791EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift */,
-				9B7D457D1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift */,
 				9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */,
-				9B7D45821EA77B6800FA2FF5 /* RiderScheduleViewController.swift */,
 				9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */,
 				9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */,
 				5B392A8A1EB05A56008FF85B /* MenuViewController.swift */,
 				5B392A8C1EB09910008FF85B /* StartViewController.swift */,
-				5BFEF54E1EB89FF9007AF43F /* RideSelectViewController.swift */,
 				5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */,
 				58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */,
 				5B737E1A1EC2EA7000D14DBB /* Images.xcassets */,
 				5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */,
+				5BC013B01ED42CDC0032951F /* RiderPickController.swift */,
+				5B2A13F51ED556C400EF914A /* RPSViewController.swift */,
+				5B2A13F71ED583EF00EF914A /* RSViewController.swift */,
+				5B2A13F91ED58DD500EF914A /* DSViewController.swift */,
+				5B2A13FB1ED5938E00EF914A /* DSDViewController.swift */,
 			);
 			path = "Slug Ride 2";
 			sourceTree = "<group>";
@@ -613,18 +717,19 @@
 				9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */,
 				5B737E441EC2FD6000D14DBB /* IQToolbar.swift in Sources */,
 				5B737E381EC2FD6000D14DBB /* IQUITextFieldView+Additions.swift in Sources */,
-				5BFEF54F1EB89FF9007AF43F /* RideSelectViewController.swift in Sources */,
+				5B2A13F81ED583EF00EF914A /* RSViewController.swift in Sources */,
 				5B737E411EC2FD6000D14DBB /* IQBarButtonItem.swift in Sources */,
 				9BAA30ED1EA756F6003A5B54 /* ForgotViewController.swift in Sources */,
 				9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */,
+				5BC013B11ED42CDC0032951F /* RiderPickController.swift in Sources */,
 				9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */,
 				5B737E371EC2FD6000D14DBB /* IQUIScrollView+Additions.swift in Sources */,
 				9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */,
 				5B737E3D1EC2FD6000D14DBB /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				5B737E451EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				5B737E421EC2FD6000D14DBB /* IQPreviousNextView.swift in Sources */,
+				5B2A13F61ED556C400EF914A /* RPSViewController.swift in Sources */,
 				5B4BB8CC1EB998FD0011E792 /* RiderDetailsViewController.swift in Sources */,
-				9B7D457E1EA77B3200FA2FF5 /* RiderPlannedSubmitViewController.swift in Sources */,
 				5B737E391EC2FD6000D14DBB /* IQUIView+Hierarchy.swift in Sources */,
 				5B737E3A1EC2FD6000D14DBB /* IQUIViewController+Additions.swift in Sources */,
 				5B737E361EC2FD6000D14DBB /* IQNSArray+Sort.swift in Sources */,
@@ -634,13 +739,14 @@
 				9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */,
 				58BFA21C1ED3ED9E004B79CE /* RiderViewController.swift in Sources */,
 				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
-				9B7D45831EA77B6800FA2FF5 /* RiderScheduleViewController.swift in Sources */,
 				5B737E3F1EC2FD6000D14DBB /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */,
+				5B2A13FC1ED5938E00EF914A /* DSDViewController.swift in Sources */,
 				5B737E3B1EC2FD6000D14DBB /* IQUIWindow+Hierarchy.swift in Sources */,
 				5B737E431EC2FD6000D14DBB /* IQTitleBarButtonItem.swift in Sources */,
 				9BAA30EB1EA75488003A5B54 /* RegisterViewController.swift in Sources */,
 				9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */,
+				5B2A13FA1ED58DD500EF914A /* DSViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

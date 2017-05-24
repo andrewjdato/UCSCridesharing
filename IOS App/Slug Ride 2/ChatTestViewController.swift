@@ -25,14 +25,15 @@ class ChatTestViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     
     @IBAction func textToSpeech(_ sender: Any) {
+        OperationQueue.main.addOperation() {
+            let synth = AVSpeechSynthesizer()
+            let utterance = AVSpeechUtterance(string: self.ttos.text!)
+            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+            let lang = "en-US"
         
-        let synth = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: ttos.text!)
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-        let lang = "en-US"
-        
-        utterance.voice = AVSpeechSynthesisVoice(language: lang)
-        synth.speak(utterance)
+            utterance.voice = AVSpeechSynthesisVoice(language: lang)
+            synth.speak(utterance)
+        }
     }
     
     override func viewDidLoad() {
@@ -147,6 +148,8 @@ class ChatTestViewController: UIViewController, SFSpeechRecognizerDelegate {
         textView.text = "Say something, I'm listening!"
         
     }
+    
+    
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
