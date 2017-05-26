@@ -42,6 +42,10 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     
     
+    //var for markers
+    var markerCounter = 0
+    
+    
     //var for rider who requests
     var riderEmail: String!
     var riderDepLat: Double!
@@ -53,12 +57,18 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         super.viewDidLoad()
         self.postButton.isHidden = true
         
+        
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
+        
+        
+        
+    
         
         //Your map initiation code
         let camera = GMSCameraPosition.camera(withLatitude: -7.9293122, longitude: 112.5879156, zoom: 15.0)
@@ -71,6 +81,13 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         self.googleMaps.settings.zoomGestures = true
         
     }
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: function for create a marker pin on map
     func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
@@ -99,14 +116,10 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
         
         
-        //        createMarker(titleMarker: "Lokasi Tujuan",iconMarker: #imageLiteral(resourceName: "ic_compass_needle.png"), latitude: locationTujuan.coordinate.latitude, longitude: locationTujuan.coordinate.longitude)
-        //
-        //        createMarker(titleMarker: "Lokasi Aku",iconMarker: #imageLiteral(resourceName: "ic_compass_needle.png"), latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        //
-        //        drawPath(startLocation: location!, endLocation: locationTujuan)
+       
         
         self.googleMaps?.animate(to: camera)
-        //self.locationManager.stopUpdatingLocation()
+        self.locationManager.stopUpdatingLocation()
         
     }
     
@@ -131,6 +144,10 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("COORDINATE \(coordinate)") // when you tapped coordinate
+        
+        
+        
+        
     }
     
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {

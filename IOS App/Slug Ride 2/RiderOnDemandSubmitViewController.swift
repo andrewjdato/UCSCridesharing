@@ -31,6 +31,12 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var wptLocation: UITextField!
     
+   
+    @IBOutlet weak var routeDistance: UITextField!
+    
+    
+
+    
     var timer = Timer()
     
     
@@ -66,19 +72,29 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     var driverLocationStart = CLLocation()
     var driverLocationEnd = CLLocation()
     
+    
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.postButton.isHidden = true
+        
+        
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -86,7 +102,6 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-        
         
     
         //Your map initiation code
@@ -118,6 +133,10 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         print("Error to get location : \(error)")
     }
     
+    
+    
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations.last
@@ -128,24 +147,25 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         
-        
-        
-        //        createMarker(titleMarker: "Lokasi Tujuan",iconMarker: #imageLiteral(resourceName: "ic_compass_needle.png"), latitude: locationTujuan.coordinate.latitude, longitude: locationTujuan.coordinate.longitude)
-        //
-        //        createMarker(titleMarker: "Lokasi Aku",iconMarker: #imageLiteral(resourceName: "ic_compass_needle.png"), latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        //
-        //        drawPath(startLocation: location!, endLocation: locationTujuan)
-        
         self.googleMaps?.animate(to: camera)
         self.locationManager.stopUpdatingLocation()
         
     }
+    
+    
+    
+    
+    
     
     // MARK: - GMSMapViewDelegate
     
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         googleMaps.isMyLocationEnabled = true
     }
+    
+    
+    
+    
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         googleMaps.isMyLocationEnabled = true
@@ -155,14 +175,31 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         }
     }
     
+    
+    
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         googleMaps.isMyLocationEnabled = true
         return false
     }
     
+    
+    
+    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("COORDINATE \(coordinate)") // when you tapped coordinate
+        
+        //clear the marker from before
+        self.googleMaps.clear()
+        
+        //set the coordinate to the start point
+        self.locationStart = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+            
+        createMarker(titleMarker: "Departure", iconMarker: #imageLiteral(resourceName: "drivericon3"), latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
+    
+    
     
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         googleMaps.isMyLocationEnabled = true
@@ -201,9 +238,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
             
-            //let distance = startLocation.distance(from: endLocation)
-            //let distance = startLocation.
             
+           
             
             // print route using Polyline
             for route in routes
@@ -213,10 +249,31 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 let path = GMSPath.init(fromEncodedPath: points!)
                 let polyline = GMSPolyline.init(path: path)
                 
+                //print("Apple API Distance:")
+                //print(startLocation.distance(from: endLocation)/1609.34)
+                
+                //Google Maps distance is accurate based on route
+                print("Google Maps Distance:")
+                print(GMSGeometryLength(path!)/1609.34)
+                
+                
+                
+                
+                //"\((GMSGeometryLength(path!)/1609.34))"
+                
+                    
+                    
+                
+                
                 polyline.strokeWidth = 4
-                polyline.strokeColor = UIColor.red
+                polyline.strokeColor = UIColor.black
                 polyline.map = self.googleMaps
+        
+                
+                
             }
+            
+            
             
         }
     }
@@ -256,21 +313,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         self.present(autoCompleteController, animated: true, completion: nil)
     }
     
-    //waypoint tester button
-    //    @IBAction func wptButton(_ sender: UIButton) {
-    //        isthereaWpt = true
-    //        let autoCompleteController = GMSAutocompleteViewController()
-    //        autoCompleteController.delegate = self
-    //
-    //        locationSelected = .wptLocation
-    //
-    //        UISearchBar.appearance().setTextColor(color: UIColor.black)
-    //        self.locationManager.stopUpdatingLocation()
-    //
-    //        self.present(autoCompleteController, animated: true, completion:nil)
-    //
-    //
-    //    }
+    
     
     //preConditions: Rider must have a destination and origin set!
     //Rider posts their ride
@@ -422,24 +465,15 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             }
             
             
-            
-           
-            
-            
-            
-            //self.arrJson = json
-            //print(self.arrJson!)
-            
-            
-            
-            
-            
-            
         }
         
         task.resume()
         
     }
+    
+    
+    
+    
     
     
     //function for when driver is to be requested by rider
@@ -508,6 +542,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         // when button direction tapped, must call drawpath func
         self.drawPath(startLocation: locationStart, endLocation: locationEnd,waypoints: locationWaypoint)
         
+    
+        GMSCameraPosition.camera(withLatitude: locationStart.coordinate.latitude, longitude: locationEnd.coordinate.longitude, zoom: 14.0)
         
     }
     
