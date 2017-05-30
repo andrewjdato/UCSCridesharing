@@ -33,8 +33,12 @@ class ViewController: UIViewController {
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
         avPlayer.volume = 0
         avPlayer.actionAtItemEnd = .none
+        
+        
+        
         
         
         avPlayerLayer.frame = view.layer.bounds

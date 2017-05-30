@@ -32,7 +32,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     @IBOutlet weak var wptLocation: UITextField!
     
    
-    @IBOutlet weak var routeDistance: UITextField!
+
+    
     
     
 
@@ -93,8 +94,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.postButton.isHidden = true
+     
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -238,8 +239,9 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
             
+            print(" JSON is:")
+            //print(json)
             
-           
             
             // print route using Polyline
             for route in routes
@@ -249,27 +251,60 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 let path = GMSPath.init(fromEncodedPath: points!)
                 let polyline = GMSPolyline.init(path: path)
                 
+            
+                
+                let routeLegs = route["legs"].arrayValue
+                
+                
+                print("Route Legs")
+                print(routeLegs)
+                
+                let departure = "e"
+                print("departure")
+                print(departure)
+                
+                
+                
                 //print("Apple API Distance:")
                 //print(startLocation.distance(from: endLocation)/1609.34)
                 
                 //Google Maps distance is accurate based on route
                 print("Google Maps Distance:")
-                print(GMSGeometryLength(path!)/1609.34)
+                var variablex = (GMSGeometryLength(path!)/1609.34)
+               
+                print(variablex)
                 
-                
+                //self.routeDistance.text  = "\(GMSGeometryLength(path!)/1609.34)"
+             
                 
                 
                 //"\((GMSGeometryLength(path!)/1609.34))"
                 
-                    
-                    
                 
                 
                 polyline.strokeWidth = 4
                 polyline.strokeColor = UIColor.black
                 polyline.map = self.googleMaps
-        
                 
+                
+                //this code sets the camera of Google Maps to view the entire route
+                let x: UInt!
+                x = 1
+                
+                var bounds = GMSCoordinateBounds()
+                for index in x...(path?.count())!{
+                    bounds = bounds.includingCoordinate((path?.coordinate(at: index))!)
+                    
+                }
+                self.googleMaps.animate(with: GMSCameraUpdate.fit(bounds))
+                
+                
+                let alert = UIAlertController(title: "Route", message: "Looking for Drivers...  Route is \(variablex.truncate(places: 2)) miles long ", preferredStyle: UIAlertControllerStyle.actionSheet)
+                
+                self.present(alert, animated: true, completion: nil)
+                alert.addAction(UIAlertAction(title: "Click on Driver to Request", style: UIAlertActionStyle.default, handler: {action in
+                    print("Done")
+                }))
                 
             }
             
@@ -294,6 +329,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         UISearchBar.appearance().setTextColor(color: UIColor.black)
         self.locationManager.stopUpdatingLocation()
         
+        
+       
         self.present(autoCompleteController, animated: true, completion: nil)
     }
     
@@ -570,7 +607,7 @@ extension RiderOnDemandSubmitViewController: GMSAutocompleteViewControllerDelega
         } else if locationSelected == .destinationLocation {
             destinationLocation.text = place.name	
             locationEnd = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-            createMarker(titleMarker: "Location End", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            createMarker(titleMarker: "Location End", iconMarker: #imageLiteral(resourceName: "drivericon4"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         } else if locationSelected == .wptLocation{
             wptLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
             locationWaypoint = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
@@ -605,4 +642,11 @@ public extension UISearchBar {
         tf.textColor = color
     }
     
+}
+public extension Double
+{
+    func truncate(places : Int)-> Double
+    {
+        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+    }
 }
