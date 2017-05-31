@@ -80,8 +80,8 @@ class LoginViewController : UIViewController{
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
             
             print(jsonData)
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")!
-            //let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
+            //let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")!
+            let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

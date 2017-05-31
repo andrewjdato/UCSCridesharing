@@ -240,8 +240,34 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             let routes = json["routes"].arrayValue
             
             print(" JSON is:")
-            //print(json)
+            print(json)
             
+//            let jsonRoutes = json["routes"]
+//            print("*****-------------jsonRoutes----------------*****")
+//            print(jsonRoutes)
+//            
+//            var duration = jsonRoutes.arrayObject as! [[String: Any]]
+//            print("*****-------------DURATION----------------*****")
+//            print(duration)
+            
+//            let one = json.dictionaryObject
+//            print("*****-------------dictionary Object----------------*****")
+//            print(one)
+            
+            var two = json.dictionaryValue
+            print("*****-------------dictionary value----------------*****")
+            print(two)
+            
+            let three = two
+            print("*****-------------count of Dict Value----------------*****")
+            print(three)
+//            let three = json.dictionary
+//            print("*****-------------dictionary----------------*****")
+//            print(three)
+//            
+//            let four = json.arrayValue
+//            print("*****-------------array Value----------------*****")
+//            print(four)
             
             // print route using Polyline
             for route in routes
@@ -253,15 +279,13 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 
             
                 
-                let routeLegs = route["legs"].arrayValue
+                var routeLegs = route["legs"].arrayValue
                 
                 
-                print("Route Legs")
-                print(routeLegs)
+                //print("Route Legs")
+                //print(routeLegs)
                 
-                let departure = "e"
-                print("departure")
-                print(departure)
+                
                 
                 
                 
