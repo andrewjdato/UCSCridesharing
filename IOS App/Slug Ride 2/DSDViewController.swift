@@ -20,6 +20,10 @@ struct RiderDSD {
     let rider_timeofdeparture_hour: Int;
     let rider_timeofdeparture_minute: Int
     let rider_approved : Bool;
+    let rider_departure : String;
+    let rider_destination: String;
+    let rider_tripId : Int;
+    let rider_number : Int;
 }
 
 class DSDFooter: DatasourceCell {
@@ -40,13 +44,18 @@ class DSDCell: DatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             guard let user = datasourceItem  as? RiderDSD else {return}
             nameLabel.text = user.rider_firstname + " " + user.rider_lastname
             timeLabel.text = "Time: \(user.rider_timeofdeparture_hour):\(user.rider_timeofdeparture_minute)"
-            locationView.text = "\(user.rider_departure_latitude), \(user.rider_departure_longitude)"
-            destinationView.text = "\(user.rider_destination_latitude), \(user.rider_destination_longitude)"
-            followButton.tag = appDelegate.rd_tripid
+            locationView.text = user.rider_departure
+            destinationView.text = user.rider_destination
+            followButton.tag = user.rider_number
+            denyButton.tag = user.rider_number
+            if (user.rider_approved == false) {
+                approveLabel.text = "Pending"
+            } else {
+                approveLabel.text = "Approved"
+            }
             
         }
     }
@@ -58,6 +67,12 @@ class DSDCell: DatasourceCell {
     }()
     
     let timeLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        return label
+    }()
+    
+    let approveLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         return label
@@ -82,10 +97,22 @@ class DSDCell: DatasourceCell {
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
-        button.setTitle("Details", for: .normal)
+        button.setTitle("Approve", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.addTarget(self, action: #selector(DSDViewController.pressed), for: .touchDown)
+        button.addTarget(self, action: #selector(DSDViewController.pressedApprove), for: .touchDown)
+        return button
+    }()
+    
+    let denyButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
+        button.setTitle("Deny", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.addTarget(self, action: #selector(DSDViewController.pressedDeny), for: .touchDown)
         return button
     }()
     
@@ -107,19 +134,24 @@ class DSDCell: DatasourceCell {
         addSubview(locationView)
         addSubview(destinationView)
         addSubview(followButton)
-        
+        addSubview(approveLabel)
+        addSubview(denyButton)
         
         back.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 4, bottomConstant: 0, rightConstant: 4, widthConstant: 0, heightConstant: 0)
         
-        nameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: followButton.leftAnchor, topConstant: 4, leftConstant: 8, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
+        approveLabel.anchor(topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 12, widthConstant: 120, heightConstant: 40)
+        
+        nameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: approveLabel.leftAnchor, topConstant: 4, leftConstant: 8, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
         
         timeLabel.anchor(nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
-        
-        followButton.anchor(topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 12, widthConstant: 120, heightConstant: 40)
         
         locationView.anchor(timeLabel.bottomAnchor, left: timeLabel.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
         
         destinationView.anchor(locationView.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
+        
+        followButton.anchor(destinationView.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: nil, topConstant: 8, leftConstant: 0, bottomConstant: 4, rightConstant: 12, widthConstant: CGFloat((wid/2)-4), heightConstant: 40)
+        
+        denyButton.anchor(destinationView.bottomAnchor, left: followButton.rightAnchor, bottom: nil, right: self.rightAnchor, topConstant: 8, leftConstant: 4, bottomConstant: 0, rightConstant: 12, widthConstant: CGFloat((wid/2)-4), heightConstant: 40)
         
     }
 }
@@ -141,11 +173,11 @@ class DSDDataSource: Datasource {
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        return usersSC[indexPath.item]
+        return usersDSD[indexPath.item]
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        return usersSC.count
+        return usersDSD.count
     }
     
 }
@@ -215,20 +247,29 @@ class DSDViewController: DatasourceController {
                 
                 users.removeAll()
                 let userss = arrJson as? [[String: Any]]
+                var count : Int = 0
                 for user in userss! {
                     let newRide = RiderDSD(rider_email: (user["rider_email"] as? String)!,
                                            rider_firstname: (user["rider_firstname"] as? String)!,
                                            rider_lastname: (user["rider_lastname"] as? String)!,
-                                           rider_departure_longitude: (user["rider_departure_longitude"] as? Double)!,
-                                           rider_departure_latitude: (user["rider_departure_latitude"] as? Double)!,
-                                           rider_destination_longitude: (user["rider_destination_longitude"] as? Double)!,
-                                           rider_destination_latitude: (user["rider_destination_latitude"] as? Double)!,
-                                           rider_timeofdeparture_hour: (user["rider_timeofdeparture_hour"] as? Int)!,
-                                           rider_timeofdeparture_minute: (user["rider_timeofdeparture_minute"] as? Int)!,
-                                           rider_approved: (user["rider_approved"] as? Bool)!)
+                                           //rider_departure_longitude: (user["rider_departure_longitude"] as? Double)!,
+                        //rider_departure_latitude: (user["rider_departure_latitude"] as? Double)!,
+                        //rider_destination_longitude: (user["rider_destination_longitude"] as? Double)!,
+                        //rider_destination_latitude: (user["rider_destination_latitude"] as? Double)!,
+                        rider_departure_longitude: 1,
+                        rider_departure_latitude: 1,
+                        rider_destination_longitude: 1,
+                        rider_destination_latitude: 1,
+                        rider_timeofdeparture_hour: (user["rider_timeofdeparture_hour"] as? Int)!,
+                        rider_timeofdeparture_minute: (user["rider_timeofdeparture_minute"] as? Int)!,
+                        rider_approved: (user["rider_approved"] as? Bool)!,
+                        rider_departure: (user["rider_departure"] as? String)!,
+                        rider_destination: (user["rider_destination"] as? String)!,
+                        rider_tripId: appDelegate.rd_tripid,
+                        rider_number : count)
                     
-                    
-                    
+                    count += 1
+                    print(count)
                     
                     print(newRide)
                     usersDSD.append(newRide)
@@ -256,12 +297,20 @@ class DSDViewController: DatasourceController {
         print("load Success")
     }
     
-    func pressed(button: UIButton) {
+    func pressedApprove(button: UIButton) {
         print(button.tag)
+        print("true")
+        sendApproval(desicion: true, pos: button.tag)
+    }
+
+    func pressedDeny(button: UIButton) {
+        print(button.tag)
+         print("false")
+        sendApproval(desicion: false, pos: button.tag)
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 178)
+        return CGSize(width: view.frame.width, height: 160)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -270,5 +319,58 @@ class DSDViewController: DatasourceController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 0)
+    }
+    
+    func sendApproval(desicion:Bool, pos:Int){
+        print(desicion)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let dict = ["driver_email":appDelegate.user_email, "rider_email" : usersDSD[pos].rider_email, "trip_id":appDelegate.rd_tripid,
+                    "rider_approval": desicion] as [String: Any]
+        print(dict)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
+            
+            print("success")
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_approval/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+                if let httpResponse = response as? HTTPURLResponse {
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 201) {
+                        print("error")
+                        return
+                    }
+                }
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                guard let data = data else {
+                    print("Data is empty")
+                    return
+                }
+                /*
+                 self.arrJson = json
+                 print(self.arrJson!)
+                 
+                 
+                 let users = self.arrJson as? [[String: Any]]
+                 for user in users! {
+                 print(user)
+                 self.max += 1
+                 }
+                 print(self.max*/
+                //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                //let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                //self.present(newViewController, animated: true, completion: nil)
+            }
+            
+            task.resume()
+            
+        }
     }
 }

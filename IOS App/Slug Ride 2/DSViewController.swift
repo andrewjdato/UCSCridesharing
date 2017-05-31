@@ -25,6 +25,8 @@ struct DriverSC {
     let saturday : Bool;
     let sunday : Bool;
     let trip_id : Int;
+    let driver_departure : String;
+    let driver_destination: String;
 }
 
 class DSFooter: DatasourceCell {
@@ -46,10 +48,10 @@ class DSCell: DatasourceCell {
     override var datasourceItem: Any? {
         didSet {
             guard let user = datasourceItem  as? DriverSC else {return}
-            nameLabel.text = "Ride Count: \(user.rider_count)"
+            //nameLabel.text = "Ride Count: \(user.rider_count)"
             timeLabel.text = "Time: \(user.driver_timeofdeparture_hour):\(user.driver_timeofdeparture_minute)"
-            locationView.text = "\(user.driver_departure_latitude), \(user.driver_departure_longitude)"
-            destinationView.text = "\(user.driver_destination_latitude), \(user.driver_destination_longitude)"
+            locationView.text = user.driver_departure
+            destinationView.text = user.driver_destination
             if user.monday == true {
                 mondayX.text = "X"
                 mondayX.textAlignment = .center
@@ -259,9 +261,9 @@ class DSCell: DatasourceCell {
         
         back.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 4, bottomConstant: 0, rightConstant: 4, widthConstant: 0, heightConstant: 0)
         
-        nameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: followButton.leftAnchor, topConstant: 4, leftConstant: 8, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
+        //nameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: followButton.leftAnchor, topConstant: 4, leftConstant: 8, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
         
-        timeLabel.anchor(nameLabel.bottomAnchor, left: nameLabel.leftAnchor, bottom: nil, right: nameLabel.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+        timeLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: followButton.leftAnchor, topConstant: 4, leftConstant: 8, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 20)
         
         followButton.anchor(topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 0, rightConstant: 12, widthConstant: 120, heightConstant: 40)
         
@@ -403,8 +405,9 @@ class DSViewController: DatasourceController {
                                          friday: (user["friday"] as? Bool)!,
                                          saturday: (user["saturday"] as? Bool)! ,
                                          sunday: (user["sunday"] as? Bool)!,
-                                         trip_id: (user["trip_id"] as? Int)!)
-                    print(newRide)
+                                         trip_id: (user["trip_id"] as? Int)!,
+                                         driver_departure: (user["driver_departure"] as? String)!,
+                                         driver_destination: (user["driver_destination"] as? String)!)
                     usersSC.append(newRide)
                 }
                 print(usersSC)
@@ -437,7 +440,7 @@ class DSViewController: DatasourceController {
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 178)
+        return CGSize(width: view.frame.width, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

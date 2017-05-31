@@ -53,6 +53,8 @@ class RPSViewController : UIViewController, GMSMapViewDelegate ,  CLLocationMana
     var startLat : Double = 0
     var endLong : Double = 0
     var endLat : Double = 0
+    var departure : String = ""
+    var destination : String = ""
     
     @IBOutlet weak var hourPicker: UIPickerView!
     @IBOutlet weak var minutePicker: UIPickerView!
@@ -207,7 +209,7 @@ class RPSViewController : UIViewController, GMSMapViewDelegate ,  CLLocationMana
             let sat:Bool = self.saturday
             let sun:Bool = self.sunday
             //let session = URLSession.shared
-            let dict = ["rider_email":appDelegate.user_email, "rider_departure_longitude":self.startLong, "rider_departure_latitude":self.startLat, "rider_destination_longitude":self.endLong, "rider_destination_latitude":self.endLat, "rider_timeofdeparture_hour":self.selhour, "rider_timeofdeparture_minute":self.selminute, "monday":mon, "tuesday":tue, "wednesday":wed, "thursday":thu, "friday":fri, "saturday":sat, "sunday":sun] as [String: Any]
+            let dict = ["rider_email":appDelegate.user_email, "rider_departure_longitude":self.startLong, "rider_departure_latitude":self.startLat, "rider_destination_longitude":self.endLong, "rider_destination_latitude":self.endLat, "rider_timeofdeparture_hour":self.selhour, "rider_timeofdeparture_minute":self.selminute, "monday":mon, "tuesday":tue, "wednesday":wed, "thursday":thu, "friday":fri, "saturday":sat, "sunday":sun, "rider_departure":self.departure, "rider_destination" : self.destination] as [String: Any]
             print(dict)
             if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
                 
@@ -347,12 +349,14 @@ extension RPSViewController : GMSAutocompleteViewControllerDelegate {
         // set coordinate to text
         if locationSelected == .startLocation {
             startLoc.text = place.name
+            departure = place.name
             startLong = place.coordinate.longitude
             startLat = place.coordinate.latitude
             //locationStart = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             //createMarker(titleMarker: "Location Start", iconMarker: #imageLiteral(resourceName: "mapspin"), latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         } else if locationSelected == .destinationLocation {
             destLoc.text = place.name
+            destination = place.name
             endLong = place.coordinate.longitude
             endLat = place.coordinate.latitude
             //destinationLocation.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"

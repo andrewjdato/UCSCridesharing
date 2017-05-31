@@ -26,6 +26,8 @@ struct driver {
     let saturday : Bool;
     let sunday : Bool;
     let trip_id : Int;
+    let driver_departure : String;
+    let driver_destination: String;
 }
 
 
@@ -51,8 +53,8 @@ class UserCell: DatasourceCell {
             guard let user = datasourceItem  as? driver else {return}
             nameLabel.text = user.first_name + " " + user.last_name
             timeLabel.text = "Time: \(user.driver_timeofdeparture_hour):\(user.driver_timeofdeparture_minute)"
-            locationView.text = "\(user.driver_departure_latitude), \(user.driver_departure_longitude)"
-            destinationView.text = "\(user.driver_destination_latitude), \(user.driver_destination_longitude)"
+            locationView.text = user.driver_departure
+            destinationView.text = user.driver_destination
             if user.monday == true {
                 mondayX.text = "X"
                 mondayX.textAlignment = .center
@@ -333,8 +335,10 @@ var users = [driver]()
 
 class RiderPickController: DatasourceController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         wid = Int(view.frame.width)
         collectionView?.backgroundColor = UIColor(r: 0, g: 107, b: 255)
@@ -344,8 +348,8 @@ class RiderPickController: DatasourceController {
         getDriver()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         wid = Int(view.frame.width)
         collectionView?.backgroundColor = UIColor(r: 0, g: 107, b: 255)
@@ -414,7 +418,9 @@ class RiderPickController: DatasourceController {
                                          friday: (user["friday"] as? Bool)!,
                                          saturday: (user["saturday"] as? Bool)! ,
                                          sunday: (user["sunday"] as? Bool)!,
-                                         trip_id: (user["trip_id"] as? Int)!)
+                                         trip_id: (user["trip_id"] as? Int)!,
+                                         driver_departure: (user["driver_departure"] as? String)!,
+                                         driver_destination: (user["driver_destination"] as? String)!)
                     print(newRide)
                     users.append(newRide)
                 }

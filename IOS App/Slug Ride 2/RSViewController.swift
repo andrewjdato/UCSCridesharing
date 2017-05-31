@@ -30,8 +30,8 @@ class RSCell: DatasourceCell {
             guard let user = datasourceItem  as? driver else {return}
             nameLabel.text = user.first_name + " " + user.last_name
             timeLabel.text = "Time: \(user.driver_timeofdeparture_hour):\(user.driver_timeofdeparture_minute)"
-            locationView.text = "\(user.driver_departure_latitude), \(user.driver_departure_longitude)"
-            destinationView.text = "\(user.driver_destination_latitude), \(user.driver_destination_longitude)"
+            locationView.text = user.driver_departure
+            destinationView.text = user.driver_destination
             if user.monday == true {
                 mondayX.text = "X"
                 mondayX.textAlignment = .center
@@ -368,7 +368,9 @@ class RSViewController: DatasourceController {
                                          friday: (user["friday"] as? Bool)!,
                                          saturday: (user["saturday"] as? Bool)! ,
                                          sunday: (user["sunday"] as? Bool)!,
-                                         trip_id: (user["trip_id"] as? Int)!)
+                                         trip_id: (user["trip_id"] as? Int)!,
+                                         driver_departure: (user["driver_departure"] as? String)!,
+                                         driver_destination: (user["driver_destination"] as? String)!)
                     print(newRide)
                     users.append(newRide)
                 }
