@@ -196,8 +196,19 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 let polyline = GMSPolyline.init(path: path)
                 
                 polyline.strokeWidth = 4
-                polyline.strokeColor = UIColor.red
+                polyline.strokeColor = UIColor.purple
                 polyline.map = self.googleMaps
+                
+                //this code sets the camera of Google Maps to view the entire route
+                let x: UInt!
+                x = 1
+                
+                var bounds = GMSCoordinateBounds()
+                for index in x...(path?.count())!{
+                    bounds = bounds.includingCoordinate((path?.coordinate(at: index))!)
+                    
+                }
+                self.googleMaps.animate(with: GMSCameraUpdate.fit(bounds))
             }
             
         }
@@ -395,7 +406,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
                 
                 //gets request if there is one, along with info in order to get rider coordinates
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                print("Rider Object Received: ")
+                print("Rider Object Received by Driver: ")
                 print(json)
                 let users = json as? [[String: Any]]
                 

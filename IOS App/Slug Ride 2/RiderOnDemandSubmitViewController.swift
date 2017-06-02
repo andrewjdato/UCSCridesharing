@@ -340,7 +340,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     
     
-    // MARK: when start location tap, this will open the search location
+    // NOT NEEDED ANYMORE
     @IBAction func openStartLocation(_ sender: UIButton) {
         
         let autoCompleteController = GMSAutocompleteViewController()
@@ -383,6 +383,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let dict = ["rider_email":appDelegate.user_email,"rider_departure_lat": locationStart.coordinate.latitude ,"rider_departure_lon":locationStart.coordinate.longitude,"rider_destination_lat": locationEnd.coordinate.latitude ,"rider_destination_lon":locationEnd.coordinate.longitude] as [String: Any]
+        
+        print("*****-------Rider's Ride Object being Posted-------****")
         print(dict)
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
@@ -463,6 +465,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 return
             }
             let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+            print("******--------Driver Object Returned to Driver------*****")
             print(json)
             let users = json as? [[String: Any]]
             
