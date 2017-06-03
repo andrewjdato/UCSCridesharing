@@ -58,7 +58,6 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         self.postButton.isHidden = true
         
         
-        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -85,7 +84,8 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
     
     
     
-    
+    //sets the start location as the current location
+  
     
     
     
@@ -110,6 +110,7 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
         //saves the current location to a global
         self.curLocation = location!
+        
         
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
         

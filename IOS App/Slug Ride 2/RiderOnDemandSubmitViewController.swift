@@ -95,7 +95,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.postButton.isHidden = true
-     
+        self.postButton.layer.borderWidth = 5
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
