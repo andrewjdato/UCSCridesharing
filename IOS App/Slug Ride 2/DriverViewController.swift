@@ -19,7 +19,7 @@ class DriverViewController: UIViewController {
         super.viewDidLoad()
         
         
-        if let theURL: NSURL = Bundle.main.url(forResource: "drivervid", withExtension: "mp4")! as NSURL{
+        if let theURL: NSURL = Bundle.main.url(forResource: "ridervid3", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
             
         }

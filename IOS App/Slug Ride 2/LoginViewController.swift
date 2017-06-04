@@ -8,9 +8,35 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+
 
 class LoginViewController : UIViewController{
+    var avPlayer: AVPlayer!
+    var avPlayerLayer: AVPlayerLayer!
+    var paused: Bool = false
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func playerItemDidReachEnd(notification: Notification) {
+        let p: AVPlayerItem = notification.object as! AVPlayerItem
+        p.seek(to: kCMTimeZero)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        avPlayer.play()
+        paused = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        avPlayer.pause()
+        paused = true
+    }
     let login_url = "http://localhost:8000/rideshare/user_login/"
     //let checksession_url = "http://localhost:8000/rideshare/user_login/"
     
@@ -28,6 +54,28 @@ class LoginViewController : UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let theURL: NSURL = Bundle.main.url(forResource: "ridervid2", withExtension: "mp4")! as NSURL{
+            avPlayer = AVPlayer(url: theURL as URL)
+            
+        }
+        
+        
+        avPlayerLayer = AVPlayerLayer(player: avPlayer)
+        avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        avPlayer.volume = 0
+        avPlayer.actionAtItemEnd = .none
+        
+        
+        avPlayerLayer.frame = view.layer.bounds
+        view.backgroundColor = .clear
+        view.layer.insertSublayer(avPlayerLayer, at: 0)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerItemDidReachEnd(notification:)),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: avPlayer.currentItem)
+        
         self.navigationController?.isNavigationBarHidden = false
         
         username_input.text = "od1@ucsc.edu"
