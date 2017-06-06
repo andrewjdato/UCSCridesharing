@@ -55,14 +55,16 @@ class LoginViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let theURL: NSURL = Bundle.main.url(forResource: "ridervid2", withExtension: "mp4")! as NSURL{
+        if let theURL: NSURL = Bundle.main.url(forResource: "slugridevid", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
             
         }
         
         
+        
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+    
         avPlayer.volume = 0
         avPlayer.actionAtItemEnd = .none
         
@@ -76,7 +78,7 @@ class LoginViewController : UIViewController{
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer.currentItem)
         
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         
         username_input.text = "od1@ucsc.edu"
         password_input.text = "od1"

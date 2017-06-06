@@ -32,7 +32,7 @@ class DriverViewController: UIViewController {
         self.scheduleButton.layer.cornerRadius = 10
         self.scheduleButton.clipsToBounds = true
         
-        if let theURL: NSURL = Bundle.main.url(forResource: "ridervid3", withExtension: "mp4")! as NSURL{
+        if let theURL: NSURL = Bundle.main.url(forResource: "drivervid5", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
             
         }

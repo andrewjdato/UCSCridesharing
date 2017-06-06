@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		586B41511ED9267900060857 /* ridervid2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 586B41501ED9266C00060857 /* ridervid2.mp4 */; };
 		586B41531ED9279800060857 /* ridervid3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 586B41521ED9278E00060857 /* ridervid3.mp4 */; };
+		587F48C51EE61C3B000E3F4B /* drivervid5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 587F48C41EE61C2B000E3F4B /* drivervid5.mp4 */; };
 		58B53E2A1EAEB94200060707 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E281EAEB94200060707 /* GoogleMaps.framework */; };
 		58B53E2B1EAEB94200060707 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E291EAEB94200060707 /* GoogleMapsCore.framework */; };
 		58B53E2D1EAEB95400060707 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E2C1EAEB95400060707 /* GoogleMapsBase.framework */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		586B41501ED9266C00060857 /* ridervid2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ridervid2.mp4; sourceTree = "<group>"; };
 		586B41521ED9278E00060857 /* ridervid3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ridervid3.mp4; sourceTree = "<group>"; };
+		587F48C41EE61C2B000E3F4B /* drivervid5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drivervid5.mp4; sourceTree = "<group>"; };
 		58B53E281EAEB94200060707 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		58B53E291EAEB94200060707 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		58B53E2C1EAEB95400060707 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				586B41501ED9266C00060857 /* ridervid2.mp4 */,
 				58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */,
 				586B41521ED9278E00060857 /* ridervid3.mp4 */,
+				587F48C41EE61C2B000E3F4B /* drivervid5.mp4 */,
 				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
 				9BAA30BC1EA730C0003A5B54 /* ViewController.swift */,
@@ -617,6 +620,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587F48C51EE61C3B000E3F4B /* drivervid5.mp4 in Resources */,
 				586B41531ED9279800060857 /* ridervid3.mp4 in Resources */,
 				586B41511ED9267900060857 /* ridervid2.mp4 in Resources */,
 				58BFA2201ED3FB06004B79CE /* drivervid.mp4 in Resources */,
