@@ -18,7 +18,8 @@ class DriverViewController: UIViewController {
     @IBOutlet weak var onDemandButton: UIButton!
     @IBOutlet weak var plannedButton: UIButton!
     @IBOutlet weak var scheduleButton: UIButton!
-    
+
+    @IBOutlet weak var videoView: UIView!
     
     
     override func viewDidLoad() {
@@ -32,7 +33,10 @@ class DriverViewController: UIViewController {
         self.scheduleButton.layer.cornerRadius = 10
         self.scheduleButton.clipsToBounds = true
         
-        if let theURL: NSURL = Bundle.main.url(forResource: "drivervid5", withExtension: "mp4")! as NSURL{
+        
+        
+        
+        if let theURL: NSURL = Bundle.main.url(forResource: "drivervidfin", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
             
         }
@@ -43,13 +47,16 @@ class DriverViewController: UIViewController {
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
         avPlayer.volume = 0
         avPlayer.actionAtItemEnd = .none
         
         
-        avPlayerLayer.frame = view.layer.bounds
-        view.backgroundColor = .clear
-        view.layer.insertSublayer(avPlayerLayer, at: 0)
+        avPlayerLayer.frame = self.videoView.bounds
+        
+        self.videoView.backgroundColor = .clear
+        self.videoView.layer.insertSublayer(avPlayerLayer, at: 0)
+        //view.layer.insertSublayer(avPlayerLayer, at: 0)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(playerItemDidReachEnd(notification:)),
@@ -82,6 +89,11 @@ class DriverViewController: UIViewController {
         avPlayer.pause()
         paused = true
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     @IBAction func move(_ sender: Any) {
         let newViewController = DSViewController()

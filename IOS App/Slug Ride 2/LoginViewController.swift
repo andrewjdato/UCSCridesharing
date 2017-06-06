@@ -16,6 +16,9 @@ class LoginViewController : UIViewController{
     var avPlayerLayer: AVPlayerLayer!
     var paused: Bool = false
     
+    @IBOutlet weak var loginButton: UIButton!
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,11 +58,14 @@ class LoginViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let theURL: NSURL = Bundle.main.url(forResource: "slugridevid", withExtension: "mp4")! as NSURL{
+        if let theURL: NSURL = Bundle.main.url(forResource: "front", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
             
         }
         
+        
+        self.loginButton.layer.cornerRadius = 10
+        self.loginButton.clipsToBounds = true
         
         
         avPlayerLayer = AVPlayerLayer(player: avPlayer)

@@ -356,6 +356,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="u1c-vC-OCA"/>
                     <connections>
+                        <outlet property="loginButton" destination="bPc-GZ-FVR" id="vx0-NB-NCV"/>
                         <outlet property="login_button" destination="bPc-GZ-FVR" id="cKp-ll-RI2"/>
                         <outlet property="password_input" destination="PSZ-t5-PCw" id="Ihf-c7-4PG"/>
                         <outlet property="username_input" destination="2mM-TA-W7Z" id="S7t-oh-kWC"/>
@@ -802,73 +803,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mh-yI-mbG">
-                                <rect key="frame" x="0.0" y="64" width="375" height="201"/>
-                                <color key="backgroundColor" red="0.25490197539329529" green="0.031372550874948502" blue="0.21568627655506134" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.074509806930000005" green="0.1215686277" blue="0.42745098469999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxK-Z8-eR2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9S-YX-WHn">
+                                        <rect key="frame" x="0.0" y="127" width="375" height="54"/>
+                                        <color key="backgroundColor" red="0.33225595949999998" green="0.086761303250000005" blue="0.47225528960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="h80-oe-8mP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="38"/>
+                                        <state key="normal" title="On Demand">
+                                            <color key="titleColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.78431373829999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="xeg-Fk-xWD" kind="show" id="ns3-Mc-99E"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mh-yI-mbG">
+                                        <rect key="frame" x="-2" y="0.0" width="378" height="129"/>
+                                        <color key="backgroundColor" red="0.25490197539329529" green="0.031372550874948502" blue="0.21568627655506134" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.074509806930000005" green="0.1215686277" blue="0.42745098469999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="129" id="uRj-ih-cvv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="60"/>
+                                        <color key="textColor" red="0.94509804248809814" green="0.94509804248809814" blue="0.78431373834609985" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-gL-Q45">
+                                        <rect key="frame" x="0.0" y="181" width="375" height="47"/>
+                                        <color key="backgroundColor" red="0.33225595949999998" green="0.086761303250000005" blue="0.47225528960000002" alpha="0.89143770973154357" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47" id="bOp-L5-acJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="38"/>
+                                        <state key="normal" title="Planned">
+                                            <color key="titleColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.78431373829999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Mmq-2b-qoo" kind="show" id="ryk-bR-JVD"/>
+                                        </connections>
+                                    </button>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4d-Be-80d">
+                                        <rect key="frame" x="-2" y="223" width="381" height="48"/>
+                                        <color key="backgroundColor" red="0.0064656059259999999" green="0.1151711419" blue="0.65457224849999995" alpha="0.91904362416107388" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="d0H-a6-KJT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="38"/>
+                                        <state key="normal" title="Schedule">
+                                            <color key="titleColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.78431373829999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="move:" destination="Uwj-F0-MsK" eventType="touchUpInside" id="Zzg-N5-gXK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="201" id="k2V-EK-PZ3"/>
-                                    <constraint firstAttribute="width" constant="375" id="pDm-qQ-qmL"/>
+                                    <constraint firstItem="r9S-YX-WHn" firstAttribute="trailing" secondItem="seI-gL-Q45" secondAttribute="trailing" id="4ny-7C-159"/>
+                                    <constraint firstItem="seI-gL-Q45" firstAttribute="top" secondItem="r9S-YX-WHn" secondAttribute="bottom" id="Aft-7S-PlA"/>
+                                    <constraint firstItem="f4d-Be-80d" firstAttribute="top" secondItem="r9S-YX-WHn" secondAttribute="bottom" constant="42" id="Ez2-7Y-TIU"/>
+                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="leading" secondItem="f4d-Be-80d" secondAttribute="leading" id="Mox-77-XKR"/>
+                                    <constraint firstItem="seI-gL-Q45" firstAttribute="top" secondItem="9mh-yI-mbG" secondAttribute="bottom" constant="52" id="S9w-6C-Qc2"/>
+                                    <constraint firstItem="r9S-YX-WHn" firstAttribute="leading" secondItem="vxK-Z8-eR2" secondAttribute="leading" id="bbB-gG-6PI"/>
+                                    <constraint firstAttribute="trailing" secondItem="f4d-Be-80d" secondAttribute="trailing" constant="-4" id="eRf-dU-8Gb"/>
+                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="r9S-YX-WHn" secondAttribute="centerX" id="h8Q-aL-iyR"/>
+                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="leading" secondItem="vxK-Z8-eR2" secondAttribute="leading" constant="-2" id="mNf-Dq-4f0"/>
+                                    <constraint firstItem="r9S-YX-WHn" firstAttribute="leading" secondItem="seI-gL-Q45" secondAttribute="leading" id="mgo-mr-Ajy"/>
+                                    <constraint firstAttribute="trailing" secondItem="r9S-YX-WHn" secondAttribute="trailing" id="pGu-ts-qpH"/>
+                                    <constraint firstItem="9mh-yI-mbG" firstAttribute="top" secondItem="vxK-Z8-eR2" secondAttribute="top" id="pKD-tm-jtd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="60"/>
-                                <color key="textColor" red="0.94509804248809814" green="0.94509804248809814" blue="0.78431373834609985" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9S-YX-WHn">
-                                <rect key="frame" x="0.0" y="264" width="375" height="54"/>
-                                <color key="backgroundColor" red="0.33225595949999998" green="0.086761303250000005" blue="0.47225528960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="h6w-m5-19C"/>
-                                    <constraint firstAttribute="height" constant="54" id="sm3-Fr-xI3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="38"/>
-                                <state key="normal" title="On Demand">
-                                    <color key="titleColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.78431373829999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="xeg-Fk-xWD" kind="show" id="ns3-Mc-99E"/>
-                                </connections>
-                            </button>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-gL-Q45">
-                                <rect key="frame" x="0.0" y="318" width="375" height="47"/>
-                                <color key="backgroundColor" red="0.33225595949999998" green="0.086761303250000005" blue="0.47225528960000002" alpha="0.89143770973154357" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="26c-JG-yZd"/>
-                                    <constraint firstAttribute="height" constant="47" id="GoJ-4K-PBA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="38"/>
-                                <state key="normal" title="Planned">
-                                    <color key="titleColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.78431373829999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Mmq-2b-qoo" kind="show" id="ryk-bR-JVD"/>
-                                </connections>
-                            </button>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4d-Be-80d">
-                                <rect key="frame" x="-3" y="364" width="381" height="48"/>
-                                <color key="backgroundColor" red="0.0064656059259999999" green="0.1151711419" blue="0.65457224849999995" alpha="0.91904362416107388" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="381" id="LcB-gh-tWF"/>
-                                    <constraint firstAttribute="height" constant="48" id="zLv-GH-0Re"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="38"/>
-                                <state key="normal" title="Schedule">
-                                    <color key="titleColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.78431373829999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="move:" destination="Uwj-F0-MsK" eventType="touchUpInside" id="Zzg-N5-gXK"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="f4d-Be-80d" firstAttribute="top" secondItem="9wR-72-eAn" secondAttribute="bottom" constant="300" id="4sS-TW-GX7"/>
-                            <constraint firstItem="seI-gL-Q45" firstAttribute="top" secondItem="9wR-72-eAn" secondAttribute="bottom" constant="254" id="Aeu-d1-URY"/>
-                            <constraint firstItem="9mh-yI-mbG" firstAttribute="top" secondItem="9wR-72-eAn" secondAttribute="bottom" id="RkG-3w-P1c"/>
-                            <constraint firstItem="9mh-yI-mbG" firstAttribute="centerX" secondItem="HVL-X6-h4i" secondAttribute="centerX" id="Vz9-N7-IO4"/>
-                            <constraint firstItem="seI-gL-Q45" firstAttribute="centerX" secondItem="HVL-X6-h4i" secondAttribute="centerX" id="a48-Yd-p7f"/>
-                            <constraint firstItem="r9S-YX-WHn" firstAttribute="centerX" secondItem="HVL-X6-h4i" secondAttribute="centerX" id="mXo-V2-ZMf"/>
-                            <constraint firstItem="f4d-Be-80d" firstAttribute="centerX" secondItem="HVL-X6-h4i" secondAttribute="centerX" id="nQr-op-1EG"/>
-                            <constraint firstItem="r9S-YX-WHn" firstAttribute="top" secondItem="9wR-72-eAn" secondAttribute="bottom" constant="200" id="un2-AW-Ftm"/>
+                            <constraint firstAttribute="bottom" secondItem="vxK-Z8-eR2" secondAttribute="bottom" id="QvM-gM-OlW"/>
+                            <constraint firstItem="vxK-Z8-eR2" firstAttribute="top" secondItem="9wR-72-eAn" secondAttribute="bottom" id="V1x-L8-KBD"/>
+                            <constraint firstItem="vxK-Z8-eR2" firstAttribute="leading" secondItem="HVL-X6-h4i" secondAttribute="leading" id="h1a-8N-lww"/>
+                            <constraint firstAttribute="trailing" secondItem="vxK-Z8-eR2" secondAttribute="trailing" id="iOl-AC-URI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Driver" id="XGV-Cx-cwi"/>
@@ -876,6 +889,7 @@
                         <outlet property="onDemandButton" destination="r9S-YX-WHn" id="DOI-BP-bHX"/>
                         <outlet property="plannedButton" destination="seI-gL-Q45" id="1Vl-hx-gbv"/>
                         <outlet property="scheduleButton" destination="f4d-Be-80d" id="E21-y2-m6o"/>
+                        <outlet property="videoView" destination="vxK-Z8-eR2" id="4DE-l5-IDR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ew-ZU-YP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2117,10 +2131,10 @@
             </objects>
             <point key="canvasLocation" x="6113" y="1702"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="eVp-gt-Hte">
             <objects>
-                <tabBarController restorationIdentifier="DriverTransViewController" storyboardIdentifier="DriverTransViewController" id="WJC-nn-h9c" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="DriverTransViewController" storyboardIdentifier="DriverTransViewController" id="WJC-nn-h9c" customClass="tabViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="T59-5Y-OcV"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="lVv-u9-ces">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
