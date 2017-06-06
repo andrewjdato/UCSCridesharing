@@ -355,7 +355,12 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
             }
             
             //polls for requests at an interval of 20 seconds
-            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.test(_:)), userInfo: nil, repeats: false)
+            
+            
+            
+            
+            
             task.resume()
             
             
@@ -365,6 +370,24 @@ class DriverOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate
         
         
     }
+    
+    
+    func test(_ sender: Any){
+        let alert = UIAlertController(title: "Rider Request", message: "Tap Accept to give a ride to andrew@ucsc.edu or Decline to keep checking for Riders ", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: {action in
+            self.drawPathWaypt(startLocation: self.locationStart, endLocation: self.locationEnd, waypoints: self.locationWaypoint)
+        }))
+        alert.addAction(UIAlertAction(title:"Decline",style: UIAlertActionStyle.default, handler:
+            {action in
+                
+                //set timer for polling again because rider was declined
+                //self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+        }
+        ))
+        self.present(alert, animated: true, completion: nil)
+    
+    }
+    
     
     func pollforRequests(_ sender: Any){
         print("Server Poll Driver Side")

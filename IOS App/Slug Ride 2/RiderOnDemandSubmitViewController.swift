@@ -322,11 +322,11 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 }
                 self.googleMaps.animate(with: GMSCameraUpdate.fit(bounds))
                 
-                
+                // CODE TO CHANGE ALERT AFTER GETTING ROUTE
                 let alert = UIAlertController(title: "Route", message: "Looking for Drivers...  Route is \(variablex.truncate(places: 2)) miles long ", preferredStyle: UIAlertControllerStyle.actionSheet)
                 
                 self.present(alert, animated: true, completion: nil)
-                alert.addAction(UIAlertAction(title: "Click on Driver to Request", style: UIAlertActionStyle.default, handler: {action in
+                alert.addAction(UIAlertAction(title: "Press Post Ride to begin", style: UIAlertActionStyle.default, handler: {action in
                     print("Done")
                 }))
                 
@@ -418,7 +418,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 print(json)
                 
             }
-            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.test(_:)), userInfo: nil, repeats: false)
             task.resume()
             
             
@@ -426,6 +426,21 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         }
         
         
+    }
+    
+    
+    func test(_ sender: Any){
+        let alert = UIAlertController(title: "Driver Found", message: "Request driver john@ucsc.edu or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
+            self.requestDriver()
+        }))
+        alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default, handler: {action in
+            // self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+    
     }
     
     
@@ -516,7 +531,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 //Alert Handler for when Driver is found
                 let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver from \(self.revLoc) to \(self.revLoc2) or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
-                    self.requestDriver()
+                    //self.requestDriver()
                 }))
                 alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default, handler: {action in
                // self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
