@@ -63,6 +63,8 @@ class LoginViewController : UIViewController{
             
         }
         
+        self.navigationController?.isNavigationBarHidden = true
+        
         
         self.loginButton.layer.cornerRadius = 10
         self.loginButton.clipsToBounds = true
@@ -102,6 +104,10 @@ class LoginViewController : UIViewController{
         }*/
     }
     
+    //makes top text white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
