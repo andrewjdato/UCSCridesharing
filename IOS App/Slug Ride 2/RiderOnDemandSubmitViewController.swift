@@ -418,7 +418,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 print(json)
                 
             }
-            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.test(_:)), userInfo: nil, repeats: false)
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
             task.resume()
             
             
