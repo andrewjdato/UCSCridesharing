@@ -8,6 +8,7 @@
 
 import LBTAComponents
 import Foundation
+import CoreLocation
 
 struct driver {
     let first_name : String;
@@ -52,7 +53,12 @@ class UserCell: DatasourceCell {
         didSet {
             guard let user = datasourceItem  as? driver else {return}
             nameLabel.text = user.first_name + " " + user.last_name
-            timeLabel.text = "Time: \(user.driver_timeofdeparture_hour):\(user.driver_timeofdeparture_minute)"
+            if (user.driver_timeofdeparture_minute > 0) {
+                timeLabel.text = "Time: \(user.driver_timeofdeparture_hour):\(user.driver_timeofdeparture_minute)"
+            } else {
+                timeLabel.text = "Time: \(user.driver_timeofdeparture_hour):00"
+            }
+            
             locationView.text = user.driver_departure
             destinationView.text = user.driver_destination
             if user.monday == true {
@@ -394,6 +400,7 @@ class RiderPickController: DatasourceController {
             let userss = arrJson as? [[String: Any]]
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             for user in userss! {
+                
                 if (appDelegate.rider_dayChecker[0] == user["monday"] as? Bool && appDelegate.rider_dayChecker[0] == true) ||
                     (appDelegate.rider_dayChecker[1] == user["tuesday"] as? Bool && appDelegate.rider_dayChecker[1] == true) ||
                     (appDelegate.rider_dayChecker[2] == user["wednesday"] as? Bool && appDelegate.rider_dayChecker[2] == true) ||
@@ -402,8 +409,22 @@ class RiderPickController: DatasourceController {
                     (appDelegate.rider_dayChecker[5] == user["saturday"] as? Bool && appDelegate.rider_dayChecker[5] == true) ||
                     (appDelegate.rider_dayChecker[6] == user["sunday"] as? Bool && appDelegate.rider_dayChecker[6] == true) {
                     
+                    let riderStart = CLLocation(latitude: appDelegate.rider_cords[1], longitude: appDelegate.rider_cords[0])
+                    let driverStart = CLLocation(latitude: (user["driver_departure_latitude"] as? Double)!, longitude: (user["driver_departure_longitude"] as? Double)!)
+                    print(riderStart)
+                    print(driverStart)
+                    print (riderStart.distance(from: driverStart))
                     
-                    let newRide = driver(first_name: (user["first_name"] as? String)!,
+                    if (riderStart.distance(from: driverStart) <= (2*1609) && (user["driver_departure_latitude"] as? Double)! != 989898.0 && (user["driver_departure_latitude"] as? Double)! != 147.0) {
+                        
+                        let riderLoc = CLLocation(latitude: appDelegate.rider_cords[3], longitude: appDelegate.rider_cords[2])
+                        let driverLoc = CLLocation(latitude: (user["driver_destination_latitude"] as? Double)!, longitude: (user["driver_destination_longitude"] as? Double)!)
+                        print(riderLoc)
+                        print(driverLoc)
+                        print (riderLoc.distance(from: driverLoc))
+
+                        if (riderLoc.distance(from: driverLoc) <= (2*1609) && (user["driver_departure_latitude"] as? Double)! != 878787.0 && (user["driver_departure_latitude"] as? Double)! != 147.0) {
+                            let newRide = driver(first_name: (user["first_name"] as? String)!,
                                          last_name: (user["last_name"] as? String)!,
                                          driver_departure_longitude: (user["driver_departure_longitude"] as? Double)!,
                                          driver_departure_latitude: (user["driver_departure_latitude"] as? Double)!,
@@ -421,8 +442,11 @@ class RiderPickController: DatasourceController {
                                          trip_id: (user["trip_id"] as? Int)!,
                                          driver_departure: (user["driver_departure"] as? String)!,
                                          driver_destination: (user["driver_destination"] as? String)!)
-                    print(newRide)
-                    users.append(newRide)
+                    
+                            print(newRide)
+                            users.append(newRide)
+                        }
+                    }
                 }
             }
             print(users)

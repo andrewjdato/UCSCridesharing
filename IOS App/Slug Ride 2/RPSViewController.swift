@@ -281,6 +281,14 @@ class RPSViewController : UIViewController, GMSMapViewDelegate ,  CLLocationMana
         appDelegate.rider_dayChecker.append(self.saturday)
         appDelegate.rider_dayChecker.append(self.sunday)
         print(appDelegate.rider_dayChecker)
+        while !appDelegate.rider_cords.isEmpty {
+            appDelegate.rider_cords.remove(at: 0)
+        }
+        appDelegate.rider_cords.append(self.startLong)
+        appDelegate.rider_cords.append(self.startLat)
+        appDelegate.rider_cords.append(self.endLong)
+        appDelegate.rider_cords.append(self.endLat)
+        print(appDelegate.rider_cords)
         
         submit_button.setTitle("Submitted", for: .normal)
     }

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var user_lastname:String = "temp"
     var rd_tripid:Int = 0
     var rider_dayChecker  = [Bool]()
+    var rider_cords = [Double]()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.sharedManager().enable = true
