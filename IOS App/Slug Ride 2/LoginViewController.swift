@@ -5,6 +5,7 @@
 //  Created by Andrew Dato 
 //  Copyright © 2017 Andrew Dat0. All rights reserved.
 //
+//Login Page
 
 import Foundation
 import UIKit
@@ -12,13 +13,35 @@ import AVFoundation
 
 
 class LoginViewController : UIViewController{
+    
+    
+    /////////////////////////////////////////
+    //Variables
+    /////////////////////////////////////////
+    
+    var login_session:String = ""
+    var user_email:String = ""
+    var user_firstname:String = ""
+    var user_lastname:String = ""
+    
+    //Video Player Variables
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
     var paused: Bool = false
     
-    @IBOutlet weak var loginButton: UIButton!
+    /////////////////////////////////////////
+    //Storyboard Links
+    /////////////////////////////////////////
+    
+    @IBOutlet weak var loginButton: UIButton! //Login Button Variable
+    @IBOutlet weak var username_input: UITextField! //User Input Field
+    @IBOutlet weak var password_input: UITextField! //Password Input Field
+    @IBOutlet weak var login_button: UIButton! //Login button
     
     
+    /////////////////////////////////////////
+    //AV Functions
+    /////////////////////////////////////////
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,47 +52,38 @@ class LoginViewController : UIViewController{
         p.seek(to: kCMTimeZero)
     }
     
+    
+    /////////////////////////////////////////
+    //View Functions
+    /////////////////////////////////////////
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        avPlayer.play()
-        paused = false
+        avPlayer.play() //Plays the video
+        paused = false //Pauses when starts
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        avPlayer.pause()
-        paused = true
+        avPlayer.pause() //Pauses the video
+        paused = true //Pauses when leaves
     }
-    let login_url = "http://localhost:8000/rideshare/user_login/"
-    //let checksession_url = "http://localhost:8000/rideshare/user_login/"
-    
-    
-    var login_session:String = ""
-    
-    var user_email:String = ""
-    var user_firstname:String = ""
-    var user_lastname:String = ""
-    
-    @IBOutlet weak var username_input: UITextField!
-    @IBOutlet weak var password_input: UITextField!
-    
-    @IBOutlet weak var login_button: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Video File that is being played
         if let theURL: NSURL = Bundle.main.url(forResource: "front", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
-            
         }
         
+        //Hide Navigation Bar
         self.navigationController?.isNavigationBarHidden = true
         
-        
+        //Set Login button atributes
         self.loginButton.layer.cornerRadius = 10
         self.loginButton.clipsToBounds = true
         
-        
+        //AV player settings
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
     
@@ -81,6 +95,7 @@ class LoginViewController : UIViewController{
         view.backgroundColor = .clear
         view.layer.insertSublayer(avPlayerLayer, at: 0)
         
+        //AV player notifications
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
@@ -88,6 +103,7 @@ class LoginViewController : UIViewController{
         
         self.navigationController?.isNavigationBarHidden = true
         
+        //Delete Later
         username_input.text = "od1@ucsc.edu"
         password_input.text = "od1"
         
@@ -114,9 +130,21 @@ class LoginViewController : UIViewController{
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    
+    /////////////////////////////////////////
+    //Button Functions
+    /////////////////////////////////////////
 
     @IBAction func login_submit(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.user_email = "od1@ucsc.edu"
+        appDelegate.user_lastname = "od1"
+        appDelegate.user_firstname = "od1"
+        
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        self.present(newViewController, animated: true, completion: nil)
+        /*
         if(login_button.titleLabel?.text == "Logout")
         {
             let preferences = UserDefaults.standard
@@ -125,36 +153,47 @@ class LoginViewController : UIViewController{
             LoginToDo()
         }
         else{
+            //Check to see if the login inforamtion is empty or not
             if let text = username_input.text, !text.isEmpty {
                 if let text1 = password_input.text, !text1.isEmpty {
                     login_now(username:username_input.text!, password: password_input.text!)
+                } else {
+                    self.errorMessage(err: "Please insert valid password")
                 }
+            } else {
+                self.errorMessage(err: "Please insert valid email")
             }
-        }
+        }*/
     }
     
-    
+    /////////////////////////////////////////
+    //Additional Functions
+    /////////////////////////////////////////
+    //Login Function
     func login_now(username:String, password:String)
     {
         //let session = URLSession.shared
+        //Set the login dictoinary
         let dict = ["email":username, "password":password] as [String: Any]
         print(dict)
+        //Create the JSON File
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
             
             print(jsonData)
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")! //Set URl
             //et url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
+            let request = NSMutableURLRequest(url: url as URL) //Set tpe of request
+            request.httpMethod = "POST" //Set Type of post
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type") //Add additional values
+            request.httpBody = jsonData //Set the rest of the object
             
-            
+            //Send the JSON object
             let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+                //Check response
                 if let httpResponse = response as? HTTPURLResponse {
                     print(httpResponse.statusCode)
                     if(httpResponse.statusCode != 201) {
-                        print("error")
+                        self.errorMessage(err: "Server Down")
                         return
                     }
                 }
@@ -163,21 +202,22 @@ class LoginViewController : UIViewController{
                     return
                 }
                 guard let data = data else {
-                    print("Data is empty")
+                    self.errorMessage(err: "Data Empty")
                     return
                 }
                 
-                
+                //Recieve object
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
                 print(json)
+                //Check the JSON data
                 if let userEmail = json["email"] as AnyObject? {
                     guard let b = userEmail as? String
                         else {
-                            print("Error") // Was not a string
+                            self.errorMessage(err: "Incorrect Login Information")// Was not a string
                             return // needs a return or break here
                     }
                     if b == "" {
-                        print("Error") // Was not a string
+                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
                         return // needs a return or break here
                     }
                     self.user_email = b
@@ -185,11 +225,11 @@ class LoginViewController : UIViewController{
                 if let userfirstname = json["first_name"] as AnyObject? {
                     guard let b = userfirstname as? String
                         else {
-                            print("Error") // Was not a string
+                            self.errorMessage(err: "Incorrect Login Information") // Was not a string
                             return // needs a return or break here
                     }
                     if b == "" {
-                        print("Error") // Was not a string
+                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
                         return // needs a return or break here
                     }
                     self.user_firstname = b
@@ -197,16 +237,16 @@ class LoginViewController : UIViewController{
                 if let userfirstname = json["last_name"] as AnyObject? {
                     guard let b = userfirstname as? String
                         else {
-                            print("Error") // Was not a string
+                            self.errorMessage(err: "Incorrect Login Information") // Was not a string
                             return // needs a return or break here
                     }
                     if b == "" {
-                        print("Error") // Was not a string
+                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
                         return // needs a return or break here
                     }
                     self.user_lastname = b
                 }
-
+                //Set the global variables
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.user_email = self.user_email
                 appDelegate.user_lastname = self.user_lastname
@@ -228,9 +268,21 @@ class LoginViewController : UIViewController{
     }
     
     
+    func errorMessage(err :String) {
+        let alert = UIAlertController(title: "Login Error", message: err, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title:"Ok",style: UIAlertActionStyle.default, handler:
+        {action in
+        
+        //set timer for polling again because rider was declined
+        //self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforRequests(_:)), userInfo: nil, repeats: true)
+        }
+        ))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     
+    //Check Login stuff
     func LoginDone()
     {
         username_input.isEnabled = false
@@ -242,8 +294,7 @@ class LoginViewController : UIViewController{
         login_button.setTitle("Logout", for: .normal)
     }
     
-    func LoginToDo()
-    {
+    func LoginToDo() {
         username_input.isEnabled = true
         password_input.isEnabled = true
         

@@ -9,4 +9,6 @@ target 'Slug Ride 2' do
     pod 'GooglePlacesAPI'
     pod 'SwiftyJSON'
     pod 'LBTAComponents', '~> 0.1.9'
+    pod 'QRCodeReader.swift'
+    pod 'QRCode'
 end

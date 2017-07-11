@@ -29,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>QRCode.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>QRCodeReader.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>432C76FFA1C1238E23384765931E93C3</key>
+		<key>44E7A201B933C36CD642ACD1F6CB1A39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3299B0CC32D30028CA83DF48E7FB13B</key>
+		<key>9DFE3DE591AC0064245061C01B588789</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1A5DE79653134B3D09821C7E910E6BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D82432A8B6F8DD4EE7EF779662BB6361</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0CCC284C9B811ABAF06563512FA0936</key>
 		<dict>
 			<key>primary</key>
 			<true/>

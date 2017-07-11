@@ -32,18 +32,25 @@
 		58B53E4B1EAEBCEF00060707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B53E4A1EAEBCEF00060707 /* UIKit.framework */; };
 		58B83E871EBA47E7000CFF57 /* Google Direction-07674dbf8433 in Resources */ = {isa = PBXBuildFile; fileRef = 58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */; };
 		58B83E8C1EC58415000CFF57 /* slugridevid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */; };
-		58BFA21C1ED3ED9E004B79CE /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFA21B1ED3ED9E004B79CE /* RiderViewController.swift */; };
 		58BFA21E1ED3F596004B79CE /* ridervid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58BFA21D1ED3F554004B79CE /* ridervid.mp4 */; };
 		58BFA2201ED3FB06004B79CE /* drivervid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */; };
 		58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */; };
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
-		5B2A13F61ED556C400EF914A /* RPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13F51ED556C400EF914A /* RPSViewController.swift */; };
-		5B2A13F81ED583EF00EF914A /* RSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13F71ED583EF00EF914A /* RSViewController.swift */; };
-		5B2A13FA1ED58DD500EF914A /* DSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13F91ED58DD500EF914A /* DSViewController.swift */; };
-		5B2A13FC1ED5938E00EF914A /* DSDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A13FB1ED5938E00EF914A /* DSDViewController.swift */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
-		5B4BB8CC1EB998FD0011E792 /* RiderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */; };
+		5B41BA811F0DDE8900167770 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */; };
+		5B41BA831F0DDE9C00167770 /* QRViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA821F0DDE9C00167770 /* QRViewerViewController.swift */; };
+		5B41BA8F1F0DE4E000167770 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA851F0DE4E000167770 /* QRCodeReader.swift */; };
+		5B41BA901F0DE4E000167770 /* QRCodeReaderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA861F0DE4E000167770 /* QRCodeReaderResult.swift */; };
+		5B41BA911F0DE4E000167770 /* QRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA871F0DE4E000167770 /* QRCodeReaderView.swift */; };
+		5B41BA921F0DE4E000167770 /* QRCodeReaderViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA881F0DE4E000167770 /* QRCodeReaderViewContainer.swift */; };
+		5B41BA931F0DE4E000167770 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA891F0DE4E000167770 /* QRCodeReaderViewController.swift */; };
+		5B41BA941F0DE4E000167770 /* QRCodeReaderViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8A1F0DE4E000167770 /* QRCodeReaderViewControllerBuilder.swift */; };
+		5B41BA951F0DE4E000167770 /* QRCodeReaderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8B1F0DE4E000167770 /* QRCodeReaderViewControllerDelegate.swift */; };
+		5B41BA961F0DE4E000167770 /* ReaderOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8C1F0DE4E000167770 /* ReaderOverlayView.swift */; };
+		5B41BA971F0DE4E000167770 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8D1F0DE4E000167770 /* SwitchCameraButton.swift */; };
+		5B41BA981F0DE4E000167770 /* ToggleTorchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */; };
+		5B42F1731F0B30B60029512C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42F1721F0B30B60029512C /* SideMenuViewController.swift */; };
 		5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */; };
 		5B737E1B1EC2EA7000D14DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1A1EC2EA7000D14DBB /* Images.xcassets */; };
 		5B737E1D1EC2EAA800D14DBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */; };
@@ -64,16 +71,12 @@
 		5B737E441EC2FD6000D14DBB /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737E321EC2FD6000D14DBB /* IQToolbar.swift */; };
 		5B737E451EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737E331EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift */; };
 		5B737E461EC2FD6000D14DBB /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E351EC2FD6000D14DBB /* IQKeyboardManager.bundle */; };
-		5BC013B11ED42CDC0032951F /* RiderPickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC013B01ED42CDC0032951F /* RiderPickController.swift */; };
+		5B766AA11F0E1BC100697819 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B766AA01F0E1BC100697819 /* MarketViewController.swift */; };
 		9A066CC74B8A70EA3F3DF98F /* Pods_Slug_Ride_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */; };
 		9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */; };
 		9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */; };
-		9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */; };
 		9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */; };
-		9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45791EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift */; };
 		9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */; };
-		9B7D45861EA7804D00FA2FF5 /* DriverOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */; };
-		9B7D45881EA7805D00FA2FF5 /* RiderOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */; };
 		9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */; };
 		9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA30BC1EA730C0003A5B54 /* ViewController.swift */; };
 		9BAA30C01EA730C0003A5B54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BAA30BE1EA730C0003A5B54 /* Main.storyboard */; };
@@ -128,18 +131,25 @@
 		58B53E4A1EAEBCEF00060707 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Google Direction-07674dbf8433"; sourceTree = "<group>"; };
 		58B83E8B1EC57B7E000CFF57 /* slugridevid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = slugridevid.mp4; sourceTree = "<group>"; };
-		58BFA21B1ED3ED9E004B79CE /* RiderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
 		58BFA21D1ED3F554004B79CE /* ridervid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ridervid.mp4; sourceTree = "<group>"; };
 		58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drivervid.mp4; sourceTree = "<group>"; };
 		58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
-		5B2A13F51ED556C400EF914A /* RPSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPSViewController.swift; sourceTree = "<group>"; };
-		5B2A13F71ED583EF00EF914A /* RSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSViewController.swift; sourceTree = "<group>"; };
-		5B2A13F91ED58DD500EF914A /* DSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSViewController.swift; sourceTree = "<group>"; };
-		5B2A13FB1ED5938E00EF914A /* DSDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSDViewController.swift; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderDetailsViewController.swift; sourceTree = "<group>"; };
+		5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
+		5B41BA821F0DDE9C00167770 /* QRViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewerViewController.swift; sourceTree = "<group>"; };
+		5B41BA851F0DE4E000167770 /* QRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
+		5B41BA861F0DE4E000167770 /* QRCodeReaderResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderResult.swift; sourceTree = "<group>"; };
+		5B41BA871F0DE4E000167770 /* QRCodeReaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderView.swift; sourceTree = "<group>"; };
+		5B41BA881F0DE4E000167770 /* QRCodeReaderViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewContainer.swift; sourceTree = "<group>"; };
+		5B41BA891F0DE4E000167770 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
+		5B41BA8A1F0DE4E000167770 /* QRCodeReaderViewControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewControllerBuilder.swift; sourceTree = "<group>"; };
+		5B41BA8B1F0DE4E000167770 /* QRCodeReaderViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewControllerDelegate.swift; sourceTree = "<group>"; };
+		5B41BA8C1F0DE4E000167770 /* ReaderOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderOverlayView.swift; sourceTree = "<group>"; };
+		5B41BA8D1F0DE4E000167770 /* SwitchCameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCameraButton.swift; sourceTree = "<group>"; };
+		5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleTorchButton.swift; sourceTree = "<group>"; };
+		5B42F1721F0B30B60029512C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTestViewController.swift; sourceTree = "<group>"; };
 		5B737E1A1EC2EA7000D14DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +171,7 @@
 		5B737E321EC2FD6000D14DBB /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
 		5B737E331EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		5B737E351EC2FD6000D14DBB /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		5B766AA01F0E1BC100697819 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		5BC0138B1ED421050032951F /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		5BC0138C1ED421050032951F /* Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 		5BC0138D1ED421050032951F /* DatasourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasourceCell.swift; sourceTree = "<group>"; };
@@ -189,16 +200,11 @@
 		5BC013A71ED421380032951F /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
 		5BC013A81ED421380032951F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5BC013A91ED421380032951F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5BC013B01ED42CDC0032951F /* RiderPickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderPickController.swift; sourceTree = "<group>"; };
 		84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slug_Ride_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
-		9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverScheduleViewController.swift; sourceTree = "<group>"; };
 		9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
-		9B7D45791EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverPlannedSubmitViewController.swift; sourceTree = "<group>"; };
 		9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
-		9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandViewController.swift; sourceTree = "<group>"; };
-		9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderOnDemandViewController.swift; sourceTree = "<group>"; };
 		9BAA30B71EA730C0003A5B54 /* Slug Ride 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slug Ride 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BAA30BC1EA730C0003A5B54 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +296,23 @@
 				84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B41BA841F0DE4E000167770 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5B41BA851F0DE4E000167770 /* QRCodeReader.swift */,
+				5B41BA861F0DE4E000167770 /* QRCodeReaderResult.swift */,
+				5B41BA871F0DE4E000167770 /* QRCodeReaderView.swift */,
+				5B41BA881F0DE4E000167770 /* QRCodeReaderViewContainer.swift */,
+				5B41BA891F0DE4E000167770 /* QRCodeReaderViewController.swift */,
+				5B41BA8A1F0DE4E000167770 /* QRCodeReaderViewControllerBuilder.swift */,
+				5B41BA8B1F0DE4E000167770 /* QRCodeReaderViewControllerDelegate.swift */,
+				5B41BA8C1F0DE4E000167770 /* ReaderOverlayView.swift */,
+				5B41BA8D1F0DE4E000167770 /* SwitchCameraButton.swift */,
+				5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		5B737E1E1EC2FD6000D14DBB /* IQKeyboardManagerSwift */ = {
@@ -428,6 +451,7 @@
 		9BAA30AE1EA730C0003A5B54 = {
 			isa = PBXGroup;
 			children = (
+				5B41BA841F0DE4E000167770 /* Sources */,
 				5B737E1E1EC2FD6000D14DBB /* IQKeyboardManagerSwift */,
 				58B53E2E1EAEB9E500060707 /* GoogleMaps.bundle */,
 				58B53E2C1EAEB95400060707 /* GoogleMapsBase.framework */,
@@ -464,10 +488,12 @@
 				587F48C61EE7413F000E3F4B /* drivervidfin.mp4 */,
 				587F48C71EE7413F000E3F4B /* front.mp4 */,
 				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
+				5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */,
+				5B41BA821F0DDE9C00167770 /* QRViewerViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
 				9BAA30BC1EA730C0003A5B54 /* ViewController.swift */,
-				58BFA21B1ED3ED9E004B79CE /* RiderViewController.swift */,
 				9BAA30BE1EA730C0003A5B54 /* Main.storyboard */,
+				5B766AA01F0E1BC100697819 /* MarketViewController.swift */,
 				587F48CC1EE744E8000E3F4B /* tabViewController.swift */,
 				58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */,
 				9BAA30C31EA730C0003A5B54 /* LaunchScreen.storyboard */,
@@ -478,23 +504,14 @@
 				9BAA30EC1EA756F6003A5B54 /* ForgotViewController.swift */,
 				9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */,
 				9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */,
-				9B7D45731EA77A6100FA2FF5 /* DriverScheduleViewController.swift */,
 				9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */,
-				9B7D45791EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift */,
 				9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */,
-				9B7D45851EA7804D00FA2FF5 /* DriverOnDemandViewController.swift */,
-				9B7D45871EA7805D00FA2FF5 /* RiderOnDemandViewController.swift */,
 				5B392A8A1EB05A56008FF85B /* MenuViewController.swift */,
+				5B42F1721F0B30B60029512C /* SideMenuViewController.swift */,
 				5B392A8C1EB09910008FF85B /* StartViewController.swift */,
-				5B4BB8CB1EB998FD0011E792 /* RiderDetailsViewController.swift */,
 				58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */,
 				5B737E1A1EC2EA7000D14DBB /* Images.xcassets */,
 				5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */,
-				5BC013B01ED42CDC0032951F /* RiderPickController.swift */,
-				5B2A13F51ED556C400EF914A /* RPSViewController.swift */,
-				5B2A13F71ED583EF00EF914A /* RSViewController.swift */,
-				5B2A13F91ED58DD500EF914A /* DSViewController.swift */,
-				5B2A13FB1ED5938E00EF914A /* DSDViewController.swift */,
 			);
 			path = "Slug Ride 2";
 			sourceTree = "<group>";
@@ -729,48 +746,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B7D45861EA7804D00FA2FF5 /* DriverOnDemandViewController.swift in Sources */,
 				5B737E3C1EC2FD6000D14DBB /* IQKeyboardManagerConstants.swift in Sources */,
+				5B41BA941F0DE4E000167770 /* QRCodeReaderViewControllerBuilder.swift in Sources */,
+				5B41BA921F0DE4E000167770 /* QRCodeReaderViewContainer.swift in Sources */,
 				9BAA30E91EA74EE5003A5B54 /* LoginViewController.swift in Sources */,
+				5B41BA931F0DE4E000167770 /* QRCodeReaderViewController.swift in Sources */,
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
-				9B7D45881EA7805D00FA2FF5 /* RiderOnDemandViewController.swift in Sources */,
 				9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */,
+				5B766AA11F0E1BC100697819 /* MarketViewController.swift in Sources */,
 				58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */,
 				5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */,
 				9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */,
+				5B41BA911F0DE4E000167770 /* QRCodeReaderView.swift in Sources */,
+				5B42F1731F0B30B60029512C /* SideMenuViewController.swift in Sources */,
 				5B737E441EC2FD6000D14DBB /* IQToolbar.swift in Sources */,
 				5B737E381EC2FD6000D14DBB /* IQUITextFieldView+Additions.swift in Sources */,
-				5B2A13F81ED583EF00EF914A /* RSViewController.swift in Sources */,
 				5B737E411EC2FD6000D14DBB /* IQBarButtonItem.swift in Sources */,
 				9BAA30ED1EA756F6003A5B54 /* ForgotViewController.swift in Sources */,
 				9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */,
-				5BC013B11ED42CDC0032951F /* RiderPickController.swift in Sources */,
 				9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */,
+				5B41BA961F0DE4E000167770 /* ReaderOverlayView.swift in Sources */,
+				5B41BA951F0DE4E000167770 /* QRCodeReaderViewControllerDelegate.swift in Sources */,
 				5B737E371EC2FD6000D14DBB /* IQUIScrollView+Additions.swift in Sources */,
-				9B7D45741EA77A6100FA2FF5 /* DriverScheduleViewController.swift in Sources */,
+				5B41BA901F0DE4E000167770 /* QRCodeReaderResult.swift in Sources */,
 				5B737E3D1EC2FD6000D14DBB /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				5B737E451EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				5B41BA8F1F0DE4E000167770 /* QRCodeReader.swift in Sources */,
 				5B737E421EC2FD6000D14DBB /* IQPreviousNextView.swift in Sources */,
 				587F48CD1EE744E8000E3F4B /* tabViewController.swift in Sources */,
-				5B2A13F61ED556C400EF914A /* RPSViewController.swift in Sources */,
-				5B4BB8CC1EB998FD0011E792 /* RiderDetailsViewController.swift in Sources */,
 				5B737E391EC2FD6000D14DBB /* IQUIView+Hierarchy.swift in Sources */,
 				5B737E3A1EC2FD6000D14DBB /* IQUIViewController+Additions.swift in Sources */,
 				5B737E361EC2FD6000D14DBB /* IQNSArray+Sort.swift in Sources */,
 				5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */,
+				5B41BA811F0DDE8900167770 /* QRReaderViewController.swift in Sources */,
+				5B41BA981F0DE4E000167770 /* ToggleTorchButton.swift in Sources */,
 				5B737E401EC2FD6000D14DBB /* IQTextView.swift in Sources */,
+				5B41BA971F0DE4E000167770 /* SwitchCameraButton.swift in Sources */,
 				5B737E3E1EC2FD6000D14DBB /* IQKeyboardManager.swift in Sources */,
-				9B7D457A1EA77AA600FA2FF5 /* DriverPlannedSubmitViewController.swift in Sources */,
-				58BFA21C1ED3ED9E004B79CE /* RiderViewController.swift in Sources */,
 				58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */,
+				5B41BA831F0DDE9C00167770 /* QRViewerViewController.swift in Sources */,
 				5B737E3F1EC2FD6000D14DBB /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */,
-				5B2A13FC1ED5938E00EF914A /* DSDViewController.swift in Sources */,
 				5B737E3B1EC2FD6000D14DBB /* IQUIWindow+Hierarchy.swift in Sources */,
 				5B737E431EC2FD6000D14DBB /* IQTitleBarButtonItem.swift in Sources */,
 				9BAA30EB1EA75488003A5B54 /* RegisterViewController.swift in Sources */,
 				9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */,
-				5B2A13FA1ED58DD500EF914A /* DSViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

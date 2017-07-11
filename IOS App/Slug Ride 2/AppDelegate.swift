@@ -15,12 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var user_email:String = "temp"
-    var user_firstname:String = "temp"
-    var user_lastname:String = "temp"
-    var rd_tripid:Int = 0
-    var rider_dayChecker  = [Bool]()
-    var rider_cords = [Double]()
+    var user_email:String = "temp" //Global Variable for User Email Address
+    var user_firstname:String = "temp" //Global Variable for User First Name
+    var user_lastname:String = "temp" //Global Variable for Usedr Last Name
+    var rd_tripid:Int = 0 //Used in the page transition from driver schedule to information
+                          //Used to keep track of the trip id for the JSON request
+    var rider_dayChecker  = [Bool]() //Used to check the rider checker for sorting
+    var rider_cords = [Double]() //Used to check the rider cordinates for sorting
+    var driver_status = false;
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.sharedManager().enable = true

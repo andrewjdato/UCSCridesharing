@@ -11,14 +11,21 @@ import UIKit
 
 class AccountInformationViewController : UITableViewController{
     
+    /////////////////////////////////////////
+    //Variables
+    /////////////////////////////////////////
     @IBOutlet weak var first_name: UILabel!
     @IBOutlet weak var last_name: UILabel!
     @IBOutlet weak var email: UILabel!
     
+    /////////////////////////////////////////
+    //View Functions
+    /////////////////////////////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
         
+        //Set all the variables 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.email.text = appDelegate.user_email
         self.last_name.text = appDelegate.user_lastname

@@ -12,7 +12,33 @@
 //  Created by Andrew Dato
 //  Copyright © 2017 Andrew Dat0. All rights reserved.
 //
+/*
+ * QRCodeReader.swift
+ *
+ * Copyright 2014-present Yannick Loriot.
+ * http://yannickloriot.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
 
+import AVFoundation
 import Foundation
 import UIKit
 import GoogleMaps
@@ -22,7 +48,7 @@ import Alamofire
 
 
 
-class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate ,  CLLocationManagerDelegate {
+class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate ,  CLLocationManagerDelegate, QRCodeReaderViewControllerDelegate{
     
     @IBOutlet weak var googleMaps: GMSMapView!
     @IBOutlet weak var startLocation: UITextField!
@@ -31,7 +57,12 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var wptLocation: UITextField!
     
-   
+    @IBOutlet weak var QRreader: UIButton!
+    @IBOutlet weak var QRCode: UIImageView!
+    @IBOutlet weak var endRide: UIButton!
+    @IBOutlet weak var submit: UIButton!
+    @IBOutlet weak var gmButton: UIButton!
+    @IBOutlet weak var coins: UILabel!
 
     
     
@@ -78,7 +109,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     
@@ -94,9 +125,14 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.postButton.isHidden = true
-        self.postButton.layer.borderWidth = 5
         
+        
+        self.QRCode.isHidden = true
+        self.postButton.isHidden = true
+        self.QRreader.isHidden = true
+        self.endRide.isHidden = true
+        //self.postButton.layer.borderWidth = 5
+        self.coins.text = "1000"
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -115,7 +151,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         self.googleMaps.settings.compassButton = true
         self.googleMaps.settings.zoomGestures = true
         
-        
+        self.navigationController?.isNavigationBarHidden = true
         
     }
     
@@ -184,9 +220,10 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         return false
     }
     
+
+    //Function to create a Marker when tapped
     
-    
-    
+    /*
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("COORDINATE \(coordinate)") // when you tapped coordinate
         
@@ -198,7 +235,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         
             
         createMarker(titleMarker: "Departure", iconMarker: #imageLiteral(resourceName: "drivericon3"), latitude: coordinate.latitude, longitude: coordinate.longitude)
-    }
+    }*/
     
     
     
@@ -381,6 +418,18 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     //Function leads to Rider continously polling for
     @IBAction func riderPostRide(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let image = generateQrImage(from: appDelegate.user_email)
+        self.QRCode.image = image
+        
+        if(self.QRCode.isHidden == false) {
+            self.postButton.setTitle("Display QR Code",for: .normal)
+            self.QRCode.isHidden = true
+        } else {
+            self.postButton.setTitle("Hide Code",for: .normal)
+            self.QRCode.isHidden = false
+        }
+        /*
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let dict = ["rider_email":appDelegate.user_email,"rider_departure_lat": locationStart.coordinate.latitude ,"rider_departure_lon":locationStart.coordinate.longitude,"rider_destination_lat": locationEnd.coordinate.latitude ,"rider_destination_lon":locationEnd.coordinate.longitude] as [String: Any]
         
@@ -424,11 +473,11 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             
             
         }
-        
+        */
         
     }
     
-    
+    /*
     func test(_ sender: Any){
         let alert = UIAlertController(title: "Driver Found", message: "Request driver john@ucsc.edu or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
@@ -549,7 +598,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         task.resume()
         
     }
-    
+ 
     
     
     
@@ -612,19 +661,155 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         
     }
     
-    
+    */
     
     // MARK: SHOW DIRECTION WITH BUTTON
     @IBAction func showDirection(_ sender: UIButton) {
-        self.postButton.isHidden = false
+        if let text = destinationLocation.text, !text.isEmpty{
+                self.postButton.isHidden = false
+                
+                // when button direction tapped, must call drawpath func
+                self.drawPath(startLocation: curLocation, endLocation: locationEnd,waypoints: locationWaypoint)
+                
+                
+                GMSCameraPosition.camera(withLatitude: locationStart.coordinate.latitude, longitude: locationEnd.coordinate.longitude, zoom: 14.0)
+                self.submit.isHidden = true
+                self.endRide.isHidden = false
+                self.gmButton.isHidden = true
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                if (appDelegate.driver_status == false) {
+                    self.QRreader.isHidden = false
+                } else {
+                    self.postButton.isHidden = false
+                }
+
+        } else {
+            let alert = UIAlertController(title: "Submit Error", message: "Please insert a destination", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title:"Ok",style: UIAlertActionStyle.default, handler:
+                {action in}
+            ))
+            self.present(alert, animated: true, completion: nil)
+        }
         
-        // when button direction tapped, must call drawpath func
-        self.drawPath(startLocation: locationStart, endLocation: locationEnd,waypoints: locationWaypoint)
-        
-    
-        GMSCameraPosition.camera(withLatitude: locationStart.coordinate.latitude, longitude: locationEnd.coordinate.longitude, zoom: 14.0)
         
     }
+    
+    //////////////////////////////
+    //QR Code Generator Stuff
+    //////////////////////////////
+    func generateQrImage(from text: String) -> UIImage?{
+        let data = text.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y:3)
+            if let output = filter.outputImage?.applying(transform){
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
+    }
+    
+    //////////////////////////////
+    //QR Code Reader Stuff
+    //////////////////////////////
+    @IBOutlet weak var previewView: UIView!
+    lazy var reader: QRCodeReader = QRCodeReader()
+    lazy var readerVC: QRCodeReaderViewController = {
+        let builder = QRCodeReaderViewControllerBuilder {
+            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode], captureDevicePosition: .back)
+            $0.showTorchButton = true
+        }
+        
+        return QRCodeReaderViewController(builder: builder)
+    }()
+    
+    // MARK: - Actions
+    
+    private func checkScanPermissions() -> Bool {
+        do {
+            return try QRCodeReader.supportsMetadataObjectTypes()
+        } catch let error as NSError {
+            let alert: UIAlertController?
+            
+            switch error.code {
+            case -11852:
+                alert = UIAlertController(title: "Error", message: "This app is not authorized to use Back Camera.", preferredStyle: .alert)
+                
+                alert?.addAction(UIAlertAction(title: "Setting", style: .default, handler: { (_) in
+                    DispatchQueue.main.async {
+                        if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
+                            UIApplication.shared.openURL(settingsURL)
+                        }
+                    }
+                }))
+                
+                alert?.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            case -11814:
+                alert = UIAlertController(title: "Error", message: "Reader not supported by the current device", preferredStyle: .alert)
+                alert?.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            default:
+                alert = nil
+            }
+            
+            guard let vc = alert else { return false }
+            
+            present(vc, animated: true, completion: nil)
+            
+            return false
+        }
+    }
+    
+    @IBAction func scanInModalAction(_ sender: AnyObject) {
+        guard checkScanPermissions() else { return }
+        
+        readerVC.modalPresentationStyle = .formSheet
+        readerVC.delegate               = self
+        
+        readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+            if let result = result {
+                print("Completion with result: \(result.value) of type \(result.metadataType)")
+            }
+        }
+        
+        present(readerVC, animated: true, completion: nil)
+    }
+    // MARK: - QRCodeReader Delegate Methods
+    
+    func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
+        reader.stopScanning()
+        
+        dismiss(animated: true) { [weak self] in
+            let alert = UIAlertController(
+                title: "QRCodeReader",
+                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
+        if let cameraName = newCaptureDevice.device.localizedName {
+            print("Switching capturing to: \(cameraName)")
+        }
+    }
+    
+    func readerDidCancel(_ reader: QRCodeReaderViewController) {
+        reader.stopScanning()
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func CoinMove(_ sender: Any) {
+        let newViewController = MarketViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    
+    
     
 }
 
