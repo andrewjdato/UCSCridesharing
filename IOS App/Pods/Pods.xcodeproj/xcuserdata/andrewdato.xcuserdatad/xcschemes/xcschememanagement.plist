@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FloatRatingView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GooglePlacesAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,12 +52,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1A196107BC8DB338FC11C9CE9510573C</key>
+		<key>1095F2EE04633806A8FF02B8D506AFBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>44E7A201B933C36CD642ACD1F6CB1A39</key>
+		<key>1A196107BC8DB338FC11C9CE9510573C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DFE3DE591AC0064245061C01B588789</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B1A5DE79653134B3D09821C7E910E6BD</key>
+		<key>C974C3791EA6FEAA65FC24971ED8845A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0CCC284C9B811ABAF06563512FA0936</key>
+		<key>E10250FECAFAA00B2CAAF40A7178BE26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA0E7C6D6BD83D61916BC405B9CB20D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF101114F9B3119DAC1EA377D47448E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

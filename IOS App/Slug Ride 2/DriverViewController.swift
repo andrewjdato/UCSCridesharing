@@ -27,7 +27,7 @@ class DriverViewController: UIViewController {
         super.viewDidLoad()      
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.name.text = appDelegate.user_firstname + " " + appDelegate.user_lastname
-        self.coins.text = "1000"
+        self.coins.text = "\(appDelegate.point_count)"
         //Insert the video for the background
         if let theURL: NSURL = Bundle.main.url(forResource: "drivervidfin", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)

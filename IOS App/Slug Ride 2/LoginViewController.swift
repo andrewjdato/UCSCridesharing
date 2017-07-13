@@ -135,6 +135,7 @@ class LoginViewController : UIViewController{
     /////////////////////////////////////////
 
     @IBAction func login_submit(_ sender: Any) {
+        /*
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.user_email = "od1@ucsc.edu"
         appDelegate.user_lastname = "od1"
@@ -143,8 +144,8 @@ class LoginViewController : UIViewController{
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-        self.present(newViewController, animated: true, completion: nil)
-        /*
+        self.present(newViewController, animated: true, completion: nil)*/
+        
         if(login_button.titleLabel?.text == "Logout")
         {
             let preferences = UserDefaults.standard
@@ -163,7 +164,7 @@ class LoginViewController : UIViewController{
             } else {
                 self.errorMessage(err: "Please insert valid email")
             }
-        }*/
+        }
     }
     
     /////////////////////////////////////////
@@ -192,7 +193,7 @@ class LoginViewController : UIViewController{
                 //Check response
                 if let httpResponse = response as? HTTPURLResponse {
                     print(httpResponse.statusCode)
-                    if(httpResponse.statusCode != 201) {
+                    if(httpResponse.statusCode != 200) {
                         self.errorMessage(err: "Server Down")
                         return
                     }
@@ -205,11 +206,12 @@ class LoginViewController : UIViewController{
                     self.errorMessage(err: "Data Empty")
                     return
                 }
-                
+                print(data)
                 //Recieve object
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
                 print(json)
                 //Check the JSON data
+                
                 if let userEmail = json["email"] as AnyObject? {
                     guard let b = userEmail as? String
                         else {
@@ -251,7 +253,9 @@ class LoginViewController : UIViewController{
                 appDelegate.user_email = self.user_email
                 appDelegate.user_lastname = self.user_lastname
                 appDelegate.user_firstname = self.user_firstname
-
+                appDelegate.point_count = (json["point_count"] as? Int)!
+                appDelegate.driver_approval = (json["driver_approval"] as? Bool)!
+                
 
                 
                 DispatchQueue.main.async(execute: self.LoginDone)

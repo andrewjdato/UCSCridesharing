@@ -46,10 +46,21 @@ import GooglePlaces
 import SwiftyJSON
 import Alamofire
 
-
+struct UserProfile {
+    let user_email: String
+    let driver_status: Bool
+    let location_longitude: Double
+    let location_latitude: Double
+    let destination_longitude: Double
+    let destination_latitude: Double
+}
 
 class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate ,  CLLocationManagerDelegate, QRCodeReaderViewControllerDelegate{
     
+    
+    //////////////////////////////
+    //Outlet Variables
+    //////////////////////////////
     @IBOutlet weak var googleMaps: GMSMapView!
     @IBOutlet weak var startLocation: UITextField!
     @IBOutlet weak var destinationLocation: UITextField!
@@ -63,12 +74,15 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     @IBOutlet weak var submit: UIButton!
     @IBOutlet weak var gmButton: UIButton!
     @IBOutlet weak var coins: UILabel!
+    @IBOutlet weak var updateRoute: UIButton!
 
     
     
     
 
-    
+    //////////////////////////////
+    //Timer Variable
+    //////////////////////////////
     var timer = Timer()
     
     
@@ -104,8 +118,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     var driverLocationStart = CLLocation()
     var driverLocationEnd = CLLocation()
     
-    
-    
+    var userList = [UserProfile]()
+    var markerList = [GMSMarker]()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -125,14 +139,16 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //Hide all of the buttons
+        self.updateRoute.isHidden = true
         self.QRCode.isHidden = true
         self.postButton.isHidden = true
         self.QRreader.isHidden = true
         self.endRide.isHidden = true
+        
         //self.postButton.layer.borderWidth = 5
-        self.coins.text = "1000"
+        self.coins.text = "\(appDelegate.point_count)"
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -347,7 +363,8 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 polyline.strokeColor = UIColor.black
                 polyline.map = self.googleMaps
                 
-                
+
+                /*
                 //this code sets the camera of Google Maps to view the entire route
                 let x: UInt!
                 x = 1
@@ -357,6 +374,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                     bounds = bounds.includingCoordinate((path?.coordinate(at: index))!)
                     
                 }
+                
                 self.googleMaps.animate(with: GMSCameraUpdate.fit(bounds))
                 
                 // CODE TO CHANGE ALERT AFTER GETTING ROUTE
@@ -366,33 +384,12 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 alert.addAction(UIAlertAction(title: "Press Post Ride to begin", style: UIAlertActionStyle.default, handler: {action in
                     print("Done")
                 }))
-                
+                */
             }
             
             
             
         }
-    }
-    
-    
-    
-    
-    // NOT NEEDED ANYMORE
-    @IBAction func openStartLocation(_ sender: UIButton) {
-        
-        let autoCompleteController = GMSAutocompleteViewController()
-        autoCompleteController.delegate = self
-        
-        // selected location
-        locationSelected = .startLocation
-        
-        // Change text color
-        UISearchBar.appearance().setTextColor(color: UIColor.black)
-        self.locationManager.stopUpdatingLocation()
-        
-        
-       
-        self.present(autoCompleteController, animated: true, completion: nil)
     }
     
     // MARK: when destination location tap, this will open the search location
@@ -413,9 +410,10 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     
     
-    //preConditions: Rider must have a destination and origin set!
-    //Rider posts their ride
-    //Function leads to Rider continously polling for
+    //////////////////////////////
+    //This is the function for driver
+    //to display his QR Code
+    //////////////////////////////
     @IBAction func riderPostRide(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let image = generateQrImage(from: appDelegate.user_email)
@@ -428,260 +426,60 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             self.postButton.setTitle("Hide Code",for: .normal)
             self.QRCode.isHidden = false
         }
-        /*
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let dict = ["rider_email":appDelegate.user_email,"rider_departure_lat": locationStart.coordinate.latitude ,"rider_departure_lon":locationStart.coordinate.longitude,"rider_destination_lat": locationEnd.coordinate.latitude ,"rider_destination_lon":locationEnd.coordinate.longitude] as [String: Any]
-        
-        print("*****-------Rider's Ride Object being Posted-------****")
-        print(dict)
-        
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
-            print("success")
-            //SUBJECT TO URL CHANGE!!!!!
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_ondemand/")!
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest){
-                data, response, error in
-                if let httpResponse = response as? HTTPURLResponse{
-                    print(httpResponse.statusCode)
-                    if(httpResponse.statusCode != 201){
-                        print("error")
-                        return
-                    }
-                }
-                
-                guard error == nil else{
-                    print(error!)
-                    return
-                }
-                guard let data = data else{
-                    print("data is empty")
-                    return
-                }
-                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                print(json)
-                
-            }
-            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
-            task.resume()
-            
-            
-            
-        }
-        */
-        
     }
     
-    /*
-    func test(_ sender: Any){
-        let alert = UIAlertController(title: "Driver Found", message: "Request driver john@ucsc.edu or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
-            self.requestDriver()
-        }))
-        alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default, handler: {action in
-            // self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
-            
-        }))
-        self.present(alert, animated: true, completion: nil)
-        
-    
-    }
-    
-    
-    //function that receives driver data once ride has been posted
-    func pollforDrivers(_ sender: Any){
-        print("Server Poll Rider Side")
-        let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_getdrivers_ondemand/")!
-        let request = NSMutableURLRequest(url: url as URL)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-            if let httpResponse = response as? HTTPURLResponse {
-                print(httpResponse.statusCode)
-                if(httpResponse.statusCode != 200) {
-                    print("Status Code Not Okay")
-                    
-                    
-                    
-                    
-                    return
-                }
-            }
-            guard error == nil else {
-                print("no info")
-                return
-            }
-            
-            
-            //if data is recieved then the data must be decoded into driver email, departure
-            //and destination
-            //this must be put into var's and rider must be able to request the driver
-            guard let data = data else {
-                print("Data is empty")
-                return
-            }
-            let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-            print("******--------Driver Object Returned to Driver------*****")
-            print(json)
-            let users = json as? [[String: Any]]
-            
-            
-            
-            for user in users!{
-                if (user["driverod_email"] != nil){
-                    
-                    self.driverEmail = user["driverod_email"] as! String
-                    //print(self.driverEmail)
-                }
-                if (user["driver_departure_lat"] != nil){
-                    
-                    self.driverdepart_lat = user["driver_departure_lat"] as! Double
-                }
-                if (user["driver_departure_lon"] != nil){
-                  
-                    self.driverdepart_lon = user["driver_departure_lon"] as! Double
-                }
-                if (user["driver_destination_lat"] != nil){
-                    
-                    self.driverdest_lat = user["driver_destination_lat"] as! Double
-                    print(self.driverdest_lat)
-                    print("check2")
-
-                }
-                if (user["driver_destination_lon"] != nil){
-                    
-                    self.driverdest_lon = user["driver_destination_lon"] as! Double
-                    
-                    print(self.driverdest_lon)
-                    print("check2")
-                    
-                }
-                //reverse Geolocation
-                
-                
-                
-            
-               
-             //if statement to check for driver found
-                if self.driverdest_lon != nil {
-                    
-                    
-                    //stop polling once a new driver has been found
-                    //self.timer.invalidate()
-                
-                //Alert Handler for when Driver is found
-                let alert = UIAlertController(title: "Driver Found", message: "Tap Request to request driver from \(self.revLoc) to \(self.revLoc2) or reject to keep searching ", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Request", style: UIAlertActionStyle.default, handler: {action in
-                    //self.requestDriver()
-                }))
-                alert.addAction(UIAlertAction(title:"Reject",style: UIAlertActionStyle.default, handler: {action in
-               // self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforDrivers(_:)), userInfo: nil, repeats: true)
-                
-                }))
-                self.present(alert, animated: true, completion: nil)
-                
-                }
-                
-            }
-            
-            
-        }
-        
-        task.resume()
-        
-    }
- 
-    
-    
-    
-    
-    
-    //function for when driver is to be requested by rider
-    func requestDriver(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        //stops timer
-        
-        self.timer.invalidate()
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.requestDriver), userInfo: nil, repeats: true)
-        
-        
-        let dict = ["rider_email":appDelegate.user_email,"driver_email": self.driverEmail,"riderdest_lat": self.locationEnd.coordinate.latitude,"riderdest_lon": self.locationEnd.coordinate.longitude] as [String: Any]
-        print(dict)
-        
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
-            print("success")
-            //SUBJECT TO URL CHANGE!!!!!
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rider_request_driver/")!
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest){
-                data, response, error in
-                if let httpResponse = response as? HTTPURLResponse{
-                    print(httpResponse.statusCode)
-                    if(httpResponse.statusCode != 201){
-                        print("error")
-                        return
-                    }
-                }
-                
-                guard error == nil else{
-                    print(error!)
-                    return
-                }
-                guard let data = data else{
-                    print("data is empty")
-                    return
-                }
-                //let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                //print(json)
-                
-                
-                
-                
-            }
-            task.resume()
-            
-            
-            
-        }
-        
-        
-        
-    }
-    
-    */
-    
-    // MARK: SHOW DIRECTION WITH BUTTON
+    //////////////////////////////
+    //This is the submit button function
+    //////////////////////////////
     @IBAction func showDirection(_ sender: UIButton) {
         if let text = destinationLocation.text, !text.isEmpty{
-                self.postButton.isHidden = false
+            print(curLocation)
+            print(locationEnd)
                 
                 // when button direction tapped, must call drawpath func
-                self.drawPath(startLocation: curLocation, endLocation: locationEnd,waypoints: locationWaypoint)
+            self.drawPath(startLocation: curLocation, endLocation: locationEnd,waypoints: locationWaypoint)
                 
                 
-                GMSCameraPosition.camera(withLatitude: locationStart.coordinate.latitude, longitude: locationEnd.coordinate.longitude, zoom: 14.0)
-                self.submit.isHidden = true
-                self.endRide.isHidden = false
-                self.gmButton.isHidden = true
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                if (appDelegate.driver_status == false) {
-                    self.QRreader.isHidden = false
-                } else {
-                    self.postButton.isHidden = false
+            //GMSCameraPosition.camera(withLatitude: curLocation.coordinate.latitude, longitude: curLocation.coordinate.longitude, zoom: 14.0)
+
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let dict = ["user_email":appDelegate.user_email,"location_latitude": curLocation.coordinate.latitude ,"location_longitude":curLocation.coordinate.longitude,"destination_latitude": locationEnd.coordinate.latitude ,"destination_longitude":locationEnd.coordinate.longitude, "driver_status":appDelegate.driver_status] as [String: Any]
+            print(dict)
+            if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+                print("success")
+                //SUBJECT TO URL CHANGE!!!!!
+                let url = NSURL(string: "http://138.68.252.198:8000/rideshare/post_ride/")!
+                let request = NSMutableURLRequest(url: url as URL)
+                request.httpMethod = "POST"
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = jsonData
+                
+                let task = URLSession.shared.dataTask(with: request as URLRequest){
+                    data, response, error in
+                    if let httpResponse = response as? HTTPURLResponse{
+                        print(httpResponse.statusCode)
+                        if(httpResponse.statusCode != 200){
+                            print("error")
+                            return
+                        }
+                    }
+                    print("success1")
+                    guard error == nil else{
+                        print(error!)
+                        return
+                    }
+                    print("success2")
+                    guard data != nil else{
+                        print("data is empty")
+                        return
+                    }
+                    print("success3")
+                    //let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                    //print(json)
+                    DispatchQueue.main.async(execute: self.postDone)
                 }
+                task.resume()
+            }
 
         } else {
             let alert = UIAlertController(title: "Submit Error", message: "Please insert a destination", preferredStyle: UIAlertControllerStyle.alert)
@@ -692,6 +490,118 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         }
         
         
+    }
+    
+    //////////////////////////////
+    //Function to change the screen once the
+    //JSON has been sent out
+    //////////////////////////////
+    func postDone() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.postButton.isHidden = false
+        self.submit.isHidden = true
+        self.endRide.isHidden = false
+        self.gmButton.isHidden = true
+        self.updateRoute.isHidden = false
+        print("success4")
+        if (appDelegate.driver_status == false) {
+            self.QRreader.isHidden = false
+        } else {
+            self.postButton.isHidden = false
+        }
+        let camera = GMSCameraPosition.camera(withLatitude: self.curLocation.coordinate.latitude, longitude: self.curLocation.coordinate.longitude, zoom: 15.0)
+        self.googleMaps.camera = camera
+        
+        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforUsers(_:)), userInfo: nil, repeats: true)
+    }
+    
+    
+    //////////////////////////////
+    //User Poll for polling for new users in the area
+    //////////////////////////////
+    func pollforUsers(_ sender: Any) {
+        print(curLocation)
+        print(locationEnd)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let dict = ["user_email":appDelegate.user_email,"location_latitude": curLocation.coordinate.latitude ,"location_longitude":curLocation.coordinate.longitude,"destination_latitude": locationEnd.coordinate.latitude ,"destination_longitude":locationEnd.coordinate.longitude, "driver_status":appDelegate.driver_status] as [String: Any]
+        print(dict)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+            print("success")
+            //SUBJECT TO URL CHANGE!!!!!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/query_ride/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 200){
+                        print("error")
+                        return
+                    }
+                }
+                print("success1")
+                guard error == nil else{
+                    print(error!)
+                    return
+                }
+                print("success2")
+                guard let data = data else {
+                    print("Data Empty")
+                    return
+                }
+                print("success3")
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
+                
+                //Clears previous markers
+                for marker in self.markerList {
+                    marker.map = nil
+                }
+                self.markerList.removeAll()
+                let userss = json["user_list"] as? [[String: Any]]
+                for user in userss! {
+                    if user["user_email"] as! String != appDelegate.user_email {
+                        let position = CLLocationCoordinate2D(latitude: user["location_latitude"] as! Double,
+                                                              longitude: user["location_longitude"] as! Double)
+                        let marker = GMSMarker(position: position)
+                        marker.title = user["user_email"] as? String
+                        if (user["driver_status"] as! Bool == true) {
+                            marker.icon = GMSMarker.markerImage(with: .red)
+                        } else {
+                            marker.icon = GMSMarker.markerImage(with: .blue)
+                        }
+                        marker.snippet = "Destination: \(user["destination_longitude"] as! Double)"
+                        self.markerList.append(marker)
+                    }
+                    
+                }
+                print(self.userList)
+                
+                
+                DispatchQueue.main.async(execute: self.updateInfo)
+                //DispatchQueue.main.async(execute: self.postDone)
+            }
+            task.resume()
+        }
+
+    }
+    
+    func updateInfo() {
+        //updates new markers
+        for marker in markerList {
+            marker.map = self.googleMaps
+        }
+    }
+    
+    //Update route if the user leaves the route
+    @IBAction func routeUpdate(_ sender: Any) {
+        self.drawPath(startLocation: curLocation, endLocation: locationEnd,waypoints: locationWaypoint)
+        let camera = GMSCameraPosition.camera(withLatitude: self.curLocation.coordinate.latitude, longitude: self.curLocation.coordinate.longitude, zoom: 15.0)
+        self.googleMaps.camera = camera
     }
     
     //////////////////////////////
@@ -780,14 +690,74 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         reader.stopScanning()
         
         dismiss(animated: true) { [weak self] in
-            let alert = UIAlertController(
-                title: "QRCodeReader",
-                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
-            self?.present(alert, animated: true, completion: nil)
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let dict = ["user_email":appDelegate.user_email,"driver_email":result.value] as [String: Any]
+            print(dict)
+            if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+                print("success")
+                let url = NSURL(string: "http://138.68.252.198:8000/rideshare/scan_qr_code/")!
+                let request = NSMutableURLRequest(url: url as URL)
+                request.httpMethod = "POST"
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = jsonData
+                
+                let task = URLSession.shared.dataTask(with: request as URLRequest){
+                    data, response, error in
+                    if let httpResponse = response as? HTTPURLResponse{
+                        print(httpResponse.statusCode)
+                        if(httpResponse.statusCode != 200){
+                            print("error")
+                            return
+                        }
+                    }
+                    print("success1")
+                    guard error == nil else{
+                        print(error!)
+                        return
+                    }
+                    print("success2")
+                    guard let data = data else {
+                        print("Data Empty")
+                        return
+                    }
+                    print("success3")
+                    let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                    print(json)
+                    appDelegate.point_count = (json["user_points"] as? Int)!
+                    let approveCheck = json["approved"] as? Bool
+                    if (approveCheck == true) {
+                        let alert = UIAlertController(
+                            title: "Driver Approved",
+                            message: String (format:"Enjoy your ride"),
+                            preferredStyle: .alert
+                        )
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        
+                        self?.present(alert, animated: true, completion: nil)
+                        if self?.timer != nil {
+                            self?.timer.invalidate()
+                        }
+                        self?.coins.text = "\(appDelegate.point_count)"
+                    } else {
+                        let alert = UIAlertController(
+                            title: "Driver Not Approved",
+                            message: String (format:"Ride not approved please try again or wait for another driver"),
+                            preferredStyle: .alert
+                        )
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+                    //DispatchQueue.main.async(execute: self.postDone)
+                    
+                }
+                task.resume()
+            }
+            
+            //This is where I should add the code to get the QR Code Scanner working.
+
         }
     }
     
@@ -808,8 +778,53 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
-    
-    
+    @IBAction func rideEnding(_ sender: Any) {
+        if self.timer != nil {
+            self.timer.invalidate()
+        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let dict = ["user_email":appDelegate.user_email] as [String: Any]
+        print(dict)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+            print("success")
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/end_ride/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 200){
+                        print("error")
+                        return
+                    }
+                }
+                print("success1")
+                guard error == nil else{
+                    print(error!)
+                    return
+                }
+                print("success2")
+                guard let data = data else {
+                    print("Data Empty")
+                    return
+                }
+                print("success3")
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
+                let userss = json["user_emails"] as? [String]
+                for user in userss! {
+                    appDelegate.ratingList.append(user)
+                }
+                print(appDelegate.ratingList)
+            }
+            task.resume()
+        }
+ 
+    }
     
 }
 

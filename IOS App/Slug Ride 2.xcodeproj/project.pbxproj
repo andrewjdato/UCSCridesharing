@@ -36,6 +36,9 @@
 		58BFA2201ED3FB06004B79CE /* drivervid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */; };
 		58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */; };
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
+		5B0581171F17051100EE88FC /* DriverOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */; };
+		5B0581191F1753B600EE88FC /* userRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0581181F1753B600EE88FC /* userRatingViewController.swift */; };
+		5B05811C1F1753E200EE88FC /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05811A1F1753E200EE88FC /* FloatRatingView.swift */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
 		5B41BA811F0DDE8900167770 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */; };
@@ -75,7 +78,6 @@
 		9A066CC74B8A70EA3F3DF98F /* Pods_Slug_Ride_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */; };
 		9B7D456C1EA7744B00FA2FF5 /* AccountInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */; };
 		9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */; };
-		9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */; };
 		9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */; };
 		9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */; };
 		9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA30BC1EA730C0003A5B54 /* ViewController.swift */; };
@@ -135,6 +137,9 @@
 		58BFA21F1ED3FAFB004B79CE /* drivervid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drivervid.mp4; sourceTree = "<group>"; };
 		58BFA2211ED3FB1D004B79CE /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
+		5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
+		5B0581181F1753B600EE88FC /* userRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRatingViewController.swift; sourceTree = "<group>"; };
+		5B05811A1F1753E200EE88FC /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = ../../FloatRatingView.swift; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +208,6 @@
 		84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slug_Ride_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformationViewController.swift; sourceTree = "<group>"; };
 		9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
-		9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
 		9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
 		9BAA30B71EA730C0003A5B54 /* Slug Ride 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slug Ride 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -296,6 +300,15 @@
 				84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B05811B1F1753E200EE88FC /* FloatRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				5B05811A1F1753E200EE88FC /* FloatRatingView.swift */,
+			);
+			name = FloatRatingView;
+			path = "../../../Downloads/FloatRatingView-master/Rating Demo/Rating Demo";
 			sourceTree = "<group>";
 		};
 		5B41BA841F0DE4E000167770 /* Sources */ = {
@@ -451,6 +464,7 @@
 		9BAA30AE1EA730C0003A5B54 = {
 			isa = PBXGroup;
 			children = (
+				5B05811B1F1753E200EE88FC /* FloatRatingView */,
 				5B41BA841F0DE4E000167770 /* Sources */,
 				5B737E1E1EC2FD6000D14DBB /* IQKeyboardManagerSwift */,
 				58B53E2E1EAEB9E500060707 /* GoogleMaps.bundle */,
@@ -504,7 +518,7 @@
 				9BAA30EC1EA756F6003A5B54 /* ForgotViewController.swift */,
 				9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */,
 				9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */,
-				9B7D45771EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift */,
+				5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */,
 				9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */,
 				5B392A8A1EB05A56008FF85B /* MenuViewController.swift */,
 				5B42F1721F0B30B60029512C /* SideMenuViewController.swift */,
@@ -512,6 +526,7 @@
 				58B83E861EBA47E7000CFF57 /* Google Direction-07674dbf8433 */,
 				5B737E1A1EC2EA7000D14DBB /* Images.xcassets */,
 				5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */,
+				5B0581181F1753B600EE88FC /* userRatingViewController.swift */,
 			);
 			path = "Slug Ride 2";
 			sourceTree = "<group>";
@@ -752,8 +767,9 @@
 				9BAA30E91EA74EE5003A5B54 /* LoginViewController.swift in Sources */,
 				5B41BA931F0DE4E000167770 /* QRCodeReaderViewController.swift in Sources */,
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
-				9B7D45781EA77A8E00FA2FF5 /* DriverOnDemandSubmitViewController.swift in Sources */,
+				5B0581191F1753B600EE88FC /* userRatingViewController.swift in Sources */,
 				5B766AA11F0E1BC100697819 /* MarketViewController.swift in Sources */,
+				5B0581171F17051100EE88FC /* DriverOnDemandSubmitViewController.swift in Sources */,
 				58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */,
 				5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */,
 				9BAA30BB1EA730C0003A5B54 /* AppDelegate.swift in Sources */,
@@ -773,6 +789,7 @@
 				5B737E451EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				5B41BA8F1F0DE4E000167770 /* QRCodeReader.swift in Sources */,
 				5B737E421EC2FD6000D14DBB /* IQPreviousNextView.swift in Sources */,
+				5B05811C1F1753E200EE88FC /* FloatRatingView.swift in Sources */,
 				587F48CD1EE744E8000E3F4B /* tabViewController.swift in Sources */,
 				5B737E391EC2FD6000D14DBB /* IQUIView+Hierarchy.swift in Sources */,
 				5B737E3A1EC2FD6000D14DBB /* IQUIViewController+Additions.swift in Sources */,

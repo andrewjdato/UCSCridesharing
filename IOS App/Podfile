@@ -11,4 +11,5 @@ target 'Slug Ride 2' do
     pod 'LBTAComponents', '~> 0.1.9'
     pod 'QRCodeReader.swift'
     pod 'QRCode'
+    pod 'FloatRatingView', '~> 2.0.0'
 end

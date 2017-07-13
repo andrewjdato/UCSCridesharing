@@ -126,7 +126,7 @@ class RegisterViewController : UIViewController{
     func register_now(email:String, password:String, firstname:String, lastname:String)
     {
         //Observe Login page to understand what is going on here
-        let dict = ["first_name":firstname, "last_name":lastname, "email":email, "password":password] as [String: Any]
+        let dict = ["first_name":firstname, "last_name":lastname, "email":email, "password":password, "share_code":""] as [String: Any]
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_registration/")!
             let request = NSMutableURLRequest(url: url as URL)
@@ -152,8 +152,8 @@ class RegisterViewController : UIViewController{
                 }
                 
                 
-                let json = try! JSONSerialization.jsonObject(with: data, options: [])
-                print(json)
+                //let json = try! JSONSerialization.jsonObject(with: data, options: [])
+                //print(json)
                 DispatchQueue.main.async(execute: self.RegisterDone)
 
             }
