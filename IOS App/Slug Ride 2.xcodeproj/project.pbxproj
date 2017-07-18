@@ -38,7 +38,6 @@
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
 		5B0581171F17051100EE88FC /* DriverOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */; };
 		5B0581191F1753B600EE88FC /* userRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0581181F1753B600EE88FC /* userRatingViewController.swift */; };
-		5B05811C1F1753E200EE88FC /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05811A1F1753E200EE88FC /* FloatRatingView.swift */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
 		5B41BA811F0DDE8900167770 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */; };
@@ -55,6 +54,7 @@
 		5B41BA981F0DE4E000167770 /* ToggleTorchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */; };
 		5B42F1731F0B30B60029512C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42F1721F0B30B60029512C /* SideMenuViewController.swift */; };
 		5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */; };
+		5B6EF8DF1F1DD40F001B2938 /* FloatRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */; };
 		5B737E1B1EC2EA7000D14DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1A1EC2EA7000D14DBB /* Images.xcassets */; };
 		5B737E1D1EC2EAA800D14DBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */; };
 		5B737E361EC2FD6000D14DBB /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737E201EC2FD6000D14DBB /* IQNSArray+Sort.swift */; };
@@ -139,7 +139,6 @@
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
 		5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
 		5B0581181F1753B600EE88FC /* userRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRatingViewController.swift; sourceTree = "<group>"; };
-		5B05811A1F1753E200EE88FC /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = ../../FloatRatingView.swift; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleTorchButton.swift; sourceTree = "<group>"; };
 		5B42F1721F0B30B60029512C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTestViewController.swift; sourceTree = "<group>"; };
+		5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingViewDelegate.swift; sourceTree = "<group>"; };
 		5B737E1A1EC2EA7000D14DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5B737E1C1EC2EAA800D14DBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B737E201EC2FD6000D14DBB /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
@@ -300,15 +300,6 @@
 				84424FA16559502B87DADE04 /* Pods_Slug_Ride_2.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5B05811B1F1753E200EE88FC /* FloatRatingView */ = {
-			isa = PBXGroup;
-			children = (
-				5B05811A1F1753E200EE88FC /* FloatRatingView.swift */,
-			);
-			name = FloatRatingView;
-			path = "../../../Downloads/FloatRatingView-master/Rating Demo/Rating Demo";
 			sourceTree = "<group>";
 		};
 		5B41BA841F0DE4E000167770 /* Sources */ = {
@@ -464,7 +455,6 @@
 		9BAA30AE1EA730C0003A5B54 = {
 			isa = PBXGroup;
 			children = (
-				5B05811B1F1753E200EE88FC /* FloatRatingView */,
 				5B41BA841F0DE4E000167770 /* Sources */,
 				5B737E1E1EC2FD6000D14DBB /* IQKeyboardManagerSwift */,
 				58B53E2E1EAEB9E500060707 /* GoogleMaps.bundle */,
@@ -527,6 +517,7 @@
 				5B737E1A1EC2EA7000D14DBB /* Images.xcassets */,
 				5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */,
 				5B0581181F1753B600EE88FC /* userRatingViewController.swift */,
+				5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */,
 			);
 			path = "Slug Ride 2";
 			sourceTree = "<group>";
@@ -643,6 +634,47 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				ca,
+				cs,
+				da,
+				de,
+				el,
+				en_GB,
+				es,
+				fi,
+				fr,
+				he,
+				hr,
+				hu,
+				id,
+				it,
+				ja,
+				ko,
+				ms,
+				nb,
+				nl,
+				pl,
+				pt,
+				pt_PT,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				uk,
+				vi,
+				zh_CN,
+				zh_TW,
+				en_AU,
+				en_IN,
+				es_419,
+				es_MX,
+				fr_CA,
+				hi,
+				pt_BR,
+				zh_HK,
 			);
 			mainGroup = 9BAA30AE1EA730C0003A5B54;
 			productRefGroup = 9BAA30B81EA730C0003A5B54 /* Products */;
@@ -789,7 +821,7 @@
 				5B737E451EC2FD6000D14DBB /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				5B41BA8F1F0DE4E000167770 /* QRCodeReader.swift in Sources */,
 				5B737E421EC2FD6000D14DBB /* IQPreviousNextView.swift in Sources */,
-				5B05811C1F1753E200EE88FC /* FloatRatingView.swift in Sources */,
+				5B6EF8DF1F1DD40F001B2938 /* FloatRatingViewDelegate.swift in Sources */,
 				587F48CD1EE744E8000E3F4B /* tabViewController.swift in Sources */,
 				5B737E391EC2FD6000D14DBB /* IQUIView+Hierarchy.swift in Sources */,
 				5B737E3A1EC2FD6000D14DBB /* IQUIViewController+Additions.swift in Sources */,
