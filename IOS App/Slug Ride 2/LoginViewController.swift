@@ -182,7 +182,7 @@ class LoginViewController : UIViewController{
             
             print(jsonData)
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")! //Set URl
-            //et url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
+            //let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
             let request = NSMutableURLRequest(url: url as URL) //Set tpe of request
             request.httpMethod = "POST" //Set Type of post
             request.addValue("application/json", forHTTPHeaderField: "Content-Type") //Add additional values
@@ -269,6 +269,11 @@ class LoginViewController : UIViewController{
             
         }
 
+        
+//        DispatchQueue.main.async(execute: self.LoginDone)
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+//        self.present(newViewController, animated: true, completion: nil)
     }
     
     
