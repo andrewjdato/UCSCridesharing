@@ -17,7 +17,7 @@
         <scene sceneID="gTY-1S-j7O">
             <objects>
                 <navigationController restorationIdentifier="StartViewController" storyboardIdentifier="StartViewController" id="FNp-S1-Dae" customClass="StartViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8jg-ax-BOL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8jg-ax-BOL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -701,7 +701,7 @@
         <scene sceneID="NCP-8y-xe2">
             <objects>
                 <navigationController restorationIdentifier="MenuViewController" storyboardIdentifier="MenuViewController" id="uhG-4i-p2W" customClass="MenuViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GyM-JM-Oqx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GyM-JM-Oqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -781,6 +781,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hr-4c-1Cs">
+                                        <rect key="frame" x="164" y="409" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="test:" destination="Uwj-F0-MsK" eventType="touchUpInside" id="fkr-y0-axk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -792,10 +799,12 @@
                                     <constraint firstItem="Eq8-Jl-yRl" firstAttribute="top" secondItem="vxK-Z8-eR2" secondAttribute="top" constant="226" id="Ez3-wY-fSz"/>
                                     <constraint firstItem="PWf-TB-HHb" firstAttribute="trailing" secondItem="vxK-Z8-eR2" secondAttribute="trailingMargin" id="MX3-pV-wfz"/>
                                     <constraint firstItem="7dH-nc-RXn" firstAttribute="trailing" secondItem="xNh-PO-XV1" secondAttribute="trailing" id="ZxX-gL-7j9"/>
+                                    <constraint firstItem="8hr-4c-1Cs" firstAttribute="centerX" secondItem="vxK-Z8-eR2" secondAttribute="centerX" id="fQg-Md-w8P"/>
                                     <constraint firstItem="7dH-nc-RXn" firstAttribute="top" secondItem="vxK-Z8-eR2" secondAttribute="top" id="gyi-Y6-1YK"/>
                                     <constraint firstItem="PWf-TB-HHb" firstAttribute="trailing" secondItem="6Jg-j5-kBK" secondAttribute="trailing" id="iZj-4M-1qp"/>
                                     <constraint firstItem="Eq8-Jl-yRl" firstAttribute="top" secondItem="6Jg-j5-kBK" secondAttribute="top" id="kOA-9U-RjI"/>
                                     <constraint firstItem="Eq8-Jl-yRl" firstAttribute="leading" secondItem="vxK-Z8-eR2" secondAttribute="leadingMargin" id="mUP-en-0jl"/>
+                                    <constraint firstAttribute="bottom" secondItem="8hr-4c-1Cs" secondAttribute="bottom" constant="115" id="nqy-Eq-jM4"/>
                                     <constraint firstItem="PWf-TB-HHb" firstAttribute="top" secondItem="vxK-Z8-eR2" secondAttribute="topMargin" id="oki-5G-1MH"/>
                                     <constraint firstItem="xNh-PO-XV1" firstAttribute="leading" secondItem="vxK-Z8-eR2" secondAttribute="leading" constant="26" id="r92-sY-mHL"/>
                                     <constraint firstAttribute="trailing" secondItem="H05-KG-UGa" secondAttribute="trailing" id="vtC-nP-b2X"/>

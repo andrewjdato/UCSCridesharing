@@ -110,5 +110,44 @@ class DriverViewController: UIViewController {
         appDelegate.driver_status = false;
     }
     
+    @IBAction func test(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let dict = ["user_email":appDelegate.user_email, "user_car":"Test", "car_color":"Test", "driver_license":"Test"] as [String: Any]
+        print(dict)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+            print("success")
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/driver_info_submit/")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 200){
+                        print("error")
+                        return
+                    }
+                }
+                print("success1")
+                guard error == nil else{
+                    print(error!)
+                    return
+                }
+                print("success2")
+                guard let data = data else {
+                    print("Data Empty")
+                    return
+                }
+                print("success3")
+                //let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                //print(json)
+            }
+            task.resume()
+        }
+    }
     
 }
