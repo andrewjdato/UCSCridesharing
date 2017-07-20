@@ -178,102 +178,102 @@ class LoginViewController : UIViewController{
         let dict = ["email":username, "password":password] as [String: Any]
         print(dict)
         //Create the JSON File
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
-            
-            print(jsonData)
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")! //Set URl
-            //let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
-            let request = NSMutableURLRequest(url: url as URL) //Set tpe of request
-            request.httpMethod = "POST" //Set Type of post
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type") //Add additional values
-            request.httpBody = jsonData //Set the rest of the object
-            
-            //Send the JSON object
-            let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-                //Check response
-                if let httpResponse = response as? HTTPURLResponse {
-                    print(httpResponse.statusCode)
-                    if(httpResponse.statusCode != 200) {
-                        self.errorMessage(err: "Server Down")
-                        return
-                    }
-                }
-                guard error == nil else {
-                    print(error!)
-                    return
-                }
-                guard let data = data else {
-                    self.errorMessage(err: "Data Empty")
-                    return
-                }
-                print(data)
-                //Recieve object
-                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
-                print(json)
-                //Check the JSON data
-                
-                if let userEmail = json["email"] as AnyObject? {
-                    guard let b = userEmail as? String
-                        else {
-                            self.errorMessage(err: "Incorrect Login Information")// Was not a string
-                            return // needs a return or break here
-                    }
-                    if b == "" {
-                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
-                        return // needs a return or break here
-                    }
-                    self.user_email = b
-                }
-                if let userfirstname = json["first_name"] as AnyObject? {
-                    guard let b = userfirstname as? String
-                        else {
-                            self.errorMessage(err: "Incorrect Login Information") // Was not a string
-                            return // needs a return or break here
-                    }
-                    if b == "" {
-                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
-                        return // needs a return or break here
-                    }
-                    self.user_firstname = b
-                }
-                if let userfirstname = json["last_name"] as AnyObject? {
-                    guard let b = userfirstname as? String
-                        else {
-                            self.errorMessage(err: "Incorrect Login Information") // Was not a string
-                            return // needs a return or break here
-                    }
-                    if b == "" {
-                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
-                        return // needs a return or break here
-                    }
-                    self.user_lastname = b
-                }
-                //Set the global variables
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.user_email = self.user_email
-                appDelegate.user_lastname = self.user_lastname
-                appDelegate.user_firstname = self.user_firstname
-                appDelegate.point_count = (json["point_count"] as? Int)!
-                appDelegate.driver_approval = (json["driver_approval"] as? Bool)!
-                
-
-                
-                DispatchQueue.main.async(execute: self.LoginDone)
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-                self.present(newViewController, animated: true, completion: nil)
-            }
-            
-            task.resume()
-            
-            
-        }
+//        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
+//            
+//            print(jsonData)
+//            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")! //Set URl
+//            //let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
+//            let request = NSMutableURLRequest(url: url as URL) //Set tpe of request
+//            request.httpMethod = "POST" //Set Type of post
+//            request.addValue("application/json", forHTTPHeaderField: "Content-Type") //Add additional values
+//            request.httpBody = jsonData //Set the rest of the object
+//            
+//            //Send the JSON object
+//            let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+//                //Check response
+//                if let httpResponse = response as? HTTPURLResponse {
+//                    print(httpResponse.statusCode)
+//                    if(httpResponse.statusCode != 200) {
+//                        self.errorMessage(err: "Server Down")
+//                        return
+//                    }
+//                }
+//                guard error == nil else {
+//                    print(error!)
+//                    return
+//                }
+//                guard let data = data else {
+//                    self.errorMessage(err: "Data Empty")
+//                    return
+//                }
+//                print(data)
+//                //Recieve object
+//                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+//                print(json)
+//                //Check the JSON data
+//                
+//                if let userEmail = json["email"] as AnyObject? {
+//                    guard let b = userEmail as? String
+//                        else {
+//                            self.errorMessage(err: "Incorrect Login Information")// Was not a string
+//                            return // needs a return or break here
+//                    }
+//                    if b == "" {
+//                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
+//                        return // needs a return or break here
+//                    }
+//                    self.user_email = b
+//                }
+//                if let userfirstname = json["first_name"] as AnyObject? {
+//                    guard let b = userfirstname as? String
+//                        else {
+//                            self.errorMessage(err: "Incorrect Login Information") // Was not a string
+//                            return // needs a return or break here
+//                    }
+//                    if b == "" {
+//                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
+//                        return // needs a return or break here
+//                    }
+//                    self.user_firstname = b
+//                }
+//                if let userfirstname = json["last_name"] as AnyObject? {
+//                    guard let b = userfirstname as? String
+//                        else {
+//                            self.errorMessage(err: "Incorrect Login Information") // Was not a string
+//                            return // needs a return or break here
+//                    }
+//                    if b == "" {
+//                        self.errorMessage(err: "Incorrect Login Information") // Was not a string
+//                        return // needs a return or break here
+//                    }
+//                    self.user_lastname = b
+//                }
+//                //Set the global variables
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                appDelegate.user_email = self.user_email
+//                appDelegate.user_lastname = self.user_lastname
+//                appDelegate.user_firstname = self.user_firstname
+//                appDelegate.point_count = (json["point_count"] as? Int)!
+//                appDelegate.driver_approval = (json["driver_approval"] as? Bool)!
+//                
+//
+//                
+//                DispatchQueue.main.async(execute: self.LoginDone)
+//                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+//                self.present(newViewController, animated: true, completion: nil)
+//            }
+//            
+//            task.resume()
+//            
+//            
+//        }
 
         
-//        DispatchQueue.main.async(execute: self.LoginDone)
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-//        self.present(newViewController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: self.LoginDone)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     
