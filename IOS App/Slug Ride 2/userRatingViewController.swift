@@ -36,13 +36,14 @@ class userRatingViewController: UIViewController, FloatRatingViewDelegate {
     
     @IBOutlet weak var userName: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
-    @IBOutlet var liveLabel: UILabel!
-    @IBOutlet var updatedLabel: UILabel!
+    
+    var counter = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
+        self.userName.text = appDelegate.ratingList[counter]
 
         /** Note: With the exception of contentMode, all of these
          properties can be set directly in Interface builder **/
@@ -62,9 +63,7 @@ class userRatingViewController: UIViewController, FloatRatingViewDelegate {
 
         
         // Labels init
-        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
-        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
-        
+    
     }
     
     
@@ -75,11 +74,9 @@ class userRatingViewController: UIViewController, FloatRatingViewDelegate {
     
     @IBAction func submit(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let temp = appDelegate.ratingList.count
         print("check")
-        print(temp)
-        
-        let dict = ["user_email":"od1@ucsc.edu", "rating": 5] as [String: Any]
+        print(self.floatRatingView.rating)
+        let dict = ["user_email":appDelegate.ratingList[counter], "rating": self.floatRatingView.rating] as [String: Any]
         print(dict)
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
             print("success")
@@ -113,22 +110,25 @@ class userRatingViewController: UIViewController, FloatRatingViewDelegate {
             task.resume()
         }
 
+        counter+=1
         
-        //if temp == 0 {
+        if counter == appDelegate.ratingList.count {
             appDelegate.ratingList.removeAll()
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
             self.present(newViewController, animated: true, completion: nil)
-        //}
+        } else {
+            self.userName.text = appDelegate.ratingList[counter]
+        }
     }
     
     // MARK: FloatRatingViewDelegate
     
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
-        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
+        //self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
     func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
-        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
+        //self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
 }

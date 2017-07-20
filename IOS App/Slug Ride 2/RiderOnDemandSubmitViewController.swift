@@ -815,15 +815,36 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 print("success3")
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
                 print(json)
+                appDelegate.ratingList.removeAll()
                 let userss = json["user_emails"] as? [String]
+                var count = 0
                 for user in userss! {
+                    count = 1
+                    appDelegate.ratingList.append(user)
                     appDelegate.ratingList.append(user)
                 }
+                print (count)
                 print(appDelegate.ratingList)
+                if count != 0 {
+                    DispatchQueue.main.async(execute: self.gotoRating)
+                } else {
+                    DispatchQueue.main.async(execute: self.gotoMenu)
+                }
             }
             task.resume()
         }
  
+    }
+    
+    func gotoRating() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "userRatingViewController") as! userRatingViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoMenu() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        self.present(newViewController, animated: true, completion: nil)
     }
     
 }
