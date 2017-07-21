@@ -834,6 +834,10 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         }
  
     }
+    @IBAction func settings(_ sender: Any) {
+        let newViewController = AccountInformationViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
     
     func gotoRating() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "userRatingViewController") as! userRatingViewController

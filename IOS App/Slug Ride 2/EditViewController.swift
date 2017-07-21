@@ -2,7 +2,7 @@
 //  EditInformationViewController.swift
 //  Slug Ride 2
 //
-//  Created by Andrew Dato 
+//  Created by Andrew Dato
 //  Copyright © 2017 Andrew Dat0. All rights reserved.
 //
 
@@ -19,10 +19,11 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import AVFoundation
-class EditInformationViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    
 
+class EditViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    
+    
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
     var paused: Bool = false
@@ -53,13 +54,18 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer.currentItem)
-
+        
         
         
         
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    @IBAction func Back(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        self.present(newViewController, animated: true, completion: nil)
+    }
     
     //Button to choose image with options
     @IBAction func chooseImage(_ sender: Any) {
@@ -109,7 +115,6 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     
@@ -117,7 +122,7 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
     //functions to upload image to server
     ///////////////////////////////////////////////////////////////
     
-
+    
     //Button to upload image
     @IBAction func uploadImage(_ sender: Any) {
         
@@ -140,18 +145,13 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
         imageRequest.httpBody = createBody(parameters: params,
                                            boundary: boundary,
                                            data: UIImageJPEGRepresentation(self.imageView.image!, 0.7)!,
-            mimeType: "image/jpg",
-            filename: "default.jpg"
+                                           mimeType: "image/jpg",
+                                           filename: "default.jpg"
             
             
         )
     }
     
-    @IBAction func back(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-        self.present(newViewController, animated: true, completion: nil)
-    }
     
     /////////////////////////////////////////
     //View Functions
@@ -177,9 +177,8 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
         super.viewDidDisappear(animated)
         avPlayer.pause()
         paused = true
-        
     }
-
+    
     
     func createBody(parameters: [String: String],
                     boundary: String,
@@ -217,6 +216,41 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
     
 }
 
+//extension to round corner on imageView
+extension UIImageView
+{
+    func roundCornersForAspectFit(radius: CGFloat)
+    {
+        if let image = self.image {
+            
+            //calculate drawingRect
+            let boundsScale = self.bounds.size.width / self.bounds.size.height
+            let imageScale = image.size.width / image.size.height
+            
+            var drawingRect: CGRect = self.bounds
+            
+            if boundsScale > imageScale {
+                drawingRect.size.width =  drawingRect.size.height * imageScale
+                drawingRect.origin.x = (self.bounds.size.width - drawingRect.size.width) / 2
+            } else {
+                drawingRect.size.height = drawingRect.size.width / imageScale
+                drawingRect.origin.y = (self.bounds.size.height - drawingRect.size.height) / 2
+            }
+            let path = UIBezierPath(roundedRect: drawingRect, cornerRadius: radius)
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            self.layer.mask = mask
+        }
+    }
+}
 
+
+//extension to append strings to NSMUTABLEDATA
+extension NSMutableData {
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        append(data!)
+    }
+}
 
 

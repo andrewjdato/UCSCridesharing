@@ -33,6 +33,7 @@
 		58D1D7111EAF25ED0045E898 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */; };
 		5B0581171F17051100EE88FC /* DriverOnDemandSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */; };
 		5B0581191F1753B600EE88FC /* userRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0581181F1753B600EE88FC /* userRatingViewController.swift */; };
+		5B0917631F21F45600D36651 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0917621F21F45600D36651 /* EditViewController.swift */; };
 		5B0B0B3C1F2191AC000E8FD7 /* rating.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B0B0B3B1F2191AC000E8FD7 /* rating.mp4 */; };
 		5B392A8B1EB05A56008FF85B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8A1EB05A56008FF85B /* MenuViewController.swift */; };
 		5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B392A8C1EB09910008FF85B /* StartViewController.swift */; };
@@ -130,6 +131,7 @@
 		58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacesViewController.swift; path = ../PlacesViewController.swift; sourceTree = "<group>"; };
 		5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOnDemandSubmitViewController.swift; sourceTree = "<group>"; };
 		5B0581181F1753B600EE88FC /* userRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userRatingViewController.swift; sourceTree = "<group>"; };
+		5B0917621F21F45600D36651 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		5B0B0B3B1F2191AC000E8FD7 /* rating.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rating.mp4; sourceTree = "<group>"; };
 		5B392A8A1EB05A56008FF85B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B392A8C1EB09910008FF85B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				9BAA30EC1EA756F6003A5B54 /* ForgotViewController.swift */,
 				9B7D456B1EA7744B00FA2FF5 /* AccountInformationViewController.swift */,
 				9B7D456D1EA775D900FA2FF5 /* EditInformationViewController.swift */,
+				5B0917621F21F45600D36651 /* EditViewController.swift */,
 				5B0581161F17051100EE88FC /* DriverOnDemandSubmitViewController.swift */,
 				9B7D457F1EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift */,
 				5B392A8A1EB05A56008FF85B /* MenuViewController.swift */,
@@ -785,6 +788,7 @@
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
 				5B0581191F1753B600EE88FC /* userRatingViewController.swift in Sources */,
 				5B766AA11F0E1BC100697819 /* MarketViewController.swift in Sources */,
+				5B0917631F21F45600D36651 /* EditViewController.swift in Sources */,
 				5B0581171F17051100EE88FC /* DriverOnDemandSubmitViewController.swift in Sources */,
 				58BFA2221ED3FB1D004B79CE /* DriverViewController.swift in Sources */,
 				5B392A8D1EB09910008FF85B /* StartViewController.swift in Sources */,

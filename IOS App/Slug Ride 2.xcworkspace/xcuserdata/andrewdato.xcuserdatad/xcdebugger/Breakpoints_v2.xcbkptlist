@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slug Ride 2/AccountInformationViewController.swift"
-            timestampString = "522312966.043738"
+            timestampString = "522319548.320477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
             landmarkName = "getDriver()"
             landmarkType = "7">
          </BreakpointContent>
@@ -292,11 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slug Ride 2/AccountInformationViewController.swift"
-            timestampString = "522312966.043738"
+            timestampString = "522319548.320477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "getDriver()"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slug Ride 2/AccountInformationViewController.swift"
-            timestampString = "522313848.553748"
+            timestampString = "522320060.525466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "433"
-            endingLineNumber = "433"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "logout(button:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -332,7 +332,6 @@ class AccountInformationViewController: DatasourceController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     
@@ -421,13 +420,16 @@ class AccountInformationViewController: DatasourceController {
     
     //Button Function
     func info(button: UIButton) {
-        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "userRatingViewController") as! userRatingViewController
-        //self.navigationController?.pushViewController(vc, animated: true)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func driveinfo(button: UIButton) {
-        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "userRatingViewController") as! userRatingViewController
-        //self.navigationController?.pushViewController(vc, animated: true)
+
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "EditInformationViewController") as! EditInformationViewController
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func logout(button: UIButton) {
