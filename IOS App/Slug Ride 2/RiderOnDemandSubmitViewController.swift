@@ -284,16 +284,16 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         
         Alamofire.request(url).responseJSON { response in
             
-            print(response.request as Any)  // original URL request
-            print(response.response as Any) // HTTP URL response
-            print(response.data as Any)     // server data
-            print(response.result as Any)   // result of response serialization
+            //print(response.request as Any)  // original URL request
+            //print(response.response as Any) // HTTP URL response
+            //print(response.data as Any)     // server data
+            //print(response.result as Any)   // result of response serialization
             
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
             
-            print(" JSON is:")
-            print(json)
+            //print(" JSON is:")
+            //print(json)
             
 //            let jsonRoutes = json["routes"]
 //            print("*****-------------jsonRoutes----------------*****")
@@ -308,12 +308,12 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
 //            print(one)
             
             var two = json.dictionaryValue
-            print("*****-------------dictionary value----------------*****")
-            print(two)
+            //print("*****-------------dictionary value----------------*****")
+            //print(two)
             
             let three = two
-            print("*****-------------count of Dict Value----------------*****")
-            print(three)
+            //print("*****-------------count of Dict Value----------------*****")
+            //print(three)
 //            let three = json.dictionary
 //            print("*****-------------dictionary----------------*****")
 //            print(three)
@@ -346,10 +346,10 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 //print(startLocation.distance(from: endLocation)/1609.34)
                 
                 //Google Maps distance is accurate based on route
-                print("Google Maps Distance:")
+                //print("Google Maps Distance:")
                 var variablex = (GMSGeometryLength(path!)/1609.34)
                
-                print(variablex)
+                //print(variablex)
                 
                 //self.routeDistance.text  = "\(GMSGeometryLength(path!)/1609.34)"
              
@@ -438,7 +438,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 
                 // when button direction tapped, must call drawpath func
             self.drawPath(startLocation: curLocation, endLocation: locationEnd,waypoints: locationWaypoint)
-                
+            print("check0")
                 
             //GMSCameraPosition.camera(withLatitude: curLocation.coordinate.latitude, longitude: curLocation.coordinate.longitude, zoom: 14.0)
 
@@ -820,7 +820,6 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 var count = 0
                 for user in userss! {
                     count = 1
-                    appDelegate.ratingList.append(user)
                     appDelegate.ratingList.append(user)
                 }
                 print (count)

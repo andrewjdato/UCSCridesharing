@@ -10,6 +10,7 @@
 import LBTAComponents
 import Foundation
 
+
 class RSFooter: DatasourceCell {
     override func setupViews() {
         super.setupViews()
@@ -37,6 +38,7 @@ class RSCell: DatasourceCell {
         let label = UILabel()
         label.backgroundColor = .clear
         label.text = "Weekly Goals"
+        label.textColor = .white
         return label
     }()
     
@@ -45,7 +47,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back7: UILabel = {
@@ -53,7 +55,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back8: UILabel = {
@@ -61,7 +63,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back9: UILabel = {
@@ -69,7 +71,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back10: UILabel = {
@@ -77,13 +79,14 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     
     let marketLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
+        label.textColor = .white
         label.text = "Purchase Coins"
         return label
     }()
@@ -93,7 +96,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back2: UILabel = {
@@ -101,7 +104,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back3: UILabel = {
@@ -109,7 +112,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back4: UILabel = {
@@ -117,7 +120,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back5: UILabel = {
@@ -125,7 +128,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     
@@ -133,6 +136,7 @@ class RSCell: DatasourceCell {
         let label = UILabel()
         label.backgroundColor = .clear
         label.text = "Weekly Goals"
+        label.textColor = .white
         return label
     }()
     
@@ -141,7 +145,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back12: UILabel = {
@@ -149,7 +153,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back13: UILabel = {
@@ -157,7 +161,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back14: UILabel = {
@@ -165,7 +169,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
     let back15: UILabel = {
@@ -173,7 +177,7 @@ class RSCell: DatasourceCell {
         label.layer.cornerRadius = 15
         label.layer.borderColor = UIColor.yellow.cgColor
         label.layer.borderWidth = 1
-        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.backgroundColor = UIColor(r: 227, g: 226, b: 191).cgColor
         return label
     }()
 
@@ -181,7 +185,7 @@ class RSCell: DatasourceCell {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
+        button.layer.backgroundColor = UIColor(r: 140, g: 197, b: 61).cgColor
         button.setTitle("Purchase", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -192,7 +196,7 @@ class RSCell: DatasourceCell {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
+        button.layer.backgroundColor = UIColor(r: 140, g: 197, b: 61).cgColor
         button.setTitle("Purchase", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -203,7 +207,7 @@ class RSCell: DatasourceCell {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
+        button.layer.backgroundColor = UIColor(r: 140, g: 197, b: 61).cgColor
         button.setTitle("Purchase", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -214,7 +218,7 @@ class RSCell: DatasourceCell {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
+        button.layer.backgroundColor = UIColor(r: 140, g: 197, b: 61).cgColor
         button.setTitle("Purchase", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -225,7 +229,7 @@ class RSCell: DatasourceCell {
         let button = UIButton()
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        button.layer.backgroundColor = UIColor(r: 0, g: 107, b: 255).cgColor
+        button.layer.backgroundColor = UIColor(r: 140, g: 197, b: 61).cgColor
         button.setTitle("Purchase", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -361,10 +365,13 @@ class RSDataSource: Datasource {
 
 class MarketViewController: DatasourceController {
     
+    
+    var paused: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        collectionView?.backgroundColor = UIColor(r: 0, g: 107, b: 255)
+        collectionView?.backgroundColor = UIColor(r: 0, g: 71, b: 17)
         let homeDatasource = RSDataSource()
         self.datasource = homeDatasource
     }
@@ -372,7 +379,7 @@ class MarketViewController: DatasourceController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        collectionView?.backgroundColor = UIColor(r: 0, g: 107, b: 255)
+        collectionView?.backgroundColor = UIColor(r: 0, g: 71, b: 17)
         let homeDatasource = RSDataSource()
         self.datasource = homeDatasource
     }
@@ -387,9 +394,17 @@ class MarketViewController: DatasourceController {
         print("load Success")
     }
     
+    /*
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
-    
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //Repeat the video at the end
+    func playerItemDidReachEnd(notification: Notification) {
+        let p: AVPlayerItem = notification.object as! AVPlayerItem
+        p.seek(to: kCMTimeZero)
+    }*/    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 816)
     }
     

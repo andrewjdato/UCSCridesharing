@@ -99,6 +99,10 @@ class DriverViewController: UIViewController {
         let newViewController = MarketViewController()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
+    @IBAction func SettingMove(_ sender: Any) {
+        let newViewController = AccountInformationViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
     
     @IBAction func DriverMove(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
