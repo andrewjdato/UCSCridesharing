@@ -11,6 +11,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>FloatRatingView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>GooglePlacesAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,6 +42,16 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>QRCode.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>QRCodeReader.swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,6 +62,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1095F2EE04633806A8FF02B8D506AFBD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1A196107BC8DB338FC11C9CE9510573C</key>
 		<dict>
 			<key>primary</key>
@@ -77,12 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C974C3791EA6FEAA65FC24971ED8845A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D3299B0CC32D30028CA83DF48E7FB13B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D82432A8B6F8DD4EE7EF779662BB6361</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E10250FECAFAA00B2CAAF40A7178BE26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA0E7C6D6BD83D61916BC405B9CB20D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF101114F9B3119DAC1EA377D47448E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

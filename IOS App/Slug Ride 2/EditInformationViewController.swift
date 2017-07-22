@@ -10,6 +10,7 @@
 //IMPORTANT!!!
 //website for server image upload
 //https://newfivefour.com/swift-form-data-multipart-upload-URLRequest.html
+//alamofire: https://solarianprogrammer.com/2017/05/02/swift-alamofire-tutorial-uploading-downloading-images/
 //!!!!!!!!!!!!!!!!
 
 
@@ -81,7 +82,6 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         self.present(actionSheet, animated: true, completion: nil)
         
     }
@@ -125,26 +125,67 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
         //URL must be CHANGED to API
         let imageRequest  = NSMutableURLRequest(url: URL(string: "http://138.68.252.198:8000/rideshare/driver_info_submit/")!)
         
+        
         imageRequest.httpMethod = "POST"
         let boundary = "Boundary-\(UUID().uuidString)"
         imageRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        //info parameters of image
-        let params = [
-            "user_email" : "od1@ucsc.edu",
-            "image_name" : "testimage.jpg"
-        ]
+       
+        
+        
+        let imageData = UIImagePNGRepresentation(self.imageView.image!)
+       
+        
+        
+        
+        
+        
+        // User "authentication":
+             let parameters = ["user_email" : "od1@ucsc.edu", "image_name" : "testimage.jpg"]
+        
+             // Image to upload:
+             let imageToUploadURL = Bundle.main.url(forResource: "tree", withExtension: "png")
+        
+             // Server address (replace this with the address of your own server):
+             let url = "http://138.68.252.198:8000/rideshare/driver_info_submit/"
+        
+             // Use Alamofire to upload the image
+             Alamofire.upload(
+                     multipartFormData: { multipartFormData in
+                        
+                             multipartFormData.append(imageData!, withName: "image")
+                             for (key, val) in parameters {
+                                     multipartFormData.append(val.data(using: String.Encoding.utf8)!, withName: key)
+                                 }
+                     },
+                     to: url,
+                     encodingCompletion: { encodingResult in
+                         switch encodingResult {
+                         case .success(let upload, _, _):
+                             upload.responseJSON { response in
+                                 if let jsonResponse = response.result.value as? [String: Any] {
+                                     print(jsonResponse)
+                                 }
+                             }
+                         case .failure(let encodingError):
+                             print(encodingError)
+                         }
+                 }
+                 )
+        
+        
+               //Alamofire code
         
         
         //create http body with selected image
-        imageRequest.httpBody = createBody(parameters: params,
-                                           boundary: boundary,
-                                           data: UIImageJPEGRepresentation(self.imageView.image!, 0.7)!,
-            mimeType: "image/jpg",
-            filename: "default.jpg"
-            
-            
-        )
+//        imageRequest.httpBody = createBody(parameters: params,
+//                                           boundary: boundary,
+//                                           data: UIImageJPEGRepresentation(self.imageView.image!, 0.7)!,
+//            mimeType: "image/jpg",
+//            filename: "default.jpg"
+//            
+//            
+//        )
     }
     
     @IBAction func back(_ sender: Any) {
@@ -181,6 +222,8 @@ class EditInformationViewController : UIViewController, UIImagePickerControllerD
     }
 
     
+    
+    //create body for Multipart data upload
     func createBody(parameters: [String: String],
                     boundary: String,
                     data: Data,
