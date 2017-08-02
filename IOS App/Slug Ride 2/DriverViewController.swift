@@ -118,12 +118,13 @@ class DriverViewController: UIViewController {
         
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let dict = ["user_email":appDelegate.user_email] as [String: Any]
+   
+        let dict2 = ["user_email":appDelegate.user_email] as [String: Any]
         //let dict = ["user_email":appDelegate.user_email, "first_name":"Test", "last_name":"Test", "user_car":"Test", "car_color":"Test", "car_capacity":5] as [String: Any]
-        print(dict)
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted){
+        print(dict2)
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict2, options: .prettyPrinted){
             print("success")
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/account_info/")!
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/goal_info/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

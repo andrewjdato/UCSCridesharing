@@ -123,7 +123,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
     }
     
     
@@ -131,7 +131,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
     }
     
     
@@ -167,7 +167,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         self.googleMaps.settings.compassButton = true
         self.googleMaps.settings.zoomGestures = true
         
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
         
     }
     
@@ -497,6 +497,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
     //JSON has been sent out
     //////////////////////////////
     func postDone() {
+        self.navigationController?.isNavigationBarHidden = true
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.postButton.isHidden = false
         self.submit.isHidden = true
@@ -511,7 +512,6 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
         }
         let camera = GMSCameraPosition.camera(withLatitude: self.curLocation.coordinate.latitude, longitude: self.curLocation.coordinate.longitude, zoom: 15.0)
         self.googleMaps.camera = camera
-        
         self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.pollforUsers(_:)), userInfo: nil, repeats: true)
     }
     
