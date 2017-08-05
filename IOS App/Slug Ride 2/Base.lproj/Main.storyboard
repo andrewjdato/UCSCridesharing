@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FNp-S1-Dae">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FNp-S1-Dae">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,7 +17,7 @@
         <scene sceneID="gTY-1S-j7O">
             <objects>
                 <navigationController restorationIdentifier="StartViewController" storyboardIdentifier="StartViewController" id="FNp-S1-Dae" customClass="StartViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8jg-ax-BOL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8jg-ax-BOL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -502,7 +502,7 @@
         <scene sceneID="NCP-8y-xe2">
             <objects>
                 <navigationController restorationIdentifier="MenuViewController" storyboardIdentifier="MenuViewController" id="uhG-4i-p2W" customClass="MenuViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GyM-JM-Oqx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GyM-JM-Oqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -589,6 +589,14 @@
                                             <action selector="test:" destination="Uwj-F0-MsK" eventType="touchUpInside" id="fkr-y0-axk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZ8-9e-Qib">
+                                        <rect key="frame" x="251" y="493" width="82" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Apple Maps"/>
+                                        <connections>
+                                            <segue destination="6yC-2d-6kQ" kind="show" id="XdQ-OT-1qr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -621,6 +629,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Driver" id="XGV-Cx-cwi"/>
                     <connections>
+                        <outlet property="appleMapsButton" destination="IZ8-9e-Qib" id="YJS-xa-Aa3"/>
                         <outlet property="coins" destination="PWf-TB-HHb" id="zaY-uX-bQn"/>
                         <outlet property="name" destination="xNh-PO-XV1" id="qdx-QX-nqR"/>
                         <outlet property="videoView" destination="vxK-Z8-eR2" id="4DE-l5-IDR"/>
@@ -629,6 +638,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ew-ZU-YP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3317.5999999999999" y="-412.44377811094455"/>
+        </scene>
+        <!--Apple Maps View Controller-->
+        <scene sceneID="PXY-7X-U6f">
+            <objects>
+                <viewController id="5Ka-i5-ncE" customClass="AppleMapsViewController" customModule="Slug_Ride_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LOT-Gz-6aK"/>
+                        <viewControllerLayoutGuide type="bottom" id="XxX-mX-yS9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MFI-8g-rNt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j34-h3-PPZ">
+                                <rect key="frame" x="0.0" y="72" width="375" height="546"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7Se-Mm-lQz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="nyG-DZ-U0M">
+                            <color key="tintColor" red="0.1411764771" green="0.039215687659999998" blue="0.180392161" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="j34-h3-PPZ" id="uuI-Q7-Fjj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yiG-6N-nh3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5372" y="517.6911544227886"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="eVp-gt-Hte">
@@ -1256,6 +1297,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tcf-b1-qNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2758" y="1519"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nen-78-6yn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6yC-2d-6kQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bVi-ea-gYL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5Ka-i5-ncE" kind="relationship" relationship="rootViewController" id="jMu-mZ-rhm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTj-gB-P4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4432.8000000000002" y="517.6911544227886"/>
         </scene>
     </scenes>
     <resources>

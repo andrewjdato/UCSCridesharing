@@ -22,6 +22,7 @@ class DriverViewController: UIViewController {
     //Link to the video view of the object
     @IBOutlet weak var videoView: UIView!
     
+    @IBOutlet weak var appleMapsButton: UIButton!
     //Basic function that runs when the page first loads up
     override func viewDidLoad() {
         super.viewDidLoad()      
