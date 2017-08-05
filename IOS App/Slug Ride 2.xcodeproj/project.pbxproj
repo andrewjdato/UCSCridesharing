@@ -50,6 +50,7 @@
 		5B41BA971F0DE4E000167770 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8D1F0DE4E000167770 /* SwitchCameraButton.swift */; };
 		5B41BA981F0DE4E000167770 /* ToggleTorchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */; };
 		5B42F1731F0B30B60029512C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42F1721F0B30B60029512C /* SideMenuViewController.swift */; };
+		5B4DD6001F353D55008CD50F /* Background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DD5FF1F353D55008CD50F /* Background.jpeg */; };
 		5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */; };
 		5B6EF8DF1F1DD40F001B2938 /* FloatRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */; };
 		5B737E1B1EC2EA7000D14DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1A1EC2EA7000D14DBB /* Images.xcassets */; };
@@ -148,6 +149,7 @@
 		5B41BA8D1F0DE4E000167770 /* SwitchCameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCameraButton.swift; sourceTree = "<group>"; };
 		5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleTorchButton.swift; sourceTree = "<group>"; };
 		5B42F1721F0B30B60029512C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		5B4DD5FF1F353D55008CD50F /* Background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpeg; sourceTree = "<group>"; };
 		5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTestViewController.swift; sourceTree = "<group>"; };
 		5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingViewDelegate.swift; sourceTree = "<group>"; };
 		5B737E1A1EC2EA7000D14DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				5B0B0B3B1F2191AC000E8FD7 /* rating.mp4 */,
+				5B4DD5FF1F353D55008CD50F /* Background.jpeg */,
 				586B41501ED9266C00060857 /* ridervid2.mp4 */,
 				587F48C61EE7413F000E3F4B /* drivervidfin.mp4 */,
 				587F48C71EE7413F000E3F4B /* front.mp4 */,
@@ -687,6 +690,7 @@
 				587F48C91EE741D3000E3F4B /* front.mp4 in Resources */,
 				587F48C81EE741CD000E3F4B /* drivervidfin.mp4 in Resources */,
 				586B41511ED9267900060857 /* ridervid2.mp4 in Resources */,
+				5B4DD6001F353D55008CD50F /* Background.jpeg in Resources */,
 				9BAA30C51EA730C0003A5B54 /* LaunchScreen.storyboard in Resources */,
 				9BAA30C01EA730C0003A5B54 /* Main.storyboard in Resources */,
 				5B0B0B3C1F2191AC000E8FD7 /* rating.mp4 in Resources */,

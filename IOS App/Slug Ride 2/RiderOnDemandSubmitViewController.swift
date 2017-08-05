@@ -451,6 +451,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 let url = NSURL(string: "http://138.68.252.198:8000/rideshare/post_ride/")!
                 let request = NSMutableURLRequest(url: url as URL)
                 request.httpMethod = "POST"
+                request.setValue("Token \(appDelegate.token)", forHTTPHeaderField: "Authorization")
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = jsonData
                 
@@ -531,6 +532,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/query_ride/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
+            request.setValue("Token \(appDelegate.token)", forHTTPHeaderField: "Authorization")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
@@ -700,6 +702,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
                 let url = NSURL(string: "http://138.68.252.198:8000/rideshare/scan_qr_code/")!
                 let request = NSMutableURLRequest(url: url as URL)
                 request.httpMethod = "POST"
+                request.setValue("Token \(appDelegate.token)", forHTTPHeaderField: "Authorization")
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = jsonData
                 
@@ -790,6 +793,7 @@ class RiderOnDemandSubmitViewController : UIViewController , GMSMapViewDelegate 
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/end_ride/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
+            request.setValue("Token \(appDelegate.token)", forHTTPHeaderField: "Authorization")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             

@@ -23,11 +23,11 @@ class LoginViewController : UIViewController{
     var user_email:String = ""
     var user_firstname:String = ""
     var user_lastname:String = ""
-    
     //Video Player Variables
-    var avPlayer: AVPlayer!
-    var avPlayerLayer: AVPlayerLayer!
-    var paused: Bool = false
+    //var avPlayer: AVPlayer!
+    //var avPlayerLayer: AVPlayerLayer!
+    //var paused: Bool = false
+
     
     /////////////////////////////////////////
     //Storyboard Links
@@ -58,19 +58,20 @@ class LoginViewController : UIViewController{
     /////////////////////////////////////////
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        avPlayer.play() //Plays the video
-        paused = false //Pauses when starts
+        //avPlayer.play() //Plays the video
+        //paused = false //Pauses when starts
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        avPlayer.pause() //Pauses the video
-        paused = true //Pauses when leaves
+        //avPlayer.pause() //Pauses the video
+        //paused = true //Pauses when leaves
+        self.currentTask?.cancel()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         //Video File that is being played
         if let theURL: NSURL = Bundle.main.url(forResource: "front", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
@@ -100,7 +101,9 @@ class LoginViewController : UIViewController{
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer.currentItem)
-        
+        */
+        view.backgroundColor = UIColor(r: 227, g: 226, b: 191)
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "Background.jpeg")!)
         self.navigationController?.isNavigationBarHidden = true
         
         //Delete Later
@@ -167,6 +170,8 @@ class LoginViewController : UIViewController{
         }
     }
     
+    var user:String = ""
+    var pass:String = ""
     /////////////////////////////////////////
     //Additional Functions
     /////////////////////////////////////////
@@ -175,13 +180,15 @@ class LoginViewController : UIViewController{
     {
         //let session = URLSession.shared
         //Set the login dictoinary
-        let dict = ["email":username, "password":password] as [String: Any]
+        user = username
+        pass = password
+        let dict = ["username":username, "password":password] as [String: Any]
         print(dict)
         //Create the JSON File
         if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
             
             print(jsonData)
-            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")! //Set URl
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/get_auth_token/")! //Set URl
             //let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
             let request = NSMutableURLRequest(url: url as URL) //Set tpe of request
             request.httpMethod = "POST" //Set Type of post
@@ -210,8 +217,12 @@ class LoginViewController : UIViewController{
                 //Recieve object
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
                 print(json)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.token = json["token"] as! String
+                print(appDelegate.token)
+                DispatchQueue.main.async(execute: self.LoginStart)
                 //Check the JSON data
-                
+                /*
                 if let userEmail = json["email"] as AnyObject? {
                     guard let b = userEmail as? String
                         else {
@@ -262,13 +273,117 @@ class LoginViewController : UIViewController{
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                 self.present(newViewController, animated: true, completion: nil)
+ */
             }
             
             task.resume()
             
-            
         }
 
+    }
+    
+    
+    var currentTask: URLSessionTask?
+    func LoginStart() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //let session = URLSession.shared
+        //Set the login dictoinary
+        let dict = ["email":self.user, "password":self.pass] as [String: Any]
+        print(dict)
+        //Create the JSON File
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) {
+            
+            print(jsonData)
+            let url = NSURL(string: "http://138.68.252.198:8000/rideshare/user_login/")! //Set URl
+            //let url = NSURL(string: "http://localhost:8000/rideshare/user_login/")!
+            let request = NSMutableURLRequest(url: url as URL) //Set tpe of request
+            request.httpMethod = "POST" //Set Type of post
+            request.setValue("Token \(appDelegate.token)", forHTTPHeaderField: "Authorization")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type") //Add additional values
+            request.httpBody = jsonData //Set the rest of the object
+            print (request)
+            //Send the JSON object
+            currentTask = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+                //Check response
+                if let httpResponse = response as? HTTPURLResponse {
+                    print(httpResponse.statusCode)
+                    if(httpResponse.statusCode != 200) {
+                        self.errorMessage(err: "Server Down")
+                        return
+                    }
+                }
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                guard let data = data else {
+                    self.errorMessage(err: "Data Empty")
+                    return
+                }
+                print(data)
+                //Recieve object
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                print(json)
+                DispatchQueue.main.async(execute: self.LoginStart)
+                //Check the JSON data
+                 if let userEmail = json["email"] as AnyObject? {
+                 guard let b = userEmail as? String
+                 else {
+                 self.errorMessage(err: "Incorrect Login Information")// Was not a string
+                 return // needs a return or break here
+                 }
+                 if b == "" {
+                 self.errorMessage(err: "Incorrect Login Information") // Was not a string
+                 return // needs a return or break here
+                 }
+                 self.user_email = b
+                 }
+                 if let userfirstname = json["first_name"] as AnyObject? {
+                 guard let b = userfirstname as? String
+                 else {
+                 self.errorMessage(err: "Incorrect Login Information") // Was not a string
+                 return // needs a return or break here
+                 }
+                 if b == "" {
+                 self.errorMessage(err: "Incorrect Login Information") // Was not a string
+                 return // needs a return or break here
+                 }
+                 self.user_firstname = b
+                 }
+                 if let userfirstname = json["last_name"] as AnyObject? {
+                 guard let b = userfirstname as? String
+                 else {
+                 self.errorMessage(err: "Incorrect Login Information") // Was not a string
+                 return // needs a return or break here
+                 }
+                 if b == "" {
+                 self.errorMessage(err: "Incorrect Login Information") // Was not a string
+                 return // needs a return or break here
+                 }
+                 self.user_lastname = b
+                 }
+                 //Set the global variables
+                
+                 appDelegate.user_email = self.user_email
+                 appDelegate.user_lastname = self.user_lastname
+                 appDelegate.user_firstname = self.user_firstname
+                 appDelegate.point_count = (json["point_count"] as? Int)!
+                 appDelegate.driver_approval = (json["driver_approval"] as? Bool)!
+                
+                 
+                 
+                 DispatchQueue.main.async(execute: self.LoginDone)
+                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                 let newViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                 self.present(newViewController, animated: true, completion: nil)
+                 self.currentTask?.cancel()
+ 
+            }
+            
+            currentTask?.resume()
+            
+            
+        }
     }
     
     
@@ -296,6 +411,7 @@ class LoginViewController : UIViewController{
         
         
         login_button.setTitle("Logout", for: .normal)
+        currentTask?.resume()
     }
     
     func LoginToDo() {

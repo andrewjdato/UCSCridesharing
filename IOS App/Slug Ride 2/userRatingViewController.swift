@@ -125,6 +125,7 @@ class userRatingViewController: UIViewController, FloatRatingViewDelegate {
             let url = NSURL(string: "http://138.68.252.198:8000/rideshare/rate_user/")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
+            request.setValue("Token \(appDelegate.token)", forHTTPHeaderField: "Authorization")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
