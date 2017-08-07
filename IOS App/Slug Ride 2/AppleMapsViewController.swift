@@ -11,13 +11,22 @@ import MapKit
 import CoreLocation
 
 
-class AppleMapsViewController: UIViewController,CLLocationManagerDelegate {
+class AppleMapsViewController: UIViewController,CLLocationManagerDelegate, UISearchBarDelegate {
     
     
     //outlet for Maps
     @IBOutlet weak var mapView: MKMapView!
     
     let manager = CLLocationManager()
+    
+    
+    
+    @IBAction func searchButton(_ sender: Any) {
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        present(searchController, animated: true, completion: nil)
+    }
     
     
     //function that finds location with precision
@@ -37,6 +46,66 @@ class AppleMapsViewController: UIViewController,CLLocationManagerDelegate {
         
     }
     
+    //function for search UISearchBarDelegate
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        
+        //Ignore user
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        //Activity Indicator
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        
+        self.view.addSubview(activityIndicator)
+        
+        //hide search bar 
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        //create the search request 
+        let searchRequest = MKLocalSearchRequest()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        
+        activeSearch.start { (response, error) in
+            if response == nil
+            {
+                print("Error in Search")
+            }
+            else
+            {
+                let annotations = self.mapView.annotations
+                self.mapView.removeAnnotations(annotations)
+                
+                //get data 
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                
+                //create annotation
+                let annotation = MKPointAnnotation()
+                annotation.title = searchBar.text
+                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                self.mapView.addAnnotation(annotation)
+                
+                
+                //zooming in on location
+                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpanMake(0.1, 0.1)
+                let region = MKCoordinateRegionMake(coordinate, span)
+                self.mapView.setRegion(region, animated: true)
+                
+            
+            }
+        }
+    
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +115,7 @@ class AppleMapsViewController: UIViewController,CLLocationManagerDelegate {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        //manager.startUpdatingLocation()
         
         
         //code to display a certain location on the map
