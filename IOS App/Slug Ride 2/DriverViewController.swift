@@ -13,9 +13,9 @@ import AVFoundation
 class DriverViewController: UIViewController {
     
     //Variables used for the AV functionality
-    var avPlayer: AVPlayer!
-    var avPlayerLayer: AVPlayerLayer!
-    var paused: Bool = false
+    //var avPlayer: AVPlayer!
+    //var avPlayerLayer: AVPlayerLayer!
+    //var paused: Bool = false
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var coins: UILabel!
@@ -25,12 +25,13 @@ class DriverViewController: UIViewController {
     @IBOutlet weak var appleMapsButton: UIButton!
     //Basic function that runs when the page first loads up
     override func viewDidLoad() {
-        super.viewDidLoad()      
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(r: 227, g: 226, b: 191)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.name.text = appDelegate.user_firstname + " " + appDelegate.user_lastname
         self.coins.text = "\(appDelegate.point_count)"
         //Insert the video for the background
-        if let theURL: NSURL = Bundle.main.url(forResource: "drivervidfin", withExtension: "mp4")! as NSURL{
+        /*if let theURL: NSURL = Bundle.main.url(forResource: "drivervidfin", withExtension: "mp4")! as NSURL{
             avPlayer = AVPlayer(url: theURL as URL)
             
         }
@@ -50,14 +51,14 @@ class DriverViewController: UIViewController {
         
         self.videoView.backgroundColor = .clear
         self.videoView.layer.insertSublayer(avPlayerLayer, at: 0)
-        //view.layer.insertSublayer(avPlayerLayer, at: 0)
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: avPlayer.currentItem)
         
-        //Hide the Navi Bar
+         //Hide the Navi Bar*/
+        //view.layer.insertSublayer(avPlayerLayer, at: 0)
+        
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
@@ -79,15 +80,15 @@ class DriverViewController: UIViewController {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
-        avPlayer.play()
-        paused = false
+        //avPlayer.play()
+        //paused = false
     }
     
     //Function for when you leave the page
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        avPlayer.pause()
-        paused = true
+        //avPlayer.pause()
+        //paused = true
     }
     
     //Status bar color

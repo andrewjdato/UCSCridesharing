@@ -12,4 +12,5 @@ target 'Slug Ride 2' do
     pod 'QRCodeReader.swift'
     pod 'QRCode'
     pod 'FloatRatingView', '~> 2.0.0'
+    pod 'SlideMenuControllerSwift'
 end

@@ -52,6 +52,7 @@
 		5B41BA981F0DE4E000167770 /* ToggleTorchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */; };
 		5B42F1731F0B30B60029512C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42F1721F0B30B60029512C /* SideMenuViewController.swift */; };
 		5B4DD6001F353D55008CD50F /* Background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DD5FF1F353D55008CD50F /* Background.jpeg */; };
+		5B559A571F3C267B001709A2 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B559A561F3C267B001709A2 /* LeftViewController.swift */; };
 		5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */; };
 		5B6EF8DF1F1DD40F001B2938 /* FloatRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */; };
 		5B737E1B1EC2EA7000D14DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1A1EC2EA7000D14DBB /* Images.xcassets */; };
@@ -152,6 +153,7 @@
 		5B41BA8E1F0DE4E000167770 /* ToggleTorchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleTorchButton.swift; sourceTree = "<group>"; };
 		5B42F1721F0B30B60029512C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		5B4DD5FF1F353D55008CD50F /* Background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpeg; sourceTree = "<group>"; };
+		5B559A561F3C267B001709A2 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTestViewController.swift; sourceTree = "<group>"; };
 		5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingViewDelegate.swift; sourceTree = "<group>"; };
 		5B737E1A1EC2EA7000D14DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				587F48C61EE7413F000E3F4B /* drivervidfin.mp4 */,
 				587F48C71EE7413F000E3F4B /* front.mp4 */,
 				58D1D7101EAF25ED0045E898 /* PlacesViewController.swift */,
+				5B559A561F3C267B001709A2 /* LeftViewController.swift */,
 				5B41BA801F0DDE8900167770 /* QRReaderViewController.swift */,
 				5B41BA821F0DDE9C00167770 /* QRViewerViewController.swift */,
 				9BAA30BA1EA730C0003A5B54 /* AppDelegate.swift */,
@@ -790,6 +793,7 @@
 				5B737E3C1EC2FD6000D14DBB /* IQKeyboardManagerConstants.swift in Sources */,
 				5B41BA941F0DE4E000167770 /* QRCodeReaderViewControllerBuilder.swift in Sources */,
 				5B41BA921F0DE4E000167770 /* QRCodeReaderViewContainer.swift in Sources */,
+				5B559A571F3C267B001709A2 /* LeftViewController.swift in Sources */,
 				9BAA30E91EA74EE5003A5B54 /* LoginViewController.swift in Sources */,
 				5B41BA931F0DE4E000167770 /* QRCodeReaderViewController.swift in Sources */,
 				9BAA30BD1EA730C0003A5B54 /* ViewController.swift in Sources */,
