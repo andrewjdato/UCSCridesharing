@@ -53,6 +53,7 @@
 		5B42F1731F0B30B60029512C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42F1721F0B30B60029512C /* SideMenuViewController.swift */; };
 		5B4DD6001F353D55008CD50F /* Background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DD5FF1F353D55008CD50F /* Background.jpeg */; };
 		5B559A571F3C267B001709A2 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B559A561F3C267B001709A2 /* LeftViewController.swift */; };
+		5B559A5B1F3C2DEF001709A2 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B559A5A1F3C2DEF001709A2 /* SlideMenuController.swift */; };
 		5B5B4EDD1ECC2D860018A850 /* ChatTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */; };
 		5B6EF8DF1F1DD40F001B2938 /* FloatRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */; };
 		5B737E1B1EC2EA7000D14DBB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B737E1A1EC2EA7000D14DBB /* Images.xcassets */; };
@@ -154,6 +155,8 @@
 		5B42F1721F0B30B60029512C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		5B4DD5FF1F353D55008CD50F /* Background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpeg; sourceTree = "<group>"; };
 		5B559A561F3C267B001709A2 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		5B559A591F3C2DEF001709A2 /* SlideMenuControllerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuControllerSwift.h; sourceTree = "<group>"; };
+		5B559A5A1F3C2DEF001709A2 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		5B5B4EDC1ECC2D860018A850 /* ChatTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTestViewController.swift; sourceTree = "<group>"; };
 		5B6EF8DE1F1DD40F001B2938 /* FloatRatingViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingViewDelegate.swift; sourceTree = "<group>"; };
 		5B737E1A1EC2EA7000D14DBB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -483,6 +486,8 @@
 		9BAA30B91EA730C0003A5B54 /* Slug Ride 2 */ = {
 			isa = PBXGroup;
 			children = (
+				5B559A591F3C2DEF001709A2 /* SlideMenuControllerSwift.h */,
+				5B559A5A1F3C2DEF001709A2 /* SlideMenuController.swift */,
 				5B0B0B3B1F2191AC000E8FD7 /* rating.mp4 */,
 				5B4DD5FF1F353D55008CD50F /* Background.jpeg */,
 				586B41501ED9266C00060857 /* ridervid2.mp4 */,
@@ -812,6 +817,7 @@
 				9BAA30ED1EA756F6003A5B54 /* ForgotViewController.swift in Sources */,
 				9B7D45801EA77B4C00FA2FF5 /* RiderOnDemandSubmitViewController.swift in Sources */,
 				9B7D456E1EA775D900FA2FF5 /* EditInformationViewController.swift in Sources */,
+				5B559A5B1F3C2DEF001709A2 /* SlideMenuController.swift in Sources */,
 				5B41BA961F0DE4E000167770 /* ReaderOverlayView.swift in Sources */,
 				5B41BA951F0DE4E000167770 /* QRCodeReaderViewControllerDelegate.swift in Sources */,
 				5B737E371EC2FD6000D14DBB /* IQUIScrollView+Additions.swift in Sources */,

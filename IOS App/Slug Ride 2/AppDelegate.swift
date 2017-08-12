@@ -30,16 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM")
         GMSPlacesClient.provideAPIKey("AIzaSyDY1oCQ3t61xlUPoqJkeDp1WFTThmB-EEM")
         // Override point for customization after application launch.
-        /*
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+
         
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        let leftViewController = storyboard.instantiateViewController(withIdentifier: "LeftViewController") as! LeftViewController
-        
-        let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController)
-        self.window?.rootViewController = slideMenuController
-        self.window?.makeKeyAndVisible()
-        */
         //window?.rootViewController = UINavigationController(rootViewController: TestController())       
         return true
     }
